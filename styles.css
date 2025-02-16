@@ -62,7 +62,7 @@ body {
     text-decoration: none;
     color: var(--fourth-color);
     font-weight: bold;
-    margin-right: -110px; /* Adjust the margin as needed */
+    margin-right: -90px; /* Adjust the margin as needed */
 }
 
 .nav_item a.nav_active {
