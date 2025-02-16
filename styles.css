@@ -1,0 +1,122 @@
+/* Body styles */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: var(--third-color); /* Background using third color */
+    color: #333; /* General text color */
+    border-radius: 2.5px;
+}
+
+/* Color palette from: https://palettes.shecodes.io/palettes/507#palette */
+:root {
+    --first-color: #919190;
+    --second-color: #c4eada;
+    --third-color: #ef7b7b;
+    --fourth-color: #fcf3ca;
+    /* @MacN_iT text color change */
+    --flag-white: #ffffff;
+    --flag-red: #ff0000;
+    --flag-blue: #0000ff;
+}
+/* End of Body styles */
+/* Header styles */
+.header-index {
+    background-color: var(--first-color);
+    color: white;
+    padding: 10px 0;
+    border-radius: 10px;
+}
+
+.nav_container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+#nav_logo {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    font-size: 1.5rem; /* To adjust the text size */
+}
+
+.littlerobot {
+    max-width: 170px; /* Adjust the max-width for log scaling */
+    height: auto; /* Maintain the aspect ratio */
+    margin-right: 5px; /* The space between the logo and text */
+    margin-left: -300px;
+}
+
+.nav.menu {
+    list-style-type: none;
+    display: flex;
+    gap: 15px;
+}
+
+.nav_item a {
+    text-decoration: none;
+    color: var(--fourth-color);
+    font-weight: bold;
+    margin-right: -110px; /* Adjust the margin as needed */
+}
+
+.nav_item a.nav_active {
+    color: var(--fourth-color); /* Highlight the active link */
+}
+
+.nav_item a:hover {
+    background-color: var(--second-color);
+}
+
+/* Animation styles for color change */
+.color-change {
+    display: inline-block;
+    animation: colorAnimation 10s infinite;
+}
+
+.color-change:nth-child(1) { /* @ */
+    animation-delay: 0s;
+}
+.color-change:nth-child(2) { /* M */
+    animation-delay: 2s;
+}
+.color-change:nth-child(3) { /* a */
+    animation-delay: 4s;
+}
+.color-change:nth-child(4) { /* c */
+    animation-delay: 6s;
+}
+.color-change:nth-child(5) { /* N */
+    animation-delay: 8s;
+}
+.color-change:nth-child(6) { /* _ */
+    animation-delay: 10s;
+}
+.color-change:nth-child(7) { /* i */
+    animation-delay: 12s;
+}
+.color-change:nth-child(8) { /* T */
+    animation-delay: 14s;
+}
+
+@keyframes colorAnimation {
+    0%, 100% {
+        color: var(--flag-white);
+    }
+    25% {
+        color: var(--flag-red);
+    }
+    50% {
+        color: var(--flag-white);
+    }
+    75% {
+        color: var(--flag-blue);
+    }
+}
+/* End of Animation styles for color change */
+/* End of Header styles */
