@@ -130,7 +130,7 @@ footer {
     text-align: center;
     padding: 20px;
     background-color: var(--first-color);
-    color: var(--third-color);
+    color: var(--fourth-color);
     border-top: 1px solid #ccc;
     border-radius: 10px;
 }
