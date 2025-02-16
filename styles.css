@@ -21,7 +21,7 @@ body {
 /* End of Body styles */
 /* Header styles */
 .header-index {
-    background-color: var(--first-color);
+    background-color: var(--third-color);
     color: white;
     padding: 10px 0;
     border-radius: 10px;
@@ -64,13 +64,13 @@ body {
 
 .nav_item a {
     text-decoration: none;
-    color: var(--fourth-color);
+    color: var(--first-color);
     font-weight: bold;
     padding: 10px;
 }
 
 .nav_item a.nav_active {
-    color: var(--fourth-color); /* Highlight the active link */
+    color: var(--first-color); /* Highlight the active link */
 }
 
 .nav_item a:hover {
@@ -129,7 +129,7 @@ body {
 footer {
     text-align: center;
     padding: 20px;
-    background-color: var(--first-color);
+    background-color: var(--third-color);
     color: var(--fourth-color);
     border-top: 1px solid #ccc;
     border-radius: 10px;
