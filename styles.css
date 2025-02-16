@@ -43,6 +43,7 @@ body {
     color: white;
     font-weight: bold;
     font-size: 1.5rem; /* To adjust the text size */
+    margin-left: 0px;
 }
 
 .littlerobot {
@@ -53,16 +54,19 @@ body {
 }
 
 .nav.menu {
+    display: flex;
     list-style-type: none;
     display: flex;
     gap: 15px;
+    padding: 0;
+    margin-left: auto;
 }
 
 .nav_item a {
     text-decoration: none;
     color: var(--fourth-color);
     font-weight: bold;
-    margin-right: -100px; /* Adjust the margin as needed */
+    padding: 10px;
 }
 
 .nav_item a.nav_active {
