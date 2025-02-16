@@ -2,7 +2,7 @@
 body {
     margin: 0;
     font-family: Arial, sans-serif;
-    background-color: var(--third-color); /* Background using third color */
+    background-color: var(--second-color); /* Background using third color */
     color: #333; /* General text color */
     border-radius: 2.5px;
 }
