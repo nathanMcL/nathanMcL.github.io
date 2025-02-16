@@ -9,7 +9,7 @@ body {
 
 /* Color palette from: https://palettes.shecodes.io/palettes/507#palette */
 :root {
-    --first-color: #919190;
+    --first-color: #222221;
     --second-color: #c4eada;
     --third-color: #ef7b7b;
     --fourth-color: #fcf3ca;
@@ -130,7 +130,7 @@ footer {
     text-align: center;
     padding: 20px;
     background-color: var(--third-color);
-    color: var(--fourth-color);
+    color: var(--first-color);
     border-top: 1px solid #ccc;
     border-radius: 10px;
 }
