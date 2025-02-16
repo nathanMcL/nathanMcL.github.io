@@ -49,7 +49,7 @@ body {
     max-width: 170px; /* Adjust the max-width for log scaling */
     height: auto; /* Maintain the aspect ratio */
     margin-right: 5px; /* The space between the logo and text */
-    margin-left: -300px;
+    margin-left: -200px;
 }
 
 .nav.menu {
@@ -62,7 +62,7 @@ body {
     text-decoration: none;
     color: var(--fourth-color);
     font-weight: bold;
-    margin-right: -90px; /* Adjust the margin as needed */
+    margin-right: -100px; /* Adjust the margin as needed */
 }
 
 .nav_item a.nav_active {
