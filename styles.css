@@ -120,3 +120,13 @@ body {
 }
 /* End of Animation styles for color change */
 /* End of Header styles */
+
+/* Footer styling */
+footer {
+    text-align: center;
+    padding: 20px;
+    background-color: var(--first-color);
+    color: var(--third-color);
+    border-top: 1px solid #ccc;
+    border-radius: 10px;
+}
