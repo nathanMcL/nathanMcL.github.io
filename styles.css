@@ -348,7 +348,7 @@ footer {
     color: rgba(8, 71, 50, 0.8); /* Cyber green */
     font-family: "Courier New", monospace;
     font-size: 12px;
-    opacity: 0.8;
+    opacity: 0.1;
     pointer-events: none;
     animation: floatPackets 8s linear infinite;
 }
