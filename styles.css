@@ -54,7 +54,7 @@ body {
 }
 
 .nav.menu {
-    display: flex;
+    display: flex !important; /* Ensure the menu is displayed */
     list-style-type: none;
     display: flex;
     gap: 15px;
@@ -63,10 +63,13 @@ body {
 }
 
 .nav_item a {
+    display: inline-block;
     text-decoration: none;
-    color: var(--first-color);
+    color: var(--fourth-color);
     font-weight: bold;
-    padding: 10px;
+    padding: 2px 10px;
+    border-radius: 20px;
+    transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
 }
 
 .nav_item a.nav_active {
@@ -74,7 +77,9 @@ body {
 }
 
 .nav_item a:hover {
-    background-color: var(--second-color);
+    background-color: var(--second-color); /* Remove background block */
+    color: var(--first-color); /* Change text color instead */
+    text-decoration: underline; /* Optional: Underline effect */
 }
 
 /* Animation styles for color change */
@@ -219,20 +224,21 @@ body {
     margin-bottom: 15px;
 }
 
-.about-site p {
+.about-site p a {
     font-size: 1.1rem;
     line-height: 1.5;
     margin-bottom: 15px;
-}
-
-.about-site a {
-    color: var(--flag-white);
+    color: var(--flag-blue);
     font-weight: bold;
     text-decoration: underline;
+    transition: color 0.2s ease-in-out, box-shadow 0.2s ease-in-out, color 0.2s ease-in-out;
 }
 
-.about-site a:hover {
-    color: var(--flag-blue);
+.about-site p a:hover {
+    color: var(--flag-red); /* Color change on hover */
+    transform: translateY(-3px); /* Raise the link on hover */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* Adds shadow for depth */
+    text-decoration: none; /* Remove underline on hover */;
 }
 
 /* Home column adjustments */
