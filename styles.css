@@ -345,7 +345,7 @@ footer {
 .network-packet {
     position: absolute;
     top: -20px;
-    color: rgba(8, 71, 50, 0.8); /* Cyber green */
+    color: rgba(8, 71, 50, 0.1); /* Cyber green */
     font-family: "Courier New", monospace;
     font-size: 12px;
     opacity: 0.1;
