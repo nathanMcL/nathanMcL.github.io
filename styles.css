@@ -274,6 +274,91 @@ footer {
     border-radius: 10px;
 }
 
+/* Cyber-Grid Background */
+@keyframes cyberGrid {
+    0% { background-position: 0% 0%; }
+    100% { background-position: 100% 100%;}
+}
+
+.cyber-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: linear-gradient(45deg, var(--first-color) 25%, var(--third-color) 50%, var(--fourth-color) 75%);
+    background-size: 400% 400%;
+    opacity: 0.15; /* Adjust the opacity as needed */
+    z-index: -1;
+    animation: cyberGrid 10s infinite linear;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+/* Shapes floating effect */
+.cyber-shape {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    background: rgba(0, 255, 170, 0.8); /* Cyber green */
+    border-radius: 50%;
+    opacity: 0.8;
+    z-index: -1; /* Ensure the shapes stay behind the content */
+    animation: floatAnimation 5s infinite alternate ease-in-out;
+    transition: transform 0.2s ease-in-out;
+}
+
+@keyframes bounceAround {
+    0% {
+        transform: translate(0, 0);
+    }
+    25% {
+        transform: translate(50vw, 10vh);
+    }
+    50% {
+        transform: translate(30vw, 50vh);
+    }
+    75% {
+        transform: translate(-40vw, 20vh);
+    }
+    100% {
+        transform: translate(0, 0);
+    }
+}
+
+/* Individual Shape Positions */
+.shape1 { top: 20%; left: 10%; }
+
+.shape2 { top: 50%; left: 50%; }
+
+.shape3 { top: 70%; left: 30%; }
+
+.shape4 { top: 40%; left: 80%; }
+
+/* Change direction when clicked */
+.cyber-shape:hover {
+    transform: scale(1.2);
+    background: rgba(255, 0, 255, 0.8); /* Cyber pink */
+}
+/* End of Cyber-Grid Background */
+/* Network Packet Animation */
+.network-packet {
+    position: absolute;
+    top: -20px;
+    color: rgba(0, 255, 170, 0.8); /* Cyber green */
+    font-family: "Courier New", monospace;
+    font-size: 12px;
+    opacity: 0.8;
+    pointer-events: none;
+    animation: floatPackets 8s linear infinite;
+}
+
+@keyframes floatPacket {
+    0% { transform: translateY(0px); opacity: 1; }
+    100% { transform: translateY(100vh); opacity: 0; }
+}
+/* End Network Packet Animation */
+
 /* Responsive styles */
 /* Medium screens */
 @media (max-width: 1023px) {
