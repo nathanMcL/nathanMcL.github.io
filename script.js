@@ -21,8 +21,8 @@ document.addEventListener("DOMContentLoaded", function () {
         // Set random start position avoiding header/footer
         let posX = Math.random() * (window.innerWidth - 50);
         let posY = headerHeight + Math.random() * (window.innerHeight - headerHeight - footerHeight - 50);
-        let speedX = (Math.random() - 0.5) * 2.5; // Random X speed
-        let speedY = (Math.random() - 0.5) * 2.5; // Random Y speed
+        let speedX = (Math.random() - 0.5) * 3; // Random X speed
+        let speedY = (Math.random() - 0.5) * 3; // Random Y speed
 
         shape.style.left = `${posX}px`;
         shape.style.top = `${posY}px`;
@@ -38,7 +38,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
             // Bounce off left/right edges
             if (s.posX <= 0 || s.posX >= window.innerWidth - 30) {
-                s.speedY *= -1;
+                s.speedX *= -1;
+            }
+
+            // Bounce off top (header) and bottom (footer)
+            if (s.posY <= headerHeight || s.posY >= window.innerHeight - footerHeight - 30) {
+                s.speedY *= -1; // Reverse vertical direction
             }
 
             s.shape.style.left = `${s.posX}px`;
@@ -47,7 +52,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         requestAnimationFrame(animateShapes);
     }
-    animateShapes();
+    animateShapes(); // Start the animation
 
 
     // Function to create fake network packets

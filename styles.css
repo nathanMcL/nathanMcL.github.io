@@ -300,11 +300,11 @@ footer {
     position: absolute;
     width: 30px;
     height: 30px;
-    background: rgba(0, 255, 170, 0.8); /* Cyber green */
+    background: rgba(0, 255, 170, 0.8) !important; /* Cyber green */
     border-radius: 50%;
     opacity: 0.8;
     z-index: -1; /* Ensure the shapes stay behind the content */
-    animation: floatAnimation 5s infinite alternate ease-in-out;
+    animation: bounceAround 10s infinite linear alternate !important;
     transition: transform 0.2s ease-in-out;
 }
 
@@ -345,12 +345,13 @@ footer {
 .network-packet {
     position: absolute;
     top: -20px;
-    color: rgba(0, 255, 170, 0.8); /* Cyber green */
+    color: rgba(0, 255, 170, 1); /* Cyber green */
     font-family: "Courier New", monospace;
-    font-size: 12px;
-    opacity: 0.8;
+    font-size: 14x;
+    opacity: 1;
     pointer-events: none;
-    animation: floatPackets 8s linear infinite;
+    animation: floatPackets 10s linear infinite;
+    text-shadow: 0 0 5px rgba(0, 255, 170, 0.9), 0 0 10px rgba(0, 255, 170, 0.7);
 }
 
 @keyframes floatPacket {
