@@ -21,8 +21,8 @@ document.addEventListener("DOMContentLoaded", function () {
         // Set random start position avoiding header/footer
         let posX = Math.random() * (window.innerWidth - 50);
         let posY = headerHeight + Math.random() * (window.innerHeight - headerHeight - footerHeight - 50);
-        let speedX = (Math.random() - 0.5) * 3; // Random X speed
-        let speedY = (Math.random() - 0.5) * 3; // Random Y speed
+        let speedX = (Math.random() - 0.5) * 1.5; // Random X speed
+        let speedY = (Math.random() - 0.5) * 1.25; // Random Y speed
 
         shape.style.left = `${posX}px`;
         shape.style.top = `${posY}px`;
@@ -36,14 +36,31 @@ document.addEventListener("DOMContentLoaded", function () {
             s.posX += s.speedX;
             s.posY += s.speedY;
 
-            // Bounce off left/right edges
-            if (s.posX <= 0 || s.posX >= window.innerWidth - 30) {
+            // Get window and shape sizes
+            let windowWidth = window.innerWidth;
+            let windowHeight = window.innerHeight;
+            let shapeSize = 39; // Shape size: 30px x 30px
+
+            // Prevent shape from moving outside the edges
+            if (s.posX <= 0) {
+                s.posX = 0;
                 s.speedX *= -1;
             }
 
-            // Bounce off top (header) and bottom (footer)
-            if (s.posY <= headerHeight || s.posY >= window.innerHeight - footerHeight - 30) {
-                s.speedY *= -1; // Reverse vertical direction
+            if (s.posX >= windowWidth - shapeSize) {
+                s.posX = windowWidth - shapeSize;
+                s.speedX *= -1;
+            }
+
+            // Prevent shape from moving outside the header/footer
+            if (s.posY <= headerHeight) {
+                s.posY = headerHeight;
+                s.speedY *= -1;
+            }
+
+            if (s.posY >= windowHeight - footerHeight - shapeSize) {
+                s.posY = windowHeight - footerHeight - shapeSize;
+                s.speedY *= -1;
             }
 
             s.shape.style.left = `${s.posX}px`;
@@ -54,6 +71,16 @@ document.addEventListener("DOMContentLoaded", function () {
     }
     animateShapes(); // Start the animation
 
+    // Attempt to prevent shapes from going off screen and resizing the window.
+    window.addEventListener("resize", () => {
+        shapes.forEach((s) => {
+            let maxX = window.innerWidth - 30; // Prevent overflow
+            let maxY = window.innerHeight - footerHeight - 30;
+
+            if (s.posX > maxX) s.posX = maxX;
+            if (s.posY > maxY) s.posY = maxY;
+        });
+    });
 
     // Function to create fake network packets
     function createPacket() {
