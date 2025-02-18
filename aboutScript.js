@@ -25,14 +25,16 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 // Marquee JScript
-const root = document.documentElement;
-const marqueeElementsDisplayed = getComputedStyle(root).getPropertyValue("--marquee-elements-displayed");
-const marqueeContent = document.querySelector("ul.marquee-content");
+document.addEventListener("DOMContentLoaded", function () {
+    const root = document.documentElement;
+    const marqueeElementsDisplayed = parseInt(getComputedStyle(root).getPropertyValue("--marquee-elements-displayed"), 10);
+    const marqueeContent = document.querySelector("ul.marquee-content");
 
-root.style.setProperty("--marquee-elements", marqueeContent.children.length);
+    const marqueeElements = marqueeContent.children.length;
+    root.style.setProperty("--marquee-elements", marqueeElements);
 
-for (let i = 0; i < marqueeElementsDisplayed; i++) {
-    marqueeContent.appendChild(marqueeContent.children[i].cloneNode(true));
-}
+    for (let i = 0; i < marqueeElementsDisplayed; i++) {
+        marqueeContent.appendChild(marqueeContent.children[i].cloneNode(true));
+    }
+});
 // End of Marquee JScript
-
