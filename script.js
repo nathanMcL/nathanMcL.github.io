@@ -39,28 +39,18 @@ document.addEventListener("DOMContentLoaded", function () {
             // Get window and shape sizes
             let windowWidth = window.innerWidth;
             let windowHeight = window.innerHeight;
-            let shapeSize = 39; // Shape size: 30px x 30px
+            let shapeSize = 30; // Shape size
 
             // Prevent shape from moving outside the edges
-            if (s.posX <= 0) {
-                s.posX = 0;
+            if (s.posX <= 0 || s.posX >= windowWidth - shapeSize) {
                 s.speedX *= -1;
-            }
-
-            if (s.posX >= windowWidth - shapeSize) {
-                s.posX = windowWidth - shapeSize;
-                s.speedX *= -1;
+                s.posX = Math.max(0, Math.min(s.posX, windowWidth - shapeSize));
             }
 
             // Prevent shape from moving outside the header/footer
-            if (s.posY <= headerHeight) {
-                s.posY = headerHeight;
+            if (s.posY <= headerHeight || s.posY >= windowHeight - footerHeight - shapeSize) {
                 s.speedY *= -1;
-            }
-
-            if (s.posY >= windowHeight - footerHeight - shapeSize) {
-                s.posY = windowHeight - footerHeight - shapeSize;
-                s.speedY *= -1;
+                s.posY = Math.max(headerHeight, Math.min(s.posY, windowHeight - footerHeight - shapeSize));
             }
 
             s.shape.style.left = `${s.posX}px`;
@@ -71,14 +61,17 @@ document.addEventListener("DOMContentLoaded", function () {
     }
     animateShapes(); // Start the animation
 
-    // Attempt to prevent shapes from going off screen and resizing the window.
+    // Function to prevent page scrolling issues on window resize
     window.addEventListener("resize", () => {
         shapes.forEach((s) => {
-            let maxX = window.innerWidth - 30; // Prevent overflow
+            let maxX = window.innerWidth - 30;
             let maxY = window.innerHeight - footerHeight - 30;
 
-            if (s.posX > maxX) s.posX = maxX;
-            if (s.posY > maxY) s.posY = maxY;
+            s.posX = Math.min(s.posX, maxX);
+            s.posY = Math.min(s.posY, maxY);
+
+            s.shape.style.left = `${s.posX}px`;
+            s.shape.style.top = `${s.posY}px`;
         });
     });
 
@@ -99,5 +92,4 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     setInterval(createPacket, 800); // Generate new packets
-
 });
