@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const header = document.querySelector(".header-index");
     const footer = document.querySelector("footer");
     const headerHeight = header.offsetHeight;
-    const footerHeight = fotter.offsetHeight;
+    const footerHeight = footer.offsetHeight;
 
     // Create Floating Shapes
     const shapes = [];
@@ -20,7 +20,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         // Set random start position avoiding header/footer
         let posX = Math.random() * (window.innerWidth - 50);
-        let posY = headerHeight + Math.random() * (window.innerHeight - headerHeight - footHeight - 50);
+        let posY = headerHeight + Math.random() * (window.innerHeight - headerHeight - footerHeight - 50);
         let speedX = (Math.random() - 0.5) * 2.5; // Random X speed
         let speedY = (Math.random() - 0.5) * 2.5; // Random Y speed
 
