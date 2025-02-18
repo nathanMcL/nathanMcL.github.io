@@ -20,7 +20,7 @@ body {
 }
 /* End of Body styles */
 /* Header styles */
-.header-index {
+.header-about {
     background-color: var(--third-color);
     color: white;
     padding: 10px 0;
@@ -318,3 +318,101 @@ footer {
 }
 /* End of Small screens */
 /* End of Responsive styles */
+
+/* Marquee styles */
+:root {
+    --marquee-width: 98vw;
+    --marquee-height: 10vh;
+    /* --marquee-elements: 12; */ /* defined with JavaScript */
+    --marquee-elements-displayed: 5;
+    --marquee-element-width: calc(var(--marquee-width) / var(--marquee-elements-displayed));
+    --marquee-animation-duration: calc(var(--marquee-elements) * 3s);
+  }
+
+.marquee {
+    width: var(--marquee-width);
+    height: var(--marquee-height);
+    background-color: #282626;
+    color: #eee;
+    overflow: hidden;
+    position: relative;
+    margin: 10px auto; /* Center and add spacing */
+    border-radius: 10px; /* Add rounded corners */
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Add shadow */
+}
+
+.marquee:before, .marquee:after {
+    position: absolute;
+    top: 0; 
+    width: 10rem;
+    height: 100%;
+    content: "";
+    z-index: 1;
+}
+
+.marquee:before {
+    left: 0;
+    background: linear-gradient(to right, #111 0%, transparent 100%);
+}
+
+.marquee:after {
+    right: 0;
+    background: linear-gradient(to left, #111 0%, transparent 100%);
+}
+
+.marquee-content {
+    list-style: none;
+    height: 100%;
+    display: flex;
+    animation: scrolling var(--marquee-animation-duration) linear infinite;
+    padding: 0;
+    margin: 0;
+}
+
+@keyframes scrolling {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(calc(-1 * var(--marquee-element-width) * var(--marquee-elements))); }
+}
+
+.marquee-content li {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+    width: var(--marquee-element-width);
+    max-height: 100%;
+    font-size: calc(var(--marquee-height)*3/4); /* Adjust size */
+    white-space: nowrap;
+    padding: 0;
+    margin: 0;
+    background: none;
+}
+
+.marquee-content li img {
+    max-width: 80%;
+    max-height: 80%;
+    object-fit: contain;
+    border-radius: 5px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 0;
+    margin: 0;
+}
+
+/* Adjustments for smaller screens */
+@media (max-width: 600px) {
+    :root {
+        --marquee-width: 100vw;
+        --marquee-height: 16vh;
+        --marquee-elements-displayed: 3;
+    }
+    .marquee:before, .marquee:after {
+        width: 5rem;
+    }
+
+    /* For smaller images on smaller screens */
+    .marquee-content img {
+        max-width: 60%;
+        max-height: 60%;
+    }
+}
+/* End of Marquee styles */
