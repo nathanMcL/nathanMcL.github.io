@@ -336,6 +336,7 @@ footer {
     color: #eee;
     overflow: hidden;
     position: relative;
+    white-space: nowrap;
     margin: 10px auto; /* Center and add spacing */
     border-radius: 10px; /* Add rounded corners */
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Add shadow */
@@ -364,13 +365,13 @@ footer {
     list-style: none;
     height: 100%;
     display: flex;
-    animation: scrolling var(--marquee-animation-duration) linear infinite;
+    animation: scrolling var(--marquee-animation-duration) 10s linear infinite;
     padding: 0;
     margin: 0;
 }
 
 @keyframes scrolling {
-    0% { transform: translateX(0); }
+    100% { transform: translateX(0); }
     100% { transform: translateX(calc(-1 * var(--marquee-element-width) * var(--marquee-elements))); }
 }
 
