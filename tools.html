@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="@MacN_iT website">
+        <title>MacN the Full Stack...</title>
+        <link rel="stylesheet" href="toolsStyles.css">
+        <link rel="icon" href="favicon.ico" type="image/x-icon">
+        
+        <!-- Security Headers -->
+        <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self' data:;">
+        <meta http-equiv="X-Content-Type-Options" content="nosniff">
+        <meta http-equiv="Referrer-Policy" content="no-referrer-when-downgrade">
+        <meta http-equiv="Strict-Transport-Security" content="max-age=31536000; includeSubDomains">
+
+        <!-- Favicon -->
+        <link rel="icon" type="image/png" href="favicon.png">
+    </head>
+    <body>
+        <!-- Header Section -->
+        <header class="header-about">
+            <nav class="navigation">
+                <div class="nav_container">
+                    <!-- Logo and @MacN_iT -->
+                    <a href="index.html" id="nav_logo">
+                        <img src="images/LittleRobotBackgroundErase.png" alt="MacN_iT Logo" class="littlerobot">
+                        <span class="color-change">@</span><span class="color-change">M</span>
+                        <span class="color-change">a</span><span class="color-change">c</span>
+                        <span class="color-change">N</span><span class="color-change">_</span>
+                        <span class="color-change">i</span><span class="color-change">T</span>
+                    </a>
+                    <ul class="nav.menu">
+                        <li class="nav_item"><a href="index.html">Home</a></li>
+                        <li class="nav_item"><a href="about.html">About</a></li>
+                        <li class="nav_item"><a href="inspiredme.html">Inspirations</a>
+                        <li class="nav_item"><a href="blog.html">Thoughts</a></li>
+                        <li class="nav_item"><a class="nav_active" href="tools.html">Tools</a></li>
+                        <li class="nav_item"><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
+        <!-- End of Header section -->
+
+        <!-- Tools main section -->
+        <div class="tools_container">
+            <div class="tools_sections">
+                <button class="tools-button" id="toolsToggle">
+                    <div class="tools-text-container">
+                        <span class="bracket">{</span><span class="tools-text">Tools...</span><span class="bracket">}</span>
+                    </div>
+                    <div class="button-extra">
+                        <span class="open-text" id="toggleText">open</span>
+                        <span class="triangle" id="toggleTriangle">▽</span>
+                    </div>
+                </button>
+                <p>An assortment of software tools...</p>
+                <!-- Tools Catergories -->
+                <div id="toolsCategories" class="tools-categories hidden">
+                    <div class="row">
+                        <!-- Row 1, Column 1 -->
+                        <div class="tools-category code_editors">
+                            <h3> Code Editors</h3>
+                            <ul>
+                                <li><a href="https://code.visualstudio.com/docs/setup/setup-overview" target="_blank" rel="noopener noreferrer">VS Code install documentation</a></li>
+                                <li><a href="https://docs.microsoft.com/en-us/windows/wsl/install" target="_blank" rel="noopener noreferrer">WSL install documentation</a></li>
+                                <li><a href="https://ubuntu.com/wsl" target="_blank" rel="noopener noreferrer">Ubuntu install for WSL documentation</a></li>
+                            </ul>
+                            <!-- Markdown content -->
+                            <div class="markdown-section">
+                                <h4>VS Code Setup Guide</h4>
+                                <ol>
+                                    <li>Visit the <a href="https://code.visualstudio.com/" rel="noopener noreferrer">Visual Studio Code website</a> and download the installer for Windows.</li>
+                                    <li>Run the installer and follow the instructions to install VS Code.</li>
+                                    <li>During installation, make sure to select the option <b>Add to PATH</b>, which allows you to use <code>code</code> from the command line.</li>
+                                </ol>
+                            </div>
+                        </div>
+                        <!-- Row 1, Column 2 -->
+                        <div class="tools-category online_editors">
+                            <h3>Online Code Editors</h3>
+                            <ul>
+                                <li><a href="https://github.com" target="_blank" rel="noopener noreferrer">GitHub.com</a></li>
+                                <li><a href="https://play.rust-lang.org/" target="_blank" rel="noopener noreferrer">Rust Playground</a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <!-- Row 2, Column 1 -->
+                        <div class="tools-category language_resources">
+                            <h3>Language Resources</h3>
+                            <ul>
+                                <li><a href="https://www.python.org/doc/" target="_blank" rel="noopener noreferrer">python.org/doc</a></li>
+                                <li><a href="https://doc.rust-lang.org/book/" target="_blank" rel="noopener noreferrer">Rust: The Book</a></li>
+                                <li><a href="https://www.oracle.com/java/" target="_blank" rel="noopener noreferrer">Oracle Java Documentation</a></li>
+                                <li><a href="https://palettes.shecodes.io/" target="_blank" rel="noopener noreferrer">SheCodes</a></li>
+                                <li><a href="https://fonts.google.com/" target="_blank" rel="noopener noreferrer">Google Fonts</a></li>
+                            </ul>
+                        </div>
+                        <!-- Row 2, Column 2 -->
+                        <div class="tools-category ai_resources">
+                            <h3>AI Resources</h3>
+                            <ul>
+                                <li><a href="https://huggingface.co/" target="_blank" rel="noopener noreferrer">Hugging Face</a></li>
+                                <li><a href="https://chatgpt.com" target="_blank" rel="noopener noreferrer">ChatGPT</a></li>
+                                <li><a href="https://gemini.google.com/" target="_blank" rel="noopener noreferrer">Gemini Google</a></li>
+                                <li><a href="https://github.com/rasbt/LLMs-from-scratch" target="_blank" rel="noopener noreferrer">Build LLM From Scratch</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- Row 3, Column 1 -->
+                    <div class="row">
+                        <div class="tools-category cyber_resources">
+                            <h3>Cyber Resources</h3>
+                            <ul>
+                                <li><a href="https://www.hackerrank.com/" target="_blank" rel="noopener noreferrer">HackerRank</a></li>
+                                <li><a href="https://www.youtube.com/@davidbombal" target="_blank" rel="noopener noreferrer">David Bombal YouTube</a></li>  
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End of Tools main section -->
+
+
+         <!-- Footer Section -->
+         <footer>
+            <p>&copy; 2025 MacN @MacN_iT All Rights Reserved</p>
+            <nav>
+                <a href="index.html">Home</a>
+            </nav>
+        </footer>
+
+        <!-- Cyber container effect -->
+        <div class="cyber-container"></div>
+
+    <!-- JS -->
+    <script src="toolsScript.js" defer></script>
+    </body>
+</html>

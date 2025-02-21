@@ -1,0 +1,506 @@
+/* Body styles */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: var(--second-color); /* Background using third color */
+    color: #333; /* General text color */
+    border-radius: 2.5px;
+}
+
+/* Color palette from: https://palettes.shecodes.io/palettes/507#palette */
+:root {
+    --first-color: #222221;
+    --second-color: #c4eada;
+    --third-color: #ef7b7b;
+    --fourth-color: #fcf3ca;
+    /* @MacN_iT text color change */
+    --flag-white: #ffffff;
+    --flag-red: #ff0000;
+    --flag-blue: #0000ff;
+    /* {Tools...} button colors & `▽` */
+    --tools-button-color1: #f2f9f1;
+    --tools-button-color2: #ddeedf;
+    --tools-button-color3: #b6cdbd;
+    --tools-button-color4: #5c715e;
+    --triangle-button-close: #ff7e67;
+    --triangle-button-open: #42b883;
+}
+/* End of Body styles */
+/* Header styles */
+.header-about {
+    background-color: var(--third-color);
+    color: white;
+    padding: 10px 0;
+    border-radius: 10px;
+}
+
+.nav_container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+#nav_logo {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    font-size: 1.5rem; /* To adjust the text size */
+    margin-left: 0px;
+}
+
+.littlerobot {
+    max-width: 170px; /* Adjust the max-width for log scaling */
+    height: auto; /* Maintain the aspect ratio */
+    margin-right: 5px; /* The space between the logo and text */
+    margin-left: -100px;
+}
+
+.nav.menu {
+    display: flex !important; /* Ensure the menu is displayed */
+    list-style-type: none;
+    display: flex;
+    gap: 15px;
+    padding: 0;
+    margin-left: auto;
+}
+
+.nav_item a {
+    display: inline-block;
+    text-decoration: none;
+    color: var(--fourth-color);
+    font-weight: bold;
+    padding: 2px 10px;
+    border-radius: 20px;
+    transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+}
+
+.nav_item a.nav_active {
+    color: var(--first-color); /* Highlight the active link */
+}
+
+.nav_item a:hover {
+    background-color: var(--second-color); /* Remove background block */
+    color: var(--first-color); /* Change text color instead */
+    text-decoration: underline; /* Optional: Underline effect */
+}
+
+/* Animation styles for color change */
+.color-change {
+    display: inline-block;
+    animation: colorAnimation 10s infinite;
+}
+
+.color-change:nth-child(1) { /* @ */
+    animation-delay: 0s;
+}
+.color-change:nth-child(2) { /* M */
+    animation-delay: 2s;
+}
+.color-change:nth-child(3) { /* a */
+    animation-delay: 4s;
+}
+.color-change:nth-child(4) { /* c */
+    animation-delay: 6s;
+}
+.color-change:nth-child(5) { /* N */
+    animation-delay: 8s;
+}
+.color-change:nth-child(6) { /* _ */
+    animation-delay: 10s;
+}
+.color-change:nth-child(7) { /* i */
+    animation-delay: 12s;
+}
+.color-change:nth-child(8) { /* T */
+    animation-delay: 14s;
+}
+
+@keyframes colorAnimation {
+    0%, 100% {
+        color: var(--flag-white);
+    }
+    25% {
+        color: var(--flag-red);
+    }
+    50% {
+        color: var(--flag-white);
+    }
+    75% {
+        color: var(--flag-blue);
+    }
+}
+/* End of Animation styles for color change */
+/* End of Header styles */
+
+/* Tools Main section styles */
+.tools-button {
+    background-color: var(--tools-button-color2);
+    border: none;
+    padding: 20px 30px;
+    font-size: 2rem;
+    font-weight: bold;
+    color: var(--tools-button-color4);
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    text-align: center;
+    position: relative; /* Make the button a referance for absolute positioning */
+    margin: 20px auto;
+    display: flex;
+    flex-direction: row; /* Keep this as a row to align {Tools...} horizontally */
+    justify-content: center; /* Center the content inside */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.tools-button:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+.bracket {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: var(--flag-blue);
+}
+
+/* Wrap for Tools text */
+.tools-text-container {
+    display: flex;
+    align-items: center;
+}
+
+/* Styles for the text under Tools */
+.button-extra {
+    position: absolute; /* Position relative to .tools-button */
+    bottom: -12px; /* Adjust the distance from the open text to the {Tools...} */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.open-text {
+    font-size: 0.7rem; /* Small font for the "open" text */
+    color: var(--triangle-button-open);
+}
+
+.triangle {
+    font-size: 2rem;
+    margin-top: -5px; /* The space between 'open' & triangle */
+    color: var(--triangle-button-open);
+}
+
+/* Center the tools button */
+.tools_sections {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+}
+
+/* Hidden Tool Categories */
+.tools-categories {
+    display: block; /* Show the categories when the button is clicked */
+    margin-top: 20px;
+}
+
+.tools-categories.row {
+    display: flex;
+    justify-content: space-evenly;
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.tools-category {
+    background-color: var(--tools-button-color1);
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    width: 40%;
+    text-align: center;
+    transition: transform 0.3s ease;
+    position: relative;
+}
+
+.tools-category:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Hidden class */
+.hidden {
+    display: none;
+}
+
+/* Open/Close triangle styles */
+.rotate-triangle {
+    transform: rotate(180deg);
+    color: var(--triangle-button-close);
+    margin-top: -7.5px; /* The space between 'close' & Tools */
+    margin-bottom: 3px;
+}
+
+.open-triangle {
+    color: var(--triangle-button-open);
+}
+
+/* Staggered layout design */
+
+/* Row 1, Column 1: Code Editors */
+.tools-category.code_editors {
+    left: 0; /* Left of center */
+    top: 0; /* No offset */
+}
+
+/* Row 1, Column 2: Online Code Editors */
+.tools-category.online_editors {
+    right: -500px; /* Right of center */
+    top: -60px; /* Stagger lower than (R1, C1) */ 
+}
+
+/* Row 2, Column 1: Language Resources */
+.tools-category.language_resources {
+    left: 0; /* Left of center */
+    top: -40px; /* Stagger lower than (R1, C2) */
+}
+
+/* Row 2, Column 2: AI Resources */
+.tools-category.ai_resources {
+    right: -500px; /* Right of center */
+    top: -80px; /* Stagger lower than (R2, C1) */
+}
+
+/* Row 3, Column 1: Cyber Resources */
+.tools-category.cyber_resources {
+    left: 0; /* Left of center */
+    top: -120px; /* Stagger lower than (R2, C2) */
+}
+
+/* Adjust for verticle spacing */
+.tools-categories {
+    margin-top: 20px;
+}
+
+.row {
+    position: relative; /* Position relative to the parent */
+}
+
+
+/* End of Hidden Tool Categories */
+/* End of Tools Main section styles */
+
+/* Footer styling */
+footer {
+    text-align: center;
+    padding: 20px;
+    background-color: var(--third-color);
+    color: var(--first-color);
+    border-top: 1px solid #ccc;
+    border-radius: 10px;
+}
+
+/* Cyber-Grid Background */
+@keyframes cyberGrid {
+    0% { background-position: 0% 0%; }
+    100% { background-position: 100% 100%;}
+}
+
+.cyber-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: linear-gradient(45deg, var(--first-color) 25%, var(--third-color) 50%, var(--fourth-color) 75%);
+    background-size: 400% 400%;
+    opacity: 0.15; /* Adjust the opacity as needed */
+    z-index: -1;
+    animation: cyberGrid 10s infinite linear;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+
+/* Network Packet Animation */
+.network-packet {
+    position: absolute;
+    top: -20px;
+    color: rgba(0, 255, 170, 1); /* Cyber green */
+    font-family: "Courier New", monospace;
+    font-size: 14x;
+    opacity: 1;
+    pointer-events: none;
+    animation: floatPackets 10s linear infinite;
+    text-shadow: 0 0 5px rgba(0, 255, 170, 0.9), 0 0 10px rgba(0, 255, 170, 0.7);
+}
+
+@keyframes floatPacket {
+    0% { transform: translateY(0px); opacity: 1; }
+    100% { transform: translateY(100vh); opacity: 0; }
+}
+/* End Network Packet Animation */
+
+/* Responsive styles */
+/* Medium screens */
+@media (max-width: 1023px) {
+    /* Adjust the container to center its content */
+    .nav_container {
+        display: flex;
+        justify-content: space-between; /* Center the logo img, text, and the  navigation menu */
+        align-items: center;
+        max-width: 1200px; /* Set the max-width to center the contianer */
+        margin: 0 auto; /* Center the container */
+        padding: 5px 20px; /* Add padding to prevent touch the edges */
+    }
+
+    #nav_logo {
+        display: flex;
+        align-items: center;
+        text-align: left;
+        font-size: 1.2rem;
+        margin-right: auto;
+        margin-left: 150px; /* Push / Move the logo toward the center */
+    }
+
+    .littlerobot {
+        max-width: 150px;
+        margin-right: 0px; /* Create space between the robot and the text */
+        margin-left: -200px; /* Negative moves it left */
+        margin-top: 50px;
+    }
+
+    .color-change {
+        display: inline-block;
+        margin: 0px 2.5px; /* Space between the characters */
+        font-size: 1.2rem;
+        margin-top: 70px;
+    }
+
+    /* Navigation Menu */
+    .nav.menu {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end; /* Align the menu to the right */
+        gap: 15px; /* Space between the menu items */
+        list-style: none;
+        margin-right: 50px; /* Push the menu toward the center */
+    }
+
+    .nav_item a {
+        font-size: 1rem;
+        text-decoration: none;
+        color: var(--fourth-color);
+        margin-right: 30px;
+    }
+
+    .nav_item a:hover {
+        background-color: var(--second-color);
+    }
+    /* Enf of Navigation Menu */
+    /* End of Medium screens */
+    /* Small screens */
+@media (max-width: 768px) {
+    .welcome_section h1 {
+        margin-left: 25px;
+    }
+
+    .welcome_section h2 {
+        margin-left: 45px;
+    }
+
+    .about-site {
+        padding: 40px 15px;
+    }
+
+    /* Adjust the container to center its content */
+    .nav_container {
+        display: flex;
+        justify-content: space-between; /* Center the logo img, text, and the  navigation menu */
+        align-items: center;
+        max-width: 1200px; /* Set the max-width to center the contianer */
+        margin: 0 auto; /* Center the container */
+        padding: 5px 10px; /* Add padding to prevent touch the edges */
+    }
+
+    #nav_logo {
+        display: flex;
+        align-items: center;
+        text-align: left;
+        font-size: 1.2rem;
+        margin-right: auto;
+        margin-left: -80px; /* Push or Move the logo toward the center */
+    }
+
+    .littlerobot {
+        max-width: 135px;
+        margin-right: 0px; /* Create space between the robot and the text */
+        margin-left: 50px;
+        margin-top: 30px;
+
+    }
+
+    .color-change {
+        display: inline-block;
+        margin: 1.5px; /* Space between the characters */
+        font-size: 1.2rem;
+        margin-top: 65px;
+    }
+
+    /* Navigation Menu */
+    .nav.menu {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end; /* Align the menu to the right */
+        gap: 15px; /* Space between the menu items */
+        list-style: none;
+        margin-right: 50px; /* Push the menu toward the center */
+    }
+
+    .nav_item a {
+        font-size: 1rem;
+        text-decoration: none;
+        color: var(--fourth-color);
+        margin-right: 30px;
+    }
+
+    .nav_item a:hover {
+        background-color: var(--second-color);
+    }
+    /* End of Navigation Menu */
+
+    footer {
+        padding: 15px;
+        font-size: 0.9rem; /* Slightly smaller font for footer */
+    }
+}
+
+ /* For smaller screens, we can stack the columns instead of staggering */
+ .tools-categories.row {
+    display: block;
+}
+
+.tools-category {
+    width: 100%;
+    margin-bottom: 20px;
+    left: 0;  /* Reset the left position */
+    right: 0;   /* Reset the right position */
+    top: 0;   /* Reset the top position */
+}
+
+.tools-category.online_editors,
+.tools-category.language_resources,
+.tools-category.ai_resources,
+.tools-category.cyber_resources {
+    top: 0; /* Reset the offset positioning for all categories */
+    right: 0;
+    left: 0;
+}
+}
+/* End of Small screens */
+/* End of Responsive styles */
