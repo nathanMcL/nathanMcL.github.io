@@ -138,17 +138,17 @@ body {
 /* Main section styles */
 main {
     padding: 40px 20px;
-    background-color: var(--third-color);
+    background-color: var(--first-color);
 }
 
 main h2 {
-    color: var(--first-color);
+    color: var(--fourth-color);
     font-size: 1.8rem;
     margin-bottom: 20px;
 }
 
 main p {
-    color: #333;
+    color: #aba8a8;
     line-height: 1.6;
     margin-bottom: 20px;
 }
