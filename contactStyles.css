@@ -1,0 +1,499 @@
+/* Body styles */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: var(--second-color); /* Background using third color */
+    color: #333; /* General text color */
+    border-radius: 2.5px;
+}
+
+/* Color palette from: https://palettes.shecodes.io/palettes/507#palette */
+:root {
+    --first-color: #222221;
+    --second-color: #c4eada;
+    --third-color: #ef7b7b;
+    --fourth-color: #fcf3ca;
+    /* @MacN_iT text color change */
+    --flag-white: #ffffff;
+    --flag-red: #ff0000;
+    --flag-blue: #0000ff;
+    /* Business card colors */
+    --business-card-color1: #f0d78c;
+    --business-card-color2: #fcfafa;
+    --business-card-color3: #64c4ed;
+    --business-card-color4: #4f81c7;
+}
+/* End of Body styles */
+/* Header styles */
+.header-about {
+    background-color: var(--third-color);
+    color: white;
+    padding: 10px 0;
+    border-radius: 10px;
+}
+
+.nav_container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+#nav_logo {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    font-size: 1.5rem; /* To adjust the text size */
+    margin-left: 0px;
+}
+
+.littlerobot {
+    max-width: 170px; /* Adjust the max-width for log scaling */
+    height: auto; /* Maintain the aspect ratio */
+    margin-right: 5px; /* The space between the logo and text */
+    margin-left: -100px;
+}
+
+.nav.menu {
+    display: flex !important; /* Ensure the menu is displayed */
+    list-style-type: none;
+    display: flex;
+    gap: 15px;
+    padding: 0;
+    margin-left: auto;
+}
+
+.nav_item a {
+    display: inline-block;
+    text-decoration: none;
+    color: var(--fourth-color);
+    font-weight: bold;
+    padding: 2px 10px;
+    border-radius: 20px;
+    transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+}
+
+.nav_item a.nav_active {
+    color: var(--first-color); /* Highlight the active link */
+}
+
+.nav_item a:hover {
+    background-color: var(--second-color); /* Remove background block */
+    color: var(--first-color); /* Change text color instead */
+    text-decoration: underline; /* Optional: Underline effect */
+}
+
+/* Animation styles for color change */
+.color-change {
+    display: inline-block;
+    animation: colorAnimation 10s infinite;
+}
+
+.color-change:nth-child(1) { /* @ */
+    animation-delay: 0s;
+}
+.color-change:nth-child(2) { /* M */
+    animation-delay: 2s;
+}
+.color-change:nth-child(3) { /* a */
+    animation-delay: 4s;
+}
+.color-change:nth-child(4) { /* c */
+    animation-delay: 6s;
+}
+.color-change:nth-child(5) { /* N */
+    animation-delay: 8s;
+}
+.color-change:nth-child(6) { /* _ */
+    animation-delay: 10s;
+}
+.color-change:nth-child(7) { /* i */
+    animation-delay: 12s;
+}
+.color-change:nth-child(8) { /* T */
+    animation-delay: 14s;
+}
+
+@keyframes colorAnimation {
+    0%, 100% {
+        color: var(--flag-white);
+    }
+    25% {
+        color: var(--flag-red);
+    }
+    50% {
+        color: var(--flag-white);
+    }
+    75% {
+        color: var(--flag-blue);
+    }
+}
+/* End of Animation styles for color change */
+/* End of Header styles */
+
+/* Main section styles */
+main {
+    padding: 40px 20px;
+    background-color: var(--third-color);
+}
+
+main h2 {
+    color: var(--first-color);
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+}
+
+main p {
+    color: #333;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+/* Profile Section */
+.profile-section {
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
+}
+
+.profile-card {
+    background-color: var(--business-card-color1);
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    text-align: center;
+    max-width: 300px;
+    margin: 0 auto;
+}
+
+.profile-image {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 10px;
+}
+
+.profile-blurb p {
+    color: #333;
+    line-height: 1.4;
+}
+
+/* Popout Container styles */
+.popout {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.popout-content {
+    background-color: var(--business-card-color4);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    max-width: 500px;
+    width: 100%;
+    color: var(--business-card-color2);
+    position: relative;
+}
+
+.hidden {
+    display: none;
+}
+/* End of Popout Container styles */
+
+/* Business Card Section */
+.business-card-section {
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
+}
+
+.business-card {
+    background-color: var(--business-card-color2);
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    color: var(--business-card-color2);
+    max-width: 300px;
+    position: relative;
+    text-align: center;
+}
+
+.business-profile-image {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 10px;
+}
+
+.business-info h3 {
+    color: var(--business-card-color1);
+    margin-bottom: 10px;
+}
+
+.business-info p {
+    margin: 5px 0;
+}
+
+.business-info a {
+    color: var(--fourth-color);
+    text-decoration: none;
+}
+
+.business-info a:hover {
+    text-decoration: underline;
+}
+
+/* Close Button */
+.close-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: var(--fourth-color);
+    color: var(--third-color);
+    padding: 5px 10px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 4.4rem;
+}
+/* End Main section styles */
+
+
+/* Footer styling */
+footer {
+    text-align: center;
+    padding: 20px;
+    background-color: var(--third-color);
+    color: var(--first-color);
+    border-top: 1px solid #ccc;
+    border-radius: 10px;
+}
+
+/* Cyber-Grid Background */
+@keyframes cyberGrid {
+    0% { background-position: 0% 0%; }
+    100% { background-position: 100% 100%;}
+}
+
+.cyber-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: linear-gradient(45deg, var(--first-color) 25%, var(--third-color) 50%, var(--fourth-color) 75%);
+    background-size: 400% 400%;
+    opacity: 0.15; /* Adjust the opacity as needed */
+    z-index: -1;
+    animation: cyberGrid 10s infinite linear;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+
+/* Network Packet Animation */
+.network-packet {
+    position: absolute;
+    top: -20px;
+    color: rgba(0, 255, 170, 1); /* Cyber green */
+    font-family: "Courier New", monospace;
+    font-size: 14x;
+    opacity: 1;
+    pointer-events: none;
+    animation: floatPackets 10s linear infinite;
+    text-shadow: 0 0 5px rgba(0, 255, 170, 0.9), 0 0 10px rgba(0, 255, 170, 0.7);
+}
+
+@keyframes floatPacket {
+    0% { transform: translateY(0px); opacity: 1; }
+    100% { transform: translateY(100vh); opacity: 0; }
+}
+/* End Network Packet Animation */
+
+/* Responsive styles */
+/* Medium screens */
+@media (max-width: 1023px) {
+    /* Adjust the container to center its content */
+    .nav_container {
+        display: flex;
+        justify-content: space-between; /* Center the logo img, text, and the  navigation menu */
+        align-items: center;
+        max-width: 1200px; /* Set the max-width to center the contianer */
+        margin: 0 auto; /* Center the container */
+        padding: 5px 20px; /* Add padding to prevent touch the edges */
+    }
+
+    #nav_logo {
+        display: flex;
+        align-items: center;
+        text-align: left;
+        font-size: 1.2rem;
+        margin-right: auto;
+        margin-left: 150px; /* Push / Move the logo toward the center */
+    }
+
+    .littlerobot {
+        max-width: 150px;
+        margin-right: 0px; /* Create space between the robot and the text */
+        margin-left: -200px; /* Negative moves it left */
+        margin-top: 50px;
+    }
+
+    .color-change {
+        display: inline-block;
+        margin: 0px 2.5px; /* Space between the characters */
+        font-size: 1.2rem;
+        margin-top: 70px;
+    }
+
+    /* Navigation Menu */
+    .nav.menu {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end; /* Align the menu to the right */
+        gap: 15px; /* Space between the menu items */
+        list-style: none;
+        margin-right: 50px; /* Push the menu toward the center */
+    }
+
+    .nav_item a {
+        font-size: 1rem;
+        text-decoration: none;
+        color: var(--fourth-color);
+        margin-right: 30px;
+    }
+
+    .nav_item a:hover {
+        background-color: var(--second-color);
+    }
+    /* End of Navigation Menu */
+
+    /* Profile section */
+    .profile-section, .business-card-section {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .profile-card, .business-card {
+        max-width: 80%;
+        margin-bottom: 20px;
+    }
+
+    .business-profile-image, .profile-image {
+        width: 80px;
+        height: 80px;
+    }
+    /* End Profile section */
+
+    /* End of Medium screens */
+    /* Small screens */
+@media (max-width: 768px) {
+    .welcome_section h1 {
+        margin-left: 25px;
+    }
+
+    .welcome_section h2 {
+        margin-left: 45px;
+    }
+
+    .about-site {
+        padding: 40px 15px;
+    }
+
+    /* Adjust the container to center its content */
+    .nav_container {
+        display: flex;
+        justify-content: space-between; /* Center the logo img, text, and the  navigation menu */
+        align-items: center;
+        max-width: 1200px; /* Set the max-width to center the contianer */
+        margin: 0 auto; /* Center the container */
+        padding: 5px 10px; /* Add padding to prevent touch the edges */
+    }
+
+    #nav_logo {
+        display: flex;
+        align-items: center;
+        text-align: left;
+        font-size: 1.2rem;
+        margin-right: auto;
+        margin-left: -80px; /* Push or Move the logo toward the center */
+    }
+
+    .littlerobot {
+        max-width: 135px;
+        margin-right: 0px; /* Create space between the robot and the text */
+        margin-left: 50px;
+        margin-top: 30px;
+
+    }
+
+    .color-change {
+        display: inline-block;
+        margin: 1.5px; /* Space between the characters */
+        font-size: 1.2rem;
+        margin-top: 65px;
+    }
+
+    /* Navigation Menu */
+    .nav.menu {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end; /* Align the menu to the right */
+        gap: 15px; /* Space between the menu items */
+        list-style: none;
+        margin-right: 50px; /* Push the menu toward the center */
+    }
+
+    .nav_item a {
+        font-size: 1rem;
+        text-decoration: none;
+        color: var(--fourth-color);
+        margin-right: 30px;
+    }
+
+    .nav_item a:hover {
+        background-color: var(--second-color);
+    }
+    /* End of Navigation Menu */
+
+    footer {
+        padding: 15px;
+        font-size: 0.9rem; /* Slightly smaller font for footer */
+    }
+
+    .profile-section, .business-card-section {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .profile-card, .business-card {
+        max-width: 100%;
+        margin-bottom: 20px;
+    }
+
+    .business-profile-image, .profile-image {
+        width: 60px;
+        height: 60px;
+    }
+
+    .header-contact h1 {
+        font-size: 1.5rem;
+    }
+    /* End Profile section */
+    }
+}
+/* End of Small screens */
+/* End of Responsive styles */
