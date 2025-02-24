@@ -138,7 +138,7 @@ body {
 /* Main section styles */
 main {
     padding: 40px 20px;
-    background-color: var(--first-color);
+    background-color: var(--second-color);
 }
 
 main h2 {
