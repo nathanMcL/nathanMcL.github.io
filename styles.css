@@ -295,21 +295,33 @@ footer {
     pointer-events: none;
 }
 
+
 /* Network Packet Animation */
 .network-packet {
     position: absolute;
     top: -20px;
     color: rgba(0, 255, 170, 1); /* Cyber green */
     font-family: "Courier New", monospace;
-    font-size: 14x;
-    opacity: 1;
+    font-size: 24x; /* Default font size, modified in JS */
+    font-weight: bold;
+    opacity: 0.85;
     pointer-events: none;
-    animation: floatPackets 10s linear infinite;
-    text-shadow: 0 0 5px rgba(0, 255, 170, 0.9), 0 0 10px rgba(0, 255, 170, 0.7);
+    text-transform: uppercase;
+
+    /* Testing to make have the text pop-out with a glow effect */
+    text-shadow:
+        0 0 10px rgba(0, 255, 170, 0.9),
+        0 0 20px rgba(0, 255, 170, 0.7),
+        0 0 30px rgba(0, 255, 170, 0.5),
+        0 0 40px rgba(0, 255, 170, 0.3);
+
+    /* Floating effect */
+    animation: floatPackets linear infinite;
 }
 
 @keyframes floatPacket {
     0% { transform: translateY(0px); opacity: 1; }
+    50% { transform: translateY(50vh) scale(1.1); opacity: 0.9; }
     100% { transform: translateY(100vh); opacity: 0; }
 }
 /* End Network Packet Animation */

@@ -9,10 +9,12 @@ document.addEventListener("DOMContentLoaded", function () {
     function createPacket() {
         const packet = document.createElement("div");
         packet.classList.add("network-packet");
-        packet.innerText = Math.random().toString(16).substring(2, 8); // Fake hex data
+        packet.innerText = Math.random().toString(16).substring(2, 10).toUpperCase; // Now larger! Fake hex data...
 
+        // Randomize packet position, animation duration, and size
         packet.style.left = Math.random() * window.innerWidth + "px";
-        packet.style.animationDuration = Math.random() * 5 + 3 + "s";
+        packet.style.animationDuration = Math.random() * 5 + 3 + "s"; // Original value: 5 + 3 + "s"
+        packet.style.fontSize = (18 + Math.random() * 10) + "px"; // Between 18px and 28px
 
         body.appendChild(packet);
 
