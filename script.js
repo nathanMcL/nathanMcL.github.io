@@ -9,19 +9,25 @@ document.addEventListener("DOMContentLoaded", function () {
     function createPacket() {
         const packet = document.createElement("div");
         packet.classList.add("network-packet");
-        packet.innerText = Math.random().toString(16).substring(2, 10).toUpperCase; // Now larger! Fake hex data...
 
-        // Randomize packet position, animation duration, and size
-        packet.style.left = Math.random() * window.innerWidth + "px";
-        packet.style.animationDuration = Math.random() * 5 + 3 + "s"; // Original value: 5 + 3 + "s"
-        packet.style.fontSize = (18 + Math.random() * 10) + "px"; // Between 18px and 28px
+        // Fake packet data format (mimiking hex network traffic)
+        const hexData = "0x" + Math.random().toString(16).substring(2, 10).toUpperCase() + " " +
+                        Math.random().toString(16).substring(2, 10).toUpperCase() + " " +
+                        Math.random().toString(16).substring(2, 8).toUpperCase(); 
+
+        packet.innerText = hexData;
+
+        // Ensure packets go from the top down in a verticle streams (like a waterfall of Matrixness)
+        packet.style.left = `${Math.floor(Math.random() * window.innerWidth / 50) * 50}px`; // Column-like effect
+        packet.style.animationDuration = `${Math.random() * 6 + 4}s`; // Original value(faster): 5 + 3 + "s"
+        packet.style.fontSize = `${20 + Math.random() * 10}px`; // Between 20px and 30px
 
         body.appendChild(packet);
 
         setTimeout(() => {
             packet.remove();
-        }, 8000);
+        }, 10000);
     }
 
-    setInterval(createPacket, 800); // Generate new packets
+    setInterval(createPacket, 500); // Generate new packets every 500ms
 });
