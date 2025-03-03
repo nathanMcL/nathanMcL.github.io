@@ -98,7 +98,7 @@ document.addEventListener("DOMContentLoaded", function () {
             }
 
             orb.style.left = `${newLeft}px`;
-            orb.style.left = `${newTop}px`;
+            orb.style.top = `${newTop}px`;
 
             // Collision detection between orbs
             orbs.forEach((otherOrb, otherIndex) => {
