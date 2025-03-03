@@ -130,7 +130,17 @@ body {
 /* End of Animation styles for color change */
 /* End of Header styles */
 
-/* Bouncing Orbs */
+/* Main Body */
+main {
+    position: relative;
+    width: 90vw;
+    height: 75vh;
+    margin: auto;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    overflow: hidden;
+}
+
+/* Bouncing Orbs - Keep orbs inside the main section */
 .bouncing-orb {
     position: absolute;
     width: 80px;
@@ -201,6 +211,7 @@ body {
     background: #ff6666;
 }
 /* End of Bouncing Orbs */
+/* End of Main Body */
 
 
 /* Footer styling */

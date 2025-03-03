@@ -46,28 +46,86 @@ document.addEventListener("DOMContentLoaded", function () {
         { id: "orb_service", dx: -2, dy: 1.5 }
     ];
 
+    function initializeOrbs() {
+        orbs.forEach((orbObj, index) => {
+            let orb = document.getElementById(orbObj.id);
+            let mainRect = main.getBoundingClientRect();
+            
+            // Prevent overlapping by each orb in a random non-overlapping position
+            let minDistance = 100; // Minimum distance between orbs
+            let attempts = 0;
+
+            let validPosition = false;
+            while (!validPosition && attempts < 50) {
+                let randomX = Math.random() * (mainRect.width - 100) + mainRect.left;
+                let randomY = Math.random() * (mainRect.height - 100) + mainRect.top;
+
+                validPosition = orbs.every((otherOrb, otherIndex) => {
+                    if (otherIndex === index) return true; // Ignore self
+                    let otherRect = document.getElementById(otherOrb.id).getBoundingClientRect();
+                    let dx = randomX - otherRect.left;
+                    let dy = randomY - otherRect.top;
+                    return Math.sqrt(dx * dx + dy * dy) > minDistance; // Distance between orbs
+                });
+
+                if (validPosition) {
+                    orb.style.left = `${randomX}px`;
+                    orb.style.top = `${randomY}px`;
+                }
+
+                attempts++;
+            }
+        });
+    }
+
     function moveOrbs() {
-        orbs.forEach(orbObj => {
+        let mainRect = main.getBoundingClientRect();
+
+        orbs.forEach((orbObj, index) => {
             let orb = document.getElementById(orbObj.id);
             let rect = orb.getBoundingClientRect();
-            let parent = document.body;
 
             // Move orb
-            orb.style.left = (rect.left + orbObj.dx) + "px";
-            orb.style.top = (rect.top + orbObj.dy) + "px";
+            let newLeft = rect.left + orbObj.dx;
+            let newTop = rect.top + orbObj.dy;
 
-            // Bounce off the walls
-            if (rect.left <= 0 || rect.right >= parent.clentWidth) {
+            // Bounce off the main section boundaries
+            if (newLeft <= mainRect.left || newLeft + rect.width >= mainRect.right) {
                 orbObj.dx *= -1;
             }
-            if (rect.top <= 0 || rect.bottom >= parent.clientHeight) {
+            if (newTop <= mainRect.top || newTop + rect.height >= mainRect.bottom) {
                 orbObj.dy *= -1;
             }
+
+            orb.style.left = `${newLeft}px`;
+            orb.style.left = `${newTop}px`;
+
+            // Collision detection between orbs
+            orbs.forEach((otherOrb, otherIndex) => {
+                if (index !== otherIndex) {
+                    let other = document.getElementById(otherOrb.id);
+                    let otherRect = other.getBoundingClientRect();
+
+                    let dx = rect.left - otherRect.left;
+                    let dy = rect.top - otherRect.top;
+                    let distance = Math.sqrt(dx * dx + dy * dy);
+
+                    if (distance < rect.width) {
+                        let tempDx = orbObj.dx;
+                        let tempDy = orbObj.dy;
+                        orbObj.dx = otherOrb.dx;
+                        orbObj.dy = otherOrb.dy;
+                        otherOrb.dx = tempDx;
+                        otherOrb.dy = tempDy;
+                    }
+                }
+            });
         });
 
         requestAnimationFrame(moveOrbs);
     }
 
+    initializeOrbs();
     moveOrbs();
 
     // Click events for the Popups
