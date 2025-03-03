@@ -40,8 +40,12 @@ document.addEventListener("DOMContentLoaded", function () {
 // End of Marquee JScript
 
 // Orbs: move around the page. The orbs should bounce off the edges of the window and off the header and footer.
-document.addEventListener("DOMContentLoaded", function () {
+window.onload = function () {
     let main = document.querySelector("main");
+    if (!main) {
+        console.error("Main section not found!");
+        return;
+    }
 
     let orbs = [
         { id: "orb_me", dx: 2, dy: 2 },
@@ -51,20 +55,26 @@ document.addEventListener("DOMContentLoaded", function () {
     function initializeOrbs() {
         orbs.forEach((orbObj, index) => {
             let orb = document.getElementById(orbObj.id);
+            if (!orb) {
+                console.error(`Orb with ID '${orbObj.id}' not found!`);
+                return;
+            }
+
             let mainRect = main.getBoundingClientRect();
-            
             // Prevent overlapping by each orb in a random non-overlapping position
             let minDistance = 120; // Minimum distance between orbs
             let attempts = 0;
             let validPosition = false;
 
             while (!validPosition && attempts < 50) {
-                let randomX = Math.random() * (mainRect.width - 100) + mainRect.left;
-                let randomY = Math.random() * (mainRect.height - 100) + mainRect.top;
+                let randomX = Math.random() * (mainRect.width - 100); // + mainRect.left
+                let randomY = Math.random() * (mainRect.height - 100); // + mainRect.top
 
                 validPosition = orbs.every((otherOrb, otherIndex) => {
                     if (otherIndex === index) return true; // Ignore self
-                    let otherRect = document.getElementById(otherOrb.id).getBoundingClientRect();
+                    let other = document.getElementById(otherOrb.id);
+                    if (!other) return true;
+                    let otherRect = document.getBoundingClientRect();
                     let dx = randomX - otherRect.left;
                     let dy = randomY - otherRect.top;
                     return Math.sqrt(dx * dx + dy * dy) > minDistance; // Distance between orbs
@@ -85,9 +95,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
         orbs.forEach((orbObj, index) => {
             let orb = document.getElementById(orbObj.id);
-            let rect = orb.getBoundingClientRect();
+            if (!orb) return;
 
-            // Move orb
+            let rect = orb.getBoundingClientRect();
             let newLeft = rect.left + orbObj.dx;
             let newTop = rect.top + orbObj.dy;
 
@@ -106,13 +116,13 @@ document.addEventListener("DOMContentLoaded", function () {
             orbs.forEach((otherOrb, otherIndex) => {
                 if (index !== otherIndex) {
                     let other = document.getElementById(otherOrb.id);
-                    let otherRect = other.getBoundingClientRect();
+                    if (!other) return;
 
+                    let otherRect = other.getBoundingClientRect();
                     let dx = rect.left - otherRect.left;
                     let dy = rect.top - otherRect.top;
                     let distance = Math.sqrt(dx * dx + dy * dy);
 
-                    // Simulate a bouncing effect
                     if (distance < rect.width) {
                         let tempDx = orbObj.dx;
                         let tempDy = orbObj.dy;
@@ -139,9 +149,10 @@ document.addEventListener("DOMContentLoaded", function () {
     document.getElementById("orb_services").addEventListener("click", function () {
         document.getElementById("popup_services").style.display = "block";
     });
-});
+};
 
 // Close popups
 function closePopup(id) {
-    document.getElementById(id).style.display = "none";
+    let popup = document.getElementById(id);
+    if (popup) popup.style.display = "none";
 }
