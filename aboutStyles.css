@@ -130,6 +130,78 @@ body {
 /* End of Animation styles for color change */
 /* End of Header styles */
 
+/* Bouncing Orbs */
+.bouncing-orb {
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: white;
+    cursor: pointer;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.8), 0 0 20px rgba(255, 255, 255, 0.6);
+    animation: floatOrbs 4s infinite alternate ease-in-out;
+}
+
+/* Each orb should have a different color */
+#orb_me {
+    background: radial-gradient(circle, #ff1493, #8b0000);
+    box-shadow: 0 0 15px #ff1493, 0 0 30px #ff1493;
+}
+
+#orb_services {
+    background: radial-gradient(circle, #00ffea, #0044ff);
+    box-shadow: 0 0 15px #00ffea, 0 0 30px #00ffea;
+}
+
+/* Text inside the orb */
+.orb-text {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+/* Floating Animation */
+@keyframes floatOrbs {
+    0% { transform: translateY(-5px); }
+    100% { transform: translateY(5px); }
+}
+
+/* Popups */
+.orb-popup {
+    display: none;
+    position: fixed;
+    width: 250px;
+    padding: 15px;
+    background: rgba(0, 0, 0, 0.85);
+    color: white;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.7);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+.orb-popup button {
+    margin-top: 10px;
+    background: #ff4444;
+    color: whitesmoke;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.orb-popup button:hover {
+    background: #ff6666;
+}
+/* End of Bouncing Orbs */
+
 
 /* Footer styling */
 footer {

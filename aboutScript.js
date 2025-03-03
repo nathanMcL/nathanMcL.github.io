@@ -38,3 +38,49 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 });
 // End of Marquee JScript
+
+// Orbs: move around the page. The orbs should bounce off the edges of the window and off the header and footer.
+document.addEventListener("DOMContentLoaded", function () {
+    let orbs = [
+        { id: "orb_me", dx: 2, dy: 2 },
+        { id: "orb_service", dx: -2, dy: 1.5 }
+    ];
+
+    function moveOrbs() {
+        orbs.forEach(orbObj => {
+            let orb = document.getElementById(orbObj.id);
+            let rect = orb.getBoundingClientRect();
+            let parent = document.body;
+
+            // Move orb
+            orb.style.left = (rect.left + orbObj.dx) + "px";
+            orb.style.top = (rect.top + orbObj.dy) + "px";
+
+            // Bounce off the walls
+            if (rect.left <= 0 || rect.right >= parent.clentWidth) {
+                orbObj.dx *= -1;
+            }
+            if (rect.top <= 0 || rect.bottom >= parent.clientHeight) {
+                orbObj.dy *= -1;
+            }
+        });
+
+        requestAnimationFrame(moveOrbs);
+    }
+
+    moveOrbs();
+
+    // Click events for the Popups
+    document.getElementById("orb_me").addEventListener("click", function () {
+        document.getElementById("popup_me").style.display = "block";
+    });
+
+    document.getElementById("orb_service").addEventListener("click", function () {
+        document.getElementById("popup_service").style.display = "block";
+    });
+});
+
+// Close popups
+function closePopup(id) {
+    document.getElementById(id).style.display = "none";
+}
