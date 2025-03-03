@@ -41,6 +41,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 // Orbs: move around the page. The orbs should bounce off the edges of the window and off the header and footer.
 document.addEventListener("DOMContentLoaded", function () {
+    let main = document.querySelector("main");
     let orbs = [
         { id: "orb_me", dx: 2, dy: 2 },
         { id: "orb_service", dx: -2, dy: 1.5 }
