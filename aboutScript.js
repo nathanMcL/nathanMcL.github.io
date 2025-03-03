@@ -42,6 +42,7 @@ document.addEventListener("DOMContentLoaded", function () {
 // Orbs: move around the page. The orbs should bounce off the edges of the window and off the header and footer.
 document.addEventListener("DOMContentLoaded", function () {
     let main = document.querySelector("main");
+
     let orbs = [
         { id: "orb_me", dx: 2, dy: 2 },
         { id: "orb_service", dx: -2, dy: 1.5 }
@@ -53,10 +54,10 @@ document.addEventListener("DOMContentLoaded", function () {
             let mainRect = main.getBoundingClientRect();
             
             // Prevent overlapping by each orb in a random non-overlapping position
-            let minDistance = 100; // Minimum distance between orbs
+            let minDistance = 120; // Minimum distance between orbs
             let attempts = 0;
-
             let validPosition = false;
+
             while (!validPosition && attempts < 50) {
                 let randomX = Math.random() * (mainRect.width - 100) + mainRect.left;
                 let randomY = Math.random() * (mainRect.height - 100) + mainRect.top;
@@ -99,7 +100,7 @@ document.addEventListener("DOMContentLoaded", function () {
             }
 
             orb.style.left = `${newLeft}px`;
-            orb.style.top = `${newTop}px`;
+            orb.style.left = `${newTop}px`;
 
             // Collision detection between orbs
             orbs.forEach((otherOrb, otherIndex) => {
@@ -111,6 +112,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     let dy = rect.top - otherRect.top;
                     let distance = Math.sqrt(dx * dx + dy * dy);
 
+                    // Simulate a bouncing effect
                     if (distance < rect.width) {
                         let tempDx = orbObj.dx;
                         let tempDy = orbObj.dy;
@@ -134,8 +136,8 @@ document.addEventListener("DOMContentLoaded", function () {
         document.getElementById("popup_me").style.display = "block";
     });
 
-    document.getElementById("orb_service").addEventListener("click", function () {
-        document.getElementById("popup_service").style.display = "block";
+    document.getElementById("orb_services").addEventListener("click", function () {
+        document.getElementById("popup_services").style.display = "block";
     });
 });
 

@@ -155,7 +155,7 @@ main {
     color: white;
     cursor: pointer;
     box-shadow: 0 0 10px rgba(255, 255, 255, 0.8), 0 0 20px rgba(255, 255, 255, 0.6);
-    animation: floatOrbs 4s infinite alternate ease-in-out;
+    transition: transform 0.02s linear;
 }
 
 /* Each orb should have a different color */
@@ -212,7 +212,6 @@ main {
 }
 /* End of Bouncing Orbs */
 /* End of Main Body */
-
 
 /* Footer styling */
 footer {
