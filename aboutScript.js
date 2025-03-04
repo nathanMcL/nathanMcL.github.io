@@ -74,7 +74,7 @@ window.onload = function () {
                     if (otherIndex === index) return true; // Ignore self
                     let other = document.getElementById(otherOrb.id);
                     if (!other) return true;
-                    let otherRect = document.getBoundingClientRect();
+                    let otherRect = other.getBoundingClientRect();
                     let dx = randomX - otherRect.left;
                     let dy = randomY - otherRect.top;
                     return Math.sqrt(dx * dx + dy * dy) > minDistance; // Distance between orbs
