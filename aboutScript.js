@@ -49,7 +49,7 @@ window.onload = function () {
 
     let orbs = [
         { id: "orb_me", dx: 2, dy: 2 },
-        { id: "orb_service", dx: -2, dy: 1.5 }
+        { id: "orb_services", dx: -2, dy: 1.5 }
     ];
 
     function initializeOrbs() {
