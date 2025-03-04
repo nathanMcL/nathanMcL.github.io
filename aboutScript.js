@@ -98,8 +98,8 @@ window.onload = function () {
             let orb = document.getElementById(orbObj.id);
             if (!orb) return;
 
-            let newLeft = rect.left + orbObj.dx;
-            let newTop = rect.top + orbObj.dy;
+            let newLeft = orb.offsetLeft + orbObj.dx;
+            let newTop = orb.offsetTop + orbObj.dy;
 
             // Bounce off the main section boundaries
             if (newLeft <= 0 || newLeft + orb.clientWidth >= mainRect.width) {
