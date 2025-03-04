@@ -74,9 +74,10 @@ window.onload = function () {
                     if (otherIndex === index) return true; // Ignore self
                     let other = document.getElementById(otherOrb.id);
                     if (!other) return true;
-                    let otherRect = other.getBoundingClientRect();
-                    let dx = randomX - otherRect.left;
-                    let dy = randomY - otherRect.top;
+                    let otherX = other.offsetLeft;
+                    let otherY = other.offsetTop;
+                    let dx = randomX - otherX;
+                    let dy = randomY - otherY;
                     return Math.sqrt(dx * dx + dy * dy) > minDistance; // Distance between orbs
                 });
 
@@ -97,20 +98,19 @@ window.onload = function () {
             let orb = document.getElementById(orbObj.id);
             if (!orb) return;
 
-            let rect = orb.getBoundingClientRect();
             let newLeft = rect.left + orbObj.dx;
             let newTop = rect.top + orbObj.dy;
 
             // Bounce off the main section boundaries
-            if (newLeft <= mainRect.left || newLeft + rect.width >= mainRect.right) {
+            if (newLeft <= 0 || newLeft + orb.clientWidth >= mainRect.width) {
                 orbObj.dx *= -1;
             }
-            if (newTop <= mainRect.top || newTop + rect.height >= mainRect.bottom) {
+            if (newTop <= 0 || newTop + orb.clientHeight >= mainRect.height) {
                 orbObj.dy *= -1;
             }
 
             orb.style.left = `${newLeft}px`;
-            orb.style.left = `${newTop}px`;
+            orb.style.top = `${newTop}px`;
 
             // Collision detection between orbs
             orbs.forEach((otherOrb, otherIndex) => {
@@ -118,12 +118,11 @@ window.onload = function () {
                     let other = document.getElementById(otherOrb.id);
                     if (!other) return;
 
-                    let otherRect = other.getBoundingClientRect();
-                    let dx = rect.left - otherRect.left;
-                    let dy = rect.top - otherRect.top;
+                    let dx = orb.offsetLeft - other.offsetLeft;
+                    let dy = orb.offsetTop - other.offsetTop;
                     let distance = Math.sqrt(dx * dx + dy * dy);
 
-                    if (distance < rect.width) {
+                    if (distance < orb.clientWidth) {
                         let tempDx = orbObj.dx;
                         let tempDy = orbObj.dy;
                         orbObj.dx = otherOrb.dx;
@@ -139,7 +138,7 @@ window.onload = function () {
     }
 
     initializeOrbs();
-    moveOrbs();
+    requestAnimationFrame(moveOrbs);
 
     // Click events for the Popups
     document.getElementById("orb_me").addEventListener("click", function () {
