@@ -42,6 +42,9 @@ document.addEventListener("DOMContentLoaded", function () {
 // Orbs: move around the page. The orbs should bounce off the edges of the window and off the header and footer.
 window.onload = function () {
     let main = document.querySelector("main");
+    let footer = document.querySelector("footer"); // This should set the boundry for the (top of) footer boundry
+
+    // Check Error Statement
     if (!main) {
         console.error("Main section not found!");
         return;
@@ -93,6 +96,7 @@ window.onload = function () {
 
     function moveOrbs() {
         let mainRect = main.getBoundingClientRect();
+        let footerTop = footer.offsetTop; // Set the top of the footer boundry
 
         orbs.forEach((orbObj, index) => {
             let orb = document.getElementById(orbObj.id);
@@ -101,12 +105,25 @@ window.onload = function () {
             let newLeft = orb.offsetLeft + orbObj.dx;
             let newTop = orb.offsetTop + orbObj.dy;
 
-            // Bounce off the main section boundaries
+            // Bounce off the left/right boundaries
             if (newLeft <= 0 || newLeft + orb.clientWidth >= mainRect.width) {
                 orbObj.dx *= -1;
             }
-            if (newTop <= 0 || newTop + orb.clientHeight >= mainRect.height) {
+
+            // Bounce off the top of <main>
+            if (newTop <= 0) {
                 orbObj.dy *= -1;
+            }
+
+            // Bounce off the bottom of <main>, ensuring it does not fall into the footer
+            if (newTop + orb.clientHeight >= mainRect.height) {
+                orbObj.dy *= -1;
+            }
+
+            // Ensure the orb does not go into the footer
+            if (newTop + orb.clientHeight >= footerTop) {
+                orbObj.dy *= -1;
+                newTop = footerTop - orb.clientHeight; // Keep it above the footer
             }
 
             orb.style.left = `${newLeft}px`;
