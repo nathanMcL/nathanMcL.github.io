@@ -165,8 +165,8 @@ main {
 }
 
 #orb_services {
-    background: radial-gradient(circle, #ff1493, #8b0000);
-    box-shadow: 0 0 15px #ff1493, 0 0 30px #ff1493;
+    background: radial-gradient(circle, #08c027, #03b931);
+    box-shadow: 0 0 15px #14ff33, 0 0 30px #14ff47;
 }
 
 /* Text inside the orb */
