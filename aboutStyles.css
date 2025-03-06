@@ -159,6 +159,7 @@ main {
 }
 
 /* Each orb should have a different color */
+/*Orbs (Can create more)*/
 #orb_me {
     background: radial-gradient(circle, #00ffea, #0044ff);
     box-shadow: 0 0 15px #00ffea, 0 0 30px #00ffea;
@@ -167,6 +168,11 @@ main {
 #orb_services {
     background: radial-gradient(circle, #08c027, #03b931);
     box-shadow: 0 0 15px #14ff33, 0 0 30px #14ff47;
+}
+
+#orb_things {
+    background: radial-gradient(circle, #7700ff, #d400ff);
+    box-shadow: 0 0 15px #fa11fa, 0 0 30px #9605a3;
 }
 
 /* Text inside the orb */

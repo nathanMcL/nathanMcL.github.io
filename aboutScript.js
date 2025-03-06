@@ -76,6 +76,15 @@ window.onload = function () {
         }
     });
 
+    document.getElementById("orb_things").addEventListener("click", function () {
+        let popup = document.getElementById("popup_things");
+        if (popup) {
+            popup.style.display = "block";
+        } else {
+            console.error("Popup #popup_things not found!");
+        }
+    });
+
     // Close button for the popups
     document.querySelectorAll(".close-btn").forEach(button => {
         button.addEventListener("click", function () {
