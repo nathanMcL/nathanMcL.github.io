@@ -52,7 +52,8 @@ window.onload = function () {
     let orbs = [
         { id: "orb_me", dx: 2, dy: 2 },
         { id: "orb_services", dx: -2, dy: 1.5 },
-        { id: "orb_things", dx: 3, dy: 2.5 }
+        { id: "orb_things", dx: 3, dy: 2.5 },
+        { id: "orb_smile", dx: -3, dy: 1.75 }
     ];
 
     initializeOrbs();
@@ -83,6 +84,15 @@ window.onload = function () {
             popup.style.display = "block";
         } else {
             console.error("Popup #popup_things not found!");
+        }
+    });
+
+    document.getElementById("orb_smile").addEventListener("click", function () {
+        let popup = document.getElementById("popup_smile");
+        if (popup) {
+            popup.style.display = "block";
+        } else {
+            console.error("Popup #popup_smile not found!");
         }
     });
 

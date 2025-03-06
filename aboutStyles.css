@@ -175,6 +175,11 @@ main {
     box-shadow: 0 0 15px #fa11fa, 0 0 30px #9605a3;
 }
 
+#orb_smile {
+    background: radial-gradient(circle, #91ff00, #c3f912);
+    box-shadow: 0 0 15px #c0fa11, 0 0 30px #bff109;
+}
+
 /* Text inside the orb */
 .orb-text {
     font-size: 20px;
