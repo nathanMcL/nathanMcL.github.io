@@ -5,20 +5,20 @@ document.addEventListener("DOMContentLoaded", function () {
     cyberContainer.classList.add("cyber-container");
     body.appendChild(cyberContainer);
 
-    // Function to create fake network packets
+    // Function to create fake network packets. Permenant animation time
     function createPacket() {
         const packet = document.createElement("div");
         packet.classList.add("network-packet");
         packet.innerText = Math.random().toString(16).substring(2, 8); // Fake hex data
 
         packet.style.left = Math.random() * window.innerWidth + "px";
-        packet.style.animationDuration = Math.random() * 5 + 3 + "s";
+        packet.style.animationDuration = "7s";
 
         body.appendChild(packet);
 
         setTimeout(() => {
             packet.remove();
-        }, 8000);
+        }, 7000);
     }
 
     setInterval(createPacket, 800); // Generate new packets
@@ -106,7 +106,7 @@ window.onload = function () {
             let newTop = orb.offsetTop + orbObj.dy;
 
             // Bounce off the left/right boundaries
-            if (newLeft <= 0 || newLeft + orb.clientWidth >= mainRect.width) {
+            if (newLeft <= 0 || newLeft + orb.clientWidth >= main.clientWidth) {
                 orbObj.dx *= -1;
             }
 
@@ -115,15 +115,10 @@ window.onload = function () {
                 orbObj.dy *= -1;
             }
 
-            // Bounce off the bottom of <main>, ensuring it does not fall into the footer
-            if (newTop + orb.clientHeight >= mainRect.height) {
+            // Bounce off the bottom of <main>, ensuring it does not fall into **before** the footer
+            if (newTop + orb.clientHeight >= main.clientHeight) {
                 orbObj.dy *= -1;
-            }
-
-            // Ensure the orb does not go into the footer
-            if (newTop + orb.clientHeight >= footerTop) {
-                orbObj.dy *= -1;
-                newTop = footerTop - orb.clientHeight; // Keep it above the footer
+                newTop = main.clientHeight - orb.clientHeight; // Keep it above the footer
             }
 
             orb.style.left = `${newLeft}px`;
