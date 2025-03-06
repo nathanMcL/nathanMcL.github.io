@@ -79,6 +79,7 @@ window.onload = function () {
     // Close button for the popups
     document.querySelectorAll(".close-btn").forEach(button => {
         button.addEventListener("click", function () {
+            let popupId = this.dataset.popup;
             let popup = document.getElementById(popupId);
             if (popup) {
                 popup.style.display = "none";
