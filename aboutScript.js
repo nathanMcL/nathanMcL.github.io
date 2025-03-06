@@ -77,10 +77,14 @@ window.onload = function () {
     });
 
     // Close button for the popups
-    document.querySelectorAll(".orb-popup button").forEach(button => {
+    document.querySelectorAll(".close-btn").forEach(button => {
         button.addEventListener("click", function () {
-            let popup = this.parentElement;
-            popup.style.display = "none";
+            let popup = document.getElementById(popupId);
+            if (popup) {
+                popup.style.display = "none";
+            } else {
+                console.error(`Popup with ID '${popupId}' not found!`);
+            }
         });
     });
 
