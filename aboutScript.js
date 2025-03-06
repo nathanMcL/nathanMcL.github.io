@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", function () {
     cyberContainer.classList.add("cyber-container");
     body.appendChild(cyberContainer);
 
-    // Function to create fake network packets. Permenant animation time
+    // Function to create fake network packets
     function createPacket() {
         const packet = document.createElement("div");
         packet.classList.add("network-packet");
@@ -42,9 +42,8 @@ document.addEventListener("DOMContentLoaded", function () {
 // Orbs: move around the page. The orbs should bounce off the edges of the window and off the header and footer.
 window.onload = function () {
     let main = document.querySelector("main");
-    let footer = document.querySelector("footer"); // This should set the boundry for the (top of) footer boundry
+    let footer = document.querySelector("footer"); // Footer boundary
 
-    // Check Error Statement
     if (!main) {
         console.error("Main section not found!");
         return;
@@ -54,6 +53,36 @@ window.onload = function () {
         { id: "orb_me", dx: 2, dy: 2 },
         { id: "orb_services", dx: -2, dy: 1.5 }
     ];
+
+    initializeOrbs();
+    moveOrbs();
+
+    // Click events for the Popups
+    document.getElementById("orb_me").addEventListener("click", function () {
+        let popup = document.getElementById("popup_me");
+        if (popup) {
+            popup.style.display = "block";
+        } else {
+            console.error("Popup #popup_me not found!");
+        }
+    });
+
+    document.getElementById("orb_services").addEventListener("click", function () {
+        let popup = document.getElementById("popup_services");
+        if (popup) {
+            popup.style.display = "block";
+        } else {
+            console.error("Popup #popup_services not found!");
+        }
+    });
+
+    // Close button for the popups
+    document.querySelectorAll(".orb-popup button").forEach(button => {
+        button.addEventListener("click", function () {
+            let popup = this.parentElement;
+            popup.style.display = "none";
+        });
+    });
 
     function initializeOrbs() {
         let mainRect = main.getBoundingClientRect();
@@ -65,29 +94,28 @@ window.onload = function () {
                 return;
             }
 
-            // Prevent overlapping by each orb in a random non-overlapping position
             let minDistance = 120; // Minimum distance between orbs
             let attempts = 0;
             let validPosition = false;
 
             while (!validPosition && attempts < 50) {
-                let randomX = Math.random() * (mainRect.width - 100); // + mainRect.left
-                let randomY = Math.random() * (mainRect.height - 100); // + mainRect.top
+                let randomX = Math.random() * (mainRect.width - 100);
+                let randomY = Math.random() * (mainRect.height - 100);
 
                 validPosition = orbs.every((otherOrb, otherIndex) => {
-                    if (otherIndex === index) return true; // Ignore self
+                    if (otherIndex === index) return true;
                     let other = document.getElementById(otherOrb.id);
                     if (!other) return true;
                     let otherX = other.offsetLeft;
                     let otherY = other.offsetTop;
                     let dx = randomX - otherX;
                     let dy = randomY - otherY;
-                    return Math.sqrt(dx * dx + dy * dy) > minDistance; // Distance between orbs
+                    return Math.sqrt(dx * dx + dy * dy) > minDistance;
                 });
 
                 if (validPosition) {
-                    orb.style.left = `${randomX}px`;
-                    orb.style.top = `${randomY}px`;
+                    orb.style.left = randomX + "px";
+                    orb.style.top = randomY + "px";
                 }
 
                 attempts++;
@@ -97,7 +125,7 @@ window.onload = function () {
 
     function moveOrbs() {
         let mainRect = main.getBoundingClientRect();
-        let footerTop = footer.getBoundingClientRect; // Set the top of the footer boundry
+        let footerRect = footer.getBoundingClientRect(); // Ensure we reference this
 
         orbs.forEach((orbObj, index) => {
             let orb = document.getElementById(orbObj.id);
@@ -128,8 +156,8 @@ window.onload = function () {
                 newTop = footerRect.top - orb.clientHeight;
             }
 
-            orb.style.left = `${newLeft}px`;
-            orb.style.top = `${newTop}px`;
+            orb.style.left = newLeft + "px";
+            orb.style.top = newTop + "px";
 
             // Collision detection between orbs
             orbs.forEach((otherOrb, otherIndex) => {
@@ -155,36 +183,6 @@ window.onload = function () {
 
         requestAnimationFrame(moveOrbs);
     }
-
-    initializeOrbs();
-    requestAnimationFrame(moveOrbs);
-
-    // Click events for the Popups
-    document.getElementById("orb_me").addEventListener("click", function () {
-        let popup = document.getElementById("popup_me");
-        if (popup) {
-            popup.style.display = "block";
-        } else {
-            console.error("Popup #popup_me not found!");
-        }
-    });
-
-    document.getElementById("orb_services").addEventListener("click", function () {
-        let popup = document.getElementById("popup_services");
-        if (popup) {
-            popup.style.display = "block";
-        } else {
-            console.error("Popup #popup_services not found!");
-        }
-    });
-
-    // Close button for the popups
-    document.querySelectorAll(".orb-popup button").forEach(button => {
-        button.addEventListener("click", function () {
-            let popup = this.parentElement; // Get the parent element of the button (the popup)
-            popup.style.display = "none";
-        });
-    });
 };
 
 // Close popups
