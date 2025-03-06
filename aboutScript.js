@@ -56,6 +56,8 @@ window.onload = function () {
     ];
 
     function initializeOrbs() {
+        let mainRect = main.getBoundingClientRect();
+
         orbs.forEach((orbObj, index) => {
             let orb = document.getElementById(orbObj.id);
             if (!orb) {
@@ -63,7 +65,6 @@ window.onload = function () {
                 return;
             }
 
-            let mainRect = main.getBoundingClientRect();
             // Prevent overlapping by each orb in a random non-overlapping position
             let minDistance = 120; // Minimum distance between orbs
             let attempts = 0;
@@ -96,7 +97,7 @@ window.onload = function () {
 
     function moveOrbs() {
         let mainRect = main.getBoundingClientRect();
-        let footerTop = footer.offsetTop; // Set the top of the footer boundry
+        let footerTop = footer.getBoundingClientRect; // Set the top of the footer boundry
 
         orbs.forEach((orbObj, index) => {
             let orb = document.getElementById(orbObj.id);
@@ -119,6 +120,12 @@ window.onload = function () {
             if (newTop + orb.clientHeight >= main.clientHeight) {
                 orbObj.dy *= -1;
                 newTop = main.clientHeight - orb.clientHeight; // Keep it above the footer
+            }
+
+            // Ensure the orb does not enter the footer
+            if (newTop + orb.clientHeight >= footerRect.top) {
+                orbObj.dy *= -1;
+                newTop = footerRect.top - orb.clientHeight;
             }
 
             orb.style.left = `${newLeft}px`;
@@ -154,16 +161,38 @@ window.onload = function () {
 
     // Click events for the Popups
     document.getElementById("orb_me").addEventListener("click", function () {
-        document.getElementById("popup_me").style.display = "block";
+        let popup = document.getElementById("popup_me");
+        if (popup) {
+            popup.style.display = "block";
+        } else {
+            console.error("Popup #popup_me not found!");
+        }
     });
 
     document.getElementById("orb_services").addEventListener("click", function () {
-        document.getElementById("popup_services").style.display = "block";
+        let popup = document.getElementById("popup_services");
+        if (popup) {
+            popup.style.display = "block";
+        } else {
+            console.error("Popup #popup_services not found!");
+        }
+    });
+
+    // Close button for the popups
+    document.querySelectorAll(".orb-popup button").forEach(button => {
+        button.addEventListener("click", function () {
+            let popup = this.parentElement; // Get the parent element of the button (the popup)
+            popup.style.display = "none";
+        });
     });
 };
 
 // Close popups
 function closePopup(id) {
     let popup = document.getElementById(id);
-    if (popup) popup.style.display = "none";
+    if (popup) {
+        popup.style.display = "none";
+    } else {
+        console.error(`Popup with ID '${id}' not found!`);
+    }
 }
