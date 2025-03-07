@@ -331,8 +331,32 @@ footer {
     .nav_item a:hover {
         background-color: var(--second-color);
     }
-    /* Enf of Navigation Menu */
+    /* End of Navigation Menu */
+
+    /* Responsive Medium Orb */
+    main {
+        width: 95vw; /* Slightly wider for medium screens */
+        height: 65vh; /* Reduce height to fit content */
+    }
+
+    .bouncing-orb {
+        width: 70px; /* Reduce size */
+        height: 70px;
+        font-size: 1.3rem; /* Adjust text size */
+    }
+
+    .orb-text {
+        font-size: 18px; /* Reduce text size */
+    }
+
+    .orb-popup {
+        width: 220px; /* Slightly smaller popups */
+        padding: 12px;
+    }
+    /* End of Responsive Medium Orb */
     /* End of Medium screens */
+}
+
     /* Small screens */
 @media (max-width: 768px) {
     .welcome_section h1 {
@@ -407,8 +431,34 @@ footer {
         padding: 15px;
         font-size: 0.9rem; /* Slightly smaller font for footer */
     }
-}
-}
+
+    /* Responsive Small Orb */
+    main {
+        width: 100vw; /* Use full width */
+        height: 55vh; /* Smaller height for mobile */
+    }
+
+    .bouncing-orb {
+        width: 55px; /* Even smaller */
+        height: 55px;
+        font-size: 1.1rem; /* Adjust text size */
+    }
+
+    .orb-text {
+        font-size: 16px; /* Smaller font */
+    }
+
+    .orb-popup {
+        width: 200px; /* Make popups more compact */
+        padding: 10px;
+    }
+
+    .orb-popup button {
+        font-size: 12px; /* Smaller button text */
+        padding: 4px 8px;
+    }
+    /* End of Responsive Small Orb */
+}    
 /* End of Small screens */
 /* End of Responsive styles */
 
