@@ -6,7 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="@MacN_iT website">
         <title>MacN the Full Stack...</title>
-        <link rel="stylesheet" href="blogStyles.css">
+        <link rel="stylesheet" href="styles.css">
         <link rel="icon" href="favicon.ico" type="image/x-icon">
         
         <!-- Security Headers -->
@@ -16,26 +16,35 @@
         <meta http-equiv="Strict-Transport-Security" content="max-age=31536000; includeSubDomains">
 
         <!-- Favicon -->
-        <link rel="icon" type="image/png" href="favicon.png">
+        <link rel="icon" type="image/png" href="images/favicon.png">
     </head>
+
     <body>
+
+        <!-- Skip Navigation Link for Screen Readers -->
+        <a href="#main-content" class="skip-nav">Skip to main content</a>
+
         <!-- Header Section -->
-        <header class="header-about">
-            <nav class="navigation">
+        <header class="header-index">
+            <nav class="navigation" aria-label="Main Navigation">
                 <div class="nav_container">
                     <!-- Logo and @MacN_iT -->
-                    <a href="index.html" id="nav_logo">
+                    <a href="index.html" id="nav_logo" aria-label="MacN_iT Home">
                         <img src="images/LittleRobotBackgroundErase.png" alt="MacN_iT Logo" class="littlerobot">
-                        <span class="color-change">@</span><span class="color-change">M</span>
-                        <span class="color-change">a</span><span class="color-change">c</span>
-                        <span class="color-change">N</span><span class="color-change">_</span>
-                        <span class="color-change">i</span><span class="color-change">T</span>
+                        <span class="color-change" aria-hidden="true">@</span>
+                        <span class="color-change" aria-hidden="true">M</span>
+                        <span class="color-change" aria-hidden="true">a</span>
+                        <span class="color-change" aria-hidden="true">c</span>
+                        <span class="color-change" aria-hidden="true">N</span>
+                        <span class="color-change" aria-hidden="true">_</span>
+                        <span class="color-change" aria-hidden="true">i</span>
+                        <span class="color-change" aria-hidden="true">T</span>
                     </a>
                     <ul class="nav.menu">
-                        <li class="nav_item"><a href="index.html">Home</a></li>
+                        <li class="nav_item"><a class="nav_active" href="index.html" aria-current="page">Home</a></li>
                         <li class="nav_item"><a href="about.html">About</a></li>
-                        <li class="nav_item"><a href="inspiredme.html">Inspirations</a>
-                        <li class="nav_item"><a class="nav_active" href="blog.html">Thoughts</a></li>
+                        <li class="nav_item"><a href="inspired_me.html">Inspirations</a></li>
+                        <li class="nav_item"><a href="blog.html">Thoughts</a></li>
                         <li class="nav_item"><a href="tools.html">Tools</a></li>
                         <li class="nav_item"><a href="contact.html">Contact</a></li>
                     </ul>
