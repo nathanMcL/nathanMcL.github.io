@@ -16,26 +16,34 @@
         <meta http-equiv="Strict-Transport-Security" content="max-age=31536000; includeSubDomains">
 
         <!-- Favicon -->
-        <link rel="icon" type="image/png" href="favicon.png">
+        <link rel="icon" type="image/png" href="images/favicon.png">
     </head>
 
     <body>
+
+        <!-- Skip Navigation Link for Screen Readers -->
+        <a href="#main-content" class="skip-nav">Skip to main content</a>
+
         <!-- Header Section -->
         <header class="header-index">
-            <nav class="navigation">
+            <nav class="navigation" aria-label="Main Navigation">
                 <div class="nav_container">
                     <!-- Logo and @MacN_iT -->
-                    <a href="index.html" id="nav_logo">
+                    <a href="index.html" id="nav_logo" aria-label="MacN_iT Home">
                         <img src="images/LittleRobotBackgroundErase.png" alt="MacN_iT Logo" class="littlerobot">
-                        <span class="color-change">@</span><span class="color-change">M</span>
-                        <span class="color-change">a</span><span class="color-change">c</span>
-                        <span class="color-change">N</span><span class="color-change">_</span>
-                        <span class="color-change">i</span><span class="color-change">T</span>
+                        <span class="color-change" aria-hidden="true">@</span>
+                        <span class="color-change" aria-hidden="true">M</span>
+                        <span class="color-change" aria-hidden="true">a</span>
+                        <span class="color-change" aria-hidden="true">c</span>
+                        <span class="color-change" aria-hidden="true">N</span>
+                        <span class="color-change" aria-hidden="true">_</span>
+                        <span class="color-change" aria-hidden="true">i</span>
+                        <span class="color-change" aria-hidden="true">T</span>
                     </a>
                     <ul class="nav.menu">
-                        <li class="nav_item"><a class="nav_active" href="index.html">Home</a></li>
+                        <li class="nav_item"><a class="nav_active" href="index.html" aria-current="page">Home</a></li>
                         <li class="nav_item"><a href="about.html">About</a></li>
-                        <li class="nav_item"><a href="inspiredme.html">Inspirations</a>
+                        <li class="nav_item"><a href="inspired_me.html">Inspirations</a></li>
                         <li class="nav_item"><a href="blog.html">Thoughts</a></li>
                         <li class="nav_item"><a href="tools.html">Tools</a></li>
                         <li class="nav_item"><a href="contact.html">Contact</a></li>
@@ -46,38 +54,42 @@
         <!-- End of Header section -->
 
         <!-- Main body description about the site -->
-        <section class="about-site">
-            <div class="container">
-                <h1>Welcome👋...</h1>
-                <p>
-                    This is my digital💻 space where I explore, ⌨build things🖱, break🔨, and fix🩹 things🤔...
-                    From AI projects, web development to cyber-curiosity and system tinkering...<br>
-                    <strong>Create Curiosity, and Sharing. </strong>
-                </p>
-                <p>
-                    So, if you're into **coding, AI, security, or not! Just curious at seeing how deep the rabbit hole goes...**
-                    Check out my <a href="blog.html">blog</a>, browse my <a href="tools.html">tools</a>,
-                    or just face-roll the keyboard until something new happens. No judgment.
-                </p>
-                <p>
-                    Has questions❓ Want to collaborate❓❓ <a href="contact.html">Reach out.</a>
-                </p>
-            </div>
-        </section>
+        <main id="main-content">
+            <section class="about-site">
+                <div class="container">
+                    <h1>Welcome <span aria-hidden="true">👋</span>...</h1>
+                    <p>
+                        This is my digital <span aria-hidden="true">💻</span> space where I explore, 
+                        <span aria-hidden="true">⌨</span> build things <span aria-hidden="true">🖱</span>, 
+                        break <span aria-hidden="true">🔨</span>, and fix <span aria-hidden="true">🩹</span> things <span aria-hidden="true">🤔</span>...
+                        From AI projects, web development to cyber-curiosity and system tinkering...<br>
+                        <strong>Create Curiosity, Sharing.</strong>
+                    </p>
+                    <p>
+                        So, if you're into coding, AI, security, or not! Just curious about how deep the rabbit hole goes...
+                        Check out my <a href="blog.html">blog</a>, browse my <a href="tools.html">tools</a>, 
+                        or just face-roll the keyboard until something new happens. No judgment.
+                    </p>
+                    <p>
+                        Have questions <span aria-hidden="true">❓</span>? Want to collaborate <span aria-hidden="true">❓❓</span>? 
+                        <a href="contact.html">Reach out</a>.
+                    </p>
+                </div>
+            </section>
+        </main>
 
         <!-- Footer Section -->
         <footer>
             <p>&copy; 2025 MacN @MacN_iT All Rights Reserved</p>
-            <nav>
+            <nav aria-label="Footer Navigation">
                 <a href="index.html">Home</a>
             </nav>
         </footer>
 
-        <!-- Cyber background effect -->
+        <!-- Cyber container effect -->
         <div class="cyber-container"></div>
 
-
-    <!-- JS -->
-    <script src="script.js" defer></script>
+        <!-- JS -->
+        <script src="script.js" defer></script>
     </body>
 </html>
