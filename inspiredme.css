@@ -132,7 +132,7 @@ body {
 
 /* Main Section Clouds */
 /* Main Container */
-#inspiredme-container {
+#inspiration-container {
     position: relative;
     width: 100%;
     height: 80vh;
@@ -143,7 +143,7 @@ body {
 }
 
 /* Cloud styling */
-.inspirational-cloud {
+.inspiration-cloud {
     position: absolute;
     padding: 20px 40px;
     border-radius: 50%;
