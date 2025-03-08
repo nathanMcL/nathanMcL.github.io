@@ -130,6 +130,53 @@ body {
 /* End of Animation styles for color change */
 /* End of Header styles */
 
+/* Main Section Clouds */
+/* Main Container */
+#inspiredme-container {
+    position: relative;
+    width: 100%;
+    height: 80vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+/* Cloud styling */
+.inspirational-cloud {
+    position: absolute;
+    padding: 20px 40px;
+    border-radius: 50%;
+    font-size: 1.2rem;
+    font-weight: bold;
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease-in-out;
+    cursor: pointer;
+    -webkit-user-select: none; /* Safari */
+    user-select: none; /* To get user-select to work, had to add -webkit-user-select */
+    white-space: nowrap;
+
+    /* Cloud color gradient */
+    background: linear-gradient(135deg, #b0c4de 30%, #dcdcdc 70%);
+    color: #1a1a1a;
+
+    /* Cloud movement animation */
+    animation: floating 5s infinite ease-in-out alternate;
+}
+
+/* Hover effect */
+.inspiration-cloud:hover {
+    transform: scale(1.1);
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.3);
+}
+
+/* Floating animation */
+@keyframes floating {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(10px); }
+}
+/* End of Main Section Clouds */
 
 /* Footer styling */
 footer {
