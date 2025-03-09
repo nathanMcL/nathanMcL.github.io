@@ -12,13 +12,13 @@ document.addEventListener("DOMContentLoaded", function () {
         packet.innerText = Math.random().toString(16).substring(2, 8); // Fake hex data
 
         packet.style.left = Math.random() * window.innerWidth + "px";
-        packet.style.animationDuration = Math.random() * 5 + 3 + "s";
+        packet.style.animationDuration = "7s";
 
         body.appendChild(packet);
 
         setTimeout(() => {
             packet.remove();
-        }, 8000);
+        }, 7000);
     }
 
     setInterval(createPacket, 800); // Generate new packets
@@ -85,7 +85,7 @@ document.addEventListener("DOMContentLoaded", function () {
     // Popup Event Listener for the DOM
     clouds.forEach(cloud => {
         cloud.addEventListener("click", function () {
-            const trait = cloud.dataset.trait;
+            const trait = cloud.dataset.trait.replace(/\s+/g, "_");
             const popup = document.getElementById(`popup_${trait}`);
 
             if (popup) {
