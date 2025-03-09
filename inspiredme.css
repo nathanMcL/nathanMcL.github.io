@@ -176,6 +176,64 @@ body {
     0% { transform: translateY(0); }
     100% { transform: translateY(10px); }
 }
+
+/* Popup Container */
+#popup-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: 1000;
+}
+
+/* Individual Popup */
+.cloud-popup {
+    background: whitesmoke;
+    padding: 20px;
+    width: 300px;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    position: relative;
+    transform: scale(0.8);
+    opacity: 0;
+    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+}
+
+/* Popup visibility control */
+.cloud-popup.active {
+    transform: scale(1);
+    opacity: 1;
+}
+
+/* Close Button */
+.close-btn {
+    display: block;
+    margin: 15px auto 0;
+    padding: 10px 15px;
+    border: none;
+    background: #444;
+    color: whitesmoke;
+    font-size: 1rem;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.2s ease-in-out;
+}
+
+.close-btn:hover {
+    background: #777;
+}
+
+/* Overlay Effect */
+#popup-container.active {
+    display: flex;
+}
+/* End of Popup Container */
 /* End of Main Section Clouds */
 
 /* Footer styling */
