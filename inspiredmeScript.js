@@ -96,6 +96,11 @@ document.addEventListener("DOMContentLoaded", function () {
             if (popup) {
                 popupContainer.classList.add("active");
                 popup.classList.add("active");
+
+                // Have the popup centered on the screen
+                popup.style.top = "50%";
+                popup.style.left = "50%";
+                popup.stlye.transform = "translate(-50%, -50%)";
             } else {
                 console.error(`Popup #popup_${trait} not found!`);
             }
