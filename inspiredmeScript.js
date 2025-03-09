@@ -71,7 +71,12 @@ document.addEventListener("DOMContentLoaded", function () {
                 angle += speed;
                 let offsetX = Math.cos(angle) * radiusX;
                 let offsetY = Math.sin(angle) * radiusY;
-                cloud.stlye.transform = `translate(${offsetX}px, ${offsetY}px)`;
+
+                if (cloud && cloud.stlye) {
+                    cloud.style.transform = `translate(${offsetX}px, ${offsetY}px)`;
+                } else {
+                    console.error("Cloud element is underfined or missing style property.");
+                }
 
                 requestAnimationFrame(moveCloud);
             }
