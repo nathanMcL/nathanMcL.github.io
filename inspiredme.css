@@ -147,7 +147,7 @@ body {
     position: absolute;
     width: 200px; /* Adjust the cloud width */
     height: 140px; /* Adjust the cloud height */
-    background-size: url("images/cloud_main.png") no-repeat center center; /* Use the cloud image */
+    background: url("images/cloud_main.png") no-repeat center center; /* Use the cloud image */
     background-size: contain; 
 
     font-size: 1.2rem;
