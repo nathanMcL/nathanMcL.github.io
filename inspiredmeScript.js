@@ -72,7 +72,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 let offsetX = Math.cos(angle) * radiusX;
                 let offsetY = Math.sin(angle) * radiusY;
 
-                if (cloud && cloud.style) {
+                if (cloud && cloud.stlye) {
                     cloud.style.transform = `translate(${offsetX}px, ${offsetY}px)`;
                 } else {
                     console.error("Cloud element is underfined or missing style property.");

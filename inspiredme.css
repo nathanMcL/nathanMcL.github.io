@@ -145,21 +145,24 @@ body {
 /* Cloud styling */
 .inspiration-cloud {
     position: absolute;
-    padding: 20px 40px;
-    border-radius: 50%;
+    width: 200px; /* Adjust the cloud width */
+    height: 140px; /* Adjust the cloud height */
+    background-size: url("images/cloud_main.png") no-repeat center center; /* Use the cloud image */
+    background-size: contain; 
+
     font-size: 1.2rem;
     font-weight: bold;
     text-align: center;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-    transition: transform 0.3s ease-in-out;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    color: #1a1a1a;
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.3);
     cursor: pointer;
     -webkit-user-select: none; /* Safari */
     user-select: none; /* To get user-select to work, had to add -webkit-user-select */
     white-space: nowrap;
-
-    /* Cloud color gradient */
-    background: linear-gradient(135deg, #b0c4de 30%, #dcdcdc 70%);
-    color: #1a1a1a;
 
     /* Cloud movement animation */
     animation: floating 5s infinite ease-in-out alternate;
@@ -168,7 +171,7 @@ body {
 /* Hover effect */
 .inspiration-cloud:hover {
     transform: scale(1.1);
-    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.3);
+    filter: brightness(1.2);
 }
 
 /* Floating animation */
