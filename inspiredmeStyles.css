@@ -145,9 +145,9 @@ body {
 /* Cloud styling */
 .inspiration-cloud {
     position: absolute;
-    width: 200px; /* Adjust the cloud width */
+    width: 202px; /* Adjust the cloud width. OG was 200px, need just a couple pixel more space */
     height: 140px; /* Adjust the cloud height */
-    background: url("images/cloud_main.png") no-repeat center center; /* Use the cloud image */
+    background: url("images/cloud_main.png") no-repeat center center; /* Use the Main cloud image for the displayed text */
     background-size: contain; 
 
     font-size: 1.2rem;
