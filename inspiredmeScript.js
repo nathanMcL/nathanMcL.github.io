@@ -1,5 +1,5 @@
 // Network Animation
-/* I think this section is interfeering with the individual clouds from being seleceted once clicked.?.
+/* I think this section is interfering with the individual clouds from being seleceted once clicked.?.
 document.addEventListener("DOMContentLoaded", function () {
     const body = document.body;
     const cyberContainer = document.createElement("div");
@@ -25,14 +25,16 @@ document.addEventListener("DOMContentLoaded", function () {
     setInterval(createPacket, 800); // Generate new packets
 }); */
 
-// Inspired Me Clouds
+// Inspired Me Clouds 
 // Event Listener for the DOM
+
+// TODO: Figure out why? When some of the clouds are clicked, a previous cloud, or another cloud's description is displayed. There was a console error and message. will do later. 
 document.addEventListener("DOMContentLoaded", function () {
     const container = document.getElementById("inspiration-container");
     const clouds = document.querySelectorAll(".inspiration-cloud");
     const popupContainer = document.getElementById("popup-container");
 
-    // Next, we want to randomly place the clouds in the container without overlapping or going out of bounds.
+    // Next, I want to randomly place the clouds in the container without overlapping or going out of bounds.
     function positionClouds() {
         let positions = [];
 
