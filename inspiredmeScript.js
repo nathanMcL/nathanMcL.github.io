@@ -1,4 +1,5 @@
 // Network Animation
+/* I think this section is interfeering with the individual clouds from being seleceted once clicked.?.
 document.addEventListener("DOMContentLoaded", function () {
     const body = document.body;
     const cyberContainer = document.createElement("div");
@@ -22,7 +23,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     setInterval(createPacket, 800); // Generate new packets
-});
+}); */
 
 // Inspired Me Clouds
 // Event Listener for the DOM
