@@ -1,5 +1,4 @@
 // Network Animation
-/* I think this section is interfering with the individual clouds from being seleceted once clicked.?.
 document.addEventListener("DOMContentLoaded", function () {
     const body = document.body;
     const cyberContainer = document.createElement("div");
@@ -23,18 +22,16 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     setInterval(createPacket, 800); // Generate new packets
-}); */
+});
 
-// Inspired Me Clouds 
+// Inspired Me Clouds
 // Event Listener for the DOM
-
-// TODO: Figure out why? When some of the clouds are clicked, a previous cloud, or another cloud's description is displayed. There was a console error and message. will do later. 
 document.addEventListener("DOMContentLoaded", function () {
     const container = document.getElementById("inspiration-container");
     const clouds = document.querySelectorAll(".inspiration-cloud");
     const popupContainer = document.getElementById("popup-container");
 
-    // Next, I want to randomly place the clouds in the container without overlapping or going out of bounds.
+    // Next, we want to randomly place the clouds in the container without overlapping or going out of bounds.
     function positionClouds() {
         let positions = [];
 
@@ -89,14 +86,17 @@ document.addEventListener("DOMContentLoaded", function () {
 
     animateClouds();
 
-    // For each cloud, we want to be able to click on it and display a popup message.
+    // For each cloud, I want to be able to click on it and display a popup message.
     // Popup Event Listener for the DOM
     clouds.forEach(cloud => {
-        cloud.addEventListener("click", function () {
-            const trait = cloud.dataset.trait.replace(/\s+/g, "_");
+        cloud.addEventListener("click", function (event) {
+            const trait = cloud.dataset.trait.trim().replace(/\s+/g, "_");
             const popup = document.getElementById(`popup_${trait}`);
 
             if (popup) {
+                // In this next line, I want to "Hide" or clear the previous popup prior to another being opened.
+                document.querySelectorAll(".cloud-popup").forEach(p => p.classList.remove("active")); 
+                
                 popupContainer.classList.add("active");
                 popup.classList.add("active");
 
