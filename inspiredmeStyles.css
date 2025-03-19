@@ -237,8 +237,46 @@ body {
 #popup-container.active {
     display: flex;
 }
-
 /* End of Main Section Clouds */
+
+/* Sub-Main: Robot Container */
+/* In this section I want to have a container animation that looks seperate from the page...
+but is contected by the connected JS function. How it looks, is a different story. :) */
+#sub-main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 20px 0;
+}
+
+#sir_robot_container {
+    width: 250px; /* To scale the width of the container */
+    height: 300px;
+    margin: 20px auto;
+    border-radius: 15px;
+    background-color: rgba(245, 245, 245, 0.389); /* Maybe change this, OR! create a time of day background based off the actual time of day */
+    padding: 15px;
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    flex-direction: column;
+    border: 8px solid var(--third-color); /* Frame color: Trying to create Polaroid-like border */
+    border-width: 8px 8px 20px 8px; /* Increasing weight of the bottom border should create the desired effect */
+}
+
+/* Sir Robot Image: The only issue might be the cropped size difference of the two images */
+.robot-image {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    border-radius: 10px;
+    transition: opacity 0.1s ease-in-out; /* Slow fade in/out effect */
+    justify-content: center;
+}
+/* End of Sub-Main: Robot Container */
 
 /* Footer styling */
 footer {
@@ -423,7 +461,15 @@ footer {
         padding: 15px;
         font-size: 0.9rem; /* Slightly smaller font for footer */
     }
+
+    /* End of Small screens */
+
+    /* Sub-Main: Robot Container */
+    /* Responsive Design */
+    #sir_robot_container {
+        width: 180px; /* Smaller on mobile */
+        height: 180px;
+    }
 }
-}
-/* End of Small screens */
+}    
 /* End of Responsive styles */

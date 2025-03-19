@@ -86,7 +86,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     animateClouds();
 
-    // For each cloud, I want to be able to click on it and display a popup message.
+    // For each cloud, we want to be able to click on it and display a popup message.
     // Popup Event Listener for the DOM
     clouds.forEach(cloud => {
         cloud.addEventListener("click", function (event) {
@@ -94,7 +94,7 @@ document.addEventListener("DOMContentLoaded", function () {
             const popup = document.getElementById(`popup_${trait}`);
 
             if (popup) {
-                // In this next line, I want to "Hide" or clear the previous popup prior to another being opened.
+                // In this next line, we want to "Hide" or clear the previous popup
                 document.querySelectorAll(".cloud-popup").forEach(p => p.classList.remove("active")); 
                 
                 popupContainer.classList.add("active");
@@ -132,4 +132,23 @@ document.addEventListener("DOMContentLoaded", function () {
             setTimeout(() => popupContainer.classList.remove("active"), 300);
         }
     });
+});
+
+// Sub-Main Section: Sir Robot Container: Image Swap Function
+document.addEventListener("DOMContentLoaded", function () {
+    const sirRobotImage = document.getElementById("sirRobot");
+    let images = ["images/SirRobot_normal.png", "images/SirRobot_wave.png"];
+    let index = 0;
+
+    function swapRobotImage() {
+        index = (index + 1) % images.length;
+        sirRobotImage.style.opacity = 0; // Fade out the image
+        setTimeout(() => {
+            sirRobotImage.src = images[index];
+            sirRobotImage.style.opacity = 1; // Fade in the new image. Let's hope this works! :|
+        }, 150); // OG time: 1 second fade transition 
+    }
+
+    // Swap images every 10 seconds
+    setInterval(swapRobotImage, 10000);
 });
