@@ -34,26 +34,40 @@ document.addEventListener("DOMContentLoaded", function () {
     // Next, we want to randomly place the clouds in the container without overlapping or going out of bounds.
     function positionClouds() {
         let positions = [];
+        const margin = 20; // Margin from the edge of the container
 
         clouds.forEach(cloud => {
-            let x, y, overlap;
+            const w = cloud.clientWidth;
+            const h = cloud.clientHeight;
+            let x, y, overlap, attempts = 0;
             do {
-                x = Math.random() * (container.clientWidth - cloud.clientWidth);
-                y = Math.random() * (container.clientHeight - cloud.clientHeight);
+                x = Math.random() * (container.clientWidth - w - margin*2) + margin;
+                y = Math.random() * (container.clientHeight - h - margin*2) + margin;
 
-                overlap = positions.some(pos => {
-                    let dx = pos.x - x;
-                    let dy = pos.y - y;
-                    let distance = Math.sqrt(dx * dx + dy * dy);
-                    return distance < 100; // Distance between clouds (can be adjusted)
-                });
+                const box = { x, y, width: w, height: h };
+                overlap = positions.some(pos => boxesOverlap(pos, box, margin));
+                attempts++;
+                    if (attempts > 200) {
+                        console.warn("Could not position cloud, skipping overlap check.");
+                        overlap = false;
+                    }
             } while (overlap);
-
-            positions.push({ x, y });
 
             cloud.style.left = `${x}px`;
             cloud.style.top = `${y}px`;
+
+            positions.push({ x, y, width: w, height: h });
         });
+    }
+
+    // Helper function to check if the to boxes overlap.
+    function boxesOverlap(a, b, margin) {
+        return ! (
+            a.x + a.width + margin < b.x ||
+            b.x + b.width + margin < a.x ||
+            a.y + a.height + margin < b.y ||
+            b.y + b.height + margin < a.y
+        );
     }
 
     positionClouds();
