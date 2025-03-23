@@ -31,10 +31,15 @@ document.addEventListener("DOMContentLoaded", function () {
     const clouds = document.querySelectorAll(".inspiration-cloud");
     const popupContainer = document.getElementById("popup-container");
 
-    // Next, we want to randomly place the clouds in the container without overlapping or going out of bounds.
+    // Next, we want to randomly place the clouds in the container without overlapping or going out of bounds. 
+    // TODO: Console Error Message: Could not position cloud, skipping overlap check.
+    // Don't get annoyed, you worked sorta hard... but the clouds are overlapping or slightly touching (again). 
+    // The clouds have a slight margin, but that is in a rectangle shape... thinking...
+    // Maybe, since they are clouds and oval in shape and mess around with the radius... 
+    // Use a center-radius and compute the sum of the half-widths...
     function positionClouds() {
         let positions = [];
-        const margin = 20; // Margin from the edge of the container
+        const margin = 10; // Margin from the edge of the container
 
         clouds.forEach(cloud => {
             const w = cloud.clientWidth;
