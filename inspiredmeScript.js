@@ -1,29 +1,3 @@
-// Network Animation
-document.addEventListener("DOMContentLoaded", function () {
-    const body = document.body;
-    const cyberContainer = document.createElement("div");
-    cyberContainer.classList.add("cyber-container");
-    body.appendChild(cyberContainer);
-
-    // Function to create fake network packets
-    function createPacket() {
-        const packet = document.createElement("div");
-        packet.classList.add("network-packet");
-        packet.innerText = Math.random().toString(16).substring(2, 8); // Fake hex data
-
-        packet.style.left = Math.random() * window.innerWidth + "px";
-        packet.style.animationDuration = "7s";
-
-        body.appendChild(packet);
-
-        setTimeout(() => {
-            packet.remove();
-        }, 7000);
-    }
-
-    setInterval(createPacket, 800); // Generate new packets
-});
-
 // Inspired Me Clouds
 // Event Listener for the DOM
 document.addEventListener("DOMContentLoaded", function () {
@@ -31,15 +5,10 @@ document.addEventListener("DOMContentLoaded", function () {
     const clouds = document.querySelectorAll(".inspiration-cloud");
     const popupContainer = document.getElementById("popup-container");
 
-    // Next, we want to randomly place the clouds in the container without overlapping or going out of bounds. 
-    // TODO: Console Error Message: Could not position cloud, skipping overlap check.
-    // Don't get annoyed, you worked sorta hard... but the clouds are overlapping or slightly touching (again). 
-    // The clouds have a slight margin, but that is in a rectangle shape... thinking...
-    // Maybe, since they are clouds and oval in shape and mess around with the radius... 
-    // Use a center-radius and compute the sum of the half-widths...
+    // Next, we want to randomly place the clouds in the container without overlapping or going out of bounds.
     function positionClouds() {
         let positions = [];
-        const margin = 10; // Margin from the edge of the container
+        const margin = 20; // Margin from the edge of the container
 
         clouds.forEach(cloud => {
             const w = cloud.clientWidth;
@@ -153,21 +122,124 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 
-// Sub-Main Section: Sir Robot Container: Image Swap Function
+// Sub-Main Section: Sir Robot Container / SubPopup Clouds 
 document.addEventListener("DOMContentLoaded", function () {
-    const sirRobotImage = document.getElementById("sirRobot");
-    let images = ["images/SirRobot_normal.png", "images/SirRobot_wave.png"];
-    let index = 0;
 
-    function swapRobotImage() {
-        index = (index + 1) % images.length;
-        sirRobotImage.style.opacity = 0; // Fade out the image
+    const sirRobotImage = document.getElementById("sirRobot");
+    const robotImages = ["images/SirRobot_normal.png", "images/SirRobot_wave.png"];
+    const popupCloudsContainer = document.getElementById("popup-clouds-container");
+    const popupClouds = document.querySelectorAll(".subpopup-cloud");
+    const popupContainer = document.getElementById("popup-container");
+
+    // Function to swap the robot image
+    function swapRobotImage(index) {
+        sirRobotImage.style.opacity = 0;
         setTimeout(() => {
-            sirRobotImage.src = images[index];
-            sirRobotImage.style.opacity = 1; // Fade in the new image. Let's hope this works! :|
-        }, 150); // OG time: 1 second fade transition 
+            sirRobotImage.src = robotImages[index];
+            sirRobotImage.style.opacity = 1;
+        }, 150);
     }
 
-    // Swap images every 10 seconds
-    setInterval(swapRobotImage, 10000);
+    // Have all the subpopup clouds hidden initially
+    function hideSubpopups() {
+        popupClouds.forEach(cloud => {
+            cloud.classList.remove("visible");
+            cloud.style.transform = "none";
+        });
+        popupCloudsContainer.style.display = "none";
+    }
+
+    hideSubpopups();
+
+    // Decided the S-curve pattern was too much. Instead place the cloud_one to cloud_four at each corner of the popped up data-trait.
+    function showClouds(activePopup) {
+        const rect = activePopup.getBoundingClientRect();
+        const positions = [
+            { top: rect.top - 60, left: rect.left - 60 }, // Top Left corner: cloud_one
+            { top: rect.top - 60, left: rect.right + 10 }, // Top Right corner: cloud_two
+            { top: rect.bottom + 10, left: rect.left - 60 }, // Bottom Left corner: cloud_three
+            { top: rect.bottom + 10, left: rect.right - 10 }, // Bottom Right corner: cloud_four
+        ];
+
+        popupCloudsContainer.style.display = "block";
+
+        popupClouds.forEach((cloud, index) => {
+            cloud.style.top = `${positions[index].top}px`;
+            cloud.style.left = `${positions[index].left}px`;
+            setTimeout(() => cloud.classList.add("visible"), 200 * (index + 1)); 
+        });
+
+        animatePopupClouds();
+    }
+
+    // Reusing the animateClouds() logic for the sub-popup clouds
+    function animatePopupClouds() {
+        popupClouds.forEach(cloud => {
+            let angle = Math.random() * 360;
+            let radiusX = 5 + Math.random() * 10;
+            let radiusY = 3 + Math.random() * 8;
+            let speed = 0.015 + Math.random() * 0.035;
+
+            function moveCloud() {
+                angle += speed;
+                let offsetX = Math.cos(angle) * radiusX;
+                let offsetY = Math.sin(angle) * radiusY;
+
+                cloud.style.transform = `translate(${offsetX}px, ${offsetY}px)`;
+                requestAnimationFrame(moveCloud);
+            }
+            moveCloud();
+        });
+    } 
+
+    // Main Event Listener to trigger the clouds and popups    
+    document.querySelectorAll(".inspiration-cloud").forEach((cloud) => {
+        cloud.addEventListener("click", function () {
+            const trait = cloud.dataset.trait.trim().replace(/\s+/g, "_");
+            const popup = document.getElementById(`popup_${trait}`);
+
+            if (popup) {
+                // if user clicks a cloud the clouds pop-up in the ordered S-curve pattern
+                document.querySelectorAll(".cloud-popup").forEach(p => p.classList.remove("active"));
+                popupContainer.classList.add("active");
+                popup.classList.add("active");
+
+                // Swap the Sir Robot image to wave upon clicking any popup
+                swapRobotImage(1);
+
+                // Display the S-cirved clouds 
+                // ***Side note, naming convention is important. Relized "hideSubpopups" is confusing when attempting to show the clouds. 
+                hideSubpopups(); // Hide the subpopups first
+                showClouds(popup); // Show clouds 
+            } else {
+                console.error(`Popup #popup_${trait} not found!`);
+            }
+        });
+    });
+
+    // Close button and clicking outside the popup closes it and resets the image/clouds
+    // For Close Buttons
+    document.querySelectorAll(".close-btn").forEach((button) => {
+        button.addEventListener("click", function () {
+            const popupId = this.dataset.popup;
+            const popup = document.getElementById(popupId);
+
+            if (popup) {
+                popup.classList.remove("active");
+                popupContainer.classList.remove("active");
+                swapRobotImage(0);
+                hideSubpopups();
+            }
+        });
+    });
+
+    // For Popup Container (background click to close)
+    popupContainer.addEventListener("click", function (event) {
+        if (event.target === this) {
+            document.querySelectorAll(".cloud-popup").forEach(popup => popup.classList.remove("active"));
+            popupContainer.classList.remove("active");
+            swapRobotImage(0);
+            hideSubpopups();
+        }
+    });
 });
