@@ -6,7 +6,7 @@ What is the website's purpose?<br>
 
 1. Start with the framework.<br>
 2. See what functions/elements/instructions I can reuse per page.<br>
-3. Experiment with something in a different. <br>
+3. Experiment with something in a different way. <br>
 3. Responsive Design.<br>
 4. Error Handling.<br>
 5. Accessibility. <br>
@@ -15,10 +15,26 @@ What is the website's purpose?<br>
 
 ### Index
 
-- This site is not supposed to be glamorous or modern. <br>
-- I started the 508 accessibility standards on the index page. I haven't tested it with ANDI yet, and I want to be done with the framework for the entire website first. The 508 standards will require me to make this entire website reconfigure in such a way that will re-design the visual look and behavior of how the website pages currently function.<br>
+- This site is not supposed to be glamorous or modern. <br> 
+- I started the 508 accessibility standards on the index page. I haven't tested it with ANDI yet. I want to be done with the framework for all the webpages first.<br>
+- The 508 standards will require me to adjust the entire website. I'm thinking, reconfigure in such a way that will have to re-design (I don't think *re-design* is the terminology I mean) the visual look and behavior of how the website pages currently function.<br>
 
 This is totally fine because I made my website crazy and fun for a reason. Once I implement 508 accessibility standards, I think visually explaining the standards will help reinforce my learning of these standards.<br>  
+
+### About (me/the team/your brand)
+
+This page displays a delayed for 5 seconds `Marquee` carousel (loop). The Marque Shows: Frameworks, Programming Languages, Software Related logos. <br>
+
+#### The `Main Section` *Orbs*
+
+In a way, one of my of first Java programs was a ball that bounced around the edges of the webpage window/container. <br>
+I wanted to implement this, creating a container that has four orbs bouncing off each other and the walls/edges of the container.<br>
+To improve this page I should improve the error handling.<br>
+    - I noticed after the orbs have been bouncing around the `Main Section` for sometime that *bugs* or *unexpected behavior* happens.<br>
+        - 1. going off screen<br>
+        - 2. On my phone the orbs are too fast. <br>
+                - Should orbs be slowed down for smaller screens? <br>
+                - Is that CSS, or JS to adjust the speed for phones? <br>
 
 ### Inspired Me
 
@@ -115,5 +131,19 @@ document.addEventListener("DOMContentLoaded", function () {
         - 3b. Once a data-trait cloud such as (Diversity) is clicked, `Sir_Robot` animation *stops*, `Sir_Robot`'s arm is raised (image is swapped), and the background pauses. <br>
 
         - 3c. Lastly, the pop-up is closed, the `Sir_Robot` image is swapped back with the original image, and the background starts/un-pauses.<br>
+
+
+### Thoughts
+
+- Shared link to this ReadMe.<br>
+- Thinking of creating a `read only` window within the thoughts (blog) paragrapha section.<br>
+      - This way the if someone chooses to view the `ReadMe`(write-up notes), they have the option, and *are not* redirected a different website. <br>
+
+
+### Tools
+
+- This page needs more thought. I like the idea of having different drop down tool tabs.   
+
+### Contact
 
  
