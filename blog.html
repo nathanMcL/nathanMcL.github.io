@@ -10,10 +10,18 @@
         <link rel="icon" href="favicon.ico" type="image/x-icon">
         
         <!-- Security Headers -->
-        <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self' data:;">
+        <meta http-equiv="Content-Security-Policy" 
+            content=
+                    "default-src 'self'; 
+                    script-src 'self' https://cdn.jsdelivr.net;
+                    style-src 'self'; 
+                    img-src 'self' data:; 
+                    font-src 'self' data:; 
+                    connect-src https://raw.githubusercontent.com;">
         <meta http-equiv="X-Content-Type-Options" content="nosniff">
         <meta http-equiv="Referrer-Policy" content="no-referrer-when-downgrade">
         <meta http-equiv="Strict-Transport-Security" content="max-age=31536000; includeSubDomains">
+
 
         <!-- Favicon -->
         <link rel="icon" type="image/png" href="favicon.png">
@@ -49,7 +57,6 @@
             <div class="main_blog">
                 <div class="blog_head">
                     <h1>
-                        
                         Full Stack Thoughts
                         <img src="/images/LittleRobotBackgroundErase.png" alt="MacN_iT Logo" class="blogrobot">
                     </h1>
@@ -57,18 +64,15 @@
                 <div class="post_section">
                     <div class="blog_post">
                         <div class="post_image">
-                            <img src="/images/SoftwareEngineer_WhtAM_male.png" alt="coding">
+                            <img src="/images/SoftwareEngineer_WhtAM_male.png" alt="ProfileImage">
                         </div>
+                    <div>
                         <h2>MacN the Full Stack</h2>
-                        <h5>Searching for thoughts...</h5>
+                        <h5>Loading Notes and Thoughts...</h5>
+                        <div id="markdown-content" class="markdown-section"></div>
+                    </div>
                         <p>
-                            My Readme notes might help explain the madness, or not...
-                            <a href="https://github.com/nathanMcL/nathanMcL.github.io/blob/main/ReadMe.md" target="_blank" rel="noopener noreferrer">
-                                GitHub ReadMe.md
-                            </a>.
-                        </p>
-                        <p>
-                           ...
+                            ...
                         </p>
                         <p>
                             ...
@@ -93,5 +97,6 @@
 
     <!-- JS -->
     <script src="blogScript.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script> <!-- Marked.js to display Readme -->
     </body>
 </html>

@@ -1,26 +1,13 @@
-// Network Animation
+// Using Fetch to render the markdown file from my GitHub repository
 document.addEventListener("DOMContentLoaded", function () {
-    const body = document.body;
-    const cyberContainer = document.createElement("div");
-    cyberContainer.classList.add("cyber-container");
-    body.appendChild(cyberContainer);
-
-    // Function to create fake network packets
-    function createPacket() {
-        const packet = document.createElement("div");
-        packet.classList.add("network-packet");
-        packet.innerText = Math.random().toString(16).substring(2, 8); // Fake hex data
-
-        packet.style.left = Math.random() * window.innerWidth + "px";
-        packet.style.animationDuration = Math.random() * 5 + 3 + "s";
-
-        body.appendChild(packet);
-
-        setTimeout(() => {
-            packet.remove();
-        }, 8000);
-    }
-
-    setInterval(createPacket, 800); // Generate new packets
+    fetch('https://raw.githubusercontent.com/nathanMcL/nathanMcL.github.io/main/ReadMe.md')
+        .then(response => response.text())
+        .then(markdown => {
+            // Once the markdown is fetched, we convert it to HTML using marked.js
+            document.getElementById('markdown-content').innerHTML = marked.parse(markdown);
+        })
+        .catch(err => {
+            console.error('Error fetching markdown:', err);
+            document.getElementById('markdown-content').innerHTML = 'Failed to load content.';
+        });
 });
-
