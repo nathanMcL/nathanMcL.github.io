@@ -117,10 +117,11 @@ document.addEventListener("DOMContentLoaded", function () {
     setInterval(createPacket, 800); // Generate new packets
 });
 ```
+*Inspired Me*
 
 2. The `Main Container`: <br>
 
-    - Have the background be based (user location) on the time🕜 of 🌞day🌚... I am thinking🧐 of a stop-motion background, or maybe simply create a South Park-inspired time of day background. Probably without a cityscape. A skyline of some birds, night-stars...<br>
+    - Have the background be based on the time🕜 of 🌞day🌚 of the user location... I am thinking🧐 of a stop-motion background, or maybe simply create a South Park-inspired time of day background. Probably without a cityscape. A  day light skyline of some birds and night-stars for the evening...<br>
 
 3. The `Sub-Main Container`: <br>
 
@@ -134,7 +135,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         -  3c. The Background: I want to create small time of day scene that has the Sir Robot's background environment changing as if the Robot is walking through it, I think updating/adding the `Sir_Robot` images to look like it is walking. (something simple)<br>
 
-        - 3d. Figure out how to incorperate the `Sub-Main Container` time of day animated background with the light/dark time switch based off a users location.?. I am not sure if my phrasing/terminology is sound. I don't want to know the users location or time zone. So, how to swap the background animation to nighttime is user-a is located in a location where it maybe currently nighttime? <br>  
+        - 3d. Figure out how to incorperate the `Sub-Main Container` time of day animated background with the light/dark time switch based off a users location.?. I am not sure if my phrasing/terminology makes since (I have to brainstorm). I don't want to know the users location or time zone. So, how to swap the background animation to nighttime if *user-a* is located in a location where it is currently nighttime? <br>  
         - 3f. Figure out... forgot...dang! Lost my thought, next time...<br>
 
 
@@ -151,6 +152,7 @@ document.addEventListener("DOMContentLoaded", function () {
           - `Marked.js`: **Noted Source** (https://marked.js.org/) <br>
 
 - (04/09/2025.1400) *Testing* Read Only GitHub ReadMe web-display. Check .io <br>
+- (04/09/2025.1455) *Testing 2* Read Only GitHub ReadMe web-display. Corrections <br> 
 
 ### Tools
 
