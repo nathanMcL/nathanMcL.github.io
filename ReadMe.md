@@ -124,20 +124,29 @@ document.addEventListener("DOMContentLoaded", function () {
 
 3. The `Sub-Main Container`: <br>
 
-    - So! this is why I prefer *Python* to *HTML/CSS/JS*, is that with Python you simply use Python... Instead of HTML and JavaScript (but very arguable on factors). I know a little more about the different Python libraries than I do about using *HTML/CSS/JS*. <br>
-        
-        - 3a. In the Sub-Main: "sir_robot_container" I want to create small time of day scene that has the Sir Robot's background environment changing as if the Robot is walking through it. (something simple)<br>
+    - `Sir_Robot` image <br>
 
-        - 3b. Once a data-trait cloud such as (Diversity) is clicked, `Sir_Robot` animation *stops*, `Sir_Robot`'s arm is raised (image is swapped), and the background pauses. <br>
+        - 3a. Once a data-trait cloud such as (Diversity) is clicked, `Sir_Robot` animation *stops*, `Sir_Robot`'s arm is raised (image is swapped), and the background pauses. <br>
 
-        - 3c. Lastly, the pop-up is closed, the `Sir_Robot` image is swapped back with the original image, and the background starts/un-pauses.<br>
+        - 3b. Next, the pop-up is closed, the `Sir_Robot` image is swapped back with the original image, and the background starts/un-pauses.<br>
+
+    - In the `Sub-Main Container`: Background: <br>
+
+        -  3c. The Background: I want to create small time of day scene that has the Sir Robot's background environment changing as if the Robot is walking through it, I think updating/adding the `Sir_Robot` images to look like it is walking. (something simple)<br>
+
+        - 3d. Figure out how to incorperate the `Sub-Main Container` time of day animated background with the light/dark time switch based off a users location.?. I am not sure if my phrasing/terminology is sound. I don't want to know the users location or time zone. So, how to swap the background animation to nighttime is user-a is located in a location where it maybe currently nighttime? <br>  
+        - 3f. Figure out... forgot...dang! Lost my thought, next time...
 
 
 ### Thoughts
 
 - Shared link to this ReadMe.<br>
 - Thinking of creating a `read only` window within the thoughts (blog) paragrapha section.<br>
-      - This way the if someone chooses to view the `ReadMe`(write-up notes), they have the option, and *are not* redirected a different website. <br>
+      - This way the if someone chooses to view the `ReadMe`(write-up notes), they *are not* redirected a different website.<br>
+      - (04/09/2025) Started read only framework for the *paragraph* section <p></p>. <br>
+      - Using `fetch` and `catch`: <br>
+          - `Fetch`: ****Noted Source*** (https://developer.mozilla.org/en-US/docs/Web/API/Window/fetch)<br>
+          - `Catch`: ****Noted Source*** (https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/try...catch)<br>
 
 
 ### Tools
