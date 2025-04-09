@@ -135,7 +135,7 @@ document.addEventListener("DOMContentLoaded", function () {
         -  3c. The Background: I want to create small time of day scene that has the Sir Robot's background environment changing as if the Robot is walking through it, I think updating/adding the `Sir_Robot` images to look like it is walking. (something simple)<br>
 
         - 3d. Figure out how to incorperate the `Sub-Main Container` time of day animated background with the light/dark time switch based off a users location.?. I am not sure if my phrasing/terminology is sound. I don't want to know the users location or time zone. So, how to swap the background animation to nighttime is user-a is located in a location where it maybe currently nighttime? <br>  
-        - 3f. Figure out... forgot...dang! Lost my thought, next time...
+        - 3f. Figure out... forgot...dang! Lost my thought, next time...<br>
 
 
 ### Thoughts
@@ -147,7 +147,10 @@ document.addEventListener("DOMContentLoaded", function () {
       - Using `fetch` and `catch`: <br>
           - `Fetch`: ****Noted Source*** (https://developer.mozilla.org/en-US/docs/Web/API/Window/fetch)<br>
           - `Catch`: ****Noted Source*** (https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/try...catch)<br>
+          - Using `Marked.js` to format and display the `GitHub` located `Readme.md` file.<br>
+          - `Marked.js`: **Noted Source** (https://marked.js.org/) <br>
 
+- (04/09/2025.1400) *Testing* Read Only GitHub ReadMe web-display. Check .io <br>
 
 ### Tools
 
