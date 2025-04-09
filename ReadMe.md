@@ -143,7 +143,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 - Shared link to this ReadMe.<br>
 - Thinking of creating a `read only` window within the thoughts (blog) paragrapha section.<br>
-      - This way the if someone chooses to view the `ReadMe`(write-up notes), they *are not* redirected a different website.<br>
+      - This way the if someone chooses to view the `ReadMe`(write-up notes), they *are not* redirected to a different website.<br>
       - (04/09/2025) Started read only framework for the *paragraph* section <p></p>. <br>
       - Using `fetch` and `catch`: <br>
           - `Fetch`: ****Noted Source*** (https://developer.mozilla.org/en-US/docs/Web/API/Window/fetch)<br>
