@@ -153,7 +153,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
 - (04/09/2025.1400) *Testing* Read Only GitHub ReadMe web-display. Check .io <br>
 - (04/09/2025.1455) *Testing 2* Read Only GitHub ReadMe web-display. Corrections <br>
-- (04/09/2025.1458) *Testing 3* Read Only GitHub ReadMe web-display. Once I have Updated the ReadMe file on my GitHub and the recieved the reen checkmark, the .io webpage *Thoughts* blog section is not showing the recent GitHub submission...<br>
+- (04/09/2025.1458) *Testing 3* Read Only GitHub ReadMe web-display. Once I have Updated the ReadMe file on my GitHub and the recieved the green checkmark, the .io webpage *Thoughts* blog section is not showing the recent GitHub submission.?.<br>
+- (04/09/2025.1502) *Testing 3* Read Only GitHub ReadMe web-display. After many refreshes and `ctrl+shift+r`, the page updated.<br>
+
 
 ### Tools
 
