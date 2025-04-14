@@ -16,7 +16,7 @@ What is the website's purpose?<br>
 ### Index
 
 - This site is not supposed to be glamorous or modern. <br>
-- I started the 508 accessibility standards on the index page. I haven't tested it with ANDI yet, and I want to be done with the framework for the entire website first. The 508 standards will require me to make this entire website reconfigure in such a way that will re-design the visual look and behavior of how the website pages currently function.<br>
+- I started the 508 accessibility standards on the index page. I haven't tested it with ANDI yet, and I want to be done with the framework for the entire website first. The 508 standards will require me to make this entire website reconfigure in such a way that will re-design (I don't like this phrasing, not sure how to appraoch this concept (In words)) the visual look and behavior of how the website pages currently function.<br>
 
 This is totally fine because I made my website crazy and fun for a reason. Once I implement 508 accessibility standards, I think visually explaining the standards will help reinforce my learning of these standards.<br>  
 
@@ -27,6 +27,12 @@ Thinking of ways to display my mind map...<br>
 #### Index: Accessibility (04/13/2025.1000)
 
 On the Index page. I am thinking of how to implement a *voice-over* in such a way to "show" (terminology) how a visually impaired user might interact with a web page (without having the non-visually impaired user download software).<br> 
+
+(04/14/2025.1230) <br>
+--- <br>
+I think this helps me better understand how people interact with content, even though I might not be able to apply the appropriate accessibility standard representation to these pages... <br>
+--- <br>
+
 I have used AI-generated voice scripts, which would be a fun challenge to implement.<br>
 For "display" purposes, I think I will just obscure my voice (Ahh! that's team too much. lol) and read the Index page *text* Elements:<br>
 
@@ -74,6 +80,8 @@ To improve this page I should improve the error handling.<br>
 
 
 ### Inspired Me
+
+The Inspired me page, are things that I think are good qualities. I plan to add to the pop-up clouds. I am thinking of quotes that resonate with me regarding the pop-up cloud data-trait items. <br>
 
 Responsive design is sort of fun in the aspect of noticing how different devices or screen size affects the design.<br>
 
