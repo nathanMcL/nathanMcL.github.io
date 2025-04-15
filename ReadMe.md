@@ -6,7 +6,7 @@ What is the website's purpose?<br>
 
 1. Start with the framework.<br>
 2. See what functions/elements/instructions I can reuse per page.<br>
-3. Experiment with something in a different. <br>
+3. Experiment with something in a different way. <br>
 3. Responsive Design.<br>
 4. Error Handling.<br>
 5. Accessibility. <br>
@@ -16,25 +16,49 @@ What is the website's purpose?<br>
 ### Index
 
 - This site is not supposed to be glamorous or modern. <br>
-- I started the 508 accessibility standards on the index page. I haven't tested it with ANDI yet, and I want to be done with the framework for the entire website first. The 508 standards will require me to make this entire website reconfigure in such a way that will re-design (I don't like this phrasing, not sure how to appraoch this concept (In words)) the visual look and behavior of how the website pages currently function.<br>
+- I started learning about the 508 accessibility standards (Certification).<br>
+On the index page. I haven't tested it with ANDI yet.<br> 
+I want to be done with the framework for all the web pages first. The 508 standards will require me to reconfigure this entire website in a way that redesigns (I'm not sure how to phrase this concept) the visual look and behavior of how the website pages currently function.<br>
 
-This is totally fine because I made my website crazy and fun for a reason. Once I implement 508 accessibility standards, I think visually explaining the standards will help reinforce my learning of these standards.<br>  
+This is totally fine because I made my website crazy and fun for a reason. Once I implement the 508 accessibility standards, I think visually explaining the standards will help reinforce my learning of these standards.<br>  
 
+---
 (04/13/2025.1000)
 
 Thinking of ways to display my mind map...<br>
 
+---
+(04/15/2025.1230)<br>
+
+The way I use the `Mind Map` is to visualize the block of functions, for instance:<br>
+    
+    - Moving: Map functions that have moving elements. 
+    
+    - Interacting: Map functions that have interacting elements.
+    
+    - Linking: Map *out-going* links (links navigating away from the website)
+
+The `Mind Map` is just a wireframe diagram, a visual representation of the functions associated with each webpage.<br>
+The important thing to me is that it helps me understand the individual functions or processes that are happening on the webpage.<br>
+
+Funky on my `Mind Map`:
+I just had an idea...<br>
+I think using the same method of displaying the `Readme.md` (write-up notes).<br>
+After scrolling down past the *thoughts* (Blog) *write-up notes*, I could create a simple screen scrollable & zoom(+/-), read only...<br>
+Display of the `Mind Map`.
+
+    - Scrollable, Zoom(+/-), Read only
+    - Responsive design sizes
+    - Accessibility 
+    (I'm not sure how this will work yet. There are lines and shapes leading to and from entities.)
+
+---
+
 #### Index: Accessibility (04/13/2025.1000)
 
-On the Index page. I am thinking of how to implement a *voice-over* in such a way to "show" (terminology) how a visually impaired user might interact with a web page (without having the non-visually impaired user download software).<br> 
-
-(04/14/2025.1230) <br>
---- <br>
-I think this helps me better understand how people interact with content, even though I might not be able to apply the appropriate accessibility standard representation to these pages... <br>
---- <br>
-
-I have used AI-generated voice scripts, which would be a fun challenge to implement.<br>
-For "display" purposes, I think I will just obscure my voice (Ahh! that's team too much. lol) and read the Index page *text* Elements:<br>
+On the Index page. I am thinking of how to implement a *voice-over* in such a way to "show" (terminology) how a visually impaired user might interact with a web page (without having the non-visually impaired user donwload software).<br> 
+I have used AI-voice scripts, that would be a fun challenge to implement.<br>
+For "display" purposes I think I will just obsure my voice (Ahh! thats team too much. lol) and read the Index page *text* Elements:<br>
 
 Example: <br>
 
@@ -47,9 +71,9 @@ Tools
 Contact
 ```
 
-And all the main content `Welcome` verbiage... I will have to do this in a way that represents how the `Accessibility Tools` `(AT)` actually speak the textual content.<br>
+And all the main content `Welcome` verbage... I will have to do this in a way that represents how the `Accessibility Tools` `(AT)` actully speak the textual content.<br>
 
-- However! Most likely, I could just record/save the audio file from the `AT`.<br>
+- However! I could just record/save the audio file from the `AT`.<br>
     - Create an audio associated radial button that functions with the *tab* key. To *tab* through the different elements on the page.<br>
     - I think this is helpful to to understand how people might have to receive content.<br>
   
@@ -65,7 +89,7 @@ Anything else can always be changed...<br>
 ---
 
 This page displays a delayed for 5 seconds `Marquee` carousel (loop). The Marque Shows: Frameworks, Programming Languages, Software Related logos. <br>
-The `marquee` does not have all the things I am familiar with, just - probably most used...<br> 
+The `marquee` does not have all the things I am familure with, just - probably most used...<br> 
 
 #### The `Main Section` *Orbs*
 
@@ -80,8 +104,6 @@ To improve this page I should improve the error handling.<br>
 
 
 ### Inspired Me
-
-The Inspired me page, are things that I think are good qualities. I plan to add to the pop-up clouds. I am thinking of quotes that resonate with me regarding the pop-up cloud data-trait items. <br>
 
 Responsive design is sort of fun in the aspect of noticing how different devices or screen size affects the design.<br>
 
@@ -177,16 +199,16 @@ document.addEventListener("DOMContentLoaded", function () {
 
     - In the `Sub-Main Container`: Background: <br>
 
-        -  3c. The Background: I want to create a small time-of-day scene that has the Sir Robot's background environment changing as if the Robot is walking through it. I think updating or adding the `Sir_Robot` images to make them appear as if the robot is walking would be effective. (something simple)<br>
+        -  3c. The Background: I want to create small time of day scene that has the Sir Robot's background environment changing as if the Robot is walking through it, I think updating/adding the `Sir_Robot` images to look like it is walking. (something simple)<br>
 
-        - 3d. Figure out how to incorporate the `Sub-Main Container` time of day animated background with the light/dark time switch based off a user's location.?. I am not sure if my phrasing/terminology is sound. I don't want to know the user's location or time zone. So, how is the background animation swapped to nighttime if a user is located in a location where it may currently be nighttime? <br>  
+        - 3d. Figure out how to incorperate the `Sub-Main Container` time of day animated background with the light/dark time switch based off a users location.?. I am not sure if my phrasing/terminology is sound. I don't want to know the users location or time zone. So, how to swap the background animation to nighttime is user-a is located in a location where it maybe currently nighttime? <br>  
         - 3f. Figure out...
 
 ### Thoughts
 
 - Shared link to this ReadMe.<br>
-- Thinking of creating a `read only` window within the thoughts (blog) paragraph section.<br>
-        - This way the if someone chooses to view the `ReadMe`(write-up notes), they *are not* redirected to a different website.<br>
+- Thinking of creating a `read only` window within the thoughts (blog) paragrapha section.<br>
+        - This way the if someone chooses to view the `ReadMe`(write-up notes), they *are not* redirected a different website.<br>
         - (04/09/2025) Started read only framework for the *paragraph* section <p></p>. <br>
         - Using `fetch` and `catch`: <br>
             - `Fetch`: **Noted Source** (https://developer.mozilla.org/en-US/docs/Web/API/Window/fetch)<br>
@@ -199,11 +221,24 @@ document.addEventListener("DOMContentLoaded", function () {
 
 ### Tools
 
-- This page needs more thought. I like the idea of having different drop-down tool tabs.   
+- This page needs more thought. I like the idea of having different drop down tool tabs.<br>
+---
+- (04/14/2025.1320)
+At one point I think creating some sort of `HUB` display that has multiple catergorized digital tools (links/resources).<br>
+
+---
+   
 
 ### Contact
 
 (04/13/2025.16:30)
-I haven't gotten to this page yet. Not sure how I want to do this page.
+I haven't gotten to this page yet. Not sure how I want to do this page.<br>
+
+### Projects Page
+
+(04/14/2025.1320)
+
+I think creating a page that displays read only windowed read me write-ups of other projects could be useful.<br>
+
 
 
