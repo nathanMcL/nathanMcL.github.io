@@ -58,7 +58,7 @@ Display of the `Mind Map`.
 
 On the Index page. I am thinking of how to implement a *voice-over* in such a way to "show" (terminology) how a visually impaired user might interact with a web page (without having the non-visually impaired user donwload software).<br> 
 I have used AI-voice scripts, that would be a fun challenge to implement.<br>
-For "display" purposes I think I will just obsure my voice (Ahh! thats team too much. lol) and read the Index page *text* Elements:<br>
+For "display" purposes I think I will just obscure my voice. Ahh! thats team too much. lol) and read the Index page *text* Elements:<br>
 
 Example: <br>
 
@@ -71,9 +71,9 @@ Tools
 Contact
 ```
 
-And all the main content `Welcome` verbage... I will have to do this in a way that represents how the `Accessibility Tools` `(AT)` actully speak the textual content.<br>
+And all the main content `Welcome` verbiage... I will have to do this in a way that represents how the `Accessibility Tools` `(AT)` actully speak the textual content.<br>
 
-- However! I could just record/save the audio file from the `AT`.<br>
+- However! I could record/save the audio file from the `AT`.<br>
     - Create an audio associated radial button that functions with the *tab* key. To *tab* through the different elements on the page.<br>
     - I think this is helpful to to understand how people might have to receive content.<br>
   
@@ -202,7 +202,7 @@ document.addEventListener("DOMContentLoaded", function () {
         -  3c. The Background: I want to create small time of day scene that has the Sir Robot's background environment changing as if the Robot is walking through it, I think updating/adding the `Sir_Robot` images to look like it is walking. (something simple)<br>
 
         - 3d. Figure out how to incorperate the `Sub-Main Container` time of day animated background with the light/dark time switch based off a users location.?. I am not sure if my phrasing/terminology is sound. I don't want to know the users location or time zone. So, how to swap the background animation to nighttime is user-a is located in a location where it maybe currently nighttime? <br>  
-        - 3f. Figure out...
+        - 3f. Figure out...list my thoughts...<br>
 
 ### Thoughts
 
@@ -224,7 +224,8 @@ document.addEventListener("DOMContentLoaded", function () {
 - This page needs more thought. I like the idea of having different drop down tool tabs.<br>
 ---
 - (04/14/2025.1320)
-At one point I think creating some sort of `HUB` display that has multiple catergorized digital tools (links/resources).<br>
+At one point I think creating some sort of `HUD` display that has multiple catergorized digital tools (links/resources).<br>
+
 
 ---
    
