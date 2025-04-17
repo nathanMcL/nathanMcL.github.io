@@ -31,12 +31,13 @@ Thinking of ways to display my mind map...<br>
 (04/15/2025.1230)<br>
 
 The way I use the `Mind Map` is to visualize the block of functions, for instance:<br>
-    
+```    
     - Moving: Map functions that have moving elements. 
     
     - Interacting: Map functions that have interacting elements.
     
     - Linking: Map *out-going* links (links navigating away from the website)
+```
 
 The `Mind Map` is just a wireframe diagram, a visual representation of the functions associated with each webpage.<br>
 The important thing to me is that it helps me understand the individual functions or processes that are happening on the webpage.<br>
@@ -46,12 +47,12 @@ I just had an idea...<br>
 I think using the same method of displaying the `Readme.md` (write-up notes).<br>
 After scrolling down past the *thoughts* (Blog) *write-up notes*, I could create a simple screen scrollable & zoom(+/-), read only...<br>
 Display of the `Mind Map`.
-
+```
     - Scrollable, Zoom(+/-), Read only
     - Responsive design sizes
     - Accessibility 
     (I'm not sure how this will work yet. There are lines and shapes leading to and from entities.)
-
+```
 ---
 
 #### Index: Accessibility (04/13/2025.1000)
@@ -73,7 +74,7 @@ Contact
 
 And all the main content `Welcome` verbiage... I will have to do this in a way that represents how the `Accessibility Tools` `(AT)` actully speak the textual content.<br>
 
-- However! I could record/save the audio file from the `AT`.<br>
+- However! I could or I am thinking the way to do this would be to save the audio file from the `AT`(Honestly not sure how to approach this).<br>
     - Create an audio associated radial button that functions with the *tab* key. To *tab* through the different elements on the page.<br>
     - I think this is helpful to to understand how people might have to receive content.<br>
   
