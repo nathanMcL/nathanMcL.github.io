@@ -17,12 +17,13 @@
                     style-src 'self'; 
                     img-src 'self' data:; 
                     font-src 'self' data:; 
-                    connect-src https://raw.githubusercontent.com;">
+                    connect-src https://raw.githubusercontent.com;
+                    frame-src https://raw.githubusercontent.com;">
         <meta http-equiv="X-Content-Type-Options" content="nosniff">
         <meta http-equiv="Referrer-Policy" content="no-referrer-when-downgrade">
         <meta http-equiv="Strict-Transport-Security" content="max-age=31536000; includeSubDomains">
 
-
+        
         <!-- Favicon -->
         <link rel="icon" type="image/png" href="favicon.png">
     </head>
@@ -71,12 +72,14 @@
                         <h5>Loading Notes and Thoughts...</h5>
                         <div id="markdown-content" class="markdown-section"></div>
                     </div>
-                        <p>
-                            ...
-                        </p>
-                        <p>
-                            ...
-                        </p>
+                    <div class="diagram-container">
+                        <h3>MacN_iT Site Diagram</h3>
+                        <iframe src="https://raw.githubusercontent.com/nathanMcL/nathanMcL.github.io/main/MacN_iT_SiteDiagram.html"
+                            class="diagram-iframe"
+                            title="MacN_iT Website Wireframe Diagram"
+                            frameborder="0"
+                            scrolling="auto">
+                        </iframe>
                     </div>
                 </div>
             </div>
