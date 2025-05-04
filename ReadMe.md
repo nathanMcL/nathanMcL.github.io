@@ -220,6 +220,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
 - (04/09/2025.1400) *Test* Read Only GitHub ReadMe web-display.
 
+- (05/04/2025.1050) I was able to display the MacN_iT wire diagram on the `Thoughts` / `Blog.html` page. If I make any changes I will have to upload a new .html.<br>
+
+To get the draw.io html file to display in a read only zoom and scrollable format. I had to update the `blog.html` file `meta` tag and `src`.<br>
+
 ### Tools
 
 - This page needs more thought. I like the idea of having different drop down tool tabs.<br>
