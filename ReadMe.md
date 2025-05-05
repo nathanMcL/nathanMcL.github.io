@@ -77,7 +77,26 @@ And all the main content `Welcome` verbiage... I will have to do this in a way t
 - However! I could or I am thinking the way to do this would be to save the audio file from the `AT`(Honestly not sure how to approach this).<br>
     - Create an audio associated radial button that functions with the *tab* key. To *tab* through the different elements on the page.<br>
     - I think this is helpful to to understand how people might have to receive content.<br>
-  
+
+### (05/05/2025.1200) Accessibility `ANDI`.
+
+Testing ANDI on the `index` welcome page.<br>
+
+Received this message: <br>
+```
+This page has a Content Security Policy that blocks scripts like ANDI. For help, visit the ANDI Help FAQ page.
+```
+<br>
+
+I have to find out how to allow `ANDI` through the CSP.
+
+...Real quick what is `ANDI`...
+
+```
+Accessible Name & Description Inspector (ANDI) tool, a web accessibility inspection tool, which performs single page testing to automatically detect accessibility issues.
+```
+
+
 
 ### About (me/the team/your brand)
 
