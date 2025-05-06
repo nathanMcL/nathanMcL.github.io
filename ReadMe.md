@@ -98,7 +98,7 @@ Accessible Name & Description Inspector (ANDI) tool, a web accessibility inspect
 (05/06/2025.1415) Accessibility `ANDI`.
 Note...<br>
 I am working through `Content Structures`, still learning.
-`ANDI` is a Developer's type of tool, used for inspecting wepages.<br>
+`ANDI` is a developer's type of tool used to inspect web pages.<br>
 I do not want to change my `CSP` (Content Security Policy) because that would open up this website for possible `blob` attacks.
 `ANDI` would be used within a *Not Live* environment on a company's mirrored production website. <br>
 
@@ -115,9 +115,9 @@ Accessibility Technology users might be using other software such as: <br>
 So, still learning.<br>
 
 ### But Wait! What is a `Blob` attack?
-A `Blob` attack is a JavaScript based exploit that uses `Blob` URLs. When there is a *weak* `CSP` (Content Security Policy) it can bypass security restrictions.<br>
+A `Blob` attack is a JavaScript-based exploit that uses `Blob` URLs. When there is a *weak* `CSP` (Content Security Policy), it can bypass security restrictions.<br>
 
-I don't think explaining why it's dangerous and how it could happen are nessisary here.<br>
+I don't think explaining why it's dangerous and how it could happen is necessary here.<br>
 
 You can improve the CSP with these additions:<br> 
 - object-src 'none';
