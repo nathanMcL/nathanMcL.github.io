@@ -10,7 +10,15 @@
         <link rel="icon" href="favicon.ico" type="image/x-icon">
         
         <!-- Security Headers -->
-        <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self' data:;">
+        <meta http-equiv="Content-Security-Policy" 
+        content=
+        "default-src 'self'; 
+        script-src 'self'; 
+        style-src 'self'; 
+        img-src 'self' data:; 
+        font-src 'self' data:;
+        object-src 'none';
+        base-uri 'none';">
         <meta http-equiv="X-Content-Type-Options" content="nosniff">
         <meta http-equiv="Referrer-Policy" content="no-referrer-when-downgrade">
         <meta http-equiv="Strict-Transport-Security" content="max-age=31536000; includeSubDomains">
