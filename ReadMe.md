@@ -124,7 +124,17 @@ You can improve the CSP with these additions:<br>
 - script-src 'self';
 - base-uri 'none';
 
+### (05/07/2025.0625) `Skip to main content`
 
+The `Skip to main content`, I cannot tell if it is focusing on the main content... When I have tested *test* web pages, the `Skip to main content` has moved the focus to the `<main></main>` content, and visually moved the screen to focus on the page's main content. <br> 
+The issue I *"think"* I have is:<br>
+When the page is in full screen, I am unable to tell if the `Skip to main content` option works because the page has no additional scrollable content.<br>
+- When I shrunk the screen size, I was able to verify that when the `Skip to main content` is selected, it jumps to the `<main></main>` content, which is good. <br>
+- I want to find out if there is some subtle visual identifier that could be used to very quickly visually identify that the main content *"Now in Focus"*.<br>
+
+...TODO: Find professional websites that have `accessibility` features. See if the sites have a `Skip to main content` option, and test it. How does their site focus on the `main content`?<br>
+I understand there might not be a standard visual focus identifier, because to me, an identifier could be some sort of visually noticeable focusable change.<br>
+I'm not sure, so it could be a little star that appears and glows to where the main content starts for 10 seconds, then disappears. This isn't that serious, but I noticed it and want to better understand.<br>
 
 
 ### About (me/the team/your brand)
