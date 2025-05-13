@@ -5,26 +5,33 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="@MacN_iT website">
-        <title>MacN the Full Stack...</title>
+        <title>MacN the Full Stack... Inspired Me</title>
+
+        <!-- Stylesheet -->
         <link rel="stylesheet" href="inspiredmeStyles.css">
+
+        <!-- Favicon -->
+        <link rel="icon" type="image/png" href="images/favicon.png">
         <link rel="icon" href="favicon.ico" type="image/x-icon">
         
         <!-- Security Headers -->
         <meta http-equiv="Content-Security-Policy" 
         content=
         "default-src 'self'; 
-        script-src 'self' 'unsafe-inline'; 
+        script-src 'self'; 
         style-src 'self'; 
         img-src 'self' data:; 
-        font-src 'self' data:;
-        object-src 'none';
-        base-uri 'none';">
-        <meta http-equiv="X-Content-Type-Options" content="nosniff">
-        <meta http-equiv="Referrer-Policy" content="no-referrer-when-downgrade">
-        <meta http-equiv="Strict-Transport-Security" content="max-age=31536000; includeSubDomains">
+        font-src 'self'; 
+        object-src 'none'; 
+        base-uri 'none'; 
+        connect-src 'self'; 
+        frame-ancestors 'none'; 
+        require-trusted-types-for 'script';">
 
-        <!-- Favicon -->
-        <link rel="icon" type="image/png" href="images/favicon.png">
+        <meta http-equiv="X-Content-Type-Options" content="nosniff">
+        <meta http-equiv="Referrer-Policy" content="no-referrer">
+        <meta http-equiv="Strict-Transport-Security" content="max-age=31536000; includeSubDomains; preload">
+        <meta name="Permissions-Policy" content="geolocation=(), microphone=(), camera=()">
     </head>
     <body>
         <!-- Header Section -->
@@ -156,15 +163,12 @@
         <!-- End of Sub-Main Section Sir Robot Container -->
 
         <!-- Footer Section -->
-        <footer>
+        <footer role="contentinfo">
             <p>&copy; 2025 MacN @MacN_iT All Rights Reserved</p>
-            <nav>
+            <nav aria-label="Footer Navigation">
                 <a href="index.html">Home</a>
             </nav>
         </footer>
-
-        <!-- Cyber container effect -->
-        <div class="cyber-container"></div>
 
     <!-- JS -->
     <script src="inspiredmeScript.js" defer></script>
