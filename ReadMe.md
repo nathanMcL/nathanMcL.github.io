@@ -11,6 +11,22 @@ What is the website's purpose?<br>
 4. Error Handling.<br>
 5. Accessibility. <br>
 
+### (05/13/2025.1030) Updating CSP 
+
+While learning about Accessibility Software, I am learning about how AT users interact with the software (How I currently understand). Seeing how an AT user's software interprets the presented images and textual content is helpful, it has shown me what is unclear from the perspective of how an AT user might receive content. <br>
+I have to go through and provide a better description of the images in their HTML.<br> 
+
+Example:<br>
+
+`<title>MacN the Full Stack... Home</title>`<br>
+On each page within the MacN the Full Stack `HTML` file, there is a `title`. The `title` is read by the screen reader. Each *page* within the website should have some description that clearly states what it is, in this case, each page has the matching name of the intended purpose of the page...<br>
+This also goes for images. For instance, the `little robot` logo image and the `@MacN_iT` color changing text might require better description within the `HTML` `id`'s and or `role`'s.<br>
+
+But what in the hockey sticks does that have to do with the `CSP`?<br>
+Well, because I want to add to or allow a resource to be used or viewed (to me), you want to provide a secure viewing experience. To me, that is why you want to mitigate the possible security exploits. 
+I created another Readme file regarding CSP security Hardening. I think this is helpful to know why and what it is, and the importance of improving the site security.<br>
+
+***Note*** My `MacN_iT` little website is not a professional production website. That said, I think it is important to always seek improvements.<br>
 
 
 ### Index
@@ -135,6 +151,13 @@ When the page is in full screen, I am unable to tell if the `Skip to main conten
 ...TODO: Find professional websites that have `accessibility` features. See if the sites have a `Skip to main content` option, and test it. How does their site focus on the `main content`?<br>
 I understand there might not be a standard visual focus identifier, because to me, an identifier could be some sort of visually noticeable focusable change.<br>
 I'm not sure, so it could be a little star that appears and glows to where the main content starts for 10 seconds, then disappears. This isn't that serious, but I noticed it and want to better understand.<br>
+
+### (05/13/2025.1030) `NVDA` Screen Reader
+
+I downloaded and set up the `NVDA` software. The Software is intended to assist technology users without sight or other needs. I probably used the software for about ten minutes. 
+I used it on my MacN_iT site ( `https://nathanmcl.github.io/index.html` ).<br>
+I quickly realized that my site was still missing the necessary code to `enable` `AT` users' software to read my front-facing text or even describe the little robot image and title.<br>
+Much to do!!!<br>
 
 
 ### About (me/the team/your brand)
