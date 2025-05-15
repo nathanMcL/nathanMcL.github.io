@@ -1,0 +1,463 @@
+/* Body styles */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: var(--first-color); 
+    color: var(--fourth-color); /* General text color */
+    border-radius: 2.5px;
+}
+
+/* Color palette: Cyber Curiosity */
+:root {
+    --first-color: #0e0e10; /* Ebony background */
+    --second-color: #1a1a1d; /* Deep Charcoal for some sections */
+    --third-color: #08f7f3; /* Electric Cyan */
+    --fourth-color: #f5f642; /* Neon Yellow */
+
+    --neon-purple: #9a00ff; /* Neon Purple */
+    --neon-green: #39ff14; /* Neon Green */
+    --neon-pink: #ff0057; /* Neon Pink */
+   
+    /* @MacN_iT text color change */
+    --flag-white: #ffffff;
+    --flag-red: #ff2975;
+    --flag-blue: #00ffff;
+}
+/* End of Body styles */
+/* Header styles */
+.header-about {
+    background-color: var(--second-color);
+    border-bottom: 2px solid var(--third-color);
+    color: white;
+    padding: 10px 0;
+    border-radius: 10px;
+}
+
+.nav_container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+#nav_logo {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    font-size: 1.5rem; /* To adjust the text size */
+    margin-left: 0px;
+}
+
+.littlerobot {
+    max-width: 170px; /* Adjust the max-width for log scaling */
+    height: auto; /* Maintain the aspect ratio */
+    margin-right: 5px; /* The space between the logo and text */
+    margin-left: -100px;
+}
+
+.nav.menu {
+    display: flex !important; /* Ensure the menu is displayed */
+    list-style-type: none;
+    display: flex;
+    gap: 15px;
+    padding: 0;
+    margin-left: auto;
+}
+
+.nav_item a {
+    display: inline-block;
+    text-decoration: none;
+    color: var(--fourth-color);
+    font-weight: bold;
+    padding: 2px 10px;
+    border-radius: 20px;
+    transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+}
+
+.nav_item a.nav_active {
+    color: var(--first-color); /* Highlight the active link */
+}
+
+.nav_item a:hover {
+    background-color: var(--neon-purple);
+    color: black; /* Change text color instead */
+    text-decoration: underline; /* Optional: Underline effect */
+    text-shadow: 0 0 5px var(--neon-green);
+}
+
+/* Animation styles for color change */
+.color-change {
+    display: inline-block;
+    animation: colorAnimation 10s infinite;
+}
+
+.color-change:nth-child(1) { /* @ */
+    animation-delay: 0s;
+}
+.color-change:nth-child(2) { /* M */
+    animation-delay: 2s;
+}
+.color-change:nth-child(3) { /* a */
+    animation-delay: 4s;
+}
+.color-change:nth-child(4) { /* c */
+    animation-delay: 6s;
+}
+.color-change:nth-child(5) { /* N */
+    animation-delay: 8s;
+}
+.color-change:nth-child(6) { /* _ */
+    animation-delay: 10s;
+}
+.color-change:nth-child(7) { /* i */
+    animation-delay: 12s;
+}
+.color-change:nth-child(8) { /* T */
+    animation-delay: 14s;
+}
+
+@keyframes colorAnimation {
+    0%, 100% {
+        color: var(--flag-white);
+    }
+    25% {
+        color: var(--flag-red);
+    }
+    50% {
+        color: var(--flag-white);
+    }
+    75% {
+        color: var(--flag-blue);
+    }
+}
+
+/* Neon Glowing Text Animation */
+@keyframes glowText {
+    0% { text-shadow: 0 0 5px var(--neon-green); }
+    50% { text-shadow: 0 0 20px var(--neon-purple); }
+    100% { text-shadow: 0 0 5px var(--neon-green); }
+}
+
+.cyber-glow {
+    animation: glowText 2s infinite alternate;
+}
+
+/* Neon Glowing Text Animation */
+@keyframes glowText {
+    0% { text-shadow: 0 0 5px var(--neon-green); }
+    50% { text-shadow: 0 0 20px var(--neon-purple); }
+    100% { text-shadow: 0 0 5px var(--neon-green); }
+}
+
+.cyber-glow {
+    animation: glowText 2s infinite alternate;
+}
+
+/* Neon White Glow */
+@keyframes neonWhiteGlow {
+  0% {
+    text-shadow:
+      0 0 5px var(--flag-white),
+      0 0 10px var(--flag-white),
+      0 0 15px var(--flag-white),
+      0 0 20px #e0e0ff,  /* soft blue-tint outer glow */
+      0 0 30px #cfcfff, 
+      0 0 40px #bfbfff; 
+  }
+  100% {
+    text-shadow:
+      0 0 10px var(--flag-white),
+      0 0 15px var(--flag-white),
+      0 0 20px var(--flag-white),
+      0 0 30px #f0f0ff,
+      0 0 40px #d0d0ff,
+      0 0 50px #ffffff;
+  }
+}
+
+/* Neon White Glow */
+.neon-white {
+  color: var(--flag-white);
+  animation: neonWhiteGlow 1.5s infinite alternate;
+}
+/* End of Neon White Glow */
+/* End of Animation styles for color change */
+/* End of Header styles */
+
+/* Main styles */
+/* Blog post container */
+.main_blog {
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    background-color: var(--business-card-color1);
+    border-radius: 10px;
+}
+
+.blog_head h1 {
+    text-align: center;
+    font-size: 2rem;
+    color: var(--third-color);
+    background-color: var(--second-color);
+    margin-bottom: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    padding: 10px;
+    border-radius: 10px;
+    text-shadow: 0 0 5px var(--neon-green), 0 0 10px var(--neon-purple);
+}
+
+/* Resize and position the blogrobot images */
+.blogrobot {
+    width: 100px; /* Adjust width as needed */
+    height: auto; /* Maintain aspect ratio */
+    margin: 0 5px; /* Space around the images */
+    vertical-align: middle; /* Align with text */
+}
+.blog_post {
+    background-color: whitesmoke;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    position: relative;
+}
+
+.blog_post h2 {
+    font-size: 1.8rem;
+    margin-top: 0;
+    margin-left: 70px;
+    padding-top: 50px; /* Space for the image */
+}
+
+.post_section {
+    margin-bottom: 40px;
+}
+
+.post_image {
+    position: absolute;
+    top: -20px;
+    left: -20px;
+}
+
+.post_image img {
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 50%;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Raised floating effect */
+p, h5 {
+    background-color: white;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+/* YouTube video */
+.youtube_video {
+    margin-top: 20px;
+    text-align: left;
+}
+
+/* Third Blog Post Markdown styling */
+.markdown-section {
+    background-color: #f5f5f5;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    font-family: monospace;
+    color: #333;
+}
+
+.markdown-section h3, .markdown-section h4 {
+    font-family: Arial, sans-serif;
+    margin-top: 0;
+}
+
+.markdown-section pre {
+    background-color: #2d2d2d;
+    color: #f8f8f2;
+    padding: 10px;
+    border-radius: 5px;
+    overflow-x: auto;
+}
+
+.markdown-section code {
+    background-color: #e0e0e0;
+    color: #c7254e;
+    padding: 2px 4px;
+    border-radius: 3px;
+    font-family: monospace;
+}
+
+.markdown-section blockquote {
+    margin: 0;
+    padding-left: 10px;
+    border-left: 4px solid #ccc;
+    color: #666;
+    font-style: italic;
+}
+/* End of Third Blog Post Markdown styling */
+
+/* Wire Diagram iframe styling */
+.diagram-iframe {
+    width: 100%;
+    height: 700px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background-color: whitesmoke;
+}
+/* End of Wire Diagram iframe styling */
+
+/* Footer styling */
+footer {
+    text-align: center;
+    padding: 20px;
+    background-color: var(--third-color);
+    color: var(--first-color);
+    border-top: 1px solid #ccc;
+    border-radius: 10px;
+}
+
+/* Responsive styles */
+/* Medium screens */
+@media (max-width: 1023px) {
+    /* Adjust the container to center its content */
+    .nav_container {
+        display: flex;
+        justify-content: space-between; /* Center the logo img, text, and the  navigation menu */
+        align-items: center;
+        max-width: 1200px; /* Set the max-width to center the contianer */
+        margin: 0 auto; /* Center the container */
+        padding: 5px 20px; /* Add padding to prevent touch the edges */
+    }
+
+    #nav_logo {
+        display: flex;
+        align-items: center;
+        text-align: left;
+        font-size: 1.2rem;
+        margin-right: auto;
+        margin-left: 150px; /* Push / Move the logo toward the center */
+    }
+
+    .littlerobot {
+        max-width: 150px;
+        margin-right: 0px; /* Create space between the robot and the text */
+        margin-left: -200px; /* Negative moves it left */
+        margin-top: 50px;
+    }
+
+    .color-change {
+        display: inline-block;
+        margin: 0px 2.5px; /* Space between the characters */
+        font-size: 1.2rem;
+        margin-top: 70px;
+    }
+
+    /* Navigation Menu */
+    .nav.menu {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end; /* Align the menu to the right */
+        gap: 15px; /* Space between the menu items */
+        list-style: none;
+        margin-right: 50px; /* Push the menu toward the center */
+    }
+
+    .nav_item a {
+        font-size: 1rem;
+        text-decoration: none;
+        color: var(--fourth-color);
+        margin-right: 30px;
+    }
+
+    .nav_item a:hover {
+        background-color: var(--second-color);
+    }
+    /* Enf of Navigation Menu */
+    /* End of Medium screens */
+    /* Small screens */
+@media (max-width: 768px) {
+    .welcome_section h1 {
+        margin-left: 25px;
+    }
+
+    .welcome_section h2 {
+        margin-left: 45px;
+    }
+
+    .about-site {
+        padding: 40px 15px;
+    }
+
+    /* Adjust the container to center its content */
+    .nav_container {
+        display: flex;
+        justify-content: space-between; /* Center the logo img, text, and the  navigation menu */
+        align-items: center;
+        max-width: 1200px; /* Set the max-width to center the contianer */
+        margin: 0 auto; /* Center the container */
+        padding: 5px 10px; /* Add padding to prevent touch the edges */
+    }
+
+    #nav_logo {
+        display: flex;
+        align-items: center;
+        text-align: left;
+        font-size: 1.2rem;
+        margin-right: auto;
+        margin-left: -80px; /* Push or Move the logo toward the center */
+    }
+
+    .littlerobot {
+        max-width: 135px;
+        margin-right: 0px; /* Create space between the robot and the text */
+        margin-left: 50px;
+        margin-top: 30px;
+
+    }
+
+    .color-change {
+        display: inline-block;
+        margin: 1.5px; /* Space between the characters */
+        font-size: 1.2rem;
+        margin-top: 65px;
+    }
+
+    /* Navigation Menu */
+    .nav.menu {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end; /* Align the menu to the right */
+        gap: 15px; /* Space between the menu items */
+        list-style: none;
+        margin-right: 50px; /* Push the menu toward the center */
+    }
+
+    .nav_item a {
+        font-size: 1rem;
+        text-decoration: none;
+        color: var(--fourth-color);
+        margin-right: 30px;
+    }
+
+    .nav_item a:hover {
+        background-color: var(--second-color);
+    }
+    /* End of Navigation Menu */
+
+    footer {
+        padding: 15px;
+        font-size: 0.9rem; /* Slightly smaller font for footer */
+    }
+}
+}
+/* End of Small screens */
+/* End of Responsive styles */
