@@ -28,9 +28,11 @@ CSP Example:<br>
 
 ## Blob-based Exploits
 
-Technical term: JavaScript `Blob` `misuse + URL.createObjectURL() abuse`.<br>
+Technical term: Blob URL-based script injection <br> 
 
-Slang: *"Blob bomb"*, *"Blob bypass"*<br>
+`Blob` misuse + `URL.createObjectURL()` abuse.<br>
+
+Slang: *"Blob bomb"*, *"Blob bypass"* ***Kadoosh***<br>
 
 How it’s initiated: Malicious JS uses `Blob` `URL`s to bypass `CSP` by generating in-browser script objects.<br>
 
