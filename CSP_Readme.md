@@ -38,7 +38,7 @@ How it’s initiated: Malicious JS uses `Blob` `URL`s to bypass `CSP` by generat
 
 Effects: Can reintroduce inline script injection or download data from external sources.<br>
 
-Sneaky little payload wrapped in a `blob—bypasses` `CSP` by pretending it's *"local"*. 🤔 Like hiding TNT in a birthday cake.<br>
+Sneaky little party crasher wrapped a payload in a `blob—bypasses` `CSP` who livestreams your world. `Inline script injection` = `unexpected` code doing shady stuff inside your site. `External sources` = `code` *phoning* home to servers you didn’t invite.<br>
 
 ### Prevention:<br>
 
@@ -86,6 +86,10 @@ Slang: "DOM pop", "Deep XSS"<br>
 
 How initiated: *Malicious* input (Example: URL hash, query string) is read via JS and injected into the page `DOM`.<br>
 
+- URL Hash, Query String:
+  1. These are the "ends" of a web address - the stuff after the `?` or `#`.<br>
+  Example: `https://myblog.com/page.html` `<-- After This-->` `?message=<script>boom</script>` <-- this section.<br>
+
 Effects: Similar to above; attacker owns the DOM temporarily.<br>
 
 Your JS grabs some *Malicious* user input, doesn’t validate it, then injects the `Malicious user input` into the page, and things get squirrely. Suddenly, the browser is running wild.<br>
@@ -110,6 +114,10 @@ Slang: "Jplosion", "redwhack" <br>
 How initiated: Attacker uses `jsonp?callback=` or abuses redirect parameters like `?next=`.<br>
 
 Effects: Data exfiltration, phishing redirects - Bad business.<br>
+
+- `Data Exfiltration` = A term for ***YOINKS***. *Your* info becomes *their* info, without *your* approval...<br>
+  ***YOINKS!!*** We're being robbed.<br>
+- `Bad business` = Code that leaks, sneaks, or peaks where it shouldn’t. Just like a vendor having a yard sale behind behind the gas station. It ain’t a good look, but hey! I got a good deal on the golf clubs...<br>
 
 `JSONP`: A friendly-looking data callback turns into a full data exfiltration heist. The backdoor was built into the front door.<br>
 `Open Redirect`: You click a "login" link and suddenly you’re halfway across the dark web before your coffee cools😱.<br>
@@ -162,10 +170,12 @@ A “trusted” script that *ghosts* your site with malicious updates when no on
 
 ### Prevention:
 
-Ensure s`cript-src` does not allow `unsafe-eval`, `unsafe-inline`, or `third-party CDNs` unless `subresource integrity (integrity="")` is used.<br>
+Ensure `script-src` does not allow `unsafe-eval`, `unsafe-inline`, or `third-party CDNs` unless `subresource integrity (integrity="")` is used.<br>
 
-You’re sorta safe if you keep all scripts local and avoid extensions like:
+You’re sorta safe if you keep all scripts local and avoid extensions like... I mean. <br>
 
+If you only use code you wrote or sources yourself (and not from a *random* online sources), it’s like locking your own door instead of giving your key to strangers.<br>
+The CSP below keeps it tight:
 ```
 script-src 'self'; 
 style-src 'self'; 
