@@ -170,12 +170,15 @@ A “trusted” script that *ghosts* your site with malicious updates when no on
 
 ### Prevention:
 
+Don’t let your site become a JavaScript motel—where any sketchy guest can check in and start reprogramming the furniture.<br>
+
 Ensure `script-src` does not allow `unsafe-eval`, `unsafe-inline`, or `third-party CDNs` unless `subresource integrity (integrity="")` is used.<br>
 
-You’re sorta safe if you keep all scripts local and avoid extensions like... I mean. <br>
+You’re much safer when you write or host your own scripts.<br>
+Using only local scripts is like locking your door and carrying the only key.
+Letting in *remote* scripts from *"some site on the internet"* is like handing copies of your house key to strangers in the comments section.<br>
 
-If you only use code you wrote or sources yourself (and not from a *random* online sources), it’s like locking your own door instead of giving your key to strangers.<br>
-The CSP below keeps it tight:
+The CSP below keeps it tight:<br>
 ```
 script-src 'self'; 
 style-src 'self'; 
