@@ -264,6 +264,12 @@ body {
     line-height: 1.6;
 }
 
+.emoji {
+    margin: 0 3px;
+    font-size: 1em;
+    display: inline-block;
+}
+
 /* Footer styling */
 footer {
     text-align: center;
