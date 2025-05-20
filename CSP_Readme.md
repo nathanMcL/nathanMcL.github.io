@@ -1,7 +1,7 @@
 # Security Headers
 
 (05/13/2025.1400)
-This is working collection of CSP content that describes `what`, `how`, `why` the `Content-Security-Policy` has these prevention scripts.<br>
+This is a working collection of CSP content that describes `what`, `how`, `why` the `Content-Security-Policy` has these prevention scripts.<br>
 There are many other types of exploits.<br>
 The `Content-Security-Policy` is intended to disable or prevent `Malicious` injectable content.<br>
 
