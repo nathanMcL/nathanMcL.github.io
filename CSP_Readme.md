@@ -88,7 +88,7 @@ How initiated: *Malicious* input (Example: URL hash, query string) is read via J
 
 - URL Hash, Query String:
   1. These are the "ends" of a web address - the stuff after the `?` or `#`.<br>
-  Example: `https://myblog.com/page.html` `<-- After This-->` `?message=<script>boom</script>` <-- this section.<br>
+  Example: `https://myblog.com/page.html` `<-- After This` `?message=<script>boom</script>` <-- this section.<br>
 
 Effects: Similar to above; attacker owns the DOM temporarily.<br>
 
@@ -117,7 +117,7 @@ Effects: Data exfiltration, phishing redirects - Bad business.<br>
 
 - `Data Exfiltration` = A term for ***YOINKS***. *Your* info becomes *their* info, without *your* approval...<br>
   ***YOINKS!!*** We're being robbed.<br>
-- `Bad business` = Code that leaks, sneaks, or peaks where it shouldn’t. Just like a vendor having a yard sale behind behind the gas station. It ain’t a good look, but hey! I got a good deal on the golf clubs...<br>
+- `Bad business` = Code that leaks, sneaks, or peaks where it shouldn’t. Just like a vendor having a yard sale behind the gas station. It ain’t a good look, but hey! I got a good deal on the golf clubs...<br>
 
 `JSONP`: A friendly-looking data callback turns into a full data exfiltration heist. The backdoor was built into the front door.<br>
 `Open Redirect`: You click a "login" link and suddenly you’re halfway across the dark web before your coffee cools😱.<br>
