@@ -286,6 +286,11 @@ p, h5 {
     padding: 10px;
     border-radius: 5px;
     overflow-x: auto;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    max-width: 100%;
+    overflow-x: auto;
+    box-sizing: border-box;
 }
 
 .markdown-section code {

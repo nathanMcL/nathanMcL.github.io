@@ -214,6 +214,8 @@ p, h5 {
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
     font-family: monospace;
     color: #333;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
 }
 
 .markdown-section h3, .markdown-section h4 {
