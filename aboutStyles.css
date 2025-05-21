@@ -270,6 +270,73 @@ input:checked + slider:before {
     transform: translateX(26px);
 }
 /* End of Orb Toggle */
+
+/* Toggle the Orb Magic. */
+/* A neon effect when the orb's slide button is activated */
+.bouncing-orb.grid-effect {
+    background-color: #0f0c29;
+    border: 3px solid #00ffff;
+    border-radius: 50%;
+    animation: orbPulse 2s infinite ease-in-out;
+    box-shadow: 
+        0 0 15px rgba(0, 255, 255, 0.8),
+        0 0 25px rgba(0, 255, 255, 0.6),
+        0 0 50px rgba(255, 0, 255, 0.4),
+        inset 0 0 10px rgba(255, 255, 255, 0.2);
+    z-index: 5;
+}
+
+/* Crackling glow animation */
+@keyframes orbPulse {
+    0% {
+        transform: scale(1);
+        box-shadow:
+            0 0 10px #00ffff,
+            0 0 20px #ff00ff,
+            0 0 30px #ffff00;
+    }
+    50% {
+        transform: scale(1.05);
+        box-shadow:
+            0 0 20px #00ffff,
+            0 0 40px #ff00ff,
+            0 0 60px #ffff00;
+    }
+    100% {
+        transform: scale(1);
+        box-shadow:
+            0 0 10px #00ffff,
+            0 0 20px #ff00ff,
+            0 0 30px #ffff00;
+    }
+}
+
+/* Ensures text inside orb stays legible */
+.bouncing-orb.grid-effect .orb-text {
+    color: #ffffff;
+    text-shadow:
+        0 0 5px #00ffff,
+        0 0 10px #ff00ff;
+    font-weight: bold;
+    font-size: 1.4rem;
+    z-index: 10;
+    position: relative;
+}
+
+/* Optional: subtle background change for accessibility when grid is on */
+body.grid-mode {
+    background-color: #0a0a0a;
+    transition: background-color 0.5s ease;
+}
+
+/* Accessibility preference: reduce motion */
+@media (prefers-reduced-motion: reduce) {
+    .bouncing-orb.grid-effect {
+        animation: none;
+        transform: none;
+    }
+}
+/* End of Toggle the Orb Magic. */
 /* End of Bouncing Orbs */
 /* End of Main Body */
 

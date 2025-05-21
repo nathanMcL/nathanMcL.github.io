@@ -87,7 +87,6 @@ document.addEventListener("DOMContentLoaded", function () {
                 return;
             }
 
-            let minDistance = 120; // Minimum distance between orbs
             let validPosition = false, attempts = 0;
             while (!validPosition && attempts < 50) {
                 const x = Math.random() * (mainRect.width - 100);
@@ -170,12 +169,47 @@ function applyGridLayout() {
     const spacingY = main.clientHeight / rows;
 
     orbElements.forEach((orb, i) => {
+        const col = i % columns;
+        const row = Math.floor(i / columns);
+
         orb.style.transition = "all 0.4s ease";
-        orb.style.left = `${spacingX * (i % columns) + spacingX / 2 - orb.clientWidth / 2}px`;
-        orb.style.top = `${spacingY * Math.floor(i / columns) + spacingY / 2 - orb.clientHeight / 2}px`;
+        orb.style.left = `${spacingX * col + spacingX / 2 - orb.clientWidth / 2}px`;
+        orb.style.top = `${spacingY * row + spacingY / 2 - orb.clientHeight / 2}px`;
         orb.style.width = "100px";
         orb.style.height = "100px";
         orb.style.fontSize = "1.6rem";
-        orb.style.boxShadow = "0 0 25px rgba(255, 255, 255, 0.9)";
+        orb.style.boxShadow = "0 0 30px 10px rgba(0, 255, 255, 0.7), 0 0 60px 20px rgba(255, 255, 0, 0.4)";
+        orb.classList.add("grid-effect");
+
+        startGridAnimation(orb, i);
     });
+}
+
+function startGridAnimation(orb, index) {
+    let angle = Math.random() * 360;
+    let radiusX = 6 + Math.random() * 4;
+    let radiusY = 6 + Math.random() * 4;
+    let speed = 0.02 + Math.random() * 0.03;
+
+    const pattern = index % 2 === 0 ? "diamond" : "triangle";
+    const baseLeft = parseFloat(orb.style.left);
+    const baseTop = parseFloat(orb.style.top);
+
+    function animate() {
+        angle += speed;
+        let offsetX, offsetY;
+
+        if (pattern === "diamond") {
+            offsetX = Math.cos(angle) * radiusX;
+            offsetY = Math.sin(angle) * radiusY;
+        } else {
+            offsetX = (Math.sin(angle) + Math.sin(2 * angle)) * radiusX / 2;
+            offsetY = (Math.cos(angle) - Math.cos(2 * angle)) * radiusY / 2;
+        }
+
+        orb.style.transform = `translate(${offsetX}px, ${offsetY}px)`;
+        requestAnimationFrame(animate);
+    }
+
+    animate();
 }
