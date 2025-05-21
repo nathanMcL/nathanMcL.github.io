@@ -221,6 +221,55 @@ main {
 .orb-popup button:hover {
     background: #ff6666;
 }
+
+/* Orb Toggle */
+.orb-toggle {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    z-index: 10;
+}
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 55px;
+    height: 30px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0; left: 0; right: 0; Bottom: 0;
+    background-color: #ccc;
+    border-radius: 34px;
+    transition: .4s;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 20px; width: 20px;
+    left: 5px; bottom: 5px;
+    background-color: whitesmoke;
+    border-radius: 50%;
+    transition: .4s;
+}
+
+input:checked + .slider {
+    background-color: #66bb6a;
+}
+
+input:checked + slider:before {
+    transform: translateX(26px);
+}
+/* End of Orb Toggle */
 /* End of Bouncing Orbs */
 /* End of Main Body */
 

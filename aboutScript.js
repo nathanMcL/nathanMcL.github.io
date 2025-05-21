@@ -1,29 +1,3 @@
-// Network Animation
-document.addEventListener("DOMContentLoaded", function () {
-    const body = document.body;
-    const cyberContainer = document.createElement("div");
-    cyberContainer.classList.add("cyber-container");
-    body.appendChild(cyberContainer);
-
-    // Function to create fake network packets
-    function createPacket() {
-        const packet = document.createElement("div");
-        packet.classList.add("network-packet");
-        packet.innerText = Math.random().toString(16).substring(2, 8); // Fake hex data
-
-        packet.style.left = Math.random() * window.innerWidth + "px";
-        packet.style.animationDuration = "7s";
-
-        body.appendChild(packet);
-
-        setTimeout(() => {
-            packet.remove();
-        }, 7000);
-    }
-
-    setInterval(createPacket, 800); // Generate new packets
-});
-
 // Marquee JScript
 document.addEventListener("DOMContentLoaded", function () {
     const root = document.documentElement;
@@ -40,67 +14,61 @@ document.addEventListener("DOMContentLoaded", function () {
 // End of Marquee JScript
 
 // Orbs: move around the page. The orbs should bounce off the edges of the window and off the header and footer.
-window.onload = function () {
-    let main = document.querySelector("main");
-    let footer = document.querySelector("footer"); // Footer boundary
-
-    if (!main) {
-        console.error("Main section not found!");
-        return;
-    }
-
-    let orbs = [
+// Globals
+let animationId; // For canceling the animation frame
+let isGridView = false; // Grid View: The orbs are contained in a grid layout
+let main;
+let footer; // Footer boundary
+let orbs = [
         { id: "orb_me", dx: 2, dy: 2 },
         { id: "orb_services", dx: -2, dy: 1.5 },
         { id: "orb_things", dx: 3, dy: 2.5 },
         { id: "orb_smile", dx: -3, dy: 1.75 }
     ];
 
+document.addEventListener("DOMContentLoaded", function () {
+    main = document.querySelector("main");
+    footer = document.querySelector("footer");
+    const toggle = document.getElementById("orbToggleSlide");
+
+    if (!main) {
+        console.error("Main or Footer section not found!");
+        return;
+    }
+
     initializeOrbs();
-    moveOrbs();
+    animationId = requestAnimationFrame(moveOrbs);
 
-    // Click events for the Popups
-    document.getElementById("orb_me").addEventListener("click", function () {
-        let popup = document.getElementById("popup_me");
-        if (popup) {
-            popup.style.display = "block";
+    toggle?.addEventListener("change", function () {
+        isGridView = this.checked;
+        if (isGridView) {
+            cancelAnimationFrame(animationId); // Stop the orb animation
+            applyGridLayout(); // Apply grid layout
         } else {
-            console.error("Popup #popup_me not found!");
+            location.reload(); // Reset the layout manually
         }
     });
 
-    document.getElementById("orb_services").addEventListener("click", function () {
-        let popup = document.getElementById("popup_services");
-        if (popup) {
-            popup.style.display = "block";
-        } else {
-            console.error("Popup #popup_services not found!");
-        }
+    // Click events for all the Popups
+    orbs.forEach(({ id }) => {
+        const orb = document.getElementById(id);
+        const key = id.split("_")[1]; // Extract the key from the ID
+        orb?.addEventListener("click", () => {
+            const popup = document.getElementById(`popup_${key}`);
+            if (popup) {
+                popup.style.display = "block";
+            } else {
+                console.error(`Popup with ID '${popupId}' not found!`);
+            }
+        });
     });
+    
 
-    document.getElementById("orb_things").addEventListener("click", function () {
-        let popup = document.getElementById("popup_things");
-        if (popup) {
-            popup.style.display = "block";
-        } else {
-            console.error("Popup #popup_things not found!");
-        }
-    });
-
-    document.getElementById("orb_smile").addEventListener("click", function () {
-        let popup = document.getElementById("popup_smile");
-        if (popup) {
-            popup.style.display = "block";
-        } else {
-            console.error("Popup #popup_smile not found!");
-        }
-    });
-
-    // Close button for the popups
+    // Close button for all the popups
     document.querySelectorAll(".close-btn").forEach(button => {
         button.addEventListener("click", function () {
-            let popupId = this.dataset.popup;
-            let popup = document.getElementById(popupId);
+            const popupId = this.dataset.popup;
+            const popup = document.getElementById(popupId);
             if (popup) {
                 popup.style.display = "none";
             } else {
@@ -110,112 +78,104 @@ window.onload = function () {
     });
 
     function initializeOrbs() {
-        let mainRect = main.getBoundingClientRect();
+        const mainRect = main.getBoundingClientRect();
 
         orbs.forEach((orbObj, index) => {
-            let orb = document.getElementById(orbObj.id);
+            const orb = document.getElementById(orbObj.id);
             if (!orb) {
                 console.error(`Orb with ID '${orbObj.id}' not found!`);
                 return;
             }
 
             let minDistance = 120; // Minimum distance between orbs
-            let attempts = 0;
-            let validPosition = false;
-
+            let validPosition = false, attempts = 0;
             while (!validPosition && attempts < 50) {
-                let randomX = Math.random() * (mainRect.width - 100);
-                let randomY = Math.random() * (mainRect.height - 100);
-
-                validPosition = orbs.every((otherOrb, otherIndex) => {
-                    if (otherIndex === index) return true;
-                    let other = document.getElementById(otherOrb.id);
-                    if (!other) return true;
-                    let otherX = other.offsetLeft;
-                    let otherY = other.offsetTop;
-                    let dx = randomX - otherX;
-                    let dy = randomY - otherY;
-                    return Math.sqrt(dx * dx + dy * dy) > minDistance;
+                const x = Math.random() * (mainRect.width - 100);
+                const y = Math.random() * (mainRect.height - 100);
+                validPosition = orbs.every((other, i) => {
+                    if (i === index) return true;
+                    const otherOrb = document.getElementById(other.id);
+                    if (!otherOrb) return true;
+                    const dx = x - otherOrb.offsetLeft;
+                    const dy = y - otherOrb.offsetTop;
+                    return Math.sqrt(dx * dx + dy * dy) > 120;
                 });
 
                 if (validPosition) {
-                    orb.style.left = randomX + "px";
-                    orb.style.top = randomY + "px";
+                    orb.style.left = `${x}px`;
+                    orb.style.top = `${y}px`;
                 }
-
                 attempts++;
             }
         });
     }
 
+    // Move the orbs around the page
     function moveOrbs() {
-        let mainRect = main.getBoundingClientRect();
-        let footerRect = footer.getBoundingClientRect(); // Ensure we reference this
+        const mainRect = main.getBoundingClientRect();
+        const footerRect = footer.getBoundingClientRect();
 
         orbs.forEach((orbObj, index) => {
-            let orb = document.getElementById(orbObj.id);
+            const orb = document.getElementById(orbObj.id);
             if (!orb) return;
 
             let newLeft = orb.offsetLeft + orbObj.dx;
             let newTop = orb.offsetTop + orbObj.dy;
 
-            // Bounce off the left/right boundaries
+            // Bounce off the bottom of <main>, ensuring it does not fall into **before** the footer
             if (newLeft <= 0 || newLeft + orb.clientWidth >= main.clientWidth) {
                 orbObj.dx *= -1;
-            }
-
-            // Bounce off the top of <main>
-            if (newTop <= 0) {
-                orbObj.dy *= -1;
-            }
-
-            // Bounce off the bottom of <main>, ensuring it does not fall into **before** the footer
-            if (newTop + orb.clientHeight >= main.clientHeight) {
-                orbObj.dy *= -1;
-                newTop = main.clientHeight - orb.clientHeight; // Keep it above the footer
+                newLeft = Math.max(0, Math.min(main.clientWidth - orb.clientWidth, newLeft));
             }
 
             // Ensure the orb does not enter the footer
-            if (newTop + orb.clientHeight >= footerRect.top) {
+            if (newTop <= 0 || newTop + orb.clientHeight >= main.clientHeight) {
                 orbObj.dy *= -1;
-                newTop = footerRect.top - orb.clientHeight;
+                newTop = Math.max(0, Math.min(main.clientHeight - orb.clientHeight, newTop));
             }
 
-            orb.style.left = newLeft + "px";
-            orb.style.top = newTop + "px";
+            orb.style.left = `${newLeft}px`;
+            orb.style.top = `${newTop}px`;
 
             // Collision detection between orbs
             orbs.forEach((otherOrb, otherIndex) => {
                 if (index !== otherIndex) {
-                    let other = document.getElementById(otherOrb.id);
+                    const other = document.getElementById(otherOrb.id);
                     if (!other) return;
 
-                    let dx = orb.offsetLeft - other.offsetLeft;
-                    let dy = orb.offsetTop - other.offsetTop;
-                    let distance = Math.sqrt(dx * dx + dy * dy);
+                    const dx = orb.offsetLeft - other.offsetLeft;
+                    const dy = orb.offsetTop - other.offsetTop;
+                    const distance = Math.sqrt(dx * dx + dy * dy);
 
                     if (distance < orb.clientWidth) {
-                        let tempDx = orbObj.dx;
-                        let tempDy = orbObj.dy;
-                        orbObj.dx = otherOrb.dx;
-                        orbObj.dy = otherOrb.dy;
-                        otherOrb.dx = tempDx;
-                        otherOrb.dy = tempDy;
+                        [orbObj.dx, otherOrb.dx] = [otherOrb.dx, orbObj.dx];
+                        [otherOrb.dy, otherOrb.dy] = [otherOrb.dy, orbObj.dy];
                     }
                 }
             });
         });
 
-        requestAnimationFrame(moveOrbs);
+        animationId = requestAnimationFrame(moveOrbs);
     }
-};
+});
 
-// Close popups
-function closePopup(id) {
-    let popup = document.getElementById(id);
-    if (popup) {
-        popup.style.display = "none";
-    } else {
-        console.error(`Popup with ID '${id}' not found!`);
-    }
+// Toggle: on/off the orbs.
+// This function applies the grid layout to the orbs.
+function applyGridLayout() {
+    const orbElements = document.querySelectorAll(".bouncing-orb");
+    const totalOrbs = orbElements.length;
+    const columns = Math.ceil(Math.sqrt(totalOrbs));
+    const rows = Math.ceil(totalOrbs / columns);
+    const spacingX = main.clientWidth / columns;
+    const spacingY = main.clientHeight / rows;
+
+    orbElements.forEach((orb, i) => {
+        orb.style.transition = "all 0.4s ease";
+        orb.style.left = `${spacingX * (i % cols) + spacingX / 2 - orb.clientWidth / 2}px`;
+        orb.style.top = `${spacingY * Math.floor(i / cols) + spacingY / 2 - orb.clientHeight / 2}px`;
+        orb.style.width = "100px";
+        orb.style.height = "100px";
+        orb.style.fontSize = "1.6rem";
+        orb.style.boxShadow = "0 0 25px rgba(255, 255, 255, 0.9)";
+    });
 }
