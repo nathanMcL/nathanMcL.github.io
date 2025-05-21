@@ -171,8 +171,8 @@ function applyGridLayout() {
 
     orbElements.forEach((orb, i) => {
         orb.style.transition = "all 0.4s ease";
-        orb.style.left = `${spacingX * (i % cols) + spacingX / 2 - orb.clientWidth / 2}px`;
-        orb.style.top = `${spacingY * Math.floor(i / cols) + spacingY / 2 - orb.clientHeight / 2}px`;
+        orb.style.left = `${spacingX * (i % columns) + spacingX / 2 - orb.clientWidth / 2}px`;
+        orb.style.top = `${spacingY * Math.floor(i / columns) + spacingY / 2 - orb.clientHeight / 2}px`;
         orb.style.width = "100px";
         orb.style.height = "100px";
         orb.style.fontSize = "1.6rem";
