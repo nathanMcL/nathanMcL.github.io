@@ -312,5 +312,6 @@ Unexpected outbound fetch() or XMLHttpRequest.<br>
 
 - CSP https://web.dev/articles/csp
 - Google Web Fundamentals – CSP Mozilla CSP Guide https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/CSP
-- OWASP Content Security Policy Cheat Sheet https://cheatsheetseries.owasp.org/cheatsheets/Content_Security_Policy_Cheat_Sheet.html
+- OWASP Content Security Policy Cheat Sheet https://cheatsheetseries.owasp.org/
+cheatsheets/Content_Security_Policy_Cheat_Sheet.html
 *The OWASP Cheat Sheet is very helpfull*
