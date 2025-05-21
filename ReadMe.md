@@ -184,6 +184,17 @@ To improve this page I should improve the error handling.<br>
                 - Should orbs be slowed down for smaller screens? <br>
                 - Is that CSS, or JS to adjust the speed for phones? <br>
 
+### (05/20/2025.1400) About `Slide Button`
+
+I like the orbs... They're just so much fun to be distracted by.<br>
+I've been thinking that the orbs should have a chill mode.<br>
+The `Slide Button` will stop the orbs from bouncing and place them in a 2-by-2 grid.<br>
+If, for whatever reason, I decided to add more orbs. The succession of orbs would scale in comparison to the space within the orb section (In theory)<br>  
+
+### Update to `aboutScript.js`
+
+Hopefully improved the error handling or orb parameters for keeping them from going off screen.<br>
+
 
 ### Inspired Me
 
