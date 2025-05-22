@@ -227,7 +227,27 @@ Cookies or storage modifications.<br>
 Unexpected outbound fetch() or XMLHttpRequest.<br>
 
 
-#### CSP Hardening: Terminology
+## CSP Hardening: Terminology
+
+### (05/22/2025.0940) Mobile Screen Visual Text layout Issue
+
+I have been attempting to resolve the oversize screen when this page is viewed on smaller screens.<br>
+I implemented these types of CSS elements:
+```
+overflow-x: auto;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    max-width: 100%;
+    box-sizing: border-box;
+```
+
+The current issue is that the "frame" that the `Term: and Definition:` are contained in should be able to scroll/slide this content on small screens without the oversized background.<br>
+Even though these `Terms` are not displayed correctly (ATM). I have narrowed down the oversizing issue to being the `OWASP Content Security Policy` link.<br>
+On small screens the *_underscores_* I think are causing the oversized background. If I break-up the `OWASP` link it becomes unlinked.<br>
+- I could rename the link, to condense the naming convention. <br>
+- Then remove the `word-wrap`, maybe the `white-space` `CSS` elements.<br>
+
+- That, I think should restore the `Term: and Definition:`section so the `Definitions` section text is displaid correctly, and slide able on the smaller screens.<br>  
 
 ```
     Term:                                      Definition:
