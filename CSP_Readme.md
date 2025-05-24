@@ -244,10 +244,11 @@ overflow-x: auto;
 The current issue is that the "frame" that the `Term: and Definition:` are contained in should be able to scroll/slide this content on small screens without the oversized background.<br>
 Even though these `Terms` are not displayed correctly (ATM). I have narrowed down the oversizing issue to being the `OWASP Content Security Policy` link.<br>
 On small screens the *_underscores_* I think are causing the oversized background. If I break-up the `OWASP` link it becomes unlinked.<br>
-- I could rename the link, to condense the naming convention. <br>
+- I want to condense the link name, but can't do that. <br>
+- (05/24/2025.1130) I added a `space` to break up the `OWASP` link name. <br>
 - Then remove the `word-wrap`, maybe the `white-space` `CSS` elements.<br>
-
-- That, I think should restore the `Term: and Definition:`section so the `Definitions` section text is displaid correctly, and slide able on the smaller screens.<br>  
+- That, I think should restore the `Term: and Definition:`section so the `Definitions` section text is displaid correctly, and slide able on the smaller screens.<br>
+- (05/24/2025.1130) `Term: and Definition:` should now display or function as it should.<br>
 
 ```
     Term:                                      Definition:
