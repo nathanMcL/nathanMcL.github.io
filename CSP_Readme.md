@@ -335,5 +335,7 @@ On small screens the *_underscores_* I think are causing the oversized backgroun
 - Google Web Fundamentals – CSP Mozilla CSP Guide:
 `https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/CSP`
 - OWASP Content Security Policy Cheat Sheet:
-`https://cheatsheetseries.owasp.org/cheatsheets/Content_Security_Policy_Cheat_Sheet.html`<br>
+`https://cheatsheetseries.owasp.org/
+cheatsheets/Content_Security_Policy_
+Cheat_Sheet.html`<br>
 *The OWASP Cheat Sheet is very helpfull*<br>
