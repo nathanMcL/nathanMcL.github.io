@@ -206,6 +206,7 @@ main {
     left: 50%;
     transform: translate(-50%, -50%);
     text-align: center;
+    z-index: 10;
 }
 
 .orb-popup button {
@@ -350,47 +351,6 @@ footer {
     border-radius: 10px;
 }
 
-/* Cyber-Grid Background */
-@keyframes cyberGrid {
-    0% { background-position: 0% 0%; }
-    100% { background-position: 100% 100%;}
-}
-
-.cyber-container {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background: linear-gradient(45deg, var(--first-color) 25%, var(--third-color) 50%, var(--fourth-color) 75%);
-    background-size: 400% 400%;
-    opacity: 0.15; /* Adjust the opacity as needed */
-    z-index: -1;
-    animation: cyberGrid 10s infinite linear;
-    overflow: hidden;
-    pointer-events: none;
-}
-
-
-/* Network Packet Animation */
-.network-packet {
-    position: absolute;
-    top: -20px;
-    color: rgba(0, 255, 170, 1); /* Cyber green */
-    font-family: "Courier New", monospace;
-    font-size: 14x;
-    opacity: 1;
-    pointer-events: none;
-    animation: floatPackets 10s linear infinite;
-    text-shadow: 0 0 5px rgba(0, 255, 170, 0.9), 0 0 10px rgba(0, 255, 170, 0.7);
-}
-
-@keyframes floatPacket {
-    0% { transform: translateY(0px); opacity: 1; }
-    100% { transform: translateY(100vh); opacity: 0; }
-}
-/* End Network Packet Animation */
-
 /* Responsive styles */
 /* Medium screens */
 @media (max-width: 1023px) {
@@ -456,9 +416,9 @@ footer {
     }
 
     .bouncing-orb {
-        width: 70px; /* Reduce size */
-        height: 70px;
-        font-size: 1.3rem; /* Adjust text size */
+        width: 60px; /* Reduce size */
+        height: 60px;
+        font-size: 1.2rem; /* Adjust text size */
     }
 
     .orb-text {
@@ -550,14 +510,14 @@ footer {
 
     /* Responsive Small Orb */
     main {
-        width: 100vw; /* Use full width */
-        height: 55vh; /* Smaller height for mobile */
+        width: 95vw; /* Use full width */
+        height: 65vh; /* Smaller height for mobile */
     }
 
     .bouncing-orb {
-        width: 55px; /* Even smaller */
-        height: 55px;
-        font-size: 1.1rem; /* Adjust text size */
+        width: 50px; /* Even smaller */
+        height: 50px;
+        font-size: 1rem; /* Adjust text size */
     }
 
     .orb-text {
@@ -565,12 +525,13 @@ footer {
     }
 
     .orb-popup {
-        width: 200px; /* Make popups more compact */
+        width: 90%; /* Make popups more compact */
         padding: 10px;
+        max-width: 250px;
     }
 
     .orb-popup button {
-        font-size: 12px; /* Smaller button text */
+        font-size: 0.9rem; /* Smaller button text */
         padding: 4px 8px;
     }
     /* End of Responsive Small Orb */

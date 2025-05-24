@@ -24,8 +24,7 @@
             font-src 'self'; 
             object-src 'none'; 
             base-uri 'none'; 
-            connect-src 'self'; 
-            frame-ancestors 'none'; 
+            connect-src 'self';
             require-trusted-types-for 'script';">
 
         <meta http-equiv="X-Content-Type-Options" content="nosniff">
@@ -49,7 +48,7 @@
                     <ul class="nav.menu">
                         <li class="nav_item"><a href="index.html">Home</a></li>
                         <li class="nav_item"><a class="nav_active" href="about.html">About</a></li>
-                        <li class="nav_item"><a href="inspiredme.html">Inspirations</a>
+                        <li class="nav_item"><a href="inspired_me.html">Inspirations</a>
                         <li class="nav_item"><a href="blog.html">Thoughts</a></li>
                         <li class="nav_item"><a href="cybercuriosity.html">Cyber Curiosity</a></li>
                         <li class="nav_item"><a href="tools.html">Tools</a></li>
@@ -70,7 +69,7 @@
                 <li><img src="/images/VueJS.png" alt="Vue.js"></li>
                 <li><img src="/images/Tux.png" alt="Linux"></li>
                 <li><img src="/images/Node.js.png" alt="Node.js"></li>
-                <li><img src="/images/bash_logo.png" alt="AWS"></li>
+                <li><img src="/images/bash_logo.png" alt="Bash"></li>
                 <li><img src="/images/Visual_Studio_Code_1.35_icon.svg.png" alt="VS_code"></li>
                 <li><img src="/images/Android.png" alt="Android"></li>
                 <li><img src="/images/Java_logo.png" alt="Java"></li>
@@ -79,27 +78,29 @@
             </ul>
         </div>
         <!-- End of Marquee Section -->
+
         <!-- Main Section -->
         <main>  
             <!-- Bouncing Orbs -->
             <div class="bouncing-orb" id="orb_me" tabindex="0" role="button" aria-label="Open popup about me">
                 <span class="orb-text">Me</span>
             </div>
-            <div class="bouncing-orb" id="orb_services">
+            <div class="bouncing-orb" id="orb_services" tabindex="1" role="button" aria-label="Open popup `S`">
                 <span class="orb-text">S</span>
             </div>
 
-            <div class="bouncing-orb" id="orb_things">
+            <div class="bouncing-orb" id="orb_things" tabindex="2" role="button" aria-label="Open popup `T`">
                 <span class="orb-text">T</span>
             </div>
 
-            <div class="bouncing-orb" id="orb_smile">
+            <div class="bouncing-orb" id="orb_smile" tabindex="3" role="button" aria-label="Open popup 😁 Cheek Smile Emoji">
                 <span class="orb-text">😁</span>
             </div>
 
             <!-- Popups -->
             <div id="popup_me" class="orb-popup">
-                <p>This is a short blurb about me...yadayada...boomboom...poppn... I can change this later.</p>
+                <p>This is a short blurb about me...YadaYadaYada... <br> 
+                    BoomBoom...Poppn'...</p>
                 <button class="close-btn" data-popup="popup_me">Close</button>
             </div>
 
