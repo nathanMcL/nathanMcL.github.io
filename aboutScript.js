@@ -224,9 +224,9 @@ document.getElementById("orb_me").addEventListener("click", async function () {
     loader.style.display = "block";
     paragraph.textContent = ""; // Clear the previous text
     
-    const cashed = localStorage.getItem("about_me_text");
+    const cached = localStorage.getItem("about_me_text");
     if (cached) {
-        paragraph.textContent = cashed;
+        paragraph.textContent = cached;
         loader.style.display = "none";
         return;
     }
