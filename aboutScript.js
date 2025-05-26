@@ -235,7 +235,14 @@ document.getElementById("orb_me").addEventListener("click", async function () {
         const response = await fetch("https://macn-about-api-djgzf3csevd3ewer.northeurope-01.azurewebsites.net/generate-aboutOrb", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ context: "" }) 
+            body: JSON.stringify({ context: "A short summary for the MacN_iT about me orb" }) 
+        })
+        .then(res => res.json())
+        .then(data => {
+            console.log(data.about_text);
+        })
+        .catch(error => {
+            console.error("Fetch failed:", error);
         });
 
         const data = await response.json();
