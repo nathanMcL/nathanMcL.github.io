@@ -232,7 +232,7 @@ document.getElementById("orb_me").addEventListener("click", async function () {
     }
 
     try {
-        const response = await fetch("https://macn-about-api.azurewebsites.net/generate-aboutOrb", {
+        const response = await fetch("https://macn-about-api-djgzf3csevd3ewer.northeurope-01.azurewebsites.net/generate-aboutOrb", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ context: "" }) 
