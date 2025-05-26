@@ -98,9 +98,9 @@
             </div>
 
             <!-- Popups -->
-            <div id="popup_me" class="orb-popup">
-                <p>This is a short blurb about me...YadaYadaYada... <br> 
-                    BoomBoom...Poppn'...</p>
+            <div id="popup_me" class="orb-popup" role="dialog" aria-labelledby="about_me_text" aria-live="polite">
+                <div class="loader" id="loader_me" aria-hidden="true"></div>
+                <p id="about_me_text">Loading...</p>
                 <button class="close-btn" data-popup="popup_me">Close</button>
             </div>
 

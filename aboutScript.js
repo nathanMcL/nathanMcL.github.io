@@ -213,3 +213,40 @@ function startGridAnimation(orb, index) {
 
     animate();
 }
+
+// Orb Me: AI generated Content: API Fetch
+document.getElementById("orb_me").addEventListener("click", async function () {
+    const popup = document.getElementById("popup_me");
+    const loader = document.getElementById("loader_me");
+    const paragraph = document.getElementById("about_me_text");
+
+    popup.style.display = "block";
+    loader.style.display = "block";
+    paragraph.textContent = ""; // Clear the previous text
+    
+    const cashed = localStorage.getItem("about_me_text");
+    if (cached) {
+        paragraph.textContent = cashed;
+        loader.style.display = "none";
+        return;
+    }
+
+    try {
+        const response = await fetch("https://macn-about-api.azurewebsites.net/generate-aboutOrb", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ context: "" }) 
+        });
+
+        const data = await response.json();
+        const aboutText = data.about_text || "Sorry, I couldn't load my About Me content at the moment.";
+
+        paragraph.textContent = aboutText;
+        localStorage.setItem("about_me_text", aboutText); // Cache the response
+    } catch (err) {
+        paragraph.textContent = "There was an error contacting the server. Please try again later.";
+        console.error(err);
+    } finally {
+        loader.style.display = "none";
+    }
+});
