@@ -230,30 +230,24 @@ document.getElementById("orb_me").addEventListener("click", async function () {
         loader.style.display = "none";
         return;
     }
-
+    
     try {
         const response = await fetch("https://macn-about-api-djgzf3csevd3ewer.northeurope-01.azurewebsites.net/generate-aboutOrb", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ context: "A short summary for the MacN_iT about me orb" }) 
-        })
-        .then(res => res.json())
-        .then(data => {
-            console.log(data.about_text);
-        })
-        .catch(error => {
-            console.error("Fetch failed:", error);
+            body: JSON.stringify({ context: "A short summary for the MacN_iT about me orb" })
         });
-
+    
         const data = await response.json();
         const aboutText = data.about_text || "Sorry, I couldn't load my About Me content at the moment.";
-
+    
         paragraph.textContent = aboutText;
-        localStorage.setItem("about_me_text", aboutText); // Cache the response
+        localStorage.setItem("about_me_text", aboutText);
     } catch (err) {
         paragraph.textContent = "There was an error contacting the server. Please try again later.";
         console.error(err);
     } finally {
         loader.style.display = "none";
     }
+    
 });
