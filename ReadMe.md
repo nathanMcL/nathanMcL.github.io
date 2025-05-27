@@ -207,6 +207,8 @@ What’s up with the `Me` orb?<br>
 Something about content from a server not loading...<br>
 For this `About` page. I want to keep it fun and experimental. So, I came up with an idea to implement an AI model coupled with a custom `message=[…]` that I am hoping will generate content closely aligned with information about myself that I hard-coded:<br>
 
+***Message***: The `message = []` consists of these parameters: an assigned `role`, `system` instructions and `content` to refer too.<br>
+
 ***Role***: The `role` could be thought of as `what` type of personality or perspective would you like the AI to adopt?<br>
 
 o	Friendly tone?<br>
