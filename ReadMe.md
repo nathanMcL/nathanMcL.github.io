@@ -201,9 +201,10 @@ Hopefully improved the error handling or orb parameters for keeping them from go
 
 -	A short and possibly concise biography.  For *luls*… 😝<br>
 
-### Orb: `Me`: MacN API Server
+### Orb: `Me`: MacN API Server?
 
 What’s up with the `Me` orb?<br>
+Something about content from a server not loading...<br>
 For this `About` page. I want to keep it fun and experimental. So, I came up with an idea to implement an AI model coupled with a custom `message=[…]` that I am hoping will generate content closely aligned with information about myself that I hard-coded:<br>
 
 -	 ***Role***: The `role` could be thought of as `what` type of personality or perspective would you like the AI to adopt?<br>
@@ -234,6 +235,20 @@ messages = [
             ]
 ```
 
+### MacN API Server
+
+What’s this *server* business about the `about page`?<br>
+Think of your social media profile or LinkedIn profile. I’m sure somewhere, we all have a short biography of ourselves. For instance, I like my `LinkedIn` BIO, I feel like I took the time to consider the personal information I shared.<br>
+But…<br>
+
+What if you could have a structurally formatted biography that `you`, ahhh! I mean `me`, `I`? Could add `bullet-points` or `particularly worded content` to this structurally formatted biography over time. As this BIO `”content”(…)` gets aligned to represent `”Me”`, an `API Server` can securely host and serve the AI model that will generate the “hopefully” aligned desired output for the `Me` `Orb` biography.<br>
+I set the generated BIO to about a 200-word length.  <br>
+The `Me` `Orb`  BIO as of right now is set to generate a different BIO after each time the `Me` `Orb` is closed. I think that might need to be changed once I sort all this out.<br> 
+
+#### Standard Operating Procedure (SOP)
+
+I compiled notes and created an SOP for setting up this `API Server`. I will figure out how I intend to share this. <br>
+The `Back-End`…<br> 
 
 
 ### Inspired Me
