@@ -195,6 +195,46 @@ If, for whatever reason, I decided to add more orbs. The succession of orbs woul
 
 Hopefully improved the error handling or orb parameters for keeping them from going off screen.<br>
 
+## (05/27/2025.0800) About: Orb: `Me` 
+
+***YadaYadaYada…BoomBoom…Poppn’…***<br>
+
+-	A short and possibly concise biography.  For *luls*… 😝<br>
+
+### Orb: `Me`: MacN API Server
+
+What’s up with the `Me` orb?<br>
+For this `About` page. I want to keep it fun and experimental. So, I came up with an idea to implement an AI model coupled with a custom `message=[…]` that I am hoping will generate content closely aligned with information about myself that I hard-coded:<br>
+
+-	 ***Role***: The `role` could be thought of as `what` type of personality or perspective would you like the AI to adopt?<br>
+o	Friendly tone?
+o	Reflective?
+o	Confident but informal
+You are not just asking the AI to return information – you’re asking it to *”act”* a certain way when it communicates.<br>
+You could base this on your sense of humor, tone, and voice, or even how you want people to feel when they read this *“self-description”*.<br>
+
+-	***System***: In the `system` section you are *establishing* the *settings*.
+The `system context` could include: 
+o	What it’s supposed to talk about. 
+o	What it’s not supposed to do (like avoid generic corporate jargon)
+The `system` settings are like briefing a creative writer before they draft your intro blurb.<br> 
+
+-	***Content***:  In the `content` section, you are supplying the AI with the *key* information it can draw from: 
+o	This could be based on your personal data.
+o	 Experiences
+o	Achievements
+o	Informal vs Formal style
+The `content` is a source that the AI can draw from to generate the final `output` using the mindset and rules that were defined.<br>
+
+```
+messages = [
+            {
+                "role": "system",
+                "content": (…) …}
+            ]
+```
+
+
 
 ### Inspired Me
 
