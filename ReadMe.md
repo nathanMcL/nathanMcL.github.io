@@ -207,24 +207,26 @@ What’s up with the `Me` orb?<br>
 Something about content from a server not loading...<br>
 For this `About` page. I want to keep it fun and experimental. So, I came up with an idea to implement an AI model coupled with a custom `message=[…]` that I am hoping will generate content closely aligned with information about myself that I hard-coded:<br>
 
--	 ***Role***: The `role` could be thought of as `what` type of personality or perspective would you like the AI to adopt?<br>
-o	Friendly tone?
-o	Reflective?
-o	Confident but informal
+***Role***: The `role` could be thought of as `what` type of personality or perspective would you like the AI to adopt?<br>
+
+o	Friendly tone?<br>
+o	Reflective?<br>
+o	Confident but informal<br>
+
 You are not just asking the AI to return information – you’re asking it to *”act”* a certain way when it communicates.<br>
 You could base this on your sense of humor, tone, and voice, or even how you want people to feel when they read this *“self-description”*.<br>
 
--	***System***: In the `system` section you are *establishing* the *settings*.
-The `system context` could include: 
-o	What it’s supposed to talk about. 
-o	What it’s not supposed to do (like avoid generic corporate jargon)
+***System***: In the `system` section you are *establishing* the *settings*.<br>
+The `system context` could include:<br> 
+o	What it’s supposed to talk about.<br>
+o	What it’s not supposed to do (like avoid generic corporate jargon)<br>
 The `system` settings are like briefing a creative writer before they draft your intro blurb.<br> 
 
--	***Content***:  In the `content` section, you are supplying the AI with the *key* information it can draw from: 
-o	This could be based on your personal data.
-o	 Experiences
-o	Achievements
-o	Informal vs Formal style
+***Content***:  In the `content` section, you are supplying the AI with the *key* information it can draw from:<br> 
+o	This could be based on your personal data.<br>
+o	 Experiences<br>
+o	Achievements<br>
+o	Informal vs Formal style<br>
 The `content` is a source that the AI can draw from to generate the final `output` using the mindset and rules that were defined.<br>
 
 ```
@@ -233,7 +235,7 @@ messages = [
                 "role": "system",
                 "content": (…) …}
             ]
-```
+``` 
 
 ### MacN API Server
 
@@ -241,9 +243,10 @@ What’s this *server* business about the `about page`?<br>
 Think of your social media profile or LinkedIn profile. I’m sure somewhere, we all have a short biography of ourselves. For instance, I like my `LinkedIn` BIO, I feel like I took the time to consider the personal information I shared.<br>
 But…<br>
 
-What if you could have a structurally formatted biography that `you`, ahhh! I mean `me`, `I`? Could add `bullet-points` or `particularly worded content` to this structurally formatted biography over time. As this BIO `”content”(…)` gets aligned to represent `”Me”`, an `API Server` can securely host and serve the AI model that will generate the “hopefully” aligned desired output for the `Me` `Orb` biography.<br>
+What if you could have a structurally formatted biography that `you`, ahhh! I mean `me`, wait... `I`? Could add `bullet-points` or `particularly worded content` to this structurally formatted biography, over time. As this BIO `”content”(…)` gets aligned to represent `”Me”`, an `API Server` can securely host and serve the AI model that will generate the “hopefully” aligned desired output for the `Me` `Orb` biography.<br>
 I set the generated BIO to about a 200-word length.  <br>
-The `Me` `Orb`  BIO as of right now is set to generate a different BIO after each time the `Me` `Orb` is closed. I think that might need to be changed once I sort all this out.<br> 
+The `Me` `Orb`  BIO as of right now is set to generate a different BIO after each time the `Me` `Orb` is closed. I think that might need to be changed once I sort all this out.<br>
+For `scaling` I think I will have to review the `OpenAi`: `https://platform.openai.com/docs/models` information further, as a cost could be included.<br>
 
 #### Standard Operating Procedure (SOP)
 
