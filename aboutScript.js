@@ -230,24 +230,32 @@ document.getElementById("orb_me").addEventListener("click", async function () {
         loader.style.display = "none";
         return;
     }
-    
+
     try {
         const response = await fetch("https://macn-about-api-djgzf3csevd3ewer.northeurope-01.azurewebsites.net/generate-aboutOrb", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ context: "A short summary for the MacN_iT about me orb" })
+            body: JSON.stringify({ context: "A short summary for the MacN_iT about me orb" }) 
+        })
+        .then(response => response.json())
+        .then(data => {
+            const orb = document.getElementById('about-orb-output');
+            orb.innerText = data.about_text;
+            console.log(data.about_text);
+        })
+        .catch(error => {
+            console.error("API Fetch failed:", error);
         });
-    
+
         const data = await response.json();
         const aboutText = data.about_text || "Sorry, I couldn't load my About Me content at the moment.";
-    
+
         paragraph.textContent = aboutText;
-        localStorage.setItem("about_me_text", aboutText);
+        localStorage.setItem("about-orb-output", aboutText); // Cache the response
     } catch (err) {
         paragraph.textContent = "There was an error contacting the server. Please try again later.";
         console.error(err);
     } finally {
         loader.style.display = "none";
     }
-    
 });
