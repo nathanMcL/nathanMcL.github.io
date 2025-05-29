@@ -218,8 +218,7 @@ function startGridAnimation(orb, index) {
 document.getElementById("orb_me").addEventListener("click", async function () {
     const popup = document.getElementById("popup_me");
     const loader = document.getElementById("loader_me");
-    const paragraph = document.getElementById("about_me_text");
-
+    
     popup.style.display = "block";
     loader.style.display = "block";
     paragraph.textContent = ""; // Clear the previous text
@@ -231,7 +230,7 @@ document.getElementById("orb_me").addEventListener("click", async function () {
         return;
     }
 
-    try {
+try {
     const response = await fetch("https://macn-about-api-djgzf3csevd3ewer.northeurope-01.azurewebsites.net/generate-aboutOrb", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -245,14 +244,15 @@ document.getElementById("orb_me").addEventListener("click", async function () {
     if (orb) {
         orb.textContent = aboutText;
         console.log(aboutText);
+        localStorage.setItem("about_me_text", aboutText);
     } else {
         console.error("💥 Element #about-orb-output not found in the DOM.");
     }
-
-    paragraph.textContent = aboutText;
-    localStorage.setItem("about_me_text", aboutText); // 🔁 fix key name here too!
 } catch (err) {
-    paragraph.textContent = "There was an error contacting the server. Please try again later.";
+    const orb = document.getElementById('about-orb-output');
+    if (orb) {
+        orb.textContent = "There was an error contacting the server. Please try again later.";
+    }
     console.error(err);
 } finally {
     loader.style.display = "none";
