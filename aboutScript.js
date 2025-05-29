@@ -247,6 +247,12 @@ document.getElementById("orb_me").addEventListener("click", async function () {
             console.error("API Fetch failed:", error);
         });
 
+        if (output) {
+        output.textContent = data.about_text;
+        } else {
+        console.error("💥 Element #about-orb-output not found in the DOM.");
+        }
+
         const data = await response.json();
         const aboutText = data.about_text || "Sorry, I couldn't load my About Me content at the moment.";
 
