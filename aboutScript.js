@@ -218,12 +218,13 @@ function startGridAnimation(orb, index) {
 document.getElementById("orb_me").addEventListener("click", async function () {
     const popup = document.getElementById("popup_me");
     const loader = document.getElementById("loader_me");
+    const paragraph = document.getElementById("about-orb-output");
     
     popup.style.display = "block";
     loader.style.display = "block";
     paragraph.textContent = ""; // Clear the previous text
     
-    const cached = localStorage.getItem("about_me_text");
+    const cached = localStorage.getItem("about-orb-output");
     if (cached) {
         paragraph.textContent = cached;
         loader.style.display = "none";
@@ -244,7 +245,7 @@ try {
     if (orb) {
         orb.textContent = aboutText;
         console.log(aboutText);
-        localStorage.setItem("about_me_text", aboutText);
+        localStorage.setItem("about-orb-output", aboutText);
     } else {
         console.error("💥 Element #about-orb-output not found in the DOM.");
     }
