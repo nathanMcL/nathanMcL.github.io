@@ -192,8 +192,8 @@ function startGridAnimation(orb, index) {
     let speed = 0.02 + Math.random() * 0.03;
 
     const pattern = index % 2 === 0 ? "diamond" : "triangle";
-    const baseLeft = parseFloat(orb.style.left);
-    const baseTop = parseFloat(orb.style.top);
+    const baseLeft = parseFloat(orb.style.left); // investigate
+    const baseTop = parseFloat(orb.style.top); // investigate
 
     function animate() {
         angle += speed;
@@ -218,44 +218,39 @@ function startGridAnimation(orb, index) {
 document.getElementById("orb_me").addEventListener("click", async function () {
     const popup = document.getElementById("popup_me");
     const loader = document.getElementById("loader_me");
-    const paragraph = document.getElementById("about-orb-output");
-    
+    const output = document.getElementById("about-orb-output");
+
     popup.style.display = "block";
     loader.style.display = "block";
-    paragraph.textContent = ""; // Clear the previous text
-    
+    output.textContent = ""; // Clear previous content
+
     const cached = localStorage.getItem("about-orb-output");
     if (cached) {
-        paragraph.textContent = cached;
+        output.textContent = cached;
         loader.style.display = "none";
         return;
     }
 
-try {
-    const response = await fetch("https://macn-about-api-djgzf3csevd3ewer.northeurope-01.azurewebsites.net/generate-aboutOrb", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ context: "A short summary for the MacN_iT about me orb" }) 
-    });
+    try {
+        const response = await fetch("https://macn-about-api-djgzf3csevd3ewer.northeurope-01.azurewebsites.net/generate-aboutOrb", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ context: "A short summary about myself, for the MacN_iT about me orb" }) 
+        });
 
-    const data = await response.json();
-    const aboutText = data.about_text || "Sorry, I couldn't load my About Me content at the moment.";
+        if (!response.ok) throw new Error("Fetch failed with status: " + response.status);
 
-    const orb = document.getElementById('about-orb-output');
-    if (orb) {
-        orb.textContent = aboutText;
-        console.log(aboutText);
+        const data = await response.json();
+        const aboutText = data.about_text || "Sorry, I couldn't load my About Me content at the moment.";
+
+        output.textContent = aboutText;
+        console.log("✅ API returned:", aboutText);
         localStorage.setItem("about-orb-output", aboutText);
-    } else {
-        console.error("💥 Element #about-orb-output not found in the DOM.");
+
+    } catch (err) {
+        output.textContent = "There was an error contacting the server. Please try again later.";
+        console.error("❌ Fetch error:", err);
+    } finally {
+        loader.style.display = "none";
     }
-} catch (err) {
-    const orb = document.getElementById('about-orb-output');
-    if (orb) {
-        orb.textContent = "There was an error contacting the server. Please try again later.";
-    }
-    console.error(err);
-} finally {
-    loader.style.display = "none";
-}
 });
