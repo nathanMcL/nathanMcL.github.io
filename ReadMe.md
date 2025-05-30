@@ -195,7 +195,7 @@ If, for whatever reason, I decided to add more orbs. The succession of orbs woul
 
 Hopefully improved the error handling or orb parameters for keeping them from going off screen.<br>
 
-## (05/27/2025.0800) About: Orb: `Me` 
+### (05/27/2025.0800) About: Orb: `Me` 
 
 ***YadaYadaYada…BoomBoom…Poppn’…***<br>
 
@@ -254,6 +254,13 @@ For `scaling` I think I will have to review the `OpenAi`: `https://platform.open
 
 I compiled notes and created an SOP for setting up this `API Server`. I will figure out how I intend to share this. <br>
 The `Back-End`…<br> 
+
+### (05/30/2025.1400) About: Orb: `Me`: Fetch/Catch/Set 
+
+***Oh My!***<br>
+I can't even begin to coherently express the challenges of connecting back-end to front-end.<br>
+I mean, besides typos, naming things differently... I lost track at how many days I have been trying to sort this out... <br> 
+I have been getting more famiure with the `Azure` platform.<br>
 
 
 ### Inspired Me
