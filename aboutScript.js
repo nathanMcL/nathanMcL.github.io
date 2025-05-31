@@ -192,8 +192,8 @@ function startGridAnimation(orb, index) {
     let speed = 0.02 + Math.random() * 0.03;
 
     const pattern = index % 2 === 0 ? "diamond" : "triangle";
-    const baseLeft = parseFloat(orb.style.left); // investigate
-    const baseTop = parseFloat(orb.style.top); // investigate
+    const baseLeft = parseFloat(orb.style.left);
+    const baseTop = parseFloat(orb.style.top);
 
     function animate() {
         angle += speed;
@@ -213,6 +213,7 @@ function startGridAnimation(orb, index) {
 
     animate();
 }
+// End of Orbs Script
 
 // Orb Me: AI generated Content: API Fetch
 document.getElementById("orb_me").addEventListener("click", async function () {
@@ -235,7 +236,7 @@ document.getElementById("orb_me").addEventListener("click", async function () {
         const response = await fetch("https://macn-about-api-djgzf3csevd3ewer.northeurope-01.azurewebsites.net/generate-aboutOrb", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ context: "A short summary about myself, for the MacN_iT about me orb" }) 
+            body: JSON.stringify({ context: "Use a tone that blends confidence with curiosity. Mention my creative tech projects, military background, and passion for equitable code. Intended for the MacN_iT About page." }) 
         });
 
         if (!response.ok) throw new Error("Fetch failed with status: " + response.status);
