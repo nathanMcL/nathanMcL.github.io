@@ -216,42 +216,50 @@ function startGridAnimation(orb, index) {
 // End of Orbs Script
 
 // Orb Me: AI generated Content: API Fetch
-document.getElementById("orb_me").addEventListener("click", async function () {
-    const popup = document.getElementById("popup_me");
-    const loader = document.getElementById("loader_me");
-    const output = document.getElementById("about-orb-output");
+document.addEventListener("DOMContentLoaded", function () {
 
-    popup.style.display = "block";
-    loader.style.display = "block";
-    output.textContent = ""; // Clear previous content
+    const orbMe = document.getElementById("orb_me");
+    if (orbMe) {
+        orbMe.addEventListener("click", async function () {
+            const popup = document.getElementById("popup_me");
+            const loader = document.getElementById("loader_me");
+            const output = document.getElementById("about-orb-output");
 
-    const cached = localStorage.getItem("about-orb-output");
-    if (cached) {
-        output.textContent = cached;
-        loader.style.display = "none";
-        return;
-    }
+            popup.style.display = "block";
+            loader.style.display = "block";
+            output.textContent = ""; // Clear previous content
 
-    try {
-        const response = await fetch("https://macn-about-api-djgzf3csevd3ewer.northeurope-01.azurewebsites.net/generate-aboutOrb", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ context: "Use a tone that blends confidence with curiosity. Mention my creative tech projects, military background, and passion for equitable code. Intended for the MacN_iT About page." }) 
+            const cached = localStorage.getItem("about-orb-output");
+            if (cached) {
+                output.textContent = cached;
+                loader.style.display = "none";
+                return;
+            }
+
+            try {
+                const response = await fetch("https://macn-about-api-djgzf3csevd3ewer.northeurope-01.azurewebsites.net/generate-aboutOrb", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ context: "Use a tone that blends confidence with curiosity. Mention my creative tech projects, military background, and passion for equitable code. Intended for the MacN_iT About page." }) 
+                });
+
+                if (!response.ok) throw new Error("Fetch failed with status: " + response.status);
+
+                const data = await response.json();
+                const aboutText = data.about_text || "Sorry, I couldn't load my About Me content at the moment.";
+
+                output.textContent = aboutText;
+                console.log("✅ API returned:", aboutText);
+                localStorage.setItem("about-orb-output", aboutText);
+
+            } catch (err) {
+                output.textContent = "There was an error contacting the server. Please try again later.";
+                console.error("❌ Fetch error:", err);
+            } finally {
+                loader.style.display = "none";
+            }
         });
-
-        if (!response.ok) throw new Error("Fetch failed with status: " + response.status);
-
-        const data = await response.json();
-        const aboutText = data.about_text || "Sorry, I couldn't load my About Me content at the moment.";
-
-        output.textContent = aboutText;
-        console.log("✅ API returned:", aboutText);
-        localStorage.setItem("about-orb-output", aboutText);
-
-    } catch (err) {
-        output.textContent = "There was an error contacting the server. Please try again later.";
-        console.error("❌ Fetch error:", err);
-    } finally {
-        loader.style.display = "none";
+    } else {
+        console.error("⚠️ orb_me element not found in the DOM!");
     }
 });
