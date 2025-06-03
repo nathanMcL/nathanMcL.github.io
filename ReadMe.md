@@ -262,6 +262,23 @@ I can't even begin to coherently express the challenges of connecting back-end t
 I mean, besides typos, naming things differently... I lost track at how many days I have been trying to sort this out... <br> 
 I have been getting more famiure with the `Azure` platform.<br>
 
+### (06/03/2025.0600) About: Orb: `Me`: API Server: Docker: 
+
+***Team To Much*** struck again! With their *excessive* wanting to ***do the most***. I did it to myself! I thought, hey, let's just set up a server to host an AI model to generate personalized biographies for the about page on my personal website. Why, though?<br>
+There are so many "things", challenges - lol, challenges don't get it, I don't quit...
+
+- Server automation setup
+- deployment fails
+- schema mistakes
+- Too many requests
+- Docker
+
+### Docker! Docker! Docker!
+
+Docker *** fascinates *** me!
+
+
+
 
 ### Inspired Me
 
