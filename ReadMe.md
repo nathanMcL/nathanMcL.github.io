@@ -213,7 +213,7 @@ For this `About` page. I want to keep it fun and experimental. So, I came up wit
 
 o	Friendly tone?<br>
 o	Reflective?<br>
-o	Confident but informal<br>
+o	Confident but informal?<br>
 
 You are not just asking the AI to return information – you’re asking it to *”act”* a certain way when it communicates.<br>
 You could base this on your sense of humor, tone, and voice, or even how you want people to feel when they read this *“self-description”*.<br>
@@ -221,7 +221,7 @@ You could base this on your sense of humor, tone, and voice, or even how you wan
 ***System***: In the `system` section you are *establishing* the *settings*.<br>
 The `system context` could include:<br> 
 o	What it’s supposed to talk about.<br>
-o	What it’s not supposed to do (like avoid generic corporate jargon)<br>
+o	What it’s not supposed to do (like avoid generic corporate jargon).<br>
 The `system` settings are like briefing a creative writer before they draft your intro blurb.<br> 
 
 ***Content***:  In the `content` section, you are supplying the AI with the *key* information it can draw from:<br> 
@@ -275,7 +275,7 @@ There are so many "things", challenges - lol, challenges don't get it, I don't q
 
 ### Docker! Docker! Docker!
 
-Docker *** fascinates *** me!
+Docker ***fascinates*** me!
 
 
 
