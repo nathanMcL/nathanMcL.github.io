@@ -240,7 +240,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 const response = await fetch("https://macn-about-api-djgzf3csevd3ewer.northeurope-01.azurewebsites.net/generate-aboutOrb", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({ context: "Use a tone that blends confidence, fun, and curiosity. Mention my creative tech projects, military background, and passion for equitable code and accessibility. Intended for the MacN_iT About page." })
+                    body: JSON.stringify({ context: "Use a tone that blends confidence, fun, and curiosity. Mention my creative writing or tech projects or military background, and passion for equitable code and accessibility. Intended for the MacN_iT About page." })
                 });
 
                 if (!response.ok) throw new Error("Fetch failed with status: " + response.status);
