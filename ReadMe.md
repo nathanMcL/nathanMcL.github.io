@@ -280,9 +280,9 @@ Docker ***fascinates*** me!
 ### (06/13/2025.0450) About: Orb: `Me`: API Server: Model `Pay Wall`
 
 - I have a clean deployment process from local to the cloud.<br>
-- The deplyment *can be* successfully deployed.<br>
+- The deployment *can be* successfully deployed.<br>
 
-When I click on the front-end (hosted on GitHub) `Orb: Me:` that action `fetches` the responce by from the "cloud" (Azure) that uses a OpenAI API key. The OpenAI key is verified, then the cloud hosted server can generate an output regarding the `message=[...]` information. Lastly, the `message=[...]` should be presented on the front-end after I click `Orb: Me:`.<br>
+When I click on the front-end (hosted on GitHub) `Orb: Me:` that action `fetches` the response from the "cloud" (Azure) that uses an OpenAI API key. The OpenAI key is verified, then the cloud-hosted server can generate an output regarding the `message=[...]` information. Lastly, the `message=[...]` should be presented on the front-end after I click `Orb: Me:`.<br>
 
 ***The problem...***<br>
 
@@ -295,7 +295,9 @@ There are some issues...<br>
 
 #### GPT 4o 
 
-GPT 4o (model: ) is good. I think the model has good interptertation of `message` context. I am excited to see if I can get the output to be related to my experiecnces in a way that if someone were to inquire, reads as if I were just asked. Even though the responce is *AI*. If the `message=[...]` context gets more aligned to generate what I could consider authentic to my experiences, ***then*** if someone "clicks" on the `Me` `Orb` the generated output (in theory) could be an exceptable responce if the AI output that was provided was to a social media account or a job board URL... I have some interesting ideas for changing the responce based off the URL source. <br>
+GPT 4o (model: gpt-4o-2024-08-06) is good. I think the model has a good interpretation of `message` context. I am excited to see if I can get the output to be related to my experiences in a way that, if someone were to inquire, reads as if I were just asked. Even though the response is *AI*. If the `message=[...]` context gets more aligned to generate what I could consider authentic to my experiences, ***then*** if someone "clicks" on the `Me` `Orb`, the generated output (in theory) could be an acceptable response. <br> 
+Next, how can I get the `About` `Me` output to generate a different response depending ***”if”***:<br>
+-	 The link was shared on a social media account, job board URL…
 
 So, then what's up with the `Pay Wall`?<br>
 
@@ -306,9 +308,9 @@ on<br>
 -`https://platform.openai.com/docs/models`
 
 ```
-Intelligence  | High Speed | Price          | Input        | Output
-⚪⚪⚪      | ⚡⚡⚡    | $2.5 • $10     | 💬, 🖼️      | 💬
-              | Medium     | Input • Output | Text, image  | Text
+Intelligence  	High Speed 	Price	Input	Output
+⚪⚪⚪	⚡⚡⚡	$2.5 • $10	💬, 🖼️	💬
+	Medium	Input • Output 	Text, Image	Text
 ```
 
 GPT-4o (“o” for “omni”) is our versatile, high-intelligence flagship model. It accepts both text and image inputs, 
@@ -371,7 +373,7 @@ So...<br>
 
 What I have started:<br>
 
-- Configure OpenAI Dashboard account setting further. (When I set up a GPT 3.5-turbo, I didn't have to do extra steps.)
+- Configure the OpenAI Dashboard account settings further. (When I set up a GPT 3.5-turbo, I didn't have to do extra steps.)
 - Implement a Python script named: `tokenTracker.py`.
 
 `tokenTracker.py`:
@@ -381,8 +383,9 @@ What I am thinking (once I sort this out) is like, let's say, per month, you hav
 Out of one month, let's say: 200 times within the first 5 days the `Me Orb` was clicked, there are 600 tokens left for the month.<br>
 But, then in the next 10 days, 500 tokens are used, leaving 100 tokens for about 11 days (out of a 31/30 month). 
 This can get logged and be notified to the account manager via the `tokenTracker` script.<br>
-I am thinking about how I can "throttle" the output to say if the token count gets close to the maximum desired tokens threshold, which could be at a 700 token limit, that the "throttle" only generates 2 biographies per day. It would have to cache two temporarily generated responses, then possibly rotate them randomly per click.
-This would have to happen for 10 days before the month resets.<br>
+I am thinking about how I can "throttle" the output to say if the token count gets close to the maximum desired tokens threshold, which could be at a 700 token limit, that the "throttle" only generates 2 biographies per day. It would have to cache two or more temporarily generated responses, then possibly rotate them randomly per click.
+-	This would have to happen for 10 days before the month resets. 
+-	Ensure the temporary generated BIOs are slightly different in some way…<br>
 
 My OpenAI project account is briz-oke! lol!!! Need ta make my AI holla for sum dollas 💸💸💸...<br>
 
