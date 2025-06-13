@@ -295,7 +295,7 @@ There are some issues...<br>
 
 #### GPT 4o 
 
-GPT 4o (model: ) is good. I think the model has good interptertation of `message` context. I am excited to see if I can get the output to be related to my experiecnces in a way that if someone were to inquire, reads as if I were just asked. Even though the responce is *AI*. If the `message=[...]` context gets more aligned to generate what I could consider authentic to my experiences, ****then*** if someone "clicks" on the `Me` `Orb` the generated output (in theory) could be an exceptable responce if the AI output that was provided was to a social media account or a job board URL... I have some interesting ideas for changing the responce based off the URL source. <br>
+GPT 4o (model: ) is good. I think the model has good interptertation of `message` context. I am excited to see if I can get the output to be related to my experiecnces in a way that if someone were to inquire, reads as if I were just asked. Even though the responce is *AI*. If the `message=[...]` context gets more aligned to generate what I could consider authentic to my experiences, ***then*** if someone "clicks" on the `Me` `Orb` the generated output (in theory) could be an exceptable responce if the AI output that was provided was to a social media account or a job board URL... I have some interesting ideas for changing the responce based off the URL source. <br>
 
 So, then what's up with the `Pay Wall`?<br>
 
@@ -363,6 +363,28 @@ That means 1 API call = ~$0.0012<br>
 
 With $1.00, you could run ~800 calls.<br>
 
+What does `scaling` mean? 🤔<br>
+I get it, but in software, it is an interesting topic. There are people out there who determine how to "scale" software products that are intended to reach millions of real users' fingertips. These engineers figure out the scale or size of operations for that software to be sustainably used (how I think of it).<br>
+It's very interesting to me... <br>
+
+So...<br>
+
+What I have started:<br>
+
+- Configure OpenAI Dashboard account setting further. (When I set up a GPT 3.5-turbo, I didn't have to do extra steps.)
+- Implement a Python script named: `tokenTracker.py`.
+
+`tokenTracker.py`:
+    - The tracker is using the current `openai.com/docs/models/gpt-4o` page data as a baseline for a maximum number of tokens that can be used before the OpenAI account is charged a service fee. The tracker does not scrape OpenAI. The Tracker "runs" alongside the server to track the usage.<br>
+
+What I am thinking (once I sort this out) is like, let's say, per month, you have ~800 calls before being charged.
+Out of one month, let's say: 200 times within the first 5 days the `Me Orb` was clicked, there are 600 tokens left for the month.<br>
+But, then in the next 10 days, 500 tokens are used, leaving 100 tokens for about 11 days (out of a 31/30 month). 
+This can get logged and be notified to the account manager via the `tokenTracker` script.<br>
+I am thinking about how I can "throttle" the output to say if the token count gets close to the maximum desired tokens threshold, which could be at a 700 token limit, that the "throttle" only generates 2 biographies per day. It would have to cache two temporarily generated responses, then possibly rotate them randomly per click.
+This would have to happen for 10 days before the month resets.<br>
+
+My OpenAI project account is briz-oke! lol!!! Need ta make my AI holla for sum dollas 💸💸💸...<br>
 
 
 ### Inspired Me
