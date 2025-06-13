@@ -277,6 +277,91 @@ There are so many "things", challenges - lol, challenges don't get it, I don't q
 
 Docker ***fascinates*** me!
 
+### (06/13/2025.0450) About: Orb: `Me`: API Server: Model `Pay Wall`
+
+- I have a clean deployment process from local to the cloud.<br>
+- The deplyment *can be* successfully deployed.<br>
+
+When I click on the front-end (hosted on GitHub) `Orb: Me:` that action `fetches` the responce by from the "cloud" (Azure) that uses a OpenAI API key. The OpenAI key is verified, then the cloud hosted server can generate an output regarding the `message=[...]` information. Lastly, the `message=[...]` should be presented on the front-end after I click `Orb: Me:`.<br>
+
+***The problem...***<br>
+
+#### Scaling Pay Walls
+
+I said it! I told myself - I bet I will be blocked by a pay wall. I expected this, I guess. <br>
+This is understandable, in regards to OpenAI's model pricing. I could use the GPT 3.5-turbo, but that won't generate the desired output as the GPT 4o could.<br>
+
+There are some issues...<br>
+
+#### GPT 4o 
+
+GPT 4o (model: ) is good. I think the model has good interptertation of `message` context. I am excited to see if I can get the output to be related to my experiecnces in a way that if someone were to inquire, reads as if I were just asked. Even though the responce is *AI*. If the `message=[...]` context gets more aligned to generate what I could consider authentic to my experiences, ****then*** if someone "clicks" on the `Me` `Orb` the generated output (in theory) could be an exceptable responce if the AI output that was provided was to a social media account or a job board URL... I have some interesting ideas for changing the responce based off the URL source. <br>
+
+So, then what's up with the `Pay Wall`?<br>
+
+looking at:<br>
+
+-`gpt-4o-2024-08-06`
+on<br>
+-`https://platform.openai.com/docs/models`
+
+```
+Intelligence  | High Speed | Price          | Input        | Output
+⚪⚪⚪      | ⚡⚡⚡    | $2.5 • $10     | 💬, 🖼️      | 💬
+              | Medium     | Input • Output | Text, image  | Text
+```
+
+GPT-4o (“o” for “omni”) is our versatile, high-intelligence flagship model. It accepts both text and image inputs, 
+and produces text outputs (including Structured Outputs). It is the best model for most tasks, and 
+is our most capable model outside of our o-series models.<br>
+
+- 128,000 context window
+- 16,384 max output tokens
+- Sep 30, 2023 knowledge cutoff
+
+Pricing:<br>
+Pricing is based on the number of tokens used. For tool-specific models, like search and computer use, there's a fee per tool call. See details in the .<br>
+Text tokens Per 1M tokens∙ Batch API price:<br>
+```
+Input | Cached input | Output
+$2.50 |   $1.25      | $10.00
+```
+
+Rate Limits:<br>
+
+Rate limits ensure fair and reliable access to the API by placing specific caps on requests or tokens used within a given time period. Your usage tier determines how high these limits are set and automatically increases as you send more requests and spend more on the API.
+```
+Tier	RPM	TPM	Batch queue limit
+Free	Not supported
+Tier 1	500	30,000	90,000
+Tier 2	5,000	450,000	1,350,000
+Tier 3	5,000	800,000	50,000,000
+Tier 4	10,000	2,000,000	200,000,000
+Tier 5	10,000	30,000,000	5,000,000,000
+```
+
+#### Scaling the Wall
+
+Here is my breakdown.<br>
+Using current gpt-4o pricing (06/13/2025):
+
+```
+Type	Cost (per 1K tokens)
+Input	$0.0025
+Output	$0.0100
+
+Each /generate-aboutOrb call uses:
+
+~200 input tokens (prompt)
+
+~150 output tokens (response)
+
+~350 total tokens
+```
+
+That means 1 API call = ~$0.0012<br>
+
+With $1.00, you could run ~800 calls.<br>
 
 
 
