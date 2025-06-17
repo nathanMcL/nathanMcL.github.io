@@ -389,6 +389,71 @@ I am thinking about how I can "throttle" the output to say if the token count ge
 
 My OpenAI project account is briz-oke! lol!!! Need ta make my AI holla for sum dollas 💸💸💸...<br>
 
+### (06/16/25.1645) We live? Not live... We live? Not live...
+
+Why the *tease*?<br>
+I'm not a *tease*...<br>
+It's a ***Rabbit Hole***.<br>
+I have poked my head out to say... And then....<br>
+
+ And then... I decided to change out the `4o` to the `4o-mini`. The mini should still be able to do the job just as well for this project as the `4o` could.<br> 
+
+And then... I had to change the `Cost Input` of the `TokenTracker` class.<br>
+```
+# Cost per 1K tokens for input and output
+COST_INPUT_PER_1K = 0.0011
+COST_OUTPUT_PER_1K = 0.0044
+```
+
+And then... I thought, how does it know what the budget is?<br>
+I created a starting budget:<br>
+`BUDGET_LIMIT = 5.00  # In dollars`<br>
+
+`tokenTracker.py` expected JSON output:<br>
+```
+{
+  "total_requests": 3,
+  "input_tokens": 600,
+  "output_tokens": 450,
+  "estimated_cost": {
+    "input": 0.0007,
+    "output": 0.002,
+    "total": 0.0027
+  }
+}
+```
+
+#### Response Hardening
+
+Once the `Me` `Orb` is clicked, the backend calls the model from where the server data is stored. Verifies security data, fetches the API request (or user prompt) from another location. Sends the API request to its final location...<br>
+How can I ensure this process hasn't had anything injected into the client side of the request?<br>
+By using a `Hook`.<br>
+The `hook` is a reference to the `@app.after_request` ***Flask*** `hook` that runs after every request but before the response is sent back to the client.<br>
+
+This `after_request` section is meant to inject security headers into every response. So, the idea is to provide layered security by injecting security headers into the responses throughout the process.<br> 
+
+```
+@app.after_request
+def security_headers(response):
+    response.headers['X-Content-Type-Options'] = 'nosniff'
+    response.headers['X-Frame-Options'] = 'DENY'
+    response.headers['Referrer-Policy'] = 'no-referrer'
+    response.headers['Content-Security-Policy'] = "default-src 'self'"
+    return response
+```
+
+Fingers Crossed:<br>
+
+- No iframe hijacking<br>
+
+- No MIME-type spoofing<br>
+
+- No referer leaks <br>
+
+- No off-site resources allowed<br>
+
+Once the OpenAI project account's `budget` gets established. And then, `allow` which models are allowed. And then, the `rate limits` should be set (or left at default).<br>
+
 
 ### Inspired Me
 
