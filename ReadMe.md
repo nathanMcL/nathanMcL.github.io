@@ -480,6 +480,7 @@ Next, I had to do a lot in Azure to sort out how to get ***"My files"*** and Azu
 <br>
 Screenshot:<br>
 (06/22/2025.0400)<br>
+
 ![Me Orb Output](https://raw.githubusercontent.com/nathanMcL/nathanMcL.github.io/main/images/me_orb_output.png)
 <br>
 
