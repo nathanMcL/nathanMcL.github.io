@@ -478,6 +478,11 @@ Next, I had to do a lot in Azure to sort out how to get ***"My files"*** and Azu
 }
 ```
 <br>
+Screenshot:<br>
+(06/22/2025.0400)<br>
+![Me Orb Output](https://github.com/user-attachments/assets/3c4af6a3-27e5-4277-a17f-1209a6a5ec01)
+<br>
+
 This is really cool. The response doesn't really matter, although I am excited, it's what can happen next that could be. <br>
 
 Always seek improvements...<br>
