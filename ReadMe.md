@@ -481,7 +481,7 @@ Next, I had to do a lot in Azure to sort out how to get ***"My files"*** and Azu
 Screenshot:<br>
 (06/22/2025.0400)<br>
 
-![Me Orb Output](https://raw.githubusercontent.com/nathanMcL/nathanMcL.github.io/main/images/me_orb_output.png)
+![Me Orb Output](https://user-images.githubusercontent.com/nathanMcL.github.io/images/MeOrbOutput.png)
 <br>
 
 This is really cool. The response doesn't really matter, although I am excited, it's what can happen next that could be. <br>
