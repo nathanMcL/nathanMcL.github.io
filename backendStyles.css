@@ -1,0 +1,387 @@
+/*  Back-End Styles */
+
+/* Silky Chocolate and Honey */
+:root {
+    --silk-chocolate: #3e2323;
+    --amber-honey: #fbb03b;
+    --milk-cream: #f5f5f5;
+    --caramel-highlight: #ff30b2;
+    --deep-cocoa: #2e1b18;
+
+    /* Logo Glow Colors: @MacN_iT */
+    --creamy-vanilla: #fff8e1;
+    --glazed-caramel: #e89235;
+    --truffle-pink: #ff5e8e;
+    --honey-glow: #ffe57f;
+    --dark-cocoa-glow: #5e2a17;
+}
+
+.header-about {
+  background-color: var(--amber-honey);
+  color: var(--silk-chocolate);
+  padding: 10px 0;
+  border-radius: 10px;
+  box-shadow: 0 0 20px var(--caramel-highlight);
+}
+
+.nav_container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+#nav_logo {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: var(--milk-cream);
+  font-weight: bold;
+  font-size: 1.5rem;
+  margin-left: 0px;
+}
+
+.littlerobot {
+  max-width: 170px;
+  height: auto;
+  margin-right: 5px;
+  margin-left: -100px;
+}
+
+.nav.menu {
+  display: flex;
+  list-style-type: none;
+  gap: 15px;
+  padding: 0;
+  margin-left: auto;
+}
+
+.nav_item a {
+  display: inline-block;
+  text-decoration: none;
+  color: var(--caramel-highlight);
+  font-weight: bold;
+  padding: 2px 10px;
+  border-radius: 20px;
+  transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+}
+
+.nav_item a.nav_active {
+  color: var(--amber-honey);
+}
+
+.nav_item a:hover {
+  background-color: var(--milk-cream);
+  color: var(--silk-chocolate);
+  text-decoration: underline;
+}
+
+/* Chocolate Syrup Glow Animation */
+.color-change {
+  display: inline-block;
+  animation: backendGlow 12s infinite ease-in-out;
+}
+
+.color-change:nth-child(1) { animation-delay: 0s; }
+.color-change:nth-child(2) { animation-delay: 1.5s; }
+.color-change:nth-child(3) { animation-delay: 3s; }
+.color-change:nth-child(4) { animation-delay: 4.5s; }
+.color-change:nth-child(5) { animation-delay: 6s; }
+.color-change:nth-child(6) { animation-delay: 7.5s; }
+.color-change:nth-child(7) { animation-delay: 9s; }
+.color-change:nth-child(8) { animation-delay: 10.5s; }
+
+@keyframes backendGlow {
+  0% {
+    color: var(--creamy-vanilla);
+    text-shadow: 0 0 6px var(--honey-glow);
+  }
+  25% {
+    color: var(--truffle-pink);
+    text-shadow: 0 0 12px var(--caramel-highlight);
+  }
+  50% {
+    color: var(--glazed-caramel);
+    text-shadow: 0 0 15px var(--milk-cream);
+  }
+  75% {
+    color: var(--creamy-vanilla);
+    text-shadow: 0 0 10px var(--dark-cocoa-glow);
+  }
+  100% {
+    color: var(--truffle-pink);
+    text-shadow: 0 0 20px var(--caramel-highlight);
+  }
+}
+
+/* End of Chocolate Syrup Glow Animation */
+
+/* Body */
+body {
+    margin: 0;
+    font-family: 'Roboto', 'Arial', sans-serif;
+    background-color: var(--silk-chocolate);
+    color: var(--milk-cream);
+    border-radius: 2.5px;
+    animation: ambientGlow 15s ease-in-out infinite;
+}
+
+@keyframes ambientGlow {
+    0%, 100% {
+        box-shadow: 0 0 10px var(--deep-cocoa);
+    }
+    50% {
+        box-shadow: 0 0 25px var(--amber-honey);
+    }
+}
+
+/* Body Glow */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: radial-gradient(circle, var(--caramel-highlight) 5%, transparent 80%);
+  opacity: 0.03;
+  pointer-events: none;
+  z-index: -1;
+  animation: softPulse 8s ease-in-out infinite;
+}
+
+@keyframes softPulse {
+  0%, 100% { opacity: 0.03; }
+  50% { opacity: 0.06; }
+}
+
+/* Header Styling */
+.header-about {
+    background-color: var(--amber-honey);
+    color: var(--deep-cocoa);
+    padding: 10px 0;
+    border-radius: 10px;
+    box-shadow: 0 0 20px var(--amber-honey);
+}
+
+.nav_container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+#nav_logo {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: var(--deep-cocoa);
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+
+.nav.menu {
+    display: flex;
+    list-style-type: none;
+    gap: 15px;
+    margin-left: auto;
+}
+
+.nav_item a {
+    text-decoration: none;
+    color: var(--deep-cocoa);
+    font-weight: bold;
+    background-color: var(--caramel-highlight);
+    padding: 6px 14px;
+    border-radius: 20px;
+    transition: all 0.3s ease-in-out;
+}
+
+.nav_item a.nav_active {
+    background-color: var(--milk-cream);
+    color: var(--silk-chocolate);
+}
+
+.nav_item a:hover {
+    background-color: var(--amber-honey);
+    color: var(--deep-cocoa);
+    text-shadow: 0 0 5px var(--caramel-highlight);
+}
+/* End of Header Styling */
+
+/* Markdown Styling */
+.main_blog {
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    background-color: var(--deep-cocoa);
+    border-radius: 10px;
+    box-shadow: 0 0 10px var(--amber-honey);
+}
+
+.blog_head h1 {
+    text-align: center;
+    font-size: 2rem;
+    color: var(--amber-honey);
+    background-color: var(--silk-chocolate);
+    padding: 15px;
+    border-radius: 12px;
+    text-shadow: 0 0 10px var(--caramel-highlight);
+    box-shadow: 0 0 10px var(--amber-honey);
+}
+
+.markdown-section {
+    background-color: var(--milk-cream);
+    color: var(--deep-cocoa);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(251, 176, 59, 0.3);
+    border-left: 5px solid var(--amber-honey);
+    font-family: 'Courier New', Courier, monospace, 'Roboto';
+}
+
+.markdown-section h3,
+.markdown-section h4 {
+    font-family: 'Arial', sans-serif, 'Roboto';
+    margin-top: 0;
+    color: var(--silk-chocolate);
+}
+
+.markdown-section pre {
+    background-color: var(--deep-cocoa);
+    color: var(--milk-cream);
+    padding: 10px;
+    border-radius: 5px;
+    overflow-x: auto;
+}
+
+.markdown-section code {
+    background-color: var(--caramel-highlight);
+    color: var(--silk-chocolate);
+    padding: 2px 4px;
+    border-radius: 3px;
+}
+
+.markdown-section blockquote {
+    margin: 0;
+    padding-left: 10px;
+    border-left: 4px solid var(--amber-honey);
+    color: var(--deep-cocoa);
+    font-style: italic;
+    background: var(--milk-cream);
+}
+
+/* Image Styling */
+.blogrobot {
+    width: 100px;
+    height: auto;
+    margin: 0 5px;
+    vertical-align: middle;
+} 
+
+.post_image img {
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 50%;
+    box-shadow: 0 4px 10px var(--amber-honey);
+}
+
+/* Buttons for Consolidating Cyber Curiosity Readme, BackEnd_Readme */
+.markdown-toggle-group {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin: 30px auto;
+  padding: 10px;
+}
+
+.oval-btn {
+  padding: 12px 30px;
+  border-radius: 50px;
+  font-size: 1rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.4s ease;
+  box-shadow: 0 0 10px rgba(0,0,0,0.2);
+}
+
+.btn-blog {
+  background-color: #ef7b7b; /* Salmon */
+  color: black;
+  box-shadow: 0 0 10px #ef7b7b, 0 0 20px #ef7b7b;
+}
+
+.btn-cyber {
+  background-color: #08f7f3; /* Electric Cyan */
+  color: black;
+  box-shadow: 0 0 10px #08f7f3, 0 0 20px #08f7f3;
+}
+
+.btn-backend {
+  background-color: #fbb03b; /* Amber Honey */
+  color: black;
+  box-shadow: 0 0 10px #fbb03b, 0 0 20px #fbb03b;
+}
+
+.oval-btn:hover {
+  transform: scale(1.1);
+  text-shadow: 0 0 5px #fff;
+}
+
+.current-page {
+  border: 2px solid white;
+  animation: pulseGlow 2s infinite;
+}
+
+@keyframes pulseGlow {
+  0% {
+    box-shadow: 0 0 10px white;
+  }
+  50% {
+    box-shadow: 0 0 20px white, 0 0 30px white;
+  }
+  100% {
+    box-shadow: 0 0 10px white;
+  }
+}
+
+/* End of Buttons for Consolidating Cyber Curiosity Readme, BackEnd_Readme */
+/* End of Markdown Styling */
+
+/* Footer Styling */
+.footer {
+    background-color: var(--amber-honey);
+    color: var(--deep-cocoa);
+    padding: 20px;
+    text-align: center;
+    border-top: 2px solid var(--milk-cream);
+    border-radius: 10px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .nav.menu {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .blog_head h1 {
+    font-size: 1.5rem;
+  }
+
+  .markdown-section {
+    padding: 10px;
+  }
+
+  .post_image img {
+    width: 100px;
+    height: 100px;
+  }
+}
+
