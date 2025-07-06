@@ -1,0 +1,100 @@
+ <!-- Backend HTML -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="@MacN_iT back-end insights" />
+    <title>Full Stack Thoughts Continued...</title>
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="FSpt2Styles.css" />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="images/favicon.png" />
+    <link rel="icon" href="favicon.ico" type="image/x-icon" />
+
+    <!-- Security Headers -->
+        <meta http-equiv="Content-Security-Policy" 
+            content=
+                "default-src 'self';
+                style-src 'self'; 
+                img-src 'self' data:; 
+                font-src 'self' data:;
+                object-src 'none';
+                base-uri 'none'; 
+                require-trusted-types-for 'script';
+                script-src 'self' https://cdn.jsdelivr.net; 
+                connect-src https://raw.githubusercontent.com;
+                frame-src https://raw.githubusercontent.com https://viewer.diagrams.net https://nathanmcl.github.io;">
+
+        <meta http-equiv="X-Content-Type-Options" content="nosniff">
+        <meta http-equiv="Referrer-Policy" content="no-referrer">
+        <meta http-equiv="Strict-Transport-Security" content="max-age=31536000; includeSubDomains; preload">
+        <meta name="Permissions-Policy" content="geolocation=(), microphone=(), camera=()">
+    </head>
+
+  <body>
+    <header class="header-about">
+      <nav class="navigation" aria-label="Main Navigation">
+        <div class="nav_container">
+          <a href="index.html" id="nav_logo" aria-label="MacN_iT Home">
+            <img src="images/LittleRobotBackgroundErase.png" alt="MacN_iT Logo" class="littlerobot" />
+            <span class="color-change">@</span><span class="color-change">M</span><span class="color-change">a</span><span class="color-change">c</span><span class="color-change">N</span><span class="color-change">_</span><span class="color-change">i</span><span class="color-change">T</span>
+          </a>
+          <ul class="nav.menu">
+            <li class="nav_item"><a href="index.html">Home</a></li>
+            <li class="nav_item"><a href="about.html">About</a></li>
+            <li class="nav_item"><a href="inspiredme.html">Inspirations</a></li>
+            <li class="nav_item"><a href="blog.html">Thoughts</a></li>
+            <li class="nav_item"><a href="tools.html">Tools</a></li>
+            <li class="nav_item"><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+      </nav>
+    </header>
+
+    <!-- Markdown buttons to link other readme files to this one --><!-- Markdown buttons to link other readme files to this one -->
+    <div class="markdown-toggle-group">
+        <a href="blog.html" class="oval-btn btn-blog" aria-label="Go to the main Blog">Full Stack Thoughts</a>
+        <span class="oval-btn btn-backend current-page" aria-current="page">Backend Thoughts... </span>
+        <a href="cybercuriosity.html" class="oval-btn btn-cyber" aria-label="Go to Cyber Curiosity Notes">Cyber Curiosity</a>
+    </div>
+
+    <!-- Main Section: Blog Page -->
+    <main>
+        <div class="main_blog">
+            <div class="blog_head">
+                <h1 class="title glow neon-white">
+                    Improving pages...
+                    <img src="/images/LittleRobotBackgroundErase.png" alt="MacN_iT Logo" class="blogrobot">
+                </h1>
+            </div>
+            <div class="post_section">
+                <div class="blog_post">
+                    <div class="post_image">
+                        <img src="/images/SoftwareEngineer_AFAM_Female.png" alt="ProfileImage">
+                    </div>
+                <div>
+                    <h2>MacN the Full Stack</h2>
+                    <h5>Loading Notes and Thoughts...</h5>
+                    <div id="markdown-content" class="markdown-section"></div>
+                </div>   
+            </div>
+        </div>
+    </main>
+
+    <footer role="contentinfo">
+      <p>&copy; 2025 MacN @MacN_iT All Rights Reserved</p>
+      <nav aria-label="Footer Navigation">
+        <a href="index.html">Home</a>
+      </nav>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/dompurify@3.0.3/dist/purify.min.js" defer></script>
+    <script src="FSpt2Script.js" defer></script>
+  </body>
+</html>

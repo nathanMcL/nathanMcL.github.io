@@ -1,27 +1,35 @@
+/* FSpt2Styles.css */
 /* Body styles */
 body {
     margin: 0;
-    font-family: Arial, sans-serif;
-    background-color: var(--second-color);
-    color: #333; /* General text color */
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--metallic-deep-purple);
+    color: var(--bamboo-cream);
     border-radius: 2.5px;
 }
-
-/* Color palette from: https://palettes.shecodes.io/palettes/507#palette */
-:root {
-    --first-color: #222221;
-    --second-color: #c4eada;
-    --third-color: #ef7b7b;
-    --fourth-color: #fcf3ca;
-    /* @MacN_iT text color change */
-    --flag-white: #ffffff;
-    --flag-red: #ff0000;
-    --flag-blue: #0000ff;
-}
 /* End of Body styles */
+
+/* Color palette */
+:root {
+    --metallic-deep-purple: #2d0033;
+    --lavender-pulse: #d7bfff;
+    --lilac-glow: #c8a2c8;
+    --myrrh-muted: #3c2a4d;
+    --hibiscus-cream: #ffedf5;
+    --bamboo-cream: #e8e1cf;
+    --tangerine-rind: #ff964f;
+
+    /* Experimenting with using more colors */
+    --moonberry: #d471d4;
+    --electric-sapphire: #5ef1ff;
+    --rose-gold: #ffb1a5;
+    --wild-glow: #f7ff00;
+}
+/* End of Color palette */
+
 /* Header styles */
 .header-about {
-    background-color: var(--third-color);
+    background-color: var(--tangerine-rind);
     color: white;
     padding: 10px 0;
     border-radius: 10px;
@@ -42,21 +50,20 @@ body {
     text-decoration: none;
     color: white;
     font-weight: bold;
-    font-size: 1.5rem; /* To adjust the text size */
+    font-size: 1.5rem;
     margin-left: 0px;
 }
 
 .littlerobot {
-    max-width: 170px; /* Adjust the max-width for log scaling */
-    height: auto; /* Maintain the aspect ratio */
-    margin-right: 5px; /* The space between the logo and text */
+    max-width: 170px;
+    height: auto;
+    margin-right: 5px;
     margin-left: -100px;
 }
 
 .nav.menu {
-    display: flex !important; /* Ensure the menu is displayed */
+    display: flex !important;
     list-style-type: none;
-    display: flex;
     gap: 15px;
     padding: 0;
     margin-left: auto;
@@ -65,7 +72,7 @@ body {
 .nav_item a {
     display: inline-block;
     text-decoration: none;
-    color: var(--fourth-color);
+    color: var(--hibiscus-cream);
     font-weight: bold;
     padding: 2px 10px;
     border-radius: 20px;
@@ -73,59 +80,26 @@ body {
 }
 
 .nav_item a.nav_active {
-    color: var(--first-color); /* Highlight the active link */
+    color: var(--metallic-deep-purple);
 }
 
 .nav_item a:hover {
-    background-color: var(--second-color); /* Remove background block */
-    color: var(--first-color); /* Change text color instead */
-    text-decoration: underline; /* Optional: Underline effect */
+    background-color: var(--lavender-pulse);
+    color: var(--metallic-deep-purple);
+    text-decoration: underline;
 }
 
-/* Animation styles for color change */
 .color-change {
     display: inline-block;
-    animation: colorAnimation 10s infinite;
+    animation: colorPulseLogo 5s infinite alternate;
 }
 
-.color-change:nth-child(1) { /* @ */
-    animation-delay: 0s;
-}
-.color-change:nth-child(2) { /* M */
-    animation-delay: 2s;
-}
-.color-change:nth-child(3) { /* a */
-    animation-delay: 4s;
-}
-.color-change:nth-child(4) { /* c */
-    animation-delay: 6s;
-}
-.color-change:nth-child(5) { /* N */
-    animation-delay: 8s;
-}
-.color-change:nth-child(6) { /* _ */
-    animation-delay: 10s;
-}
-.color-change:nth-child(7) { /* i */
-    animation-delay: 12s;
-}
-.color-change:nth-child(8) { /* T */
-    animation-delay: 14s;
-}
-
-@keyframes colorAnimation {
-    0%, 100% {
-        color: var(--flag-white);
-    }
-    25% {
-        color: var(--flag-red);
-    }
-    50% {
-        color: var(--flag-white);
-    }
-    75% {
-        color: var(--flag-blue);
-    }
+@keyframes colorPulseLogo {
+    0% { color: var(--hibiscus-cream); }
+    25% { color: var(--moonberry); }
+    50% { color: var(--electric-sapphire); }
+    75% { color: var(--wild-glow); }
+    100% { color: var(--rose-gold); }
 }
 /* End of Animation styles for color change */
 /* End of Header styles */
@@ -133,22 +107,30 @@ body {
 /* Main styles */
 /* Blog post container */
 .main_blog {
+    max-width: 1100px;
+    margin: auto;
     padding: 20px;
-    max-width: 1200px;
-    margin: 0 auto;
-    background-color: var(--business-card-color1);
-    border-radius: 10px;
+    background-color: var(--myrrh-muted);
+    border-radius: 15px;
+    box-shadow: 0 0 20px var(--lilac-glow);
 }
 
 .blog_head h1 {
+    font-size: 2.5rem;
     text-align: center;
-    font-size: 2rem;
-    color: var(--business-card-color2);
-    background-color: var(--first-color);
-    margin-bottom: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    padding: 10px;
-    border-radius: 10px;
+    color: var(--wild-glow);
+    text-shadow: 0 0 8px var(--moonberry), 0 0 12px var(--lavender-pulse);
+    animation: glowTextFS 3s infinite alternate;
+    padding: 20px 0;
+}
+
+@keyframes glowTextFS {
+    0% {
+        text-shadow: 0 0 10px var(--lavender-pulse), 0 0 15px var(--tangerine-rind);
+    }
+    100% {
+        text-shadow: 0 0 20px var(--rose-gold), 0 0 30px var(--electric-sapphire);
+    }
 }
 
 /* Resize and position the blogrobot images */
@@ -158,11 +140,13 @@ body {
     margin: 0 5px; /* Space around the images */
     vertical-align: middle; /* Align with text */
 }
+
 .blog_post {
-    background-color: whitesmoke;
-    border-radius: 10px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    background-color: var(--bamboo-cream);
+    color: var(--metallic-deep-purple);
     padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(255, 255, 255, 0.2);
     position: relative;
 }
 
@@ -188,7 +172,11 @@ body {
     height: 120px;
     object-fit: cover;
     border-radius: 50%;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0 15px var(--lilac-glow);
+    position: absolute;
+    top: -20px;
+    left: -20px;
+    background-color: var(--metallic-deep-purple);
 }
 
 /* Raised floating effect */
@@ -206,14 +194,14 @@ p, h5 {
     text-align: left;
 }
 
-/* Third Blog Post Markdown styling */
+/* Blog Post Markdown styling */
 .markdown-section {
-    background-color: #f5f5f5;
+    background-color: #2f1337;
+    color: var(--bamboo-cream);
     padding: 15px;
     border-radius: 10px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-    font-family: monospace;
-    color: #333;
+    box-shadow: 0 0 10px var(--tangerine-rind);
+    font-family: Consolas, monospace;
 }
 
 .markdown-section h3, .markdown-section h4 {
@@ -222,20 +210,17 @@ p, h5 {
 }
 
 .markdown-section pre {
-    background-color: #2d2d2d;
-    color: #f8f8f2;
+    background-color: #1e1e2f;
+    color: #e0e0e0;
     padding: 10px;
     border-radius: 5px;
     overflow-x: auto;
-    word-wrap: break-word;
     white-space: pre-wrap;
-    max-width: 100%;
-    box-sizing: border-box;
 }
 
 .markdown-section code {
-    background-color: #e0e0e0;
-    color: #c7254e;
+    background-color: #381f36;
+    color: #f3a2e7;
     padding: 2px 4px;
     border-radius: 3px;
     font-family: monospace;
@@ -244,8 +229,8 @@ p, h5 {
 .markdown-section blockquote {
     margin: 0;
     padding-left: 10px;
-    border-left: 4px solid #ccc;
-    color: #666;
+    border-left: 4px solid #f9dff9;
+    color: #553f52;
     font-style: italic;
 }
 
@@ -324,41 +309,8 @@ p, h5 {
     box-shadow: 0 0 10px white;
   }
 }
+
 /* End of Buttons for Consolidating Cyber Curiosity Readme, BackEnd_Readme */
-
-/* Full Stack Drop-down Tab styles */
-.readme-toggle-buttons {
-    display: flex;
-    justify-content: center;
-    gap: 15px;
-    margin: 20px 0;
-}
-
-.toggle-btn {
-    background-color: var(--third-color);
-    color: var(--first-color);
-    font-weight: bold;
-    padding: 10px 25px;
-    border-radius: 30px;
-    border: none;
-    cursor: pointer;
-    box-shadow: 0 0 10px var(--third-color);
-    transition: all 0.3s ease;
-}
-
-.toggle-btn:hover {
-    background-color: var(--first-color);
-    color: var(--third-color);
-    border: 2px solid var(--third-color);
-    text-shadow: 0 0 5px white;
-}
-
-body.fspt2-mode .markdown-section {
-    background-color: #f9f9ff;
-    color: #2b2b2b;
-    font-family: "Courier New", monospace;
-}
-/* End of Full Stack Drop-down Tab styles */
 /* End of Blog Post Markdown styling */
 
 /* Wire Diagram iframe styling */
@@ -382,11 +334,12 @@ body.fspt2-mode .markdown-section {
 footer {
     text-align: center;
     padding: 20px;
-    background-color: var(--third-color);
-    color: var(--first-color);
-    border-top: 1px solid #ccc;
-    border-radius: 10px;
+    color: var(--tangerine-rind);
+    background-color: #1a0d1d;
+    border-top: 2px solid var(--lavender-pulse);
+    border-radius: 0 0 12px 12px;
 }
+
 
 /* Responsive styles */
 /* Medium screens */
@@ -516,6 +469,20 @@ footer {
     }
     /* End of Navigation Menu */
 
+    /* Blog Section */
+    .main_blog {
+        padding: 15px;
+    }
+
+    .blog_head h1 {
+        font-size: 1.8rem;
+    }
+
+    .post_image img {
+        width: 90px;
+        height: 90px;
+    }
+
     footer {
         padding: 15px;
         font-size: 0.9rem; /* Slightly smaller font for footer */
@@ -535,6 +502,14 @@ footer {
         max-width: 95%;
         max-height: 60vh;
     }
-}
 
+    .markdown-section {
+        font-size: 0.9rem;
+    }
+
+    .post_image img {
+        width: 70px;
+        height: 70px;
+    }
+}
 /* End of Responsive styles */
