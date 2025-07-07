@@ -1,6 +1,6 @@
 # MacN_iT
 
-## My Digital Space (Continued)
+My Digital Space (Continued)<br>
 
 ### (07/06/2025.1500) Drop-Down Readme toggles<br>
 
