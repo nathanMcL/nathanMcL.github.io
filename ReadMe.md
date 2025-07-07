@@ -453,6 +453,31 @@ Fingers Crossed:<br>
 Once the OpenAI project account's `budget` gets established. And then, `allow` which models are allowed. And then, the `rate limits` should be set (or left at default).<br>
 
 
+### (06/20/2025.1345) First Server Generation 🎉🎉🎉
+
+I want to write something funny or fun, but I am mentally tired. I completed setting up the server. I "setup" a separate cloud service for the `server log dumps`. I created additional bash scripts. One to automate updates for the `requirements` (libraries). The other bash script creates a clean server file zip. The bash script removes possible local environmental dependencies and nearly anything else that does not need to be deployed to Azure's cloud environment. Once the bash script has packaged the files, the deployment will start automatically. <br>
+
+I have Python scripts that run on the server to track the AI model's budget (It does not fetch the budget data from within the OpenAI account. It's hardcoded).
+The other Python script I implemented was a `Server Log Dump`, which gets triggered from the `startup.sh` script weekly. That data gets sent to a Google Drive intended to house the `Server Log Dump` files.<br>
+
+Next, I had to do a lot in Azure to sort out how to get **"My files"** and Azure's platform to correctly communicate with the AI model service.<br>
+
+Curl Command test output 1:<br>
+
+{
+  "about_text": "Hey there! I’m a U.S. Army veteran who traded in my combat boots for coding boots—though I still sometimes march to the beat of my own drum (or maybe a quirky MIDI file). With a Bachelor’s in Computer Science and an AAS in Mechatronics, I’ve learned to solve technical problems like a pro, all while sprinkling a bit of imaginative flair. My military days taught me how to lead and think on my feet, which comes in handy when I’m debugging code or whipping up some backyard farm-to-table magic. Whether I’m crafting text adventure games or brainstorming ways to make software more accessible, my goal is to keep it fun, engaging, and just a little bit loopy. Welcome to my corner of the tech universe!"
+} <br>
+
+`Curl Command` test output 2: <br>
+{
+  "about_text": "Hey there! I’m a proud U.S. Army veteran—think of me as the soldier who traded in camouflage for code and a marching band for a keyboard! With a B.S. in Computer Science and an AAS in Mechatronics, I’ve found a way to blend the discipline of military logistics with the wild creativity of tech. Whether I’m debugging a line of code or whipping up a backyard farm project, I approach everything like I’m building a mission plan—only with fewer push-ups and more puns. I love crafting imaginative coding projects like text adventure games, where the only thing more unpredictable than a plot twist is my cooking! Welcome to my world of tech, humor, and a sprinkle of loopy curiosity!"
+} <br>
+
+Screenshot: <br>
+(06/22/2025.0400) <br>
+
+![Me Orb Output](https://nathanmcl.github.io/images/MeOrbOutput.png)
+<br>
 
 
 
