@@ -121,13 +121,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
 ### Thoughts
 
-- Shared link to this ReadMe.<br>
-- Thinking of creating a `read only` window within the thoughts (blog) paragraph section.<br>
-        - This way the if someone chooses to view the `ReadMe`(write-up notes), they *are not* redirected a different website. <br>
+1. Shared link to this ReadMe.<br>
+2. Thinking of creating a `read only` window within the thoughts (blog) paragraph section.<br>
+    - This way the if someone chooses to view the `ReadMe`(write-up notes), they *are not* redirected a different website. <br>
     - (04/09/2025) Started read only framework for the *paragraph* section <p></p>. <br>
     - Using `fetch` and `catch`: <br>
     - `Fetch`: **Noted Source** (https://developer.mozilla.org/en-US/docs/Web/API/Window/fetch)<br>
-    - `Catch`: **Noted Source** (https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/try...catch) <br>
+    - `Catch`: **Noted Source** (https://developer.mozilla.org/en-US/docs/Web
+                /JavaScript/Reference/Statements/try...catch) <br>
 
     - Using `Marked.js` to format and display the `GitHub` located `Readme.md` file. <br>
     - `Marked.js`: **Noted Source** (https://marked.js.org/)
@@ -152,11 +153,12 @@ At one point, I think creating some sort of `HUD` display that has multiple cate
 ### Contact
 
 (04/13/2025.16:30)
-I haven't gotten to this page yet. Not sure how I want to do this page.<br>
+I haven't gotten to this page yet. Not sure how I want to do this page. 
+This page should have a modern design.<br>
 
 ### Projects Page
 
-(04/14/2025.1320)
+(04/14/2025.1320)<br>
 
 I think creating a page that displays read-only, windowed read-me write-ups of other projects could be useful. <br>
 
