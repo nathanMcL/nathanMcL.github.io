@@ -462,7 +462,7 @@ The other Python script I implemented was a `Server Log Dump`, which gets trigge
 
 Next, I had to do a lot in Azure to sort out how to get **"My files"** and Azure's platform to correctly communicate with the AI model service.<br>
 
-Curl Command test output 1:<br>
+`Curl Command` test output 1: <br>
 {
   "about_text": "Hey there! I’m a U.S. Army veteran who traded in my combat boots for coding boots—though I still sometimes march to the beat of my own drum (or maybe a quirky MIDI file). With a Bachelor’s in Computer Science and an AAS in Mechatronics, I’ve learned to solve technical problems like a pro, all while sprinkling a bit of imaginative flair. My military days taught me how to lead and think on my feet, which comes in handy when I’m debugging code or whipping up some backyard farm-to-table magic. Whether I’m crafting text adventure games or brainstorming ways to make software more accessible, my goal is to keep it fun, engaging, and just a little bit loopy. Welcome to my corner of the tech universe!"
 } <br>
