@@ -65,3 +65,33 @@ document.addEventListener("DOMContentLoaded", function () {
     setInterval(createPacket, 500); // Generate new packets every 500ms
 });
 */
+
+// Discord Live Stream Widget (07/08/2025.0700.NBM)
+document.addEventListener("DOMContentLoaded", function () {
+    const widget = document.getElementById("discord-live-widget");
+    let isDragging = false;
+    let offsetX, offsetY;
+
+    // I want this widget to be independent, Not embedded into the main conntent. 
+    // The user could drag the Discord Live Stream Widget where they want within the page.
+    widget.addEventListener("mousedown", function (e) {
+        isDragging = true;
+        offsetX = e.clientX - widget.offsetLeft;
+        offsetY = e.clientY - widget.offsetTop;
+        widget.style.transition = "none"; // Disable the transition while dragging. Meaning the when the widget moves, it will breifly pause, maybe not pause...
+    });
+
+    // Mouse Click Hold to Drag the Widget
+    document.addEventListener("mousemove", function (e) {
+        if (isDragging) {
+            widget.style.left = e.clientX - offsetX + "px";
+            widget.style.top = e.clientY - offsetY + "px";
+        }
+    });
+
+    // Mouse Click Release to Stop Dragging the Widget
+    document.addEventListener("mouseup", function () {
+        isDragging = false;
+        widget.style.transition = "box-shadow 0.3s ease";
+    });
+});

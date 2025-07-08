@@ -270,6 +270,37 @@ body {
     display: inline-block;
 }
 
+/*Discord Live Stream Feature*/
+.discord-widget {
+    position: fixed;
+    top: 16px;
+    right: 15px;
+    z-index: 9999;
+    background-color: #1e1e5f; /* Dark blue background */
+    padding: 10px 15px;
+    border-radius: 12px;
+    box-shadow: 0 0 15px var(--third-color);
+    cursor: move;
+}
+
+.discord-widget button {
+    background-color: var(--third-color);
+    color: var(--first-color);
+    border: none;
+    padding: 10px 20px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 0 10px var(--fourth-color), 0 0 20px var(--fourth-color);
+    font-size: 1rem;
+}
+
+.discord-widget button:hover {
+    background-color: var(--fourth-color);
+    color: var(--first-color);
+    box-shadow: 0 0 15px var(--third-color), 0 0 25px var(--third-color);
+}
+/*End of Discord Live Stream Feature*/
+
 /* Footer styling */
 footer {
     text-align: center;
