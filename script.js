@@ -103,3 +103,38 @@ document.addEventListener("DOMContentLoaded", function () {
         widget.style.transition = "box-shadow 0.3s ease";
     });
 });
+
+// Assistive Technology Support: Soft Audible Notification
+let hasAnnounced = false;
+
+// Function to play a soft notification sound
+function playLiveStreamALert() {
+    const audio = new Audio('audio/stream-start.mp3'); // I need to find an open sourse soft audible notification sound
+    audio.volume = 0.2; // Volume setting
+    audio.play();
+}
+
+// Logic check to check if the Discord LIve Stream widget is live
+document.addEventListener("DOMContentLoaded", async function () {
+    const widget = document.getElementById("discord-live-widget");
+    const alertBox = document.getElementById("stream-live-alert");
+
+    try {
+        const res = await fetch("What_is_the_backend.com/stream_status.json?") // I thought those were the channel IDs...this is something else...
+        const data = await res.json();
+
+        if (data.live === true && !hasAnnounced) {
+            widget.classList.add("pulsing");
+
+            if (!hasAnnounced) {
+                playLiveStreamALert();
+                alertBox.textContent = "🎥 MacN_iT Live Stream is now Active! Click to Join!";
+                hasAnnounced = true;
+            }
+        } else {
+            widget.classList.remove("pulsing");
+        }
+    } catch (err) {
+        console.error("Error checking stream status:", err);
+    }
+});

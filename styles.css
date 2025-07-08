@@ -299,7 +299,36 @@ body {
     color: var(--first-color);
     box-shadow: 0 0 15px var(--third-color), 0 0 25px var(--third-color);
 }
-/*End of Discord Live Stream Feature*/
+
+/* Live Streaming Visual Notification */
+.discord-widget.pulsing {
+    animation: pulseBackground 1.75s infinite;
+    box-shadow: 0 0 20px var(--fourth-color), 0 0 40px var(--fourth-color);
+}
+
+@keyframes pulseBackground {
+    0% {
+        background-color: #1e1e5f;
+    }
+    50% {
+        background-color: #08f7f3;
+    }
+    100% {
+        background-color: #1e1e5f;
+    }
+}
+/* End of Live Streaming Visual Notification */
+
+/* Assistive Technology Support */
+.sr-only {
+    position: absolute;
+    width: 1px; height: 1px;
+    padding: 0; margin: -1px;
+    overflow: hidden; clip: rect(0,0,0,0);
+    white-space: nowrap; border: 0;
+}
+
+/* End of Discord Live Stream Feature*/
 
 /* Footer styling */
 footer {
