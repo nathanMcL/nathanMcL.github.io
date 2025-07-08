@@ -72,6 +72,14 @@ document.addEventListener("DOMContentLoaded", function () {
     let isDragging = false;
     let offsetX, offsetY;
 
+    // Set the widget to handle the user click.
+    const discordBtn = document.getElementById("discord-live-button");
+    if (discordBtn) {
+        discordBtn.addEventListener("click", () => {
+            window.open("https://discord.com/channels/1391977384042823874/1391977384839876742", "_blank");
+        });
+    }
+
     // I want this widget to be independent, Not embedded into the main conntent. 
     // The user could drag the Discord Live Stream Widget where they want within the page.
     widget.addEventListener("mousedown", function (e) {
