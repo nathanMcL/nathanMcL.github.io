@@ -120,7 +120,7 @@ document.addEventListener("DOMContentLoaded", async function () {
     const alertBox = document.getElementById("stream-live-alert");
 
     try {
-        const res = await fetch("What_is_the_backend.com/stream_status.json?") // I thought those were the channel IDs...this is something else...
+        const res = await fetch("https://macn-about-api.azurewebsites.net/stream_status.json") 
         const data = await res.json();
 
         if (data.live === true && !hasAnnounced) {
