@@ -16,7 +16,17 @@ When the additional button (btn2) is clicked, the *New* `FSpt2Styles` Readme Sty
 The original `Profile Image` will get swapped out with the `Profile Image` of the *New* `FSpt2Styles`.
 This `ReadMe` and `Profile Image` swap happened below `Loading Thought and Notes heading`.<br>
 
+### (07/08/2025.1200) Discord Live Stream
 
+Using my Discord channel, create a way for viewers to watch (**NO** sensitive information).
+My idea is to provide a way for people to see what goes into this project.
+I want to use my  `OBS Studio` software for YouTube V-blog. YouTube (From what I know so far). When `live streaming` does not allow me to share a selected screen section (my coding environment). While also not having a pip view `live streaming` me. So, I am trying to figure out how to share. lol. <br>
+
+When a user clicks on the `🎥 Live on MacN_iT`, the user is directed to my **`Discord Channel`** where the person can view the `live stream`. <br>
+
+As I write this, I thought that I should provide some sort of visual and audible notification if I have my `Discord` channel `live streaming`. <br>
+
+Next, I have to set up the `Mic` stuff, which I am a total novice at. I usually just type everything out... So, there's `"talking"` and there is not `"rambling, tangents, side-tracks"`, or jumping down a `"rabbit holes"`.<br>
 
 ### Inspired Me
 
