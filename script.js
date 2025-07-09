@@ -120,7 +120,7 @@ document.addEventListener("DOMContentLoaded", async function () {
     const alertBox = document.getElementById("stream-live-alert");
 
     try {
-        const res = await fetch("https://macn-about-api.azurewebsites.net/stream_status.json") 
+        const res = await fetch("https://macn-about-api.azurewebsites.net/stream_status.json"); 
         const data = await res.json();
 
         if (data.live === true && !hasAnnounced) {
