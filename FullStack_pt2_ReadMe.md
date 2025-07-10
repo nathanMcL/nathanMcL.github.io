@@ -36,7 +36,20 @@ I am trying to figure out a way to include a `media-live-streaming` option. The 
 I could change the `🎥 Live on MacN_iT` button to be stationary, maybe within the header. The `🎥 Live on MacN_iT` button is movable. It's currently movable because I am not sure where I want to place this. I want to embed a media player that, when I choose to `go live`, my other social media channels automatically pick up my `live stream`. <br>
 I am thinking... I can use my `OBS Studios` software to record the `live stream`, while simultaneously notifying via `🎥 Live on MacN_iT` stationary banner that starts to visually glow, and play an audible tone for AT users. I think (I have no clue) that I could link my `OBS Studio` feed to trigger the `Discord` `Share your screen` and it will display the `live-stream` as I want it to. I think this will work with YouTube also, I just have to figure it out.<br>
 
+### 🦇(07/10/2025.0530) Holy🦇bat scripts... .bat(s)🦇
 
+Two or more things...<br>
+
+    - Create / Using `.bat` scripts that will help facilitate a `live stream` event. Once I figure out how to get my `OBS` studio 🦇software configured. The `.bat` scripts: <br>
+    
+1. `Stream On`: Automates (with a click) the process of navigating directly to the `live stream channel`, but then I have to click `share my screen` and select. <br>
+
+ 2. `Stream 🦇 Off`: Is intended to stop the `live stream`. (Currently, I am trying to get the `Stream Off` button on my desktop to stop the stream. So far I can only get it to say that the stream has been paused, not stopped.) <br>
+
+This is fun... To improve this, I am going to have to use my  `OBS` studios🦇. Alter the `.bat` scripts to be used with `OBS` studios `Start Streaming` or `Start Recording` options. <br>
+
+***Side Note...*** `OBS` Studios software has a streaming option, so once I get that sorted. I will configure that with all (owned🦇) social streaming platforms. Ensure the feeds display my coding space nicely.<br>
+Then once I have `my` coding environment(s) set up for sharing `non-sensitive code/data`, I can click the `Stream On` shortcut buttons I create with the `.bat` scripts🦇.<br>
 
 
 ### Inspired Me
