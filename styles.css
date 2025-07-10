@@ -17,6 +17,9 @@ body {
     --flag-white: #ffffff;
     --flag-red: #ff0000;
     --flag-blue: #0000ff;
+    /* Live Stream colors: stream_on / stream_off */
+    --stream-on: #4ef037; /* Green for stream on */
+    --stream-off: #e15757; /* Red for stream off */
 }
 /* End of Body styles */
 /* Header styles */
@@ -303,7 +306,7 @@ body {
 /* Live Streaming Visual Notification */
 .discord-widget.pulsing {
     animation: pulseBackground 1.75s infinite;
-    box-shadow: 0 0 20px var(--fourth-color), 0 0 40px var(--fourth-color);
+    box-shadow: 0 0 20px var(--stream-on), 0 0 40px var(--stream-off);
 }
 
 @keyframes pulseBackground {
