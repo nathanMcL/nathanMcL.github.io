@@ -40,7 +40,7 @@ I am thinking... I can use my `OBS Studios` software to record the `live stream`
 
 Two or more things...<br>
 
-    - Create / Using `.bat` scripts that will help facilitate a `live stream` event. Once I figure out how to get my `OBS` studio 🦇software configured. The `.bat` scripts: <br>
+Create / Using `.bat` scripts that will help facilitate a `live stream` event. Once I figure out how to get my `OBS` studio 🦇software configured. The `.bat` scripts: <br>
     
 1. `Stream On`: Automates (with a click) the process of navigating directly to the `live stream channel`, but then I have to click `share my screen` and select. <br>
 
@@ -51,6 +51,20 @@ This is fun... To improve this, I am going to have to use my  `OBS` studios🦇.
 ***Side Note...*** `OBS` Studios software has a streaming option, so once I get that sorted. I will configure that with all (owned🦇) social streaming platforms. Ensure the feeds display my coding space nicely.<br>
 Then once I have `my` coding environment(s) set up for sharing `non-sensitive code/data`, I can click the `Stream On` shortcut buttons I create with the `.bat` scripts🦇.<br>
 
+
+### (07/13/2025.0613) Fun side Project Over Complicated
+
+This would be a good time to mention. Not all ideas are viable. I mean I could expand on the `.bat` script to navigate to select the `Share Your Screen`, then select a predetermined screen/window source. 
+There are a few issues with doing just that. <br>
+     1. `Discord's` going to detect the automated script. I would have to further develop the `.bat` scripts and incorporate a Python script. While also `flagging` my account (Not what I want). <br>
+     2. The `Live Stream Status` effects other elements within the header, making it overcomplicated <br>
+     3. I am just messing around; this side project takes away from what I am planning to accomplish. <br>
+     4. `OBS` Studios is all I need at the moment anyway, it can connect to all sorts of socials. <br>
+     5. I'm Extra... Muuahhahaha! <br>
+
+I removed the instances of the `Live Stream Notification`. <br>
+
+What I learned was how to create more uses for automated scripting. For what I have planned, learning how to automate different types of software for various functions, for various client needs, I think is beneficial. <br>
 
 ### Inspired Me
 
