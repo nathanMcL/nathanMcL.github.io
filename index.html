@@ -56,7 +56,10 @@
                     </a>
 
                     <!-- Live Stream Notification Orb -->
-                    <div id="stream-orb" class="stream-orb" role="status" aria-hidden="true"></div>
+                    <!-- Wrap the orb as to not push other elements, creating un-wanted overflow -->
+                    <div class="orb-wrapper">
+                        <div id="stream-orb" class="stream-orb" role="status" aria-hidden="true"></div>
+                    </div>
                     
                     <ul class="nav.menu">
                         <li class="nav_item"><a class="nav_active" href="index.html" aria-current="page">Home</a></li>

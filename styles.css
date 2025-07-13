@@ -36,12 +36,11 @@ body {
 }
 
 .nav_container {
+    position: relative; /* makes orb-wrapper position relative to nav */
     display: flex;
     justify-content: space-between;
     align-items: center;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
+    flex-wrap: wrap; /* Allows the nav to wrap on smaller screens */
 }
 
 #nav_logo {
@@ -137,6 +136,15 @@ body {
 }
 /* End of Animation styles for color change */
 
+/* Live Stream Notification */
+.orb-wrapper {
+  position: absolute;
+  left: 160px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+}
+
 .stream-orb {
   width: 20px;
   height: 20px;
@@ -145,7 +153,6 @@ body {
   background: linear-gradient(to right, var(--stream-off-dark), var(--stream-off-light));
   box-shadow: 0 0 1vw var(--stream-off-light);
   animation: pulseStreamOff 2s infinite;
-  flex-shrink: 0;
 }
 
 .stream-orb.live {
