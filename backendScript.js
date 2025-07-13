@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", function () {
     const btn1 = document.getElementById("toggle-be1");
     const btn2 = document.getElementById("toggle-be2");
-    const section1 = document.getElementById("markdown-be");
+    const section1 = document.getElementById("markdown-be1");
     const section2 = document.getElementById("markdown-be2");
 
     function loadMarkdown(url, container) {
