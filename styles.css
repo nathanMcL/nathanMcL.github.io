@@ -323,66 +323,6 @@ body {
     display: inline-block;
 }
 
-/*Discord Live Stream Feature*/
-.discord-widget {
-    position: fixed;
-    top: 16px;
-    right: 15px;
-    z-index: 9999;
-    background-color: #1e1e5f; /* Dark blue background */
-    padding: 10px 15px;
-    border-radius: 12px;
-    box-shadow: 0 0 15px var(--third-color);
-    cursor: move;
-}
-
-.discord-widget button {
-    background-color: var(--third-color);
-    color: var(--first-color);
-    border: none;
-    padding: 10px 20px;
-    font-weight: bold;
-    cursor: pointer;
-    box-shadow: 0 0 10px var(--fourth-color), 0 0 20px var(--fourth-color);
-    font-size: 1rem;
-}
-
-.discord-widget button:hover {
-    background-color: var(--fourth-color);
-    color: var(--first-color);
-    box-shadow: 0 0 15px var(--third-color), 0 0 25px var(--third-color);
-}
-
-/* Live Streaming Visual Notification */
-.discord-widget.pulsing {
-    animation: pulseBackground 1.75s infinite;
-    box-shadow: 0 0 20px var(--stream-on), 0 0 40px var(--stream-off);
-}
-
-@keyframes pulseBackground {
-    0% {
-        background-color: #1e1e5f;
-    }
-    50% {
-        background-color: #08f7f3;
-    }
-    100% {
-        background-color: #1e1e5f;
-    }
-}
-/* End of Live Streaming Visual Notification */
-
-/* Assistive Technology Support */
-.sr-only {
-    position: absolute;
-    width: 1px; height: 1px;
-    padding: 0; margin: -1px;
-    overflow: hidden; clip: rect(0,0,0,0);
-    white-space: nowrap; border: 0;
-}
-
-/* End of Discord Live Stream Feature*/
-
 /* Footer styling */
 footer {
     text-align: center;
@@ -392,56 +332,6 @@ footer {
     border-top: 1px solid #ccc;
     border-radius: 10px;
 }
-
-/* Cyber-Grid Background */
-@keyframes cyberGrid {
-    0% { background-position: 0% 0%; }
-    100% { background-position: 100% 100%;}
-}
-
-.cyber-container {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background: linear-gradient(45deg, var(--first-color) 25%, var(--third-color) 50%, var(--fourth-color) 75%);
-    background-size: 400% 400%;
-    opacity: 0.15; /* Adjust the opacity as needed */
-    z-index: -1;
-    animation: cyberGrid 10s infinite linear;
-    overflow: hidden;
-    pointer-events: none;
-}
-
-
-/* Network Packet Animation */
-.network-packet {
-    position: absolute;
-    top: -20px;
-    color: rgba(0, 255, 170, 1); /* Cyber green */
-    font-family: "Courier New", monospace;
-    font-size: 24x; /* Default font size, updated dynamically */
-    font-weight: bold;
-    opacity: 0.85;
-    pointer-events: none;
-    text-transform: uppercase;
-
-    /* Testing to make it have the text pop-out with a glow effect */
-    text-shadow:
-        0 0 15px rgba(0, 255, 170, 1.0),
-        0 0 30px rgba(0, 255, 170, 0.8),
-        0 0 40px rgba(0, 255, 170, 0.6);
-
-    /* Floating effect */
-    animation: floatPackets linear infinite;
-}
-
-@keyframes floatPacket {
-    0% { transform: translateY(0px); opacity: 1; }
-    100% { transform: translateY(100vh); opacity: 0; }
-}
-/* End Network Packet Animation */
 
 /* Responsive styles */
 /* Medium screens */
