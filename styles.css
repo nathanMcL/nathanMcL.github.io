@@ -20,11 +20,6 @@ body {
     /* Live Stream colors: stream_on / stream_off */
     --stream-on: #4ef037; /* Green for stream on */
     --stream-off: #e15757; /* Red for stream off */
-    /* Live Stream colors: stream_on / stream_off */
-    --stream-on-dark: #167609; /* Gradient dark Green for stream on */
-    --stream-on-light: #3f3; /* Gradient light Green for stream on */
-    --stream-off-dark: #413f3f; /* Gradient dark Gray for stream off */
-    --stream-off-light: #938c8c; /* Gradient light Gray for stream off */
 }
 /* End of Body styles */
 /* Header styles */
@@ -36,11 +31,12 @@ body {
 }
 
 .nav_container {
-    position: relative; /* makes orb-wrapper position relative to nav */
     display: flex;
     justify-content: space-between;
     align-items: center;
-    flex-wrap: wrap; /* Allows the nav to wrap on smaller screens */
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
 }
 
 #nav_logo {
@@ -135,54 +131,6 @@ body {
     }
 }
 /* End of Animation styles for color change */
-
-/* Live Stream Notification */
-.orb-wrapper {
-  position: absolute;
-  left: 160px;
-  top: 50%;
-  transform: translateY(-50%);
-  z-index: 10;
-}
-
-.stream-orb {
-  width: 20px;
-  height: 20px;
-  margin: 0 15px;
-  border-radius: 50%;
-  background: linear-gradient(to right, var(--stream-off-dark), var(--stream-off-light));
-  box-shadow: 0 0 1vw var(--stream-off-light);
-  animation: pulseStreamOff 2s infinite;
-}
-
-.stream-orb.live {
-  background: linear-gradient(to right, var(--stream-on-dark), var(--stream-on-light));
-  box-shadow: 0 0 1.5vw var(--stream-on-light);
-  animation: pulseStreamOn 2s infinite;
-}
-
-@keyframes pulseStreamOn {
-    0%, 100% { box-shadow: 0 0 1vw var(--stream-on-dark); }
-    50% { box-shadow: 0 0 2.5vw var(--stream-on-light); }
-}
-
-@keyframes pulseStreamOff {
-    0%, 100% { box-shadow: 0 0 1vw var(--stream-off-light); }
-    50% { box-shadow: 0 0 2vw var(--stream-off-dark); }
-}
-
-.sr-only {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    padding: 0;
-    margin: -1px;
-    overflow: hidden;
-    clip: rect(0, 0, 0, 0);
-    white-space: nowrap;
-    border: 0;
-}
-/* End of Stream Notification */
 /* End of Header styles */
 
 /* Main section styles */
