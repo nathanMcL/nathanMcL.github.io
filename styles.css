@@ -137,26 +137,21 @@ body {
 }
 /* End of Animation styles for color change */
 
-/* Live Stream Notification */
 .stream-orb {
-    position: absolute;
-    top: 12vw;
-    left: 75%;
-    width: 4vw;
-    height: 4vw;
-    max-width: 24px;
-    max-height: 24px;
-    border-radius: 50%;
-    background: linear-gradient(to right, var(--stream-off-dark), var(--stream-off-light));
-    box-shadow: 0 0 1vw var(--stream-off-light);
-    animation: pulseStreamOff 2s infinite;
-    z-index: 50;
+  width: 20px;
+  height: 20px;
+  margin: 0 15px;
+  border-radius: 50%;
+  background: linear-gradient(to right, var(--stream-off-dark), var(--stream-off-light));
+  box-shadow: 0 0 1vw var(--stream-off-light);
+  animation: pulseStreamOff 2s infinite;
+  flex-shrink: 0;
 }
 
 .stream-orb.live {
-    background: linear-gradient(to right, var(--stream-off-dark), var(--stream-on-light));
-    box-shadow: 0 0 1.5vw var(--stream-on-light);
-    animation: pulseStreamOn 2s infinite;
+  background: linear-gradient(to right, var(--stream-on-dark), var(--stream-on-light));
+  box-shadow: 0 0 1.5vw var(--stream-on-light);
+  animation: pulseStreamOn 2s infinite;
 }
 
 @keyframes pulseStreamOn {
