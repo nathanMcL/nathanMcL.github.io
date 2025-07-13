@@ -379,10 +379,10 @@ body::before {
     text-shadow: 0 0 5px white;
 }
 
-body.fspt2-mode .markdown-section {
+body.backend-mode .markdown-section {
     background-color: var(--creamy-vanilla);
     color: var(--dark-cocoa-glow);
-    font-family: "Courier New", monospace;
+    font-family: 'Roboto', 'Arial', sans-serif;
 }
 /* End of Back-End additional readme sectional styles */
 /* End of Markdown Styling */
