@@ -27,8 +27,74 @@ The files, however, were being stored in a Temporary type of directory. This pre
 
 ### `requirements_scan.py`
 
+This `requirements_scan` Python file is fun.<br>
+Using Python to `generate` and `prepare` a `Bash` script named:<br>
+`check_dependencies.sh`<br>
+The `check_dependencies` scans the deployed Python environment for:<br>
+
+- Outdated packages. <br>  
+- Know Common Vulnerabilites and Exposures (Using the `saftey` tool).<br>
+
+The `requirements_scan.py` *Python* script should then produce a human-readable log.<br>
+
+#### Shell Scripting
+
+First define the `Shell Script` (script_content).<br>
+The `script_content` Logs:<br>
+
+- Current Timestamp: <br>
+`TIMESTAMP=$(date "+%Y-%m-%d %H:%M:%S")`<br>
+
+- Lists *all* outdated Python packages: <br>
+
+```
+echo "Outdated packages:" | tee -a $LOGFILE
+pip list --outdated 2>&1 | tee -a $LOGFILE
+```
+
+- Checks for `CVE` vulnerabilities in the requirements.txt file, using the `saftey` tool.<br>
+
+#### Handling Missing Tools
+
+If `saftey` is not installed, it will auto-install it with `pip install saftey`.<br>
+
+#### Write to a Log File
+
+I am working on logging all results outputted to `/app/dependency_check.log` and exported to the same private `Google Drive` as `serverLog_Dump.py` but different directory name.<br>
+
+#### Writes and Enables the Script
+
+Then the `Python script`  saves the content.<br>
+
+### How it Connects to the Server
+
+Within the `startup.sh` file (the same one that is used to start the server from deployment, but with add-ons) script is code that *triggers* the initial `requirements_scan.py` to:<br>
+
+- "Set up" the `check_dependencies.sh`. <br>
+- Run a *first-time* dependency scan. <br>
+- Log any issue to `/home/LogFiles/log_uploads.log`. <br>
+
+...Next...<br>
+
+### Schedule Weekly Checks
+
+Within `startup.sh` there is a loop that runs in the background that automatically executes: <br>
+
+- The dependency scan (`bash ./check_dependencies.sh`). <br>
+- Upload the logs to my Google Dive using `serverLog_Dump.py`. <br>
+
+
 ```
 python3 requirements_scan.py
+```
+
+### Make it Be So!!!
+
+Output: <br>
+
+```
+
+
 ```
 <br>
 
