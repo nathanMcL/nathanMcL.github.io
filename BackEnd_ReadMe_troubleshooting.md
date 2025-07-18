@@ -88,7 +88,10 @@ Within `startup.sh` there is a loop that runs in the background that automatical
 python3 requirements_scan.py
 ```
 
-### Make it Be So!!!
+### (07/17/2025 2030) Make it Be So!!!
+
+🐳 Docker! Docker! Docker! 🐳 <br>
+
 
 Output: <br>
 
