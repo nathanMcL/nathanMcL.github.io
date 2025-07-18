@@ -90,16 +90,54 @@ python3 requirements_scan.py
 
 ### (07/17/2025 2030) Make it Be So!!!
 
+Command: `./check_dependencies.sh` <br> 
+Output: <br>
+```
+./check_dependencies.sh: line 7: /app/dependency_check.log: No such file or directory
+./check_dependencies.sh: line 8: /app/dependency_check.log: No such file or directory
+./check_dependencies.sh: line 9: /app/dependency_check.log: No such file or directory
+tee: /app/dependency_check.log: No such file or directory
+🔍 Outdated Python packages:
+tee: /app/dependency_check.log: No such file or directory
+./check_dependencies.sh: line 12: pip: command not found
+tee: /app/dependency_check.log: No such file or directory
+🛡️ CVE Scan using safety:
+tee: /app/dependency_check.log: No such file or directory
+⚠️ Safety not installed. Installing now...
+tee: /app/dependency_check.log: No such file or directory
+./check_dependencies.sh: line 17: pip: command not found
+tee: /app/dependency_check.log: No such file or directory
+./check_dependencies.sh: line 20: safety: command not found
+tee: /app/dependency_check.log: No such file or directory
+✅ Dependency check completed.
+
+```
+
+#### `./check_dependencies`
+
+The above `./check_dependencies` bash script, that got generated from the initial `requirements_scan` Python file, has problems.<br>
+
+1. The `/app/dependency_check.log: No such file or directory` means that the directory `/app/` **does not exist** in my Kudu container at the time the `./check_dependencies` bash script runs. <br>
+
+2. `pip: command not found`. Kudalite's *Bash shell* does not have access to `pip`? <br>
+    - I am now in the correct virtual environment. <br>
+
+    - I have to implement my custom `Docker Container`.<br>
+
+
+### (07/18/2025.0400) Whale Riding...
 🐳 Docker! Docker! Docker! 🐳 <br>
 
+🐳 Docker Infrastructure <br>
+`Dockerfile`🐋<br>
+Testing a `Multi-stage` build with python:3.12-alpine3.22. <br>
 
-Output: <br>
+- ✅ Secure pip + safety + logging + healthcheck <br>
+- ✅ Drops to non-root user <br>
+- ✅ Compatible with Azure B1 (Basic) App Service Plan <br>
+- ✅ Expandable for future tooling <br>
 
-```
-
-
-```
-<br>
+updated 🐋 `.gitignore`<br>
 
 ### `serverLog_Dump.py`
 
