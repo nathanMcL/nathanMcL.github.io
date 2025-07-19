@@ -34,13 +34,13 @@ Next, I have to set up the `Mic` stuff, which I am a total novice at. I usually 
 Created a `Discord Widget`. The `Widget` is a created link using my `Discord` server `chat` and `voice` `ID`(s).
 I am trying to figure out a way to include a `media-live-streaming` option. The `live-streaming` event would include my selected coding environment (s) and a pip-style pop-up of the host. I can't embed a Discord `Live Stream` media player in my website. So, I think it would be beneficial to include some type of visual and audible notification to indicate that I am live. I am not sure how I feel about the `🎥 Live on MacN_iT`. I want the concept of sharing my `live-status`. I'm not sure how I want to visually display this. <br>
 I could change the `🎥 Live on MacN_iT` button to be stationary, maybe within the header. The `🎥 Live on MacN_iT` button is movable. It's currently movable because I am not sure where I want to place this. I want to embed a media player that, when I choose to `go live`, my other social media channels automatically pick up my `live stream`. <br>
-I am thinking... I can use my `OBS Studios` software to record the `live stream`, while simultaneously notifying via `🎥 Live on MacN_iT` stationary banner that starts to visually glow, and play an audible tone for AT users. I think (I have no clue) that I could link my `OBS Studio` feed to trigger the `Discord` `Share your screen` and it will display the `live-stream` as I want it to. I think this will work with YouTube also, I just have to figure it out.<br>
+I am thinking... I can use my `OBS Studios` software to record the `live stream`, while simultaneously notifying via `🎥 Live on MacN_iT` stationary banner that starts to visually glow, and play an audible tone for AT users. I think... That I could link my `OBS Studio` feed to trigger the `Discord` `Share your screen` and it will display the `live-stream` as I want it to. I think this will work with YouTube also, I just have to figure it out.<br>
 
 ### 🦇(07/10/2025.0530) Holy🦇bat scripts... .bat(s)🦇
 
-Two or more things...<br>
+One... Two... Or more things...<br>
 
-Create / Using `.bat` scripts that will help facilitate a `live stream` event. Once I figure out how to get my `OBS` studio 🦇software configured. The `.bat` scripts: <br>
+Using `.bat` scripts that will help facilitate a `live stream` event. Once I figure out how to get my `OBS` studio 🦇software configured. The `.bat` scripts: <br>
     
 1. `Stream On`: Automates (with a click) the process of navigating directly to the `live stream channel`, but then I have to click `share my screen` and select. <br>
 
