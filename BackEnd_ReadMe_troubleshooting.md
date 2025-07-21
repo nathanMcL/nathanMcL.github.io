@@ -141,7 +141,7 @@ updated 🐋 `.gitignore`<br>
 
 #### (07/21/2025.0530) 🫡To Move Forward, To Grow...
 
-Why does `Docker` *** Fascinate *** me? <br>
+Why does `Docker` ***Fascinate*** me? <br>
 To explain why I find `Docker` so fascinating, I would have to write a Man-Fan explanation. I have a `Docker` container project that I have been working on. I stripped out a couple of features to make it "less-custom". While reading the book I am using for *my* `Docker` container project:<br>
 `The Ultimate Docker Container Book` By: Gabrial N. Schenker. In it, the author mentions that you do not want a custom container because containers are meant to connect (in some larger way). If *my* container ((or if I made a `pod` (cluster?) of containers), I am not done with the book). If it is too custom, that would mean that other `pods` could not join mine, or I could not join their `pod`.<br>
 
