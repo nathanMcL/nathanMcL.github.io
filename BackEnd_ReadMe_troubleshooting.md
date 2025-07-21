@@ -143,16 +143,16 @@ updated 🐋 `.gitignore`<br>
 
 Why does `Docker` ***Fascinate*** me? <br>
 To explain why I find `Docker` so fascinating, I would have to write a Man-Fan explanation. I have a `Docker` container project that I have been working on. I stripped out a couple of features to make it "less-custom". While reading the book I am using for *my* `Docker` container project:<br>
-`The Ultimate Docker Container Book` By: Gabrial N. Schenker. In it, the author mentions that you do not want a custom container because containers are meant to connect (in some larger way). If *my* container ((or if I made a `pod` (cluster?) of containers), I am not done with the book). If it is too custom, that would mean that other `pods` could not join mine, or I could not join their `pod`.<br>
+`The Ultimate Docker Container Book` By: Gabrial N. Schenker. In it, the author mentions that you do not want such a custom container that it cannot connect to different platforms... Containers are meant to connect (in a larger way). If *my* container ((or if I made a `pod` (a cluster) of containers)). If it is too custom, that would mean that other `pods` could not join mine, or I could not join their `pod`.<br>
 
 I have implemented my custom `Docker` container. But!! There is a problem...<br>
 
-**My** current `Settings/Configuration` **Stack Settings** are setup as a Python Stack. This means that I am using Azure's standard (purchased tier level) `Docker` container. So, even though I have successfully deployed my containerized API server - Azure will not "use it", even though it's there, it is blocked... <br>
+**My** current `Settings/Configuration` **Stack Settings** are setup as a Python Stack. This means that I am using Azure's standard (purchased tier level) `Docker` container. So, even though I have successfully deployed my containerized API server - Azure will not "use it", even though it's there, it is blocked, **"my"** `Docker` container... <br>
 
 What to do then??<br>
-To use my `Custom Docker Container`, I have to set my *current* Azure API server as a `Container Instance`. I haven't sorted that out yet. Creating the code isn't always the hard part; it's getting it to function. I might have to do another back-end walk-through write-up on configuring the `Docker-API-Server`. <br>
+To use my `Custom Docker Container`, I have to set my *current* Azure API server as a `Container Instance`. I haven't sorted that out yet. Creating the code isn't always the hard part; it's getting it to function. <br>
 
-Once I set up the `Docker-API-Server`, then those additional Python files I have to scan the server will properly conduct their scans at the set times. Be able to manually scan if needed. Then securely export to the cloud. From there, that data I collected can then be parsed into all sorts of visual metrics, SOC analysis, AI input / out-put Comparison... my imagination keeps going. I need these files to function properly. Once the routes, paths, and correct app service are all in place, I can finish the front-end about page and inspiration page. <br>
+Once I set up the `Docker-API-Server`, then those additional Python files I have to scan the server will properly conduct their scans at the set times. Be able to manually scan if needed. Then securely export to the cloud. From there, that data I collected can then be parsed into all sorts of visual metrics, analysis, AI input / out-put Comparison... it keeps going. I need these files to function properly. Once the routes, paths, and correct app service are all in place, I can work on the front-end. <br>
 
 ### `serverLog_Dump.py`
 
