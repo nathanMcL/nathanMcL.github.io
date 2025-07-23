@@ -154,6 +154,21 @@ To use my `Custom Docker Container`, I have to set my *current* Azure API server
 
 Once I set up the `Docker-API-Server`, then those additional Python files I have to scan the server will properly conduct their scans at the set times. Be able to manually scan if needed. Then securely export to the cloud. From there, that data I collected can then be parsed into all sorts of visual metrics, analysis, AI input / out-put Comparison... it keeps going. I need these files to function properly. Once the routes, paths, and correct app service are all in place, I can work on the front-end. <br>
 
+### (07/23/2025.0420) I Docked my Docker
+
+I did it!!! <br>
+I implemented my customish `Docker` container. I ***NOW*** should be able to properly test the additional supporting server files:
+```
+requirements_scan.py,
+token_tracker.py,
+serverLog_Dump.py
+```
+
+Always Seek Improvements!
+✌🏼✈️😘🗽🚢😎🏝️✌🏼🗽✈️😊
+
+
+
 ### `serverLog_Dump.py`
 
 ```
