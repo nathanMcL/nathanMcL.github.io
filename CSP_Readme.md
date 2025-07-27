@@ -226,10 +226,238 @@ Cookies or storage modifications.<br>
 
 Unexpected outbound fetch() or XMLHttpRequest.<br>
 
+### (07/27/2025.1342) Dark Games
 
-## CSP Hardening: Terminology
+Compilation of known, real-world `Server-Side Attacks`—cataloged to educate, secure, and defend the server hosted on Azure, containerized with Docker, and served to your GitHub Pages frontend. <br>
 
-### (05/22/2025.0940) Mobile Screen Visual Text layout Issue
+Note: These are not theories. <br>
+
+
+---
+
+### `SSRF` <br>
+
+Technical term: <br>
+`Server-Side Request Forgery`. <br>
+
+Slang: `"Snitch Fetch"`, `"Server Tunnel Trick` <br>
+How it strikes: Your server is tricked into making internal calls it shouldn't.<br>
+
+Example: <br>
+User sends a payload like: <br>
+
+```
+POST /generate-aboutOrb
+{
+  "context": "http://127.0.0.0.1:8000/admin"
+}
+```
+***Dear Diary...*** The server reads its own secrets.<br>
+
+Effects:<br>
+
+- `Internal services exposed (localhost abuse)`<br>
+
+- `Metadata leak` (AWS, Azure, GCP) <br>
+
+- `Side-channel probes` (port scans through your server) <br>
+
+
+Prevention: <br>
+
+Never let user input become a URL without strict validation. <br>
+
+Block IP ranges like 127.0.0.0.1, 169.254.169.254, etc. <br>
+
+Use libraries that prevent internal HTTP fetches <br>
+
+### Command Injection <br>
+
+Technical term: 
+`Remote Code Execution` (RCE) via OS command <br>
+
+Slang: <br>
+"Shellslide", "Pipe to Doom". <br>
+
+How it hits: <br>
+`Dynamic subprocess` *calls* in `serverLog_Dump.py` or `app.py`
+If an attacker tampers with a variable in: <br>
+
+```
+subprocess.run(["python3", "serverLog_Dump.py"], .)
+```
+
+...And then... manages to: <br>
+```inject ; rm -rf /```,<br>
+they pwn the box. <br>
+
+Prevention: <br>
+
+Use strict input validation before passing user input into subprocess. <br>
+
+Prefer `subprocess.run([.], shell=False)` and avoid `shell=True`. <br>
+
+Sanitize file names, URLs, and API key strings before execution. <br>
+
+### Open Redirect in Flask
+
+Technical term:<br>
+`Unsafe Redirect Logic`  <br>
+
+Slang: 
+`"Whoopsie Portal"`, `"Teleport Trap"` <br>
+
+How it hits: <br>
+If you ever add a:
+`/redirect?url=https://malware.com` route and **don't validate** that URL.
+...And! Now you've become an accomplice to phishing. <br>
+
+Prevention: <br>
+
+`Whitelist URLs` <br>
+
+Abort if `urlparse(url).netloc` not in approved_list <br>
+
+Neverever redirect using raw query string values <br>
+
+ ### Rate-Limit Bypass or Abuse
+
+Technical term: <br>
+`DDoS-as-a-Service` / `API Hammering` <br>
+
+Slang:<br> 
+`"Spam Cannon"`, `"Speed Demon"`<br>
+
+How it hits:<br>
+Someone fires *1000s* of requests at your API until your logs choke.<br>
+
+Even with:<br>
+
+`Limiter`(example: `default_limits=["20 per minute"]`) <br>
+
+Attackers might:<br>
+
+Use rotating IPs (botnets)<br>
+
+Exploit unprotected routes like /health<br>
+
+
+Prevention:<br>
+
+Strengthen `rate-limits` on all `endpoints` `(@limiter.limit(.))`<br>
+
+Use `@limiter.request_filter` strategically <br>
+
+Log IPs with **continued abuse** and *ban* via `WAF/firewall rules` <br>
+
+
+
+### API Key Exposure / Weak Secret Logic
+
+Technical term: <br>
+`Leaky Secrets` / `Poor Token Design`<br>
+
+Slang: 
+`"Key Slip"`, `"Token Leak"`, `"Gimme the Goods"`<br>
+
+How it hits: <br>
+
+API key hardcoded or exposed in frontend (visible via browser devtools) <br>
+
+Weak secret validation in headers (SLDUMP_KEY) <br>
+
+Tokens stored without rotation or expirations.<br>
+
+Prevention: <br>
+
+Store secrets in secure vaults (Azure Key Vault )<br>
+Strictly validate keys <br>
+Don't use short shared tokens—use `HMACs` or `JWTs` with expiration. <br>
+
+
+### Insecure Deserialization
+
+Technical name: <br>
+ `Arbitrary Code Execution` via Deserialization. <br>
+Slang: 
+`"Object Hijack"`, `"Payload Puppet"`<br>
+
+How it attacks:<br>
+
+If your API deserializes any incoming object (JSON, Pickle, YAML) without strict structure validation, you can be given a `rigged payload`.<br>
+
+Prevention:<br>
+
+Only accept formatted JSON with `json.loads()`<br>
+
+Never use `pickle.loads()` on untrusted data<br>
+
+Validate keys and types of all incoming fields<br>
+
+### Supply Chain Attack
+
+Technical term: <br>
+`Dependency Hijack`
+Slang: 
+`"Package Poison"`, `"Typosquat Trap"` <br>
+
+How it hits: <br>
+
+If the `requirements.txt` includes `somepackage==1.0.0`, and *somepackage* is hijacked or maliciously updated on PyPI. you're toast. <br>
+
+Prevention: <br>
+
+Lock in  versions exactly ( already in requirements.txt) <br>
+
+Use safety to scan for `CVEs` ( see requirements_scan.py) <br>
+
+Audit packages regularly <br>
+
+### Log Overflow & Abuse
+
+Technical term: <br>
+`Log Injection` / `Log Pollution` <br>
+Slang: <br>
+`"Gremlin Echo"`, `"Log Bleed"`<br>
+How it hits: <br>
+
+Logs are written based on request values or unescaped input (example: `IP`, `headers`, or `context` in `app.py`). <br>
+If user input has: <br>
+`ERROR: Unauthorized...`, your logs are spoofed. <br>
+
+Prevention: <br>
+
+Sanitize user input before logging. <br>
+
+Strip, control characters from any user-passed logs. <br>
+
+Limit log verbosity for /generate-aboutOrb. <br>
+
+
+### Token Tracking Evasion
+Technical term:<br>
+`Cost Evasion` / `Overuse Attack` <br>
+Slang:
+`"API Freeloader"`, `"Ghost Calls"` <br>
+
+How it hits:<br>
+
+Yikes! The `TokenTracker` logs budget against estimated tokens—but when somebody messes with headers or abuses `OPTIONS` requests, they skip logging calls. <br>
+
+Prevention: <br>
+
+Count all calls regardless of `POST/OPTIONS`.<br>
+
+Enhance logging to track: `IP`, `time`, and `routes`.<br>
+
+Rotate budget or warn on usage spikes. <br>
+
+
+
+
+### CSP Hardening: Terminology
+
+#### (05/22/2025.0940) Mobile Screen Visual Text layout Issue
 
 I have been attempting to resolve the oversize screen when this page is viewed on smaller screens.<br>
 I implemented these types of CSS elements:
