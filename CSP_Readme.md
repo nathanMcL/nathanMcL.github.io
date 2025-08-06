@@ -226,12 +226,12 @@ Cookies or storage modifications.<br>
 
 Unexpected outbound fetch() or XMLHttpRequest.<br>
 
-### (07/27/2025.1342) Dark Games
 
-Compilation of known, real-world `Server-Side Attacks`—cataloged to educate, secure, and defend the server hosted on Azure, containerized with Docker, and served to the GitHub Pages frontend. <br>
+### (07/27/2025.1342) Dark Games... 
+
+Compilation of known, real-world `Server-Side Attacks`—cataloged to educate, secure, and defend the server hosted on Azure, containerized with Docker, and served to GitHub Pages frontend. <br>
 
 Note: These are not theories. <br>
-
 
 ---
 
@@ -241,7 +241,8 @@ Technical term: <br>
 `Server-Side Request Forgery`. <br>
 
 Slang: `"Snitch Fetch"`, `"Server Tunnel Trick` <br>
-How it strikes: Your server is tricked into making internal calls it shouldn't.<br>
+
+How it hits: Your server is tricked into making internal calls it shouldn't.<br>
 
 Example: <br>
 User sends a payload like: <br>
@@ -256,7 +257,7 @@ POST /generate-aboutOrb
 
 Effects:<br>
 
-- `Internal services exposed (localhost abuse)`<br>
+- Internal services exposed (localhost abuse)` <br>
 
 - `Metadata leak` (AWS, Azure, GCP) <br>
 
@@ -277,7 +278,7 @@ Technical term:
 `Remote Code Execution` (RCE) via OS command <br>
 
 Slang: <br>
-"Shellslide", "Pipe to Doom". <br>
+`"Shellslide"`, `"Pipe to Doom"`. <br>
 
 How it hits: <br>
 `Dynamic subprocess` *calls* in `serverLog_Dump.py` or `app.py`
@@ -289,7 +290,7 @@ subprocess.run(["python3", "serverLog_Dump.py"], .)
 
 ...And then... manages to: <br>
 ```inject ; rm -rf /```,<br>
-they pwn the box. <br>
+they own the box. <br>
 
 Prevention: <br>
 
@@ -308,8 +309,10 @@ Slang:
 `"Whoopsie Portal"`, `"Teleport Trap"` <br>
 
 How it hits: <br>
+
 If you ever add a:
 `/redirect?url=https://malware.com` route and **don't validate** that URL.
+
 ...And! Now you've become an accomplice to phishing. <br>
 
 Prevention: <br>
@@ -320,7 +323,7 @@ Abort if `urlparse(url).netloc` not in approved_list <br>
 
 Neverever redirect using raw query string values <br>
 
- ### Rate-Limit Bypass or Abuse
+ ### Rate-Limit Bypass Abuse
 
 Technical term: <br>
 `DDoS-as-a-Service` / `API Hammering` <br>
@@ -331,7 +334,7 @@ Slang:<br>
 How it hits:<br>
 Someone fires *1000s* of requests at your API until your logs choke.<br>
 
-Even with:<br>
+Even with `limiter`:<br>
 
 `Limiter`(example: `default_limits=["20 per minute"]`) <br>
 
@@ -358,7 +361,7 @@ Technical term: <br>
 `Leaky Secrets` / `Poor Token Design`<br>
 
 Slang: 
-`"Key Slip"`, `"Token Leak"`, `"Gimme the Goods"`<br>
+`"Key Slip"`, `"Token Drip"`, `"Gimme the Goods"`<br>
 
 How it hits: <br>
 
@@ -382,67 +385,68 @@ Technical name: <br>
 Slang: 
 `"Object Hijack"`, `"Payload Puppet"`<br>
 
-How it attacks:<br>
+How it hits:<br>
 
 If your API deserializes any incoming object (JSON, Pickle, YAML) without strict structure validation, you can be given a `rigged payload`.<br>
 
 Prevention:<br>
 
-Only accept formatted JSON with `json.loads()`<br>
+Only accept formatted JSON with `json.loads()`.<br>
 
-Never use `pickle.loads()` on untrusted data<br>
+Never use `pickle.loads()` on untrusted data.<br>
 
-Validate keys and types of all incoming fields<br>
+Validate keys and types of all incoming fields.<br>
 
 ### Supply Chain Attack
 
 Technical term: <br>
-`Dependency Hijack`
-Slang: 
-`"Package Poison"`, `"Typosquat Trap"` <br>
+`Dependency Hijack`<br>
+Slang: <br>
+`"Package Poison"`, `"Typosquating"` <br>
 
 How it hits: <br>
 
-If the `requirements.txt` includes `somepackage==1.0.0`, and *somepackage* is hijacked or maliciously updated on PyPI. you're toast. <br>
+If the `requirements.txt` includes `somepackage==1.0.0`, and **somepackage** is *hijacked* or maliciously updated on PyPI. You're toast, I'm toast. We're eating toast...<br>
 
 Prevention: <br>
 
-Lock in  versions exactly ( already in requirements.txt) <br>
+Lock in versions exactly ( already in requirements.txt). <br>
 
-Use safety to scan for `CVEs` ( see requirements_scan.py) <br>
+Use *safety* to scan for `CVEs` ( see requirements_scan.py) <br>
 
-Audit packages regularly <br>
+Audit packages regularly.<br>
 
 ### Log Overflow & Abuse
 
 Technical term: <br>
 `Log Injection` / `Log Pollution` <br>
 Slang: <br>
-`"Gremlin Echo"`, `"Log Bleed"`<br>
-How it hits: <br>
+`"Gremlin's Echo"`, `"Log Bleed"`<br>
 
+How it hits: <br>
 Logs are written based on request values or unescaped input (example: `IP`, `headers`, or `context` in `app.py`). <br>
 If user input has: <br>
-`ERROR: Unauthorized...`, your logs are spoofed. <br>
+`ERROR: Unauthorized...`, your logs could be spoofed. <br>
 
 Prevention: <br>
 
 Sanitize user input before logging. <br>
 
-Strip, control characters from any user-passed logs. <br>
+Strip control characters from any user-passed logs. <br>
 
-Limit log verbosity for /generate-aboutOrb. <br>
+Limit log verbosity for `/generate-aboutOrb`. <br>
 
 
 ### Token Tracking Evasion
+
 Technical term:<br>
 `Cost Evasion` / `Overuse Attack` <br>
-Slang:
+Slang:<br>
 `"API Freeloader"`, `"Ghost Calls"` <br>
 
 How it hits:<br>
 
-Yikes! The `TokenTracker` logs budget against estimated tokens—but when somebody messes with headers or abuses `OPTIONS` requests, they skip logging calls. <br>
+Yikes! The `TokenTracker` logs budget against estimated tokens, but when somebody messes with headers or abuses `OPTIONS` requests, they skip logging calls. <br>
 
 Prevention: <br>
 
@@ -568,4 +572,5 @@ On small screens the *_underscores_* I think are causing the oversized backgroun
 cheatsheets/Content_Security_Policy_
 Cheat_Sheet.html`<br>
 *The OWASP Cheat Sheet is very helpfull*<br>
+
 
