@@ -228,7 +228,7 @@ Unexpected outbound fetch() or XMLHttpRequest.<br>
 
 ### (07/27/2025.1342) Dark Games
 
-Compilation of known, real-world `Server-Side Attacks`—cataloged to educate, secure, and defend the server hosted on Azure, containerized with Docker, and served to your GitHub Pages frontend. <br>
+Compilation of known, real-world `Server-Side Attacks`—cataloged to educate, secure, and defend the server hosted on Azure, containerized with Docker, and served to the GitHub Pages frontend. <br>
 
 Note: These are not theories. <br>
 
@@ -568,3 +568,4 @@ On small screens the *_underscores_* I think are causing the oversized backgroun
 cheatsheets/Content_Security_Policy_
 Cheat_Sheet.html`<br>
 *The OWASP Cheat Sheet is very helpfull*<br>
+
