@@ -163,9 +163,50 @@ requirements_scan.py,
 token_tracker.py,
 serverLog_Dump.py
 ```
-
 Always Seek Improvements!
 ✌🏼✈️😘🗽🚢😎🏝️✌🏼🗽✈️😊
+
+#### Saftey Scan (08082025.0730) Back on Land...
+
+```
++==============================================================================+
+
+                               /$$$$$$            /$$
+                              /$$__  $$          | $$
+           /$$$$$$$  /$$$$$$ | $$  \__//$$$$$$  /$$$$$$   /$$   /$$
+          /$$_____/ |____  $$| $$$$   /$$__  $$|_  $$_/  | $$  | $$
+         |  $$$$$$   /$$$$$$$| $$_/  | $$$$$$$$  | $$    | $$  | $$
+          \____  $$ /$$__  $$| $$    | $$_____/  | $$ /$$| $$  | $$
+          /$$$$$$$/|  $$$$$$$| $$    |  $$$$$$$  |  $$$$/|  $$$$$$$
+         |_______/  \_______/|__/     \_______/   \___/   \____  $$
+                                                          /$$  | $$
+                                                         |  $$$$$$/
+  by safetycli.com                                        \______/
+
++==============================================================================+
+
+ REPORT
+
+  Safety v3.6.0 is scanning for Vulnerabilities...
+  Scanning dependencies in your files:
+
+  -> requirements.txt
+
+  Using open-source vulnerability database
+  Found and scanned 12 packages
+  Timestamp 2025-08-08 14:15:24
+  0 vulnerabilities reported
+  0 vulnerabilities ignored
++==============================================================================+
+
+ No known security vulnerabilities reported.
+
++==============================================================================+
+```
+
+But! getting it to scan after the `startup`, via weekly profgrammed date/time or manually is tricky.<br>
+once startup has finished it drops to non-root user, but if I manually scan or the weekly scan the command isn't getting executed because of the non-root privilages... I think "my" `manual` command and the `weekly` command execution must have the privilage raised for those command executions???<br> 
+
 
 
 
@@ -188,4 +229,5 @@ python3 tokenTracker.py
 
 - `The Ultimate Docker Container Book` By: Gabrial N. Schenker.
 - `PowerShell Automation and Scripting for Cybersecurity` By: Miriam C. Wiesner
+
 
