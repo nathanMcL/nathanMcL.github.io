@@ -204,8 +204,8 @@ Always Seek Improvements!
 +==============================================================================+
 ```
 
-But! getting it to scan after the `startup`, via weekly profgrammed date/time or manually is tricky.<br>
-once startup has finished it drops to non-root user, but if I manually scan or the weekly scan the command isn't getting executed because of the non-root privilages... I think "my" `manual` command and the `weekly` command execution must have the privilage raised for those command executions???<br> 
+But! getting it to scan after the `startup`, via weekly programmed date/time or manually is tricky.<br>
+Once the startup has finished, it drops to a non-root user. However, if I manually scan or run the weekly scan, the command isn't executed because of the non-root privileges. I think "my" `manual` command and the `weekly` command execution must have the privilege raised for those command executions???<br> 
 
 
 
@@ -229,5 +229,6 @@ python3 tokenTracker.py
 
 - `The Ultimate Docker Container Book` By: Gabrial N. Schenker.
 - `PowerShell Automation and Scripting for Cybersecurity` By: Miriam C. Wiesner
+
 
 
