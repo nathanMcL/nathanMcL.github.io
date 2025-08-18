@@ -232,4 +232,107 @@ python3 tokenTracker.py
 
 
 
+# Azure Troubleshooting (08/18/2025.1430)
+
+This section contains Azure-based troubleshooting problems and solutions. <br> 
+
+## Azure | macn-about-api
+
+Current Azure assets:
+
+    -   Docker Container
+        - macn-about-api Server
+
+<br>   
+
+### Azure Notification | macn-about-api | Health check
+
+***TLDR:***  I think Azure wants me to upgrade my account to `Standard` and/or `Premium`... *$$$* I don't need to upgrade. atm...<br> 
+
+Notification:<br>
+"Your site has a single instance, which will not be removed if it becomes unhealthy. However, after one hour of continuous unhealthy pings, the instance will be replaced. You can still set up Azure Monitor Alerts based on the health status."
+
+```
+Health Check
+0.00% (Healthy 0 / Degraded 1)
+```
+<br>
+
+What does that mean?<br>
+
+Since the `macn-about-api` is only using a **single-instance** setup, if the app has a failure, Azure recycles the functioning app so it can still be used for a short time.<br>
+
+### Azure Health check | Troubleshooting
+
+Health Check feature
+    -  Checks to see if the Health Check feature is enabled for the web app.
+<br>
+
+`Health Check feature`: <br>
+Currently is configured for this web app; however, its App Service Plan is running on only one instance. Please consider adding more instances to minimize potential downtime.<br>
+    - Description:  
+        The Health Check feature automatically removes a faulty instance from rotation, thus improving availability.
+
+    - This feature will ping the specified health check path on all instances of your webapp every minute. If an instance does not respond or responds with a failure within the default 10 minutes (WEBSITE_HEALTHCHECK_MAXPINGFAILURES defines the number of pings), the instance is deemed unhealthy, and our service will stop routing requests to it.
+
+    - It is highly recommended for production apps to utilize this feature and minimize any potential downtime caused due to a faulty instance.
+
+Note: <br>
+- The number of pings and how long an unhealthy instance remains in the load balancer are configurable. <br>
+- It is important that the endpoint you configure for the health check to probe must implement logic to check the health of any dependencies that the application relies on. Failing to do so will cause the health check to report healthy even when the application fails due to a dependency failure and have an impact on SLA. <br>
+
+Current Health Check endpoint:<br>
+`/health` <br>
+
+### Azure's Solution
+
+"Health Check feature is currently configured for this web app; however, its App Service Plan is running on only one instance. Please consider adding more instances to minimize potential downtime."<br>
+
+What does that mean? <br>
+
+Currently, this website only has `One` `instance` of itself. Since the site is public, and I am also testing it, it is likely that this *single* `instance` could indeed become `"Unhealthy"`.<br>
+Azure's solution is that I have additional instances. Which, in a production environment, could allow that website to maintain its availability. <br>
+My solution was to `Scale out` (App Service plan). In the app's current `B1` service plan, the app is offered up to `3` instances of itself. I set it to `2`.<br> 
+
+### Health check | Scaled * 2
+
+Health check configuration changes will restart your app. To minimize impact on production apps, we recommend setting it up on a staging slot and swapping it into production.<br>
+
+Adding additional `Slots` costs mula...<br>
+But... Now I have 2 `Unhealthy Instances`...<br>
+I am using a `B1` account, and I do not want to upgrade... So, I have to figure out another way to understand the cause of the `unhealthy` instance. <br>
+
+### macn-about-api | Diagnostic Tools | Auto-Heal
+
+- 1. Enable the custom `Auto-Heal` rules. 
+
+- 2. Define the Conditions
+    - Request Duration | Request Count | Status Codes
+I chose `Status Codes` to start with. "You can configure a rule to mitigate the issue or collect diagnostic data to identify the root cause of the problem. You can configure rules on more than one HTTP Status code condition." <br>
+
+- a. Set for a `Range` of status codes:
+    - `500 to 530`
+
+- b. Number of Requests:
+    - `10`
+
+- c. Time Interval:
+    - `60` (seconds)
+
+- d. Request Path:
+    - Leave Blank (Applies to all requests)
+
+- 3. Action:
+    - Recycle process 
+
+- 4. Optional Time override:
+     - 600 (10min)
+
+
+#### Note Sources
+
+Health Check
+- https://learn.microsoft.com/en-us/azure/app-service/monitor-instances-health-check
+
+
 
