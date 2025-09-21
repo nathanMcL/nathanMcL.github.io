@@ -11,6 +11,57 @@ What is the website's purpose? <br>
 4. Error Handling. <br>
 5. Accessibility. <br>
 
+---
+
+### (09/21/2025) Pivoting with intent.
+
+So, like I mentioned previously, `"There are so many things"`. I have run into `"many things"`. <br>
+
+1. Funding: I understood there would be costs involved. The monthly cost to run the Azure service outweighs the project's current scope.<br>
+
+2. I feel I am at or I am ready to learn about the Azure Platform Certification. The Azure cert would open roles like System Admin.
+There are many things within Azure that I believe I wrote in code that are not working as I need them to. I think this is where learning more about the Azure services would assist in understanding more of the additional backend scripts I am attempting to implement with a production environment.<br>
+
+3. Production Environment versus Local Testing.
+Ok! ok! ok! I can create, I can test, I can break, when coding locally. When you start attempting to run production-level web applications, to me, that is a whole other game. You have so many things to understand. For example, how to scale your digital footprint up, out, or down. Overhead costs, Cloud storage, local storage, security - physical, cyber security, network security, application security. Do not skip on cyber security! More security needs have to be considered and implemented. <br>
+
+4. Tick Tock Goes the Clock... Time. With learning Azure by just creating the account and diving into the Azure interface and configuration, etc. My previous Platforms have been AWS, Google, and Porkbun, which were definitely not a waste of time. But! Time is money, and this Backend AI server's time is costing me my time.<br>
+
+#### My Solution!
+
+For me to make this project more sustainable. I have to figure out how to create my project's `brain` in a live environment. But, it is not like I am just un-boxing a device and plugging it in.  
+Currently, what I am thinking is that I will create and test the custom `Docker container` with the `Brain` locally. I can still run the Python scripts alongside the server. The only downside is that I won't have production value data. I can still collect the data from the private Google Drive but it won't be production Azure/AWS/Google/or other web hosting service data.<br>
+
+The positive outcome is that it will force me to make video content sharing what the software does. 
+The issue will be that I do not want to self-host a server on my home network. So, my `Blue Orb - Me` will not get updated by clicking (currently only three output messages). I will figure out how to alter the about page. I might just make a new about page...<br>
+
+
+---
+
+FYI: <br>
+
+#### Certification - Microsoft Certified: Azure Fundamentals
+
+Overview: <br>
+As a candidate for this certification, you’re a technology professional who wants to demonstrate foundational knowledge of cloud concepts in general and Microsoft Azure in particular. This certification is a common starting point in a journey towards a career in Azure.<br>
+
+You can describe Azure architectural components and Azure services, such as:<br>
+
+- Compute <br>
+- Networking <br>
+- Storage <br>
+
+You can also describe features and tools to secure, govern, and administer Azure. <br>
+
+You should have skills and experience working in an area of IT, such as: <br>
+
+- Infrastructure management<br>
+- Database management<br>
+- Software development<br>
+
+Noted Sources: <br> 
+https://learn.microsoft.com/en-us/certifications/azure-fundamentals <br>
+
 ### (05/13/2025.1030) Updating CSP 
 
 While learning about Accessibility Software, I am learning about how AT users interact with the software (How I currently understand). Seeing how an AT user's software interprets the presented images and textual content is helpful, it has shown me what is unclear from the perspective of how an AT user might receive content. <br>
@@ -477,6 +528,7 @@ Screenshot: <br>
 
 ![Me Orb Output](https://nathanmcl.github.io/images/MeOrbOutput.png)
 <br>
+
 
 
 
