@@ -16,17 +16,18 @@
         
         <!-- Security Headers -->
         <meta http-equiv="Content-Security-Policy" 
-        content=
-            "default-src 'self'; 
-            script-src 'self'; 
-            style-src 'self'; 
-            img-src 'self' data:; 
-            font-src 'self'; 
-            object-src 'none'; 
-            base-uri 'none'; 
-            connect-src 'self'; 
-            frame-ancestors 'none'; 
-            require-trusted-types-for 'script';">
+            content="
+                default-src 'self'; 
+                script-src 'self' https://cdn.jsdelivr.net; 
+                style-src 'self'; 
+                img-src 'self' data:; 
+                font-src 'self' data:; 
+                object-src 'none'; 
+                base-uri 'none'; 
+                connect-src 'self' https://raw.githubusercontent.com; 
+                frame-ancestors 'none'; 
+                require-trusted-types-for 'script';
+        ">
 
         <meta http-equiv="X-Content-Type-Options" content="nosniff">
         <meta http-equiv="Referrer-Policy" content="no-referrer">
@@ -68,7 +69,6 @@
                     </div>
                     <div class="button-extra">
                         <span class="open-text" id="toggleText">open</span>
-                        <span class="triangle" id="toggleTriangle">▽</span>
                     </div>
                 </button>
                 <p>An assortment of software tools...</p>
@@ -140,6 +140,35 @@
             </div>
         </div>
         <!-- End of Tools main section -->
+        <!-- Project Builds main section -->
+        <div class="project_builds">
+            <div class="builds_sections">
+                <button class="tools-button" id="ProjectToggle">
+                    <div class="builds-readme-container">
+                        <span class="bracket">{</span>
+                        <span class="Projects-text">Project Builds...</span>
+                        <span class="bracket">}</span>
+                    </div>
+                    <div class="button-extra">
+                        <span class="open-text" id="projectToggleText">open</span>
+                    </div>
+                </button>
+                <p>A collection of project build documentation and links...</p>
+
+                <!-- Project Builds Drop-down -->
+                <div id="projectCategories" class="tools-categories hidden">
+                    <div class="project-item">
+                        <a href="#" id="sketchyLink" aria-label="Open Sketchy Project">
+                            <img src="/workspaces/AI-0-.-0-/Sketchy/images/Sketchy_Text_Logo.png" 
+                                alt="Sketchy Project Logo" 
+                                class="project-builds-logo">
+                        </a>
+                    </div>
+                    <div class="project-readme markdown-section" id="projectReadme" hidden>
+                        <p>Click the Sketchy logo to load the README...</p>
+                    </div>
+                </div>
+        <!-- End of the Project Builds section --> 
 
 
         <!-- Footer Section -->
@@ -150,10 +179,9 @@
             </nav>
         </footer>
 
-        <!-- Cyber container effect -->
-        <div class="cyber-container"></div>
-
     <!-- JS -->
+     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/dompurify@3.0.3/dist/purify.min.js" defer></script>
     <script src="toolsScript.js" defer></script>
     </body>
 </html>

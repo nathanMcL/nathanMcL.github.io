@@ -25,6 +25,7 @@ body {
     --triangle-button-close: #ff7e67;
     --triangle-button-open: #42b883;
 }
+
 /* End of Body styles */
 /* Header styles */
 .header-about {
@@ -293,6 +294,24 @@ body {
 
 
 /* End of Hidden Tool Categories */
+/* Project Builds Dropdown Button */
+.project-item {
+  margin: 1rem auto;
+  text-align: center;
+}
+
+.project-builds-logo {
+  height: 64px;
+  width: auto;
+  cursor: pointer;
+  transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.project-builds-logo:hover {
+  transform: scale(1.1);
+  filter: drop-shadow(0 0 6px var(--third-color));
+}
+
 /* End of Tools Main section styles */
 
 /* Footer styling */
@@ -304,47 +323,6 @@ footer {
     border-top: 1px solid #ccc;
     border-radius: 10px;
 }
-
-/* Cyber-Grid Background */
-@keyframes cyberGrid {
-    0% { background-position: 0% 0%; }
-    100% { background-position: 100% 100%;}
-}
-
-.cyber-container {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background: linear-gradient(45deg, var(--first-color) 25%, var(--third-color) 50%, var(--fourth-color) 75%);
-    background-size: 400% 400%;
-    opacity: 0.15; /* Adjust the opacity as needed */
-    z-index: -1;
-    animation: cyberGrid 10s infinite linear;
-    overflow: hidden;
-    pointer-events: none;
-}
-
-
-/* Network Packet Animation */
-.network-packet {
-    position: absolute;
-    top: -20px;
-    color: rgba(0, 255, 170, 1); /* Cyber green */
-    font-family: "Courier New", monospace;
-    font-size: 14x;
-    opacity: 1;
-    pointer-events: none;
-    animation: floatPackets 10s linear infinite;
-    text-shadow: 0 0 5px rgba(0, 255, 170, 0.9), 0 0 10px rgba(0, 255, 170, 0.7);
-}
-
-@keyframes floatPacket {
-    0% { transform: translateY(0px); opacity: 1; }
-    100% { transform: translateY(100vh); opacity: 0; }
-}
-/* End Network Packet Animation */
 
 /* Responsive styles */
 /* Medium screens */
