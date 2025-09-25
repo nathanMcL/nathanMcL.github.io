@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded", function () {
         try {
             // Corrected case-sensitive filename
             const res = await fetch(
-                "https://raw.githubusercontent.com/nathanMcL/AI-0-.-0-/main/sketchy_github/Readme.md"
+                "https://raw.githubusercontent.com/nathanMcL/nathanMcL.github.io/main/sketchy_github/Readme.md"
             );
 
             if (!res.ok) throw new Error(`HTTP ${res.status}`);
