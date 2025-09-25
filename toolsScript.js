@@ -6,10 +6,8 @@ document.addEventListener("DOMContentLoaded", function() {
     const toggleTriangle = document.getElementById('toggleTriangle');
 
     toolsButton.addEventListener('click', function() {
-        // Toggle the visibility of the tools categories
         toolsCategories.classList.toggle('hidden');
 
-        // Toggle text between 'open' and 'close'
         if (toggleText.textContent === "open") {
             toggleText.textContent = "close";
             toggleText.style.color = 'var(--triangle-button-close)';
@@ -18,7 +16,6 @@ document.addEventListener("DOMContentLoaded", function() {
             toggleText.style.color = 'var(--triangle-button-open)';
         }
 
-        // Rotate triangle and change its color
         toggleTriangle?.classList.toggle('rotate-triangle');
         if (toggleTriangle) {
             toggleTriangle.style.color = toggleText.style.color;
@@ -76,54 +73,5 @@ document.addEventListener("DOMContentLoaded", function() {
             "https://raw.githubusercontent.com/nathanMcL/AI-0-.-0-/main/Sketchy/README.md",
             projectReadme
         );
-    });
-});
-// End of Tools toggle
-
-
-// Render the Project Builds toggle & README
-document.addEventListener("DOMContentLoaded", function() {
-    const projectButton = document.getElementById('ProjectToggle');
-    const projectCategories = document.getElementById('projectCategories');
-    const projectToggleText = document.getElementById('projectToggleText');
-    const projectReadme = document.getElementById('projectReadme');
-    const sketchyLink = document.getElementById('sketchyLink');
-
-    projectButton.addEventListener('click', async function() {
-        projectCategories.classList.toggle('hidden');
-
-        // Toggle text open/close
-        if (projectToggleText.textContent === "open") {
-            projectToggleText.textContent = "close";
-            projectToggleText.style.color = 'var(--triangle-button-close)';
-        } else {
-            projectToggleText.textContent = "open";
-            projectToggleText.style.color = 'var(--triangle-button-open)';
-        }
-    });
-
-    // Load README.md only when Sketchy logo is clicked
-    sketchyLink.addEventListener('click', async function(e) {
-        e.preventDefault();
-
-        projectReadme.hidden = false;
-        projectReadme.innerHTML = "<p>Loading Sketchy README...</p>";
-
-        try {
-            // Fetch raw Markdown from GitHub
-            const res = await fetch("https://raw.githubusercontent.com/nathanMcL/AI-0-.-0-/main/Sketchy/README.md");
-            const md = await res.text();
-
-            // Parse markdown -> HTML
-            const rawHtml = marked.parse(md);
-
-            // Sanitize the HTML for security
-            const cleanHtml = DOMPurify.sanitize(rawHtml, {RETURN_TRUSTED_TYPE: true});
-
-            projectReadme.innerHTML = cleanHtml; // Safe TrustedHTML assignment
-        } catch (err) {
-            projectReadme.innerHTML = "<p>❌ Failed to load Sketchy README.md.</p>";
-            console.error("Error fetching Sketchy README.md:", err);
-        }
     });
 });
