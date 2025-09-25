@@ -4,7 +4,7 @@ Inspired the `Etch-A-Sketch`, I want to build my own custom version. Design a `5
 
 ## History of the Etch-A-Sketch
 
-![Etch-A-Sketch Tajihall](/sketchy_github/images/EtchaSkect_tajihall.png)
+<img width="249" height="202" alt="EtchaSkect_tajihall" src="https://github.com/user-attachments/assets/6dd79036-3cd2-439e-b45b-eee63019ccab" />
 
 While `Andre Cassagnes` used static charges, aluminum powder, and two knobs, I wanted to explore what a digital version could be like.  
 
@@ -19,9 +19,9 @@ I was inspired with the thought of this while on the phone with my mum. She had 
 - **Embraces accessibility** (ARIA roles, keyboard shortcuts, live regions).  <br>
 - **Gives creative control** (color pickers for background, tip, frame, and arrow hints).  <br>
 - **Encourages play** in the same spirit as the original—simple rules, endless possibilities.  <br>
-- **Adds resilience** through web security (CSP headers, no inline scripts, focus on safe input). <br> 
-
-![Etch-A-Sketch Mechanics](/sketchy_github/images/Etchasketch_Mechanics.png)
+- **Adds resilience** through web security (CSP headers, no inline scripts, focus on safe input). <br>
+- 
+<img width="508" height="423" alt="Etchasketch_Mechanics" src="https://github.com/user-attachments/assets/8e8db819-5918-4b23-a5e6-137f8e8b37ea" />
 
 ## Controls:
 
@@ -33,17 +33,18 @@ It’s my way of reimagining Cassagnes’ invention for today’s browsers while
 
 ## Menu Options:
 
-    1. `File`: <br>
-        a. `New Page/Canvas`
-        b. `Save As (PNG)`
-        c. `Print`
-        d. `Exit`
-    2. `Settings:` <br>
-        a. `Background Color`
-        b. `Drawing Tip Color`
-        c. `Frame Color`
-        d. `Directional Arrows Color`
-        e. `Tip Width`
+1. `File`: <br>
+    a. `New Page/Canvas`<br>
+    b. `Save As (PNG)` <br>
+    c. `Print`<br>
+    d. `Exit`<br>
+   
+2. `Settings:` <br>
+    a. `Background Color`<br>
+    b. `Drawing Tip Color`<br>
+    c. `Frame Color`<br>
+    d. `Directional Arrows Color`<br>
+    e. `Tip Width`<br>
 
 ---
 
@@ -90,7 +91,7 @@ then calls `arc(x, y, tipWidth/2, 0 2π)` to create smooth tips.<br>
 
 ### Preview Mode
 
-- Holding `Shift` inverts the drawing color (`255 - RGB`) and temporarily "ghosts" the stroke.<br>
+- Holding `Shift` temporarily "ghosts" the stroke.<br>
 - The canvas snapshot is immediately restored, so nothing is premantely drawn until you release `shift`.<br>
 
 ## Menus & Settings
@@ -100,13 +101,13 @@ then calls `arc(x, y, tipWidth/2, 0 2π)` to create smooth tips.<br>
 
 ## Graceful Degradation  
 
-- When pop-ups or features (e.g., `window.close()`) are blocked, the app announces fallback instructions instead of failing silently.<br>
+- When pop-ups or features (`window.close()`) are blocked, the app announces fallback instructions instead of failing silently.<br>
 
 
-- **Clamping** keeps drawing within bounds.  
-- **Inversion** (`255 – value`) for preview strokes.  
-- **Arc & Line Equations** ensure smooth continuous drawing.  
-- **Snapshot/restore** (image buffer stack) provides reliable undo.  
+- **Clamping** keeps drawing within bounds.  <br>
+- **Inversion** (`255 – value`) for preview strokes.  <br>
+- **Arc & Line Equations** ensure smooth continuous drawing.  <br>
+- **Snapshot/restore** (image buffer stack) provides reliable undo.  <br>
 
 ---
 
@@ -148,4 +149,5 @@ Noted Sources: <br>
 
 `Ohio Art`: <br>
 - https://ohioart.com/ <br>
+
 
