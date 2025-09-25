@@ -6,8 +6,10 @@ document.addEventListener("DOMContentLoaded", function() {
     const toggleTriangle = document.getElementById('toggleTriangle');
 
     toolsButton.addEventListener('click', function() {
+        // Toggle the visibility of the tools categories
         toolsCategories.classList.toggle('hidden');
 
+        // Toggle text between 'open' and 'close'
         if (toggleText.textContent === "open") {
             toggleText.textContent = "close";
             toggleText.style.color = 'var(--triangle-button-close)';
@@ -16,6 +18,7 @@ document.addEventListener("DOMContentLoaded", function() {
             toggleText.style.color = 'var(--triangle-button-open)';
         }
 
+        // Rotate triangle and change its color
         toggleTriangle?.classList.toggle('rotate-triangle');
         if (toggleTriangle) {
             toggleTriangle.style.color = toggleText.style.color;
@@ -55,8 +58,8 @@ document.addEventListener("DOMContentLoaded", function() {
             const rawHtml = marked.parse(md);
             const cleanHtml = DOMPurify.sanitize(rawHtml, { RETURN_TRUSTED_TYPE: true });
 
-            // Assign safely with Trusted Types
-            container.innerHTML = cleanHtml.toString();
+            // Safe / TrustedHTML assignment
+            container.innerHTML = cleanHtml;
         } catch (err) {
             console.error("Error fetching markdown:", err);
             container.innerHTML = "<p>❌ Failed to load content.</p>";
