@@ -4,7 +4,7 @@ Inspired the `Etch-A-Sketch`, I want to build my own custom version. Design a `5
 
 ## History of the Etch-A-Sketch
 
-<img width="249" height="202" alt="EtchaSkect_tajihall" src="https://github.com/user-attachments/assets/6dd79036-3cd2-439e-b45b-eee63019ccab" />
+
 ![EtchaSkect_tajihall](https://github.com/user-attachments/assets/6dd79036-3cd2-439e-b45b-eee63019ccab)
 
 While `Andre Cassagnes` used static charges, aluminum powder, and two knobs, I wanted to explore what a digital version could be like.  
@@ -151,6 +151,7 @@ Noted Sources: <br>
 
 `Ohio Art`: <br>
 - https://ohioart.com/ <br>
+
 
 
 
