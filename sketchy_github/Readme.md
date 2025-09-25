@@ -4,7 +4,7 @@ Inspired the `Etch-A-Sketch`, I want to build my own custom version. Design a `5
 
 ## History of the Etch-A-Sketch
 
-![Etch-A-Sketch Tajihall](images/EtchaSkect_tajihall.png)
+![Etch-A-Sketch Tajihall](/sketchy_github/images/EtchaSkect_tajihall.png)
 
 While `Andre Cassagnes` used static charges, aluminum powder, and two knobs, I wanted to explore what a digital version could be like.  
 
@@ -21,7 +21,7 @@ I was inspired with the thought of this while on the phone with my mum. She had 
 - **Encourages play** in the same spirit as the original—simple rules, endless possibilities.  <br>
 - **Adds resilience** through web security (CSP headers, no inline scripts, focus on safe input). <br> 
 
-![Etch-A-Sketch Mechanics](images/Etchasketch_Mechanics.png)
+![Etch-A-Sketch Mechanics](/sketchy_github/images/Etchasketch_Mechanics.png)
 
 ## Controls:
 
