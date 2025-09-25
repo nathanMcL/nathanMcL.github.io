@@ -58,9 +58,9 @@ document.addEventListener("DOMContentLoaded", function() {
         e.preventDefault();
         projectReadme.hidden = false;
 
-        // CSP-compliant iframe (no inline styles)
+        // CSP-compliant iframe
         const iframeHtml = `
-            <iframe src="/sketchy_github/Readme.html"
+            <iframe src="sketchy_github/readme.html"
                     title="Sketchy Readme"
                     class="readme-iframe"></iframe>
         `;

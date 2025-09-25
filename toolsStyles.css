@@ -313,11 +313,13 @@ body {
 }
 
 /* The embedded Sketchy iframe */
+/* Style for embedded readme iframe */
 .readme-iframe {
-    border: none;
-    width: 100%;
-    height: 600px;
+  width: 100%;
+  height: 700px; /* adjust as needed */
+  border: none;
 }
+
 /* End of Project Builds Dropdown Button */
 /* End of Tools Main section styles */
 
