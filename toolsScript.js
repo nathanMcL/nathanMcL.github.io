@@ -1,3 +1,5 @@
+// toolsScript.js
+
 // Tools toggle
 document.addEventListener("DOMContentLoaded", function() {
     const toolsButton = document.getElementById('toolsToggle');
@@ -55,8 +57,8 @@ document.addEventListener("DOMContentLoaded", function() {
             const rawHtml = marked.parse(md);
             const cleanHtml = DOMPurify.sanitize(rawHtml, { RETURN_TRUSTED_TYPE: true });
 
-            // ✅ Fix: convert TrustedHTML to string for innerHTML assignment
-            container.innerHTML = cleanHtml.toString();
+            // ✅ Safe TrustedHTML assignment
+            container.innerHTML = cleanHtml;
         } catch (err) {
             console.error("Error fetching markdown:", err);
             container.innerHTML = "<p>❌ Failed to load content.</p>";
