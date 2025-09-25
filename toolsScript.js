@@ -1,5 +1,13 @@
 // toolsScript.js
 
+// Define a Trusted Types Policy once
+const policy = trustedType?.createPolicy("default", {
+    createHTML: (input) => input 
+});
+
+// Sanitize and render the initial HTML content safely
+container.innerHTML = policy.createHTML(cleanHtml);
+
 // Tools toggle
 document.addEventListener("DOMContentLoaded", function() {
     const toolsButton = document.getElementById('toolsToggle');
