@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Sketchy Readme</title>
+  <link rel="stylesheet" href="readmeStyles.css">
+  <link rel="icon" href="images/Sketchy_Text_Logo.png" type="image/png">
+
+  <!--Meta Tags-->
+  <meta name="description" content="Sketchy — keyboard Etch-a-Sketch inspired drawing app" />
+
+  <!-- CSP and Security Headers -->
+  <meta http-equiv="Content-Security-Policy" 
+        content="
+        default-src 'self'; 
+        script-src 'self'; 
+        style-src 'self'; 
+        img-src 'self' data:; 
+        font-src 'self'; 
+        object-src 'none'; 
+        base-uri 'none'; 
+        connect-src 'self'; 
+        require-trusted-types-for 'script';">
+  <meta http-equiv="X-Content-Type-Options" content="nosniff">
+  <meta http-equiv="Referrer-Policy" content="no-referrer">
+  <meta http-equiv="Strict-Transport-Security" content="max-age=31536000; includeSubDomains; preload">
+  <meta name="Permissions-Policy" content="geolocation=(), microphone=(), camera=()">
+</head>
+<body>
+    <!-- Skip link -->
+    <a class="skip-link" href="#readme-content">Skip to main content</a>
+
+    <header class="readme-header" role="banner">
+        <h1>📖 Project: Sketchy</h1>
+        <p class="tagline">An Etch-A-Sketch Inspired Drawing App</p>
+    </header>
+
+    <main id="readme-content" class="readme-container" role="main">
+        <!-- README.md content loads here -->
+        <article id="markdown-readme" class="readme-content"></article>
+    </main>
+
+        <!-- Project Link Section -->
+        <div class="project-link">
+            <a href="index.html" 
+                class="project-link-anchor" 
+                target="_blank" 
+                rel="noopener">
+                <img src="images/Sketchy_Text_Logo.png" 
+                    alt="Sketchy Project Logo" 
+                    class="project-logo" />
+                <span>📖 Project: Sketchy</span>
+            </a>
+        </div>
+
+
+    <!-- Footer Section -->
+    <footer class="readme-footer" role="contentinfo">
+        <p>© <span id="year"></span> MacN_iT · Inspired by the Etch-A-Sketch legacy</p>
+    </footer>
+
+    <!-- Local libraries to comply with CSP -->
+    <script src="marked.min.js"></script>
+    <script src="purify.min.js"></script>
+    <script src="readme.js" defer></script>
+</body>
+</html>

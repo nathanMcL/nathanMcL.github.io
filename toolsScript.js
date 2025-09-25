@@ -53,36 +53,23 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     });
 
-    // Helper function to load markdown, sanitize, and render
-    async function loadMarkdown(url, container) {
-        try {
-            const res = await fetch(url);
-            const md = await res.text();
-
-            const rawHtml = marked.parse(md);
-            const cleanHtml = DOMPurify.sanitize(rawHtml, { RETURN_TRUSTED_TYPE: true });
-
-            // Use Trusted Types policy if available
-            if (policy) {
-                container.innerHTML = policy.createHTML(cleanHtml);
-            } else {
-                container.innerHTML = cleanHtml; // fallback
-            }
-        } catch (err) {
-            console.error("Error fetching markdown:", err);
-            container.innerHTML = "<p>❌ Failed to load content.</p>";
-        }
-    }
-
-    // Load Sketchy README.md when logo is clicked
-    sketchyLink.addEventListener('click', async function(e) {
+    // Load local Sketchy readme.html in an iframe
+    sketchyLink.addEventListener('click', function(e) {
         e.preventDefault();
         projectReadme.hidden = false;
-        projectReadme.innerHTML = "<p>Loading Sketchy README...</p>";
 
-        await loadMarkdown(
-            "https://raw.githubusercontent.com/nathanMcL/AI-0-.-0-/main/Sketchy/Readme.md",
-            projectReadme
-        );
+        // ✅ Use Trusted Types policy if available
+        const iframeHtml = `
+            <iframe src="sketchy_github/readme.html"
+                    title="Sketchy Readme"
+                    width="100%" height="600"
+                    style="border:none;"></iframe>
+        `;
+
+        if (policy) {
+            projectReadme.innerHTML = policy.createHTML(iframeHtml);
+        } else {
+            projectReadme.innerHTML = iframeHtml; // fallback
+        }
     });
 });

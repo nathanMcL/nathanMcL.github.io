@@ -1,0 +1,364 @@
+/* Creator: Nathaniel McLaughlin 
+    Date: 09/20/2025
+    Project Name: Sketchy  
+*/
+
+/* Color Palette */
+:root {
+    --bg: #0f0f12;
+    --fg: #f3f5f7;
+    --accent: #7aa2ff;
+    --border: #3a3f4b;
+    --focus: #ffbf47;
+    --frame: #434854;
+    --arrows: #ff0000;       /* default outline bright red */
+    --arrow-fill: #f5f5f5;   /* default fill whitesmoke */
+}
+* { box-sizing:border-box }
+html,body {
+    height: 100%
+}
+
+body {
+    margin:0;
+    font-family: system-ui, -apple-system, Segoe UI, Roboto, 'Helvetica Neue', Arial, sans-serif;
+    background:var(--bg); 
+    color:var(--fg);
+}
+
+.skip-link {
+    position:absolute; 
+    left:-9999px; 
+    top:auto; 
+    width:1px; 
+    height:1px; 
+    overflow:hidden;
+}
+
+.skip-link:focus {
+    left:1rem; 
+    top:1rem; 
+    width:auto; 
+    height:auto; 
+    background:#1e293b; 
+    color:#fff; 
+    padding:.5rem .75rem; 
+    border-radius:.5rem;
+}
+
+.app-header {
+    display:flex; 
+    align-items:center; 
+    justify-content:flex-start; 
+    gap:2rem;
+    padding: .75rem 2rem; 
+    border-bottom:1px solid var(--border);
+}
+
+#app-title {
+    font-size:1.25rem; 
+    margin:0; 
+}
+
+.menu-bar {
+    isolation:isolate;
+    margin-left: 1rem;
+}
+
+.menubar {
+    display:flex; 
+    list-style:none; 
+    gap:.5rem; 
+    margin:0; 
+    padding:0
+}
+
+.menu-trigger {
+    background:transparent; 
+    color:var(--fg); 
+    border:1px solid var(--border); 
+    border-radius:.5rem; 
+    padding:.5rem .75rem; 
+    cursor:pointer;
+}
+
+.menu-trigger[aria-expanded="true"] {
+    outline: 2px solid var(--focus);
+}
+
+.menu {
+    position:absolute; 
+    margin-top:.25rem; 
+    background:#14161b; 
+    border:1px solid var(--border); 
+    border-radius:.5rem; 
+    padding:.25rem; 
+    list-style:none; 
+    display:none; 
+    min-width:220px; 
+    z-index:10;
+}
+
+.menu[aria-hidden="false"] {
+    display: block;
+}
+
+.menu button, .menu .menu-row {
+    width:100%; 
+    text-align:left; 
+    background:transparent; 
+    color:var(--fg); 
+    border:none; 
+    border-radius:.375rem; 
+    padding:.5rem .75rem; 
+    cursor:pointer; 
+    display:flex; 
+    align-items:center; 
+    justify-content:space-between; 
+    gap:.5rem;
+}
+
+.menu button:hover, .menu .menu-row:hover {
+    background:#1f2430
+}
+
+.menu button:focus-visible, .menu .menu-row:focus-visible {
+    outline:2px solid var(--focus)
+}
+
+.menu-row input[type="color"],
+.menu-row input[type="range"] {
+    margin-left: auto;
+}
+
+.app {
+    max-width:1200px; 
+    margin:0 auto; 
+    padding:1rem; 
+    display:grid; 
+    gap:1rem;
+}
+
+.canvas-wrap {
+    border: 10px solid var(--frame);
+    border-radius: 1rem;
+    padding: .5rem;
+    background: var(--bg);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Arrow hints */
+.arrows-wrap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 850px; /* balanced default */
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+.arrow-svg {
+    stroke: var(--arrows);        /* outline color */
+    stroke-width: 2px;
+    fill: var(--arrow-fill);      /* fill color */
+}
+
+/* Force both arrows into equal square boxes */
+#arrow-left-right,
+#arrow-up-down {
+    width: 80px;
+    aspect-ratio: 1 / 1;  /* square scaling */
+    height: auto;
+    flex-shrink: 0;
+}
+
+#etchCanvas {
+    width:100%; 
+    height:60vh;
+    max-height: 70vh;
+    aspect-ratio: 4 / 3;
+    background: #0a0a0a;
+    border-radius: .75rem;
+    outline: none;
+}
+
+.help {
+    font-size: .95rem;
+    color: #cbd5e1;
+}
+
+.help kbd {
+    border: 1px solid #475569;
+    border-bottom-width: 2px;
+    padding: 0 .25rem;
+    border-radius: .25rem;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+}
+
+.project-link {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 1.5rem 0;
+}
+
+.project-link-anchor {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    text-decoration: none;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--fg);
+    padding: 0.5rem 1rem;
+    border: 2px solid var(--border);
+    border-radius: 0.75rem;
+    background: rgba(20, 22, 27, 0.6);
+    transition: background 0.2s, transform 0.2s;
+}
+
+.project-link-anchor:hover,
+.project-link-anchor:focus-visible {
+    background: rgba(58, 66, 75, 0.8);
+    transform: scale(1.03);
+    outline: 2px solid var(--focus);
+}
+
+.project-logo {
+  max-height: 32px;   
+  max-width: 120px;   
+  height: auto;
+  width: auto;
+  display: inline-block;
+}
+
+.project-link img {
+  max-height: 32px;
+  max-width: 120px;
+  height: auto;
+  width: auto;
+}
+
+.app-footer {
+    padding: 1rem;
+    border-top: 1px solid var(--border);
+    color: #94a3b8;
+}
+
+.logo-img {
+  height: 40px;
+  width: auto;
+  vertical-align: middle;
+}
+
+.app-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem; 
+}
+
+/* High-contrast focus outline for all focusable elements */
+:where(a, button, input, select, textarea, [tabindex]:not([tabindex="-1"])):focus-visible {
+    outline:2px solid var(--focus); 
+    outline-offset:2px;
+}
+
+/* Screen reader only utility */
+.sr-only{
+    position:absolute !important; 
+    width:1px !important; 
+    height:1px !important; 
+    padding:0 !important; 
+    margin:-1px !important; 
+    overflow:hidden !important; 
+    clip:rect(0,0,0,0) !important; 
+    white-space:nowrap !important; 
+    border:0 !important;
+}
+
+/* Medium tablets / small laptops */
+@media (max-width: 1024px) {
+    #etchCanvas {
+        max-height: 55vh;
+        aspect-ratio: 4 / 3;
+    }
+
+    .arrows-wrap {
+        justify-content: space-between;
+        gap: 480px;
+        flex-wrap: nowrap;
+        padding-inline: 2rem;
+    }
+
+    #arrow-left-right,
+    #arrow-up-down {
+        width: 72px; 
+    }
+
+    .help {
+        font-size: 0.9rem;
+        line-height: 1.4;
+    }
+
+    .project-link {
+        margin: 1rem 0;
+    }
+
+    .project-link-anchor {
+        font-size: 1rem;
+        padding: 0.4rem 0.75rem;
+    }
+}
+
+/* Tablets */
+@media (max-width: 768px) {
+    #etchCanvas {
+        max-height: 50vh;
+        aspect-ratio: 1 / 1; 
+    }
+
+    .arrows-wrap {
+        justify-content: center;
+        gap: 240px;
+        flex-wrap: nowrap;
+        padding-inline: 1rem;
+    }
+
+    #arrow-left-right,
+    #arrow-up-down {
+        width: 64px;
+    }
+}
+
+/* Phones */
+@media (max-width: 480px) {
+    .app-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+
+    .menu-bar {
+        margin-left: 0;
+    }
+
+    #etchCanvas {
+        max-height: 45vh;
+    }
+
+    .arrows-wrap {
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        gap: 140px;
+        padding-inline: 0;
+    }
+
+    #arrow-left-right,
+    #arrow-up-down {
+        width: 56px;
+    }
+}
