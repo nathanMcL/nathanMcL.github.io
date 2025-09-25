@@ -58,12 +58,11 @@ document.addEventListener("DOMContentLoaded", function() {
         e.preventDefault();
         projectReadme.hidden = false;
 
-        // ✅ Use Trusted Types policy if available
+        // CSP-compliant iframe (no inline styles)
         const iframeHtml = `
             <iframe src="sketchy_github/readme.html"
                     title="Sketchy Readme"
-                    width="100%" height="600"
-                    style="border:none;"></iframe>
+                    class="readme-iframe"></iframe>
         `;
 
         if (policy) {
