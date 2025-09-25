@@ -21,8 +21,8 @@ I was inspired with the thought of this while on the phone with my mum. She had 
 - **Gives creative control** (color pickers for background, tip, frame, and arrow hints).  <br>
 - **Encourages play** in the same spirit as the original—simple rules, endless possibilities.  <br>
 - **Adds resilience** through web security (CSP headers, no inline scripts, focus on safe input). <br>
-- 
-<img width="508" height="423" alt="Etchasketch_Mechanics" src="https://github.com/user-attachments/assets/8e8db819-5918-4b23-a5e6-137f8e8b37ea" />
+
+ 
 ![Etchasketch_Mechanics](https://github.com/user-attachments/assets/8e8db819-5918-4b23-a5e6-137f8e8b37ea)
 
 ## Controls:
@@ -151,6 +151,7 @@ Noted Sources: <br>
 
 `Ohio Art`: <br>
 - https://ohioart.com/ <br>
+
 
 
 
