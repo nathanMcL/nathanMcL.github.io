@@ -81,7 +81,7 @@ document.addEventListener("DOMContentLoaded", function() {
         projectReadme.innerHTML = "<p>Loading Sketchy README...</p>";
 
         await loadMarkdown(
-            "https://raw.githubusercontent.com/nathanMcL/AI-0-.-0-/tree/main/Sketchy/README.html",
+            "https://raw.githubusercontent.com/nathanMcL/AI-0-.-0-/tree/main/Sketchy/Readme.html",
             projectReadme
         );
     });
