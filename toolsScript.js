@@ -1,29 +1,3 @@
-// Network Animation
-document.addEventListener("DOMContentLoaded", function () {
-    const body = document.body;
-    const cyberContainer = document.createElement("div");
-    cyberContainer.classList.add("cyber-container");
-    body.appendChild(cyberContainer);
-
-    // Function to create fake network packets
-    function createPacket() {
-        const packet = document.createElement("div");
-        packet.classList.add("network-packet");
-        packet.innerText = Math.random().toString(16).substring(2, 8); // Fake hex data
-
-        packet.style.left = Math.random() * window.innerWidth + "px";
-        packet.style.animationDuration = Math.random() * 5 + 3 + "s";
-
-        body.appendChild(packet);
-
-        setTimeout(() => {
-            packet.remove();
-        }, 8000);
-    }
-
-    setInterval(createPacket, 800); // Generate new packets
-});
-
 // Tools toggle
 document.addEventListener("DOMContentLoaded", function() {
     const toolsButton = document.getElementById('toolsToggle');
@@ -38,14 +12,69 @@ document.addEventListener("DOMContentLoaded", function() {
         // Toggle text between 'open' and 'close'
         if (toggleText.textContent === "open") {
             toggleText.textContent = "close";
-            toggleText.style.color = 'var(--triangle-button-close)'; // Change the text color text to orange
+            toggleText.style.color = 'var(--triangle-button-close)';
         } else {
             toggleText.textContent = "open";
-            toggleText.style.color = 'var(--triangle-button-open)'; // Change the text color back to green
+            toggleText.style.color = 'var(--triangle-button-open)';
         }
 
         // Rotate triangle and change its color
-        toggleTriangle.classList.toggle('rotate-triangle');
-        toggleTriangle.style.color = toggleText.style.color; // Change the triangle color to match the text color
+        toggleTriangle?.classList.toggle('rotate-triangle');
+        if (toggleTriangle) {
+            toggleTriangle.style.color = toggleText.style.color;
+        }
+    });
+});
+// End of Tools toggle
+
+
+// Project Builds toggle & README render
+document.addEventListener("DOMContentLoaded", function() {
+    const projectButton = document.getElementById('ProjectToggle');
+    const projectCategories = document.getElementById('projectCategories');
+    const projectToggleText = document.getElementById('projectToggleText');
+    const projectReadme = document.getElementById('projectReadme');
+    const sketchyLink = document.getElementById('sketchyLink');
+
+    // Toggle Project Builds section
+    projectButton.addEventListener('click', function() {
+        projectCategories.classList.toggle('hidden');
+
+        if (projectToggleText.textContent === "open") {
+            projectToggleText.textContent = "close";
+            projectToggleText.style.color = 'var(--triangle-button-close)';
+        } else {
+            projectToggleText.textContent = "open";
+            projectToggleText.style.color = 'var(--triangle-button-open)';
+        }
+    });
+
+    // Helper function to load markdown, sanitize, and render
+    async function loadMarkdown(url, container) {
+        try {
+            const res = await fetch(url);
+            const md = await res.text();
+
+            const rawHtml = marked.parse(md);
+            const cleanHtml = DOMPurify.sanitize(rawHtml, { RETURN_TRUSTED_TYPE: true });
+
+            // Assign safely with Trusted Types
+            container.innerHTML = cleanHtml.toString();
+        } catch (err) {
+            console.error("Error fetching markdown:", err);
+            container.innerHTML = "<p>❌ Failed to load content.</p>";
+        }
+    }
+
+    // Load Sketchy README.md when logo is clicked
+    sketchyLink.addEventListener('click', async function(e) {
+        e.preventDefault();
+        projectReadme.hidden = false;
+        projectReadme.innerHTML = "<p>Loading Sketchy README...</p>";
+
+        await loadMarkdown(
+            "https://raw.githubusercontent.com/nathanMcL/AI-0-.-0-/main/Sketchy/README.md",
+            projectReadme
+        );
     });
 });
