@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded", function () {
     async function loadMarkdown() {
         try {
             const res = await fetch(
-                "https://raw.githubusercontent.com/nathanMcL/AI-0-.-0-/main/sketchy_github/Readme.md"
+                "https://raw.githubusercontent.com/sketchy_github/Readme.md"
             );
             const md = await res.text();
 
