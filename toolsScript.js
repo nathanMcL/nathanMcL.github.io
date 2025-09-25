@@ -60,7 +60,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
         // CSP-compliant iframe (no inline styles)
         const iframeHtml = `
-            <iframe src="sketchy_github/readme.html"
+            <iframe src="/nathanMcL.github.io/sketchy_github/readme.html"
                     title="Sketchy Readme"
                     class="readme-iframe"></iframe>
         `;
