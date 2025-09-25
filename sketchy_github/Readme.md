@@ -1,6 +1,6 @@
 # (09/19/2025.0427) Sketchy
 
-Inspired the `Etch-A-Sketch`, I want to build my own custom version. Design a `508`-friendly, responsive design, keyboard-driven Etch-a-Sketch-inspired app.  
+Inspired by the `Etch-A-Sketch`, I want to build my own custom version. Design a `508`-friendly, responsive design, keyboard-driven Etch-a-Sketch-inspired app.  
 
 ## History of the Etch-A-Sketch
 
@@ -151,6 +151,7 @@ Noted Sources: <br>
 
 `Ohio Art`: <br>
 - https://ohioart.com/ <br>
+
 
 
 
