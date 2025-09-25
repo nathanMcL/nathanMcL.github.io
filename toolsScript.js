@@ -1,13 +1,5 @@
 // toolsScript.js
 
-// Define a Trusted Types Policy once
-const policy = trustedType?.createPolicy("default", {
-    createHTML: (input) => input 
-});
-
-// Sanitize and render the initial HTML content safely
-container.innerHTML = policy.createHTML(cleanHtml);
-
 // Tools toggle
 document.addEventListener("DOMContentLoaded", function() {
     const toolsButton = document.getElementById('toolsToggle');
@@ -43,6 +35,11 @@ document.addEventListener("DOMContentLoaded", function() {
     const projectReadme = document.getElementById('projectReadme');
     const sketchyLink = document.getElementById('sketchyLink');
 
+    // Define a Trusted Types policy (only if supported)
+    const policy = window.trustedTypes?.createPolicy("default", {
+        createHTML: (input) => input
+    });
+
     // Toggle Project Builds section
     projectButton.addEventListener('click', function() {
         projectCategories.classList.toggle('hidden');
@@ -65,8 +62,12 @@ document.addEventListener("DOMContentLoaded", function() {
             const rawHtml = marked.parse(md);
             const cleanHtml = DOMPurify.sanitize(rawHtml, { RETURN_TRUSTED_TYPE: true });
 
-            // ✅ Safe TrustedHTML assignment
-            container.innerHTML = cleanHtml;
+            // Use Trusted Types policy if available
+            if (policy) {
+                container.innerHTML = policy.createHTML(cleanHtml);
+            } else {
+                container.innerHTML = cleanHtml; // fallback
+            }
         } catch (err) {
             console.error("Error fetching markdown:", err);
             container.innerHTML = "<p>❌ Failed to load content.</p>";
