@@ -4,6 +4,7 @@ Inspired by the `Etch-A-Sketch`, I want to build my own custom version. Design a
 
 ## History of the Etch-A-Sketch
 
+![EtchaSkect_tajihall](https://github.com/user-attachments/assets/6dd79036-3cd2-439e-b45b-eee63019ccab)
 
 ![EtchaSkect_tajihall](https://github.com/user-attachments/assets/6dd79036-3cd2-439e-b45b-eee63019ccab)
 
@@ -21,9 +22,8 @@ I was inspired with the thought of this while on the phone with my mum. She had 
 - **Gives creative control** (color pickers for background, tip, frame, and arrow hints).  <br>
 - **Encourages play** in the same spirit as the original—simple rules, endless possibilities.  <br>
 - **Adds resilience** through web security (CSP headers, no inline scripts, focus on safe input). <br>
-
- 
-![Etchasketch_Mechanics](https://github.com/user-attachments/assets/8e8db819-5918-4b23-a5e6-137f8e8b37ea)
+- 
+<img width="508" height="423" alt="Etchasketch_Mechanics" src="https://github.com/user-attachments/assets/8e8db819-5918-4b23-a5e6-137f8e8b37ea" />
 
 ## Controls:
 
