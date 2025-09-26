@@ -12,8 +12,8 @@
   let tipColor = '#e2e8f0';
   let bgColor = '#0a0a0a';
   let frameColor = '#3a3f4b';
-  let arrowColor = '#ff0000'; // stroke default bright red
-  let arrowFill = '#f5f5f5';  // fill default whitesmoke
+  let arrowColor = '#ff0000';
+  let arrowFill = '#f5f5f5';
   let currentTipColor = tipColor;
   let tipWidth = 3;
   let drawing = true;
@@ -21,23 +21,19 @@
   let pos = { x: 20, y: 20 };
   let history = [];
 
-  // Preview system
+  //  ====== Preview + throttle  ======
   let previewImage = null;
   let isPreviewing = false;
-
-  // Throttling & cooldown
   let lastDraw = 0;
   const DRAW_THROTTLE_MS = 30;
 
   // ====== Utils (Security & Resilience) ======
   function say(msg) {
-    // Small live-region debouncer to avoid SR spam
     if (!announce) return;
-    window.requestAnimationFrame(() => { announce.textContent = String(msg || ''); });
+    requestAnimationFrame(() => { announce.textContent = String(msg || ''); });
   }
 
   function safeColor(value, fallback) {
-    // Accepts #RRGGBB only
     return /^#[0-9A-Fa-f]{6}$/.test(value) ? value : fallback;
   }
 
@@ -53,38 +49,26 @@
       if (now - last > delay) {
         last = now;
         try { fn(...args); } catch (e) { console.error(e); say('Action failed.'); }
-      } else {
-        // Optional UX toast could go here
       }
     };
-  }
-
-  function safeOpen(url) {
-    try {
-      const w = window.open(url, '_blank', 'noopener,noreferrer');
-      if (w) return w;
-    } catch {}
-    say('Pop-up blocked. Please allow pop-ups for Sketchy.');
-    return null;
   }
 
   // ====== Canvas Setup ======
   function setCanvasSize() {
     const rect = canvas.getBoundingClientRect();
-    const dpr = Math.max(1, Math.min(window.devicePixelRatio || 1, 3)); // clamp DPR for memory safety
+    const dpr = Math.max(1, Math.min(window.devicePixelRatio || 1, 3));
     canvas.width  = Math.floor(rect.width * dpr);
     canvas.height = Math.floor(rect.height * dpr);
   }
 
-  // History (Undo) with cap
+  //  ====== History (Undo) with cap  ======
   function saveState() {
     try {
       const data = ctx.getImageData(0, 0, canvas.width, canvas.height);
       history.push(data);
-      if (history.length > 50) history.shift(); // cap
+      if (history.length > 50) history.shift();
     } catch (err) {
       console.error('Error saving state:', err);
-      // If getImageData fails (in memory), clear history to recover
       history = [];
     }
   }
@@ -167,60 +151,39 @@
     }
   }
 
-  function printImage() {
-  try {
-    const url = canvas.toDataURL('image/png');
-    const w = safeOpen('');
-    if (!w) return;
-    const img = w.document.createElement('img');
-    img.src = url;
-    img.alt = "Etch drawing";
-    img.style.maxWidth = "100%";
-    w.document.body.appendChild(img);
-    w.print();
-  } catch (e) {
-    console.error(e);
-    say('Print failed.');
-  }
-}
-
-
-  function saveAsPng() {
-  try {
-    // Create an offscreen canvas slightly bigger to include frame
+  function exportDrawing() {
     const exportCanvas = document.createElement('canvas');
-    const padding = 20; // size of frame border in pixels
+    const padding = 20;
     exportCanvas.width = canvas.width + padding * 2;
     exportCanvas.height = canvas.height + padding * 2;
     const exportCtx = exportCanvas.getContext('2d');
 
-    // Fill frame (wrap color)
     exportCtx.fillStyle = frameColor;
     exportCtx.fillRect(0, 0, exportCanvas.width, exportCanvas.height);
 
-    // Fill background inside the frame
     exportCtx.fillStyle = bgColor;
     exportCtx.fillRect(padding, padding, canvas.width, canvas.height);
 
-    // Copy user drawing into the background
     exportCtx.drawImage(canvas, padding, padding);
-
-    // Save flattened image
-    const url = exportCanvas.toDataURL('image/png');
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = `etch-${Date.now()}.png`;
-    document.body.appendChild(a);
-    a.click();
-    a.remove();
-    say('Image downloaded with styles included.');
-  } catch (e) {
-    console.error(e);
-    say('Save failed.');
+    return exportCanvas.toDataURL('image/png');
   }
-}
 
-  // Exit (close tab)
+  function saveAsPng() {
+    try {
+      const url = exportDrawing();
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `etch-${Date.now()}.png`;
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      say('Image downloaded with styles included.');
+    } catch (e) {
+      console.error(e);
+      say('Save failed.');
+    }
+  }
+
   function exitApp() {
     try {
       if (confirm('Exit Etch? Unsaved work will be lost.')) {
@@ -233,27 +196,18 @@
     }
   }
 
-  // ====== Wiring File menu with cooldowns ======
-  document.getElementById('action-new')?.addEventListener('click', withCooldown(newPage));
-  document.getElementById('action-save')?.addEventListener('click', withCooldown(saveAsPng));
-  document.getElementById('action-print')?.addEventListener('click', withCooldown(printImage));
-  document.getElementById('action-exit')?.addEventListener('click', withCooldown(exitApp));
-  document.getElementById('action-undo')?.addEventListener('click', withCooldown(undo, 300));
-
   // ====== Settings ======
   const bgPicker = document.getElementById('bg-color');
   const tipPicker = document.getElementById('tip-color');
   const framePicker = document.getElementById('frame-color');
-  const arrowPicker = document.getElementById('arrow-color');     // stroke
-  const arrowFillPicker = document.getElementById('arrow-fill');  // fill (may be in DOM or added later)
+  const arrowPicker = document.getElementById('arrow-color');
+  const arrowFillPicker = document.getElementById('arrow-fill');
   const tipWidthRange = document.getElementById('tip-width');
 
-  // Initialize UI from state
   canvas.style.backgroundColor = bgColor;
   const wrap = document.querySelector('.canvas-wrap');
   if (wrap) wrap.style.borderColor = frameColor;
 
-  // Initialize CSS variables for arrows (used by styles.css)
   document.documentElement.style.setProperty('--arrows', arrowColor);
   document.documentElement.style.setProperty('--arrow-fill', arrowFill);
 
@@ -309,12 +263,11 @@
     }
   });
 
-  // ====== Keyboard handling (throttled) ======
+  // ====== Keyboard handling ======
   function handleKey(e) {
     const tag = e.target?.tagName;
     if (tag && (tag === 'INPUT' || tag === 'TEXTAREA') || e.target?.isContentEditable) return;
 
-    // Undo
     if ((e.ctrlKey || e.metaKey) && String(e.key || '').toLowerCase() === 'z') {
       e.preventDefault();
       undo();
@@ -334,7 +287,6 @@
     e.preventDefault();
 
     if (e.shiftKey) {
-      // Preview path: invert color, draw, then immediately restore snapshot
       try {
         if (!isPreviewing) {
           previewImage = ctx.getImageData(0, 0, canvas.width, canvas.height);
@@ -355,39 +307,90 @@
       throttledMove(dx, dy);
     }
   }
-
   document.addEventListener('keydown', handleKey, { passive: false });
 
-  // ====== Menu toggling (with outside-click close) ======
+  // ====== Menu toggling ======
   function setupMenu(triggerId, menuId) {
     const trigger = document.getElementById(triggerId);
     const menu = document.getElementById(menuId);
     if (!trigger || !menu) return;
 
-    const toggle = () => {
-      const expanded = trigger.getAttribute('aria-expanded') === 'true';
-      trigger.setAttribute('aria-expanded', String(!expanded));
-      menu.setAttribute('aria-hidden', String(expanded));
+    const items = Array.from(menu.querySelectorAll('[role="menuitem"]'));
+
+    trigger.setAttribute('aria-expanded', 'false');
+    menu.setAttribute('aria-hidden', 'true');
+
+    const openMenu = () => {
+      trigger.setAttribute('aria-expanded', 'true');
+      menu.setAttribute('aria-hidden', 'false');
+      if (items.length) items[0].focus();
     };
 
-    trigger.addEventListener('click', withCooldown(toggle, 150));
+    const closeMenu = () => {
+      trigger.setAttribute('aria-expanded', 'false');
+      menu.setAttribute('aria-hidden', 'true');
+    };
+
+    const toggleMenu = (event) => {
+      event.stopPropagation();
+      const expanded = trigger.getAttribute('aria-expanded') === 'true';
+      if (expanded) { closeMenu(); } else { openMenu(); }
+    };
+
+    trigger.addEventListener('click', withCooldown(toggleMenu, 150));
+
+    menu.addEventListener('keydown', (e) => {
+      const currentIndex = items.indexOf(document.activeElement);
+      switch (e.key) {
+        case 'ArrowDown':
+          e.preventDefault();
+          if (currentIndex === -1 || currentIndex === items.length - 1) items[0].focus();
+          else items[currentIndex + 1].focus();
+          break;
+        case 'ArrowUp':
+          e.preventDefault();
+          if (currentIndex <= 0) items[items.length - 1].focus();
+          else items[currentIndex - 1].focus();
+          break;
+        case 'Home':
+          e.preventDefault(); items[0].focus(); break;
+        case 'End':
+          e.preventDefault(); items[items.length - 1].focus(); break;
+        case 'Escape':
+          e.preventDefault(); closeMenu(); trigger.focus(); break;
+        case 'Enter':
+        case ' ':
+          e.preventDefault();
+          if (document.activeElement && document.activeElement.click) {
+            document.activeElement.click();
+          }
+          closeMenu();
+          break;
+      }
+    });
 
     document.addEventListener('click', (e) => {
-      const t = e.target;
-      if (!menu.contains(t) && t !== trigger) {
-        trigger.setAttribute('aria-expanded', 'false');
-        menu.setAttribute('aria-hidden', 'true');
-      }
+      if (!menu.contains(e.target) && e.target !== trigger) closeMenu();
+    });
+
+    trigger.addEventListener('blur', () => {
+      setTimeout(() => {
+        if (!menu.contains(document.activeElement) && document.activeElement !== trigger) closeMenu();
+      }, 100);
     });
   }
 
   setupMenu('menu-file', 'menu-file-list');
   setupMenu('menu-settings', 'menu-settings-list');
 
+  // ====== Wire File menu actions ======
+  document.getElementById('action-new')?.addEventListener('click', withCooldown(newPage));
+  document.getElementById('action-save')?.addEventListener('click', withCooldown(saveAsPng));
+  document.getElementById('action-exit')?.addEventListener('click', withCooldown(exitApp));
+  document.getElementById('action-undo')?.addEventListener('click', withCooldown(undo, 300));
+
   // ====== Init ======
   window.addEventListener('resize', setCanvasSize);
   setCanvasSize();
-  // Draw initial dot + save
   newPage();
-
 })();

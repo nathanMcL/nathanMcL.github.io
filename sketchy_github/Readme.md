@@ -40,8 +40,7 @@ It’s my way of reimagining Cassagnes’ invention for today’s browsers while
 1. `File`: <br>
     a. `New Page/Canvas`<br>
     b. `Save As (PNG)` <br>
-    c. `Print`<br>
-    d. `Exit`<br>
+    c. `Exit`<br>
    
 2. `Settings:` <br>
     a. `Background Color`<br>
@@ -100,7 +99,7 @@ then calls `arc(x, y, tipWidth/2, 0 2π)` to create smooth tips.<br>
 
 ## Menus & Settings
 
-- File actions: *New*, *Save As (PNG)*, *Print*, *Undo*, *Exit*.<br>
+- File actions: *New*, *Save As (PNG)*, *Undo*, *Exit*.<br>
 - Settings update CSS styles and live SVG colors dynamically (background, tip, frame, arrow stroke/fill, tip width).<br>
 
 ## Graceful Degradation  

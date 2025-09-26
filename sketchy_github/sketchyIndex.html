@@ -5,171 +5,154 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title>Sketchy</title>
-    <meta name="description" content="Sketchy — keyboard Etch-a-Sketch inspired drawing app" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Sketchy</title>
+  <meta name="description" content="Sketchy — keyboard Etch-a-Sketch inspired drawing app" />
 
-    <!-- CSP -->
-    <!-- Security Headers -->
-    <meta http-equiv="Content-Security-Policy" 
+  <!-- CSP -->
+  <meta http-equiv="Content-Security-Policy"
         content="
-        default-src 'self'; 
-        script-src 'self'; 
-        style-src 'self'; 
-        img-src 'self' data:; 
-        font-src 'self'; 
-        object-src 'none'; 
-        base-uri 'none'; 
-        connect-src 'self'; 
+        default-src 'self';
+        script-src 'self';
+        style-src 'self';
+        img-src 'self' data:;
+        font-src 'self';
+        object-src 'none';
+        base-uri 'none';
+        connect-src 'self';
         require-trusted-types-for 'script';
         ">
-    <meta http-equiv="X-Content-Type-Options" content="nosniff">
-    <meta http-equiv="Referrer-Policy" content="no-referrer">
-    <meta http-equiv="Strict-Transport-Security" content="max-age=31536000; includeSubDomains; preload">
-    <meta name="Permissions-Policy" content="geolocation=(), microphone=(), camera=()">
+  <meta http-equiv="X-Content-Type-Options" content="nosniff">
+  <meta http-equiv="Referrer-Policy" content="no-referrer">
+  <meta http-equiv="Strict-Transport-Security" content="max-age=31536000; includeSubDomains; preload">
+  <meta name="Permissions-Policy" content="geolocation=(), microphone=(), camera=()">
 
-    <link rel="stylesheet" href="styles.css" />
-    <link rel="icon" sizes="192x192" href="images/Sketchy_Text_Logo.png" type="image/png">
-    <link rel="apple-touch-icon" href="images/Sketchy_Text_Logo.png">
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="icon" sizes="192x192" href="images/Sketchy_Text_Logo.png" type="image/png">
+  <link rel="apple-touch-icon" href="images/Sketchy_Text_Logo.png">
 </head>
 <body>
-    <a class="skip-link" href="#app">Skip to the canvas</a> 
+  <a class="skip-link" href="#app">Skip to the canvas</a>
 
-    <header class="app-header" role="banner">
-        <h1 id="app-title">
-            <img src="images/Sketchy_Text_Logo.png" 
-                alt="Sketchy Logo" 
-                class="logo-img">
-            <span class="sr-only">Sketchy</span>
-        </h1>
+  <header class="app-header" role="banner">
+    <h1 id="app-title">
+      <img src="images/Sketchy_Text_Logo.png" alt="Sketchy Logo" class="logo-img">
+      <span class="sr-only">Sketchy</span>
+    </h1>
 
-        <nav class="menu-bar" role="navigation" aria-label="Application">
-            <ul class="menubar" role="menubar" aria-label="Main menu">
-                <!-- File Menu -->
-                <li role="none">
-                    <button id="menu-file" class="menu-trigger" role="menuitem" aria-haspopup="true" aria-expanded="false">File</button>
-                    <ul id="menu-file-list" class="menu" role="menu" aria-label="File" aria-hidden="true">
-                        <li role="none"><button id="action-new" role="menuitem">New Page (N)</button></li>
-                        <li role="none"><button id="action-save" role="menuitem">Save As (PNG)</button></li>
-                        <li role="none"><button id="action-print" role="menuitem">Print</button></li>
-                        <li role="none"><button id="action-undo" role="menuitem">Undo (Ctrl+Z)</button></li>
-                        <li role="none"><button id="action-exit" role="menuitem">Exit</button></li>
-                    </ul>
-                </li>
+    <nav class="menu-bar" role="navigation" aria-label="Application">
+      <ul class="menubar" role="menubar" aria-label="Main menu">
+        <!-- File Menu -->
+        <li role="none">
+          <button id="menu-file" class="menu-trigger" role="menuitem" aria-haspopup="true" aria-expanded="false">File</button>
+          <ul id="menu-file-list" class="menu" role="menu" aria-label="File" aria-hidden="true">
+            <li role="none"><button id="action-new" role="menuitem">New Page (N)</button></li>
+            <li role="none"><button id="action-save" role="menuitem">Save As (PNG)</button></li>
+            <li role="none"><button id="action-undo" role="menuitem">Undo (Ctrl+Z)</button></li>
+            <li role="none"><button id="action-exit" role="menuitem">Exit</button></li>
+          </ul>
+        </li>
 
-                <!-- Settings Menu -->
-                <li role="none">
-                    <button id="menu-settings" class="menu-settings menu-trigger" role="menuitem" aria-haspopup="true" aria-expanded="false">Settings</button>
-                    <ul id="menu-settings-list" class="menu" role="menu" aria-label="Settings" aria-hidden="true">
-                        <li role="none">
-                            <label class="menu-row" role="menuitem" id="bg-color-label">
-                                <span>Background color</span>
-                                <input id="bg-color" type="color" aria-labelledby="bg-color-label" />
-                            </label>
-                        </li>
-                        <li role="none">
-                            <label class="menu-row" role="menuitem" id="tip-color-label">
-                                <span>Tip color</span>
-                                <input id="tip-color" type="color" aria-labelledby="tip-color-label" />
-                            </label>
-                        </li>
-                        <li role="none">
-                            <label class="menu-row" role="menuitem" id="frame-color-label">
-                                <span>Frame color</span>
-                                <input id="frame-color" type="color" aria-labelledby="frame-color-label" />
-                            </label>
-                        </li>
-                        <li role="none">
-                            <label class="menu-row" role="menuitem" id="arrow-color-label">
-                                <span>Directional arrows outline</span>
-                                <input id="arrow-color" type="color" aria-labelledby="arrow-color-label" value="#ff0000" />
-                            </label>
-                        </li>
-                        <li role="none">
-                            <label class="menu-row" role="menuitem" id="arrow-fill-label">
-                                <span>Directional arrows fill</span>
-                                <input id="arrow-fill" type="color" aria-labelledby="arrow-fill-label" value="#f5f5f5" />
-                            </label>
-                        </li>
-                        <li role="none">
-                            <label class="menu-row" role="menuitem" id="tip-width-label">
-                                <span>Tip width</span>
-                                <input id="tip-width" type="range" min="1" max="20" value="3" aria-labelledby="tip-width-label" />
-                            </label>
-                        </li>
-                    </ul>
-                </li>
-            </ul>
-        </nav>
-    </header>
+        <!-- Settings Menu -->
+        <li role="none">
+          <button id="menu-settings" class="menu-settings menu-trigger" role="menuitem" aria-haspopup="true" aria-expanded="false">Settings</button>
+          <ul id="menu-settings-list" class="menu" role="menu" aria-label="Settings" aria-hidden="true">
+            <li role="none">
+              <label class="menu-row" id="bg-color-label">
+                <span>Background color</span>
+                <input id="bg-color" type="color" aria-labelledby="bg-color-label" />
+              </label>
+            </li>
+            <li role="none">
+              <label class="menu-row" id="tip-color-label">
+                <span>Tip color</span>
+                <input id="tip-color" type="color" aria-labelledby="tip-color-label" />
+              </label>
+            </li>
+            <li role="none">
+              <label class="menu-row" id="frame-color-label">
+                <span>Frame color</span>
+                <input id="frame-color" type="color" aria-labelledby="frame-color-label" />
+              </label>
+            </li>
+            <li role="none">
+              <label class="menu-row" id="arrow-color-label">
+                <span>Directional arrows outline</span>
+                <input id="arrow-color" type="color" aria-labelledby="arrow-color-label" value="#ff0000" />
+              </label>
+            </li>
+            <li role="none">
+              <label class="menu-row" id="arrow-fill-label">
+                <span>Directional arrows fill</span>
+                <input id="arrow-fill" type="color" aria-labelledby="arrow-fill-label" value="#f5f5f5" />
+              </label>
+            </li>
+            <li role="none">
+              <label class="menu-row" id="tip-width-label">
+                <span>Tip width</span>
+                <input id="tip-width" type="range" min="1" max="20" value="3" aria-labelledby="tip-width-label" />
+              </label>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
+  </header>
 
-    <main id="app" class="app" role="main">
-        <section class="canvas-wrap" aria-labelledby="app-title">
-            <canvas 
-                id="etchCanvas" 
-                tabindex="0" 
-                role="img"
-                aria-label="Drawing canvas. Use W, A, S, D or the Arrow Keys to draw. Hold Shift to preview the next move in the opposite color without drawing permanently. Press Ctrl+Z to Undo. Press N for a new canvas.">
-            </canvas>
-            <aside class="help" aria-live="polite" aria-atomic="true"></aside>
-        </section>
+  <main id="app" class="app" role="main">
+    <section class="canvas-wrap" aria-labelledby="app-title">
+      <canvas id="etchCanvas" tabindex="0" role="img"
+        aria-label="Drawing canvas. Use W, A, S, D or the Arrow Keys to draw. Hold Shift to preview the next move in the opposite color without drawing permanently. Press Ctrl+Z to Undo. Press N for a new canvas.">
+      </canvas>
+      <aside class="help" aria-live="polite" aria-atomic="true"></aside>
+    </section>
 
-        <!-- Directional Arrows Hints -->
-        <div class="arrows-wrap" aria-hidden="true">
-            <!-- Left-Right Arrow -->
-            <svg id="arrow-left-right" xmlns="http://www.w3.org/2000/svg" width="80" height="40" viewBox="0 0 80 40" class="arrow-svg">
-                <polygon points="0,20 15,10 15,30" />
-                <!-- Horizontal line with a small gap in the middle -->
-                <line x1="15" y1="20" x2="35" y2="20" />
-                <line x1="45" y1="20" x2="65" y2="20" />
-                <polygon points="80,20 65,10 65,30" />
-            </svg>
-
-            <!-- Up-Down Arrow -->
-            <svg id="arrow-up-down" xmlns="http://www.w3.org/2000/svg" width="40" height="80" viewBox="0 0 40 80" class="arrow-svg">
-                <polygon points="20,0 10,15 30,15" />
-                <!-- Vertical line with a small gap in the middle -->
-                <line x1="20" y1="15" x2="20" y2="35" />
-                <line x1="20" y1="45" x2="20" y2="65" />
-                <polygon points="20,80 10,65 30,65" />
-            </svg>
-        </div>
-
-        <!-- Aside for Help Section -->
-        <aside class="help" aria-live="polite" aria-atomic="true">
-            <p>
-                <strong>Controls:</strong> 
-                W/A/S/D or Arrow Keys to draw. 
-                Hold <kbd>Shift</kbd> to preview your next move in the opposite color (no line is permanently drawn). 
-                Press <kbd>N</kbd> for a New Canvas. 
-                Use the menus for Save / Print / Undo (Ctrl+Z) / Exit and color settings.
-            </p>
-        </aside> 
-    </main>
-
-    <!-- Project Link Section -->
-    <div class="project-link">
-        <a href="readme.html" 
-            class="project-link-anchor" 
-            target="_blank" 
-            rel="noopener">
-            <img src="images/Sketchy_Text_Logo.png" 
-                alt="Sketchy Project Logo" 
-                class="project-logo" />
-            <span>📖 Project: Sketchy</span>
-        </a>
+    <!-- Directional Arrows Hints -->
+    <div class="arrows-wrap" aria-hidden="true">
+      <svg id="arrow-left-right" xmlns="http://www.w3.org/2000/svg" width="80" height="40" viewBox="0 0 80 40" class="arrow-svg">
+        <polygon points="0,20 15,10 15,30" />
+        <line x1="15" y1="20" x2="35" y2="20" />
+        <line x1="45" y1="20" x2="65" y2="20" />
+        <polygon points="80,20 65,10 65,30" />
+      </svg>
+      <svg id="arrow-up-down" xmlns="http://www.w3.org/2000/svg" width="40" height="80" viewBox="0 0 40 80" class="arrow-svg">
+        <polygon points="20,0 10,15 30,15" />
+        <line x1="20" y1="15" x2="20" y2="35" />
+        <line x1="20" y1="45" x2="20" y2="65" />
+        <polygon points="20,80 10,65 30,65" />
+      </svg>
     </div>
 
-    <footer class="app-footer" role="contentinfo">
-        <p>Sketchy - An Etch-a-Sketch inspired app. <span id="year"></span> MacN_iT. 
-           <span class="sr-only">Reference inspiration: the classic Etch-a-Sketch toy.</span>
-        </p>
-    </footer>
+    <aside class="help" aria-live="polite" aria-atomic="true">
+      <p>
+        <strong>Controls:</strong>
+        W/A/S/D or Arrow Keys to draw.
+        Hold <kbd>Shift</kbd> to preview your next move in the opposite color (no line is permanently drawn).
+        Press <kbd>N</kbd> for a New Canvas.
+        Use the menus for Save / Undo (Ctrl+Z) / Exit and color settings.
+      </p>
+    </aside>
+  </main>
 
-    <div id="announce" class="sr-only" aria-live="polite" aria-atomic="true"></div>
+  <!-- Project Link Section -->
+  <div class="project-link">
+    <a href="readme.html" class="project-link-anchor" target="_blank" rel="noopener">
+      <img src="images/Sketchy_Text_Logo.png" alt="Sketchy Project Logo" class="project-logo" />
+      <span>📖 Project: Sketchy</span>
+    </a>
+  </div>
 
-    <script src="script.js" defer></script>
+  <footer class="app-footer" role="contentinfo">
+    <p>
+      Sketchy - An Etch-a-Sketch inspired app. <span id="year"></span> MacN_iT.
+      <span class="sr-only">Reference inspiration: the classic Etch-a-Sketch toy.</span>
+    </p>
+  </footer>
+
+  <div id="announce" class="sr-only" aria-live="polite" aria-atomic="true"></div>
+
+  <script src="script.js" defer></script>
 </body>
 </html>
