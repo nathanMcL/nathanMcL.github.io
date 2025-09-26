@@ -5,7 +5,7 @@ Inspired by the `Etch-A-Sketch`, I want to build my own custom version. Design a
 ## History of the Etch-A-Sketch
 
 
-![EtchaSkect_tajihall](https://github.com/user-attachments/assets/6dd79036-3cd2-439e-b45b-eee63019ccab) <br>
+![EtchaSkect_tajihall](sketchy_github/images/EtchaSkect_tajihall.png) <br>
 
 
 While `Andre Cassagnes` used static charges, aluminum powder, and two knobs, I wanted to explore what a digital version could be like.  
@@ -25,7 +25,7 @@ I was inspired with the thought of this while on the phone with my mum. She had 
  
 
 
-![EtchaSkect_tajihall](https://github.com/user-attachments/assets/6dd79036-3cd2-439e-b45b-eee63019ccab)
+![EtchaSkect_tajihall](sketchy_github/images/Etchasketch_Mechanics.png)
 
 
 ## Controls:
