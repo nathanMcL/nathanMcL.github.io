@@ -24,6 +24,8 @@ body {
     --tools-button-color4: #5c715e;
     --triangle-button-close: #ff7e67;
     --triangle-button-open: #42b883;
+    /* Sketchy Project Logo */
+    --sketchy-logo-bg: #1c1919;
 }
 
 /* End of Body styles */
@@ -305,6 +307,8 @@ body {
   width: auto;
   cursor: pointer;
   transition: transform 0.3s ease, filter 0.3s ease;
+  background-color: var(--sketchy-logo-bg);
+  border-radius: 10px;
 }
 
 .project-builds-logo:hover {
