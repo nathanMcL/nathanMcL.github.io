@@ -73,12 +73,16 @@ body {
 }
 
 .nav.menu {
-  display: flex !important;
-  gap: 15px;
+  display: flex !important; /* Ensure the menu is displayed */
   list-style-type: none;
+  display: flex;
+  gap: 15px;
+  padding: 0;
+  margin-left: auto;
 }
 
 .nav_item a {
+  display: inline-block;
   text-decoration: none;
   color: var(--fourth-color);
   font-weight: bold;
