@@ -263,66 +263,79 @@ function closePopup(id) {
 }
 
 // ---------- API Integration ----------
-const API_BASE =
-  window.location.hostname === "nathanmcl.github.io"
-    ? "https://macn-about-api.azurewebsites.net"
-    : "http://127.0.0.1:5000";
+const LOCAL_API = "http://127.0.0.1:5000";
+const PROD_API = "https://macn-about-api.azurewebsites.net";
+
+async function fetchAboutMe(context) {
+  const popup = document.getElementById("popup_me");
+  const loader = document.getElementById("loader_me");
+  const output = document.getElementById("about-orb-output");
+
+  loader.style.display = "block";
+  output.textContent = "";
+
+  // ===== TTL Cache Setup =====
+  const CACHE_KEY = "about-orb-output";
+  const CACHE_TIME_KEY = "about-orb-timestamp";
+  const CACHE_TTL_MS = 5 * 60 * 1000; // 5 minutes
+
+  const cached = localStorage.getItem(CACHE_KEY);
+  const cachedTime = localStorage.getItem(CACHE_TIME_KEY);
+
+  if (cached && cachedTime && Date.now() - Number(cachedTime) < CACHE_TTL_MS) {
+    // Serve from cache if still fresh
+    output.textContent = cached;
+    loader.style.display = "none";
+    return;
+  }
+
+  // ===== Helper to request API =====
+  async function tryFetch(apiBase) {
+    const res = await fetch(`${apiBase}/generate-aboutOrb`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ context })
+    });
+    if (!res.ok) throw new Error(`Fetch failed: ${res.status}`);
+    return res.json();
+  }
+
+  // ===== Try Local → Fallback to Prod =====
+  try {
+    let data;
+    try {
+      // First try local API
+      data = await tryFetch(LOCAL_API);
+      console.info("✅ Loaded About Me from LOCAL API");
+    } catch (err) {
+      console.warn("⚠️ Local API not available, falling back to Azure:", err);
+      data = await tryFetch(PROD_API);
+      console.info("✅ Loaded About Me from AZURE API");
+    }
+
+    const aboutText = data.about_text || "Could not load About Me.";
+    output.textContent = aboutText;
+
+    // Cache with timestamp
+    localStorage.setItem(CACHE_KEY, aboutText);
+    localStorage.setItem(CACHE_TIME_KEY, Date.now().toString());
+  } catch (err) {
+    output.textContent = "Error loading About Me.";
+    console.error("❌ Fetch error:", err);
+  } finally {
+    loader.style.display = "none";
+  }
+}
 
 document.addEventListener("DOMContentLoaded", () => {
   const orbMe = document.getElementById("orb_me");
   if (!orbMe) return;
 
-  orbMe.addEventListener("click", async () => {
-    const popup = document.getElementById("popup_me");
-    const loader = document.getElementById("loader_me");
-    const output = document.getElementById("about-orb-output");
-
-    if (!popup) return;
-
-    loader.style.display = "block";
-    output.textContent = "";
-
-    // ===== TTL Cache Setup =====
-    const CACHE_KEY = "about-orb-output";
-    const CACHE_TIME_KEY = "about-orb-timestamp";
-    const CACHE_TTL_MS = 5 * 60 * 1000; // 5 minutes TTL (Timer if someone hammers at the API)
-
-    const cached = localStorage.getItem(CACHE_KEY);
-    const cachedTime = localStorage.getItem(CACHE_TIME_KEY);
-
-    if (cached && cachedTime && Date.now() - Number(cachedTime) < CACHE_TTL_MS) {
-      // Serve from cache if fresh
-      output.textContent = cached;
-      loader.style.display = "none";
-      return;
-    }
-
-    // ===== Fresh Request =====
-    try {
-      const res = await fetch(`${API_BASE}/generate-aboutOrb`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          context:
-            "Use a tone that blends confidence, fun, and curiosity. Mention my creative writing, tech projects, military background, and passion for equitable code and accessibility."
-        })
-      });
-
-      if (!res.ok) throw new Error(`Fetch failed: ${res.status}`);
-      const data = await res.json();
-      const aboutText = data.about_text || "Could not load About Me.";
-
-      output.textContent = aboutText;
-
-      // Cache with timestamp
-      localStorage.setItem(CACHE_KEY, aboutText);
-      localStorage.setItem(CACHE_TIME_KEY, Date.now().toString());
-    } catch (err) {
-      output.textContent = "Error loading About Me.";
-      console.error("❌ Fetch error:", err);
-    } finally {
-      loader.style.display = "none";
-    }
+  orbMe.addEventListener("click", () => {
+    fetchAboutMe(
+      "Use a tone that blends confidence, fun, and curiosity. Mention my creative writing, tech projects, service background, and passion for equitable code and accessibility."
+    );
   });
 });
+
 
