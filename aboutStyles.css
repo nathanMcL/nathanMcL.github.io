@@ -75,9 +75,10 @@ body {
 
 .nav.menu {
     display: flex !important; /* Ensure the menu is displayed */
+    flex-direction: column;   /* vertical stack */
+    align-items: flex-start;  /* left-align items */
     list-style-type: none;
-    display: flex;
-    gap: 15px;
+    gap: 10px;
     padding: 0;
     margin-left: auto;
 }
