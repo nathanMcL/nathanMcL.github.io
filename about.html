@@ -1,148 +1,155 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="description" content="@MacN_iT website">
-        <title>MacN the Full Stack... About</title>
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="@MacN_iT website">
+  <title>MacN the Full Stack... About</title>
 
-        <!-- Stylesheet -->
-        <link rel="stylesheet" href="aboutStyles.css">
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="aboutStyles.css">
 
-        <!-- Favicon -->
-        <link rel="icon" href="images/favicon.png" type="image/png">
-        <link rel="icon" href="favicon.ico" type="image/x-icon">
-        
-        <!-- Security Headers -->
-        <meta http-equiv="Content-Security-Policy" 
-        content=
-            "default-src 'self'; 
-            script-src 'self'; 
-            style-src 'self'; 
-            img-src 'self' data:; 
-            font-src 'self'; 
-            object-src 'none'; 
-            base-uri 'none'; 
-            connect-src 'self' https://macn-about-api.azurewebsites.net;
-            require-trusted-types-for 'script';">
+  <!-- Favicon (cleaned) -->
+  <link rel="icon" href="images/LittleRobotBackgroundErase.png" type="image/png">
 
-        <meta http-equiv="X-Content-Type-Options" content="nosniff">
-        <meta http-equiv="Referrer-Policy" content="no-referrer">
-        <meta http-equiv="Strict-Transport-Security" content="max-age=31536000; includeSubDomains; preload">
-        <meta name="Permissions-Policy" content="geolocation=(), microphone=(), camera=()">
-    </head>
-    <body>
-        <!-- Header Section -->
-        <header class="header-about">
-            <nav class="navigation">
-                <div class="nav_container">
-                    <!-- Logo and @MacN_iT -->
-                    <a href="index.html" id="nav_logo">
-                        <img src="images/LittleRobotBackgroundErase.png" alt="MacN_iT Logo" class="littlerobot">
-                        <span class="color-change">@</span><span class="color-change">M</span>
-                        <span class="color-change">a</span><span class="color-change">c</span>
-                        <span class="color-change">N</span><span class="color-change">_</span>
-                        <span class="color-change">i</span><span class="color-change">T</span>
-                    </a>
-                    <ul class="nav.menu">
-                        <li class="nav_item"><a href="index.html">Home</a></li>
-                        <li class="nav_item"><a class="nav_active" href="about.html">About</a></li>
-                        <li class="nav_item"><a href="inspiredme.html">Inspirations</a>
-                        <li class="nav_item"><a href="blog.html">Thoughts</a></li>
-                        <li class="nav_item"><a href="tools.html">Tools</a></li>
-                        <li class="nav_item"><a href="contact.html">Contact</a></li>
-                    </ul>
-                </div>
-            </nav>
-        </header>
-        <!-- End of Header section -->
-        <!-- Marquee Section -->
-        <div class="marquee">
-            <ul class="marquee-content">
-                <li><img src="/images/GitHub-Mark.png" alt="GitHub"></li>
-                <li><img src="/images/3d-python-programming-language-logo.png" alt="Python"></li>
-                <li><img src="/images/mody_docker.png" alt="Docker"></li>
-                <li><img src="/images/Dev-badge.png" alt="Dev"></li>
-                <li><img src="/images/React-icon.png" alt="React"></li>
-                <li><img src="/images/VueJS.png" alt="Vue.js"></li>
-                <li><img src="/images/Tux.png" alt="Linux"></li>
-                <li><img src="/images/Node.js.png" alt="Node.js"></li>
-                <li><img src="/images/bash_logo.png" alt="Bash"></li>
-                <li><img src="/images/Visual_Studio_Code_1.35_icon.svg.png" alt="VS_code"></li>
-                <li><img src="/images/Android.png" alt="Android"></li>
-                <li><img src="/images/Java_logo.png" alt="Java"></li>
-                <li><img src="/images/HTML5_logo.png" alt="HTML5"></li>
-                <li><img src="/images/YouTube-Music-Logo-3.png" alt="YTMusic"></li>
-            </ul>
-        </div>
-        <!-- End of Marquee Section -->
+  <!-- Security Headers -->
+  <meta http-equiv="Content-Security-Policy"
+    content="
+      default-src 'self';
+      script-src 'self';
+      style-src 'self';
+      img-src 'self' data:;
+      font-src 'self';
+      object-src 'none';
+      base-uri 'none';
+      connect-src
+        'self'
+        http://127.0.0.1:5000
+        http://localhost:5000
+        http://127.0.0.1:5500
+        http://localhost:5500
+        https://nathanmcl.github.io
+        https://macn-about-api.azurewebsites.net;
+      require-trusted-types-for 'script';
+    ">
+  <meta http-equiv="X-Content-Type-Options" content="nosniff">
+  <meta http-equiv="Referrer-Policy" content="no-referrer">
+  <meta http-equiv="Strict-Transport-Security" content="max-age=31536000; includeSubDomains; preload">
+  <meta name="Permissions-Policy" content="geolocation=(), microphone=(), camera=()">
+</head>
+<body>
+  <!-- Header Section -->
+  <header class="header-about">
+    <nav class="navigation">
+      <div class="nav_container">
+        <!-- Logo and @MacN_iT -->
+        <a href="index.html" id="nav_logo">
+          <img src="images/LittleRobotBackgroundErase.png" alt="MacN_iT Logo" class="littlerobot">
+          <span class="color-change">@</span><span class="color-change">M</span>
+          <span class="color-change">a</span><span class="color-change">c</span>
+          <span class="color-change">N</span><span class="color-change">_</span>
+          <span class="color-change">i</span><span class="color-change">T</span>
+        </a>
+        <ul class="nav menu">
+          <li class="nav_item"><a href="index.html">Home</a></li>
+          <li class="nav_item"><a class="nav_active" href="about.html">About</a></li>
+          <li class="nav_item"><a href="inspiredme.html">Inspirations</a></li>
+          <li class="nav_item"><a href="blog.html">Thoughts</a></li>
+          <li class="nav_item"><a href="tools.html">Tools</a></li>
+          <li class="nav_item"><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+  <!-- End of Header section -->
 
-        <!-- Main Section -->
-        <main>  
-            <!-- Bouncing Orbs -->
-            <div class="bouncing-orb" id="orb_me" tabindex="0" role="button" aria-label="Open popup about me">
-                <span class="orb-text">Me</span>
-            </div>
-            <div class="bouncing-orb" id="orb_services" tabindex="1" role="button" aria-label="Open popup `S`">
-                <span class="orb-text">S</span>
-            </div>
+  <!-- Marquee Section -->
+  <div class="marquee">
+    <ul class="marquee-content">
+      <li><img src="images/GitHub-Mark.png" alt="GitHub"></li>
+      <li><img src="images/3d-python-programming-language-logo.png" alt="Python"></li>
+      <li><img src="images/mody_docker.png" alt="Docker"></li>
+      <li><img src="images/Dev-badge.png" alt="Dev"></li>
+      <li><img src="images/React-icon.png" alt="React"></li>
+      <li><img src="images/VueJS.png" alt="Vue.js"></li>
+      <li><img src="images/Tux.png" alt="Linux"></li>
+      <li><img src="images/Node.js.png" alt="Node.js"></li>
+      <li><img src="images/bash_logo.png" alt="Bash"></li>
+      <li><img src="images/Visual_Studio_Code_1.35_icon.svg.png" alt="VS Code"></li>
+      <li><img src="images/Android.png" alt="Android"></li>
+      <li><img src="images/Java_logo.png" alt="Java"></li>
+      <li><img src="images/HTML5_logo.png" alt="HTML5"></li>
+      <li><img src="images/YouTube-Music-Logo-3.png" alt="YTMusic"></li>
+    </ul>
+  </div>
+  <!-- End of Marquee Section -->
 
-            <div class="bouncing-orb" id="orb_things" tabindex="2" role="button" aria-label="Open popup `T`">
-                <span class="orb-text">T</span>
-            </div>
+  <!-- Main Section -->
+  <main>
+    <!-- Bouncing Orbs -->
+    <div class="bouncing-orb" id="orb_me" tabindex="0" role="button" aria-label="Open popup about me">
+      <span class="orb-text">Me</span>
+    </div>
+    <div class="bouncing-orb" id="orb_services" tabindex="0" role="button" aria-label="Open popup about services">
+      <span class="orb-text">S</span>
+    </div>
+    <div class="bouncing-orb" id="orb_things" tabindex="0" role="button" aria-label="Open popup about things">
+      <span class="orb-text">T</span>
+    </div>
+    <div class="bouncing-orb" id="orb_smile" tabindex="0" role="button" aria-label="Open popup smile">
+      <span class="orb-text">😁</span>
+    </div>
 
-            <div class="bouncing-orb" id="orb_smile" tabindex="3" role="button" aria-label="Open popup 😁 Cheek Smile Emoji">
-                <span class="orb-text">😁</span>
-            </div>
+    <!-- Popups -->
+    <div id="popup_me" class="orb-popup" role="dialog" aria-labelledby="about-orb-output" aria-live="polite">
+      <div class="loader" id="loader_me" aria-hidden="true"></div>
+      <div id="about-orb-output" aria-live="polite" aria-atomic="true"></div>
+      <button class="close-btn" data-popup="popup_me">Close</button>
+    </div>
 
-            <!-- Popups -->
-            <div id="popup_me" class="orb-popup" role="dialog" aria-labelledby="about_orb_output" aria-live="polite">
-                <div class="loader" id="loader_me" aria-hidden="true"></div>
-                <div id="about-orb-output" aria-live="polite" aria-atomic="true"></div>
-                <button class="close-btn" data-popup="popup_me">Close</button>
-            </div>
+    <div id="popup_services" class="orb-popup">
+      <p>I code with curiosity, pulling from my service days, mechatronics tinkering, and a curious streak that never quite shuts off…
+        Some days it’s AI model tweaks and secure Docker builds; other days, it’s backyard farming and chickens. 
+        Music-fueled early morning troubleshooting, late-night writing, or photography to digital mashups. 
+        My ‘services’ aren’t just technical—they’re about weaving creativity, resilience, and a touch of humor into every project.</p>
+      <button class="close-btn" data-popup="popup_services">Close</button>
+    </div>
 
+    <div id="popup_things" class="orb-popup">
+      <p>Test testing</p>
+      <button class="close-btn" data-popup="popup_things">Close</button>
+    </div>
 
-            <div id="popup_services" class="orb-popup">
-                <p>Create a brief blurb about my Interests... I can change this later</p>
-                <button class="close-btn" data-popup="popup_services">Close</button>
-            </div>
+    <div id="popup_smile" class="orb-popup">
+      <p>😁</p>
+      <button class="close-btn" data-popup="popup_smile">Close</button>
+    </div>
+    <!-- End of Popups -->
 
-            <div id="popup_things" class="orb-popup">
-                <p>test testing</p>
-                <button class="close-btn" data-popup="popup_things">Close</button>
-            </div>
+    <!-- Slide Button -->
+    <div id="toggle-accessibility" class="orb-toggle" aria-label="Stop the orbs from bouncing">
+      <label class="switch">
+        <input type="checkbox" id="orbToggleSlide" aria-label="Toggle the orbs... Bounce away!">
+        <span class="slider round"></span>
+      </label>
+    </div>
+    <!-- End of Toggle -->
+  </main>
+  <!-- End of Main body -->
 
-            <div id="popup_smile" class="orb-popup">
-                <p>😁</p>
-                <button class="close-btn" data-popup="popup_smile">Close</button>
-            </div>
-            <!-- End of Bouncing Orbs -->
+  <!-- Footer Section -->
+  <footer role="contentinfo">
+    <p>&copy; 2025 MacN @MacN_iT All Rights Reserved</p>
+    <nav aria-label="Footer Navigation">
+      <a href="index.html">Home</a>
+    </nav>
+  </footer>
 
-            <!-- Slide Button -->
-            <div id="toggle-accessibility" class="orb-toggle" aria-label="Stop the orbs from bouncing">
-                <label class="switch">
-                    <input type="checkbox" id="orbToggleSlide" aria-label="Toggle the orbs... Bounce away!">
-                    <span class="slider round"></span>
-                </label>
-            </div>
-            <!-- End of Toggle -->
-        </main>   
-        <!-- End of Main body -->
-        
-        <!-- Footer Section -->
-        <footer role="contentinfo">
-            <p>&copy; 2025 MacN @MacN_iT All Rights Reserved</p>
-            <nav aria-label="Footer Navigation">
-                <a href="index.html">Home</a>
-            </nav>
-        </footer>
+  <!-- Cyber container effect -->
+  <div class="cyber-container"></div>
 
-        <!-- Cyber container effect -->
-        <div class="cyber-container"></div>
-
-    <!-- JS -->
-    <script src="aboutScript.js" defer></script>
-    </body>
+  <!-- External JS only -->
+  <script src="aboutScript.js" defer></script>
+</body>
 </html>
