@@ -1,658 +1,454 @@
-/* Body styles */
-body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background-color: var(--second-color); /* Background using third color */
-    color: #333; /* General text color */
-    border-radius: 2.5px;
+/* =======================
+   Global Styles & Colors
+   ======================= */
+:root {
+  --first-color: #222221;
+  --second-color: #c4eada;
+  --third-color: #ef7b7b;
+  --fourth-color: #fcf3ca;
+
+  /* Flag colors for @MacN_iT text */
+  --flag-white: #ffffff;
+  --flag-red: #ff0000;
+  --flag-blue: #0000ff;
+
+  /* Marquee variables */
+  --marquee-width: 98vw;
+  --marquee-height: 10vh;
+  --marquee-elements: 14;
+  --marquee-elements-displayed: 7;
+  --marquee-element-width: calc(var(--marquee-width) / var(--marquee-elements-displayed));
+  --marquee-animation-duration: calc(var(--marquee-elements) * 2s);
 }
 
-/* Color palette from: https://palettes.shecodes.io/palettes/507#palette */
-:root {
-    --first-color: #222221;
-    --second-color: #c4eada;
-    --third-color: #ef7b7b;
-    --fourth-color: #fcf3ca;
-    /* @MacN_iT text color change */
-    --flag-white: #ffffff;
-    --flag-red: #ff0000;
-    --flag-blue: #0000ff;
+/* Reset & Body */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
-/* End of Body styles */
-/* Header styles */
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: var(--second-color);
+  color: #333;
+  border-radius: 2.5px;
+  transition: background-color 0.5s ease;
+}
+
+/* =======================
+   Header & Navigation
+   ======================= */
 .header-about {
-    background-color: var(--third-color);
-    color: white;
-    padding: 10px 0;
-    border-radius: 10px;
+  background-color: var(--third-color);
+  color: white;
+  padding: 10px 0;
+  border-radius: 10px;
 }
 
 .nav_container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
 }
 
 #nav_logo {
-    display: flex;
-    align-items: center;
-    text-decoration: none;
-    color: white;
-    font-weight: bold;
-    font-size: 1.5rem; /* To adjust the text size */
-    margin-left: 0px;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+  font-size: 1.5rem;
 }
 
 .littlerobot {
-    max-width: 170px; /* Adjust the max-width for log scaling */
-    height: auto; /* Maintain the aspect ratio */
-    margin-right: 5px; /* The space between the logo and text */
-    margin-left: -100px;
+  max-width: 170px;
+  height: auto;
+  margin-right: 5px;
+  margin-left: -100px;
 }
 
 .nav.menu {
-    display: flex !important; /* Ensure the menu is displayed */
-    list-style-type: none;
-    display: flex;
-    gap: 15px;
-    padding: 0;
-    margin-left: auto;
+  display: flex !important;
+  gap: 15px;
+  list-style-type: none;
 }
 
 .nav_item a {
-    display: inline-block;
-    text-decoration: none;
-    color: var(--fourth-color);
-    font-weight: bold;
-    padding: 2px 10px;
-    border-radius: 20px;
-    transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+  text-decoration: none;
+  color: var(--fourth-color);
+  font-weight: bold;
+  padding: 2px 10px;
+  border-radius: 20px;
+  transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
 }
 
 .nav_item a.nav_active {
-    color: var(--first-color); /* Highlight the active link */
+  color: var(--first-color);
 }
 
-.nav_item a:hover {
-    background-color: var(--second-color); /* Remove background block */
-    color: var(--first-color); /* Change text color instead */
-    text-decoration: underline; /* Optional: Underline effect */
+.nav_item a:hover,
+.nav_item a:focus {
+  background-color: var(--second-color);
+  color: var(--first-color);
+  text-decoration: underline;
+  outline: none;
 }
 
-/* Animation styles for color change */
+/* Logo Text Animation */
 .color-change {
-    display: inline-block;
-    animation: colorAnimation 10s infinite;
+  display: inline-block;
+  animation: colorAnimation 10s infinite;
 }
 
-.color-change:nth-child(1) { /* @ */
-    animation-delay: 0s;
-}
-.color-change:nth-child(2) { /* M */
-    animation-delay: 2s;
-}
-.color-change:nth-child(3) { /* a */
-    animation-delay: 4s;
-}
-.color-change:nth-child(4) { /* c */
-    animation-delay: 6s;
-}
-.color-change:nth-child(5) { /* N */
-    animation-delay: 8s;
-}
-.color-change:nth-child(6) { /* _ */
-    animation-delay: 10s;
-}
-.color-change:nth-child(7) { /* i */
-    animation-delay: 12s;
-}
-.color-change:nth-child(8) { /* T */
-    animation-delay: 14s;
-}
+.color-change:nth-child(1) { animation-delay: 0s; }
+.color-change:nth-child(2) { animation-delay: 2s; }
+.color-change:nth-child(3) { animation-delay: 4s; }
+.color-change:nth-child(4) { animation-delay: 6s; }
+.color-change:nth-child(5) { animation-delay: 8s; }
+.color-change:nth-child(6) { animation-delay: 10s; }
+.color-change:nth-child(7) { animation-delay: 12s; }
+.color-change:nth-child(8) { animation-delay: 14s; }
 
 @keyframes colorAnimation {
-    0%, 100% {
-        color: var(--flag-white);
-    }
-    25% {
-        color: var(--flag-red);
-    }
-    50% {
-        color: var(--flag-white);
-    }
-    75% {
-        color: var(--flag-blue);
-    }
+  0%, 100% { color: var(--flag-white); }
+  25% { color: var(--flag-red); }
+  50% { color: var(--flag-white); }
+  75% { color: var(--flag-blue); }
 }
-/* End of Animation styles for color change */
-/* End of Header styles */
 
-/* Main Body */
+/* =======================
+   Main Layout
+   ======================= */
 main {
-    position: relative;
-    width: 90vw;
-    height: 75vh;
-    margin: auto;
-    border: 2px solid rgba(255, 255, 255, 0.2);
-    overflow: hidden;
+  position: relative;
+  width: 90vw;
+  height: 75vh;
+  margin: auto;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  overflow: hidden;
 }
 
-/* Bouncing Orbs - Keep orbs inside the main section */
+/* =======================
+   Bouncing Orbs
+   ======================= */
 .bouncing-orb {
-    position: absolute;
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.5rem;
-    font-weight: bold;
-    text-transform: uppercase;
-    color: white;
-    cursor: pointer;
-    box-shadow: 0 0 10px rgba(255, 255, 255, 0.8), 0 0 20px rgba(255, 255, 255, 0.6);
-    transition: transform 0.02s linear;
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: white;
+  cursor: pointer;
+  transition: transform 0.1s linear;
 }
 
-/* Each orb should have a different color */
-/*Orbs (Can create more)*/
+.bouncing-orb:hover,
+.bouncing-orb:focus {
+  transform: scale(1.1);
+  outline: 3px solid var(--fourth-color);
+}
+
+/* Orb Colors */
 #orb_me {
-    background: radial-gradient(circle, #00ffea, #0044ff);
-    box-shadow: 0 0 15px #00ffea, 0 0 30px #00ffea;
+  background: radial-gradient(circle, #00ffea, #0044ff);
+  box-shadow: 0 0 15px #00ffea, 0 0 30px #00ffea;
 }
 
 #orb_services {
-    background: radial-gradient(circle, #08c027, #03b931);
-    box-shadow: 0 0 15px #14ff33, 0 0 30px #14ff47;
+  background: radial-gradient(circle, #08c027, #03b931);
+  box-shadow: 0 0 15px #14ff33, 0 0 30px #14ff47;
 }
 
 #orb_things {
-    background: radial-gradient(circle, #7700ff, #d400ff);
-    box-shadow: 0 0 15px #fa11fa, 0 0 30px #9605a3;
+  background: radial-gradient(circle, #7700ff, #d400ff);
+  box-shadow: 0 0 15px #fa11fa, 0 0 30px #9605a3;
 }
 
 #orb_smile {
-    background: radial-gradient(circle, #91ff00, #c3f912);
-    box-shadow: 0 0 15px #c0fa11, 0 0 30px #bff109;
+  background: radial-gradient(circle, #91ff00, #c3f912);
+  box-shadow: 0 0 15px #c0fa11, 0 0 30px #bff109;
 }
 
-/* Text inside the orb */
+/* Text inside Orbs */
 .orb-text {
-    font-size: 20px;
-    font-weight: bold;
+  font-size: 20px;
+  font-weight: bold;
 }
 
-/* Floating Animation */
-@keyframes floatOrbs {
-    0% { transform: translateY(-5px); }
-    100% { transform: translateY(5px); }
+/* Orb Neon Mode */
+.bouncing-orb.grid-effect {
+  background-color: #0f0c29;
+  border: 3px solid #00ffff;
+  animation: orbPulse 2s infinite ease-in-out;
+  box-shadow:
+    0 0 15px rgba(0, 255, 255, 0.8),
+    0 0 25px rgba(0, 255, 255, 0.6),
+    0 0 50px rgba(255, 0, 255, 0.4),
+    inset 0 0 10px rgba(255, 255, 255, 0.2);
 }
 
-/* Popups: About: Me/Services/ Orb API Loading Animation */
-.loader {
-    border: 4px solid #f3f3f3;
-    border-top: 4px solid #00ffea;
-    border-radius: 50%;
-    width: 30px;
-    height: 30px;
-    animation: spin 1s linear infinite;
-    margin: auto;
-    margin-bottom: 10px;
+@keyframes orbPulse {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow:
+      0 0 10px #00ffff,
+      0 0 20px #ff00ff,
+      0 0 30px #ffff00;
+  }
+  50% {
+    transform: scale(1.05);
+    box-shadow:
+      0 0 20px #00ffff,
+      0 0 40px #ff00ff,
+      0 0 60px #ffff00;
+  }
 }
 
-@keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(100%); }
+.bouncing-orb.grid-effect .orb-text {
+  color: #ffffff;
+  text-shadow: 0 0 5px #00ffff, 0 0 10px #ff00ff;
 }
-/* End of Popups: About: Me/Services/ Orb API Loading Animation */
 
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  .bouncing-orb.grid-effect { animation: none; }
+}
 
-/* Popups */
+/* =======================
+   Orb Popups
+   ======================= */
 .orb-popup {
-    display: none;
-    position: fixed;
-    width: 250px;
-    padding: 15px;
-    background: rgba(0, 0, 0, 0.85);
-    color: white;
-    border-radius: 10px;
-    box-shadow: 0 0 15px rgba(255, 255, 255, 0.7);
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    text-align: center;
-    z-index: 10;
+  display: none;
+  position: fixed;
+  width: 350px;              /* slightly wider for readability */
+  max-height: 400px;         /* cap height */
+  overflow-y: auto;          /* scroll if content exceeds max height */
+  padding: 15px;
+  background: rgba(0, 0, 0, 0.9);
+  color: white;
+  border-radius: 12px;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.6);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: left;          /* left-align for natural paragraph flow */
+  line-height: 1.4;          /* improve readability */
+  font-size: 0.95rem;        /* slightly smaller text */
+  z-index: 10;
 }
+
+/* Scrollbar style (optional, modern browsers) */
+.orb-popup::-webkit-scrollbar {
+  width: 6px;
+}
+.orb-popup::-webkit-scrollbar-thumb {
+  background: #666;
+  border-radius: 3px;
+}
+.orb-popup.active { display: block; }
 
 .orb-popup button {
-    margin-top: 10px;
-    background: #ff4444;
-    color: whitesmoke;
-    border: none;
-    padding: 5px 10px;
-    cursor: pointer;
-    border-radius: 5px;
+  margin-top: 10px;
+  background: #ff4444;
+  color: whitesmoke;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
 }
 
 .orb-popup button:hover {
-    background: #ff6666;
+  background: #ff6666;
 }
 
-/* Orb Toggle */
+/* Overlay behind popups */
+.popup-overlay {
+  display: none;
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0, 0, 0, 0.65); /* dimmed background */
+  -webkit-backdrop-filter: blur(2px); /* Safari support */
+  backdrop-filter: blur(2px);      /* slight blur for focus */
+  z-index: 9; /* below popup but above everything else */
+}
+
+.popup-overlay.active {
+  display: block;
+}
+
+/* Loader */
+.loader {
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid #00ffea;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  animation: spin 1s linear infinite;
+  margin: 10px auto;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* =======================
+   Orb Toggle Switch
+   ======================= */
 .orb-toggle {
-    position: absolute;
-    top: 10px;
-    left: 10px;
-    z-index: 10;
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  z-index: 10;
 }
 
 .switch {
-    position: relative;
-    display: inline-block;
-    width: 55px;
-    height: 30px;
+  position: relative;
+  display: inline-block;
+  width: 55px;
+  height: 30px;
 }
 
 .switch input {
-    opacity: 0;
-    width: 0;
-    height: 0;
+  opacity: 0;
+  width: 0;
+  height: 0;
 }
 
 .slider {
-    position: absolute;
-    cursor: pointer;
-    top: 0; left: 0; right: 0; Bottom: 0;
-    background-color: #ccc;
-    border-radius: 34px;
-    transition: .4s;
+  position: absolute;
+  cursor: pointer;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-color: #ccc;
+  border-radius: 34px;
+  transition: .4s;
 }
 
 .slider:before {
-    position: absolute;
-    content: "";
-    height: 20px; width: 20px;
-    left: 5px; bottom: 5px;
-    background-color: whitesmoke;
-    border-radius: 50%;
-    transition: .4s;
+  content: "";
+  position: absolute;
+  height: 20px; width: 20px;
+  left: 5px; bottom: 5px;
+  background-color: whitesmoke;
+  border-radius: 50%;
+  transition: .4s;
 }
 
 input:checked + .slider {
-    background-color: #66bb6a;
+  background-color: #66bb6a;
 }
 
-input:checked + slider:before {
-    transform: translateX(26px);
-}
-/* End of Orb Toggle */
-
-/* Toggle the Orb Magic. */
-/* A neon effect when the orb's slide button is activated */
-.bouncing-orb.grid-effect {
-    background-color: #0f0c29;
-    border: 3px solid #00ffff;
-    border-radius: 50%;
-    animation: orbPulse 2s infinite ease-in-out;
-    box-shadow: 
-        0 0 15px rgba(0, 255, 255, 0.8),
-        0 0 25px rgba(0, 255, 255, 0.6),
-        0 0 50px rgba(255, 0, 255, 0.4),
-        inset 0 0 10px rgba(255, 255, 255, 0.2);
-    z-index: 5;
+input:checked + .slider:before {
+  transform: translateX(26px);
 }
 
-/* Crackling glow animation */
-@keyframes orbPulse {
-    0% {
-        transform: scale(1);
-        box-shadow:
-            0 0 10px #00ffff,
-            0 0 20px #ff00ff,
-            0 0 30px #ffff00;
-    }
-    50% {
-        transform: scale(1.05);
-        box-shadow:
-            0 0 20px #00ffff,
-            0 0 40px #ff00ff,
-            0 0 60px #ffff00;
-    }
-    100% {
-        transform: scale(1);
-        box-shadow:
-            0 0 10px #00ffff,
-            0 0 20px #ff00ff,
-            0 0 30px #ffff00;
-    }
-}
-
-/* Ensures text inside orb stays legible */
-.bouncing-orb.grid-effect .orb-text {
-    color: #ffffff;
-    text-shadow:
-        0 0 5px #00ffff,
-        0 0 10px #ff00ff;
-    font-weight: bold;
-    font-size: 1.4rem;
-    z-index: 10;
-    position: relative;
-}
-
-/* Optional: subtle background change for accessibility when grid is on */
-body.grid-mode {
-    background-color: #0a0a0a;
-    transition: background-color 0.5s ease;
-}
-
-/* Accessibility preference: reduce motion */
-@media (prefers-reduced-motion: reduce) {
-    .bouncing-orb.grid-effect {
-        animation: none;
-        transform: none;
-    }
-}
-/* End of Toggle the Orb Magic. */
-/* End of Bouncing Orbs */
-/* End of Main Body */
-
-/* Footer styling */
+/* =======================
+   Footer
+   ======================= */
 footer {
-    text-align: center;
-    padding: 20px;
-    background-color: var(--third-color);
-    color: var(--first-color);
-    border-top: 1px solid #ccc;
-    border-radius: 10px;
+  text-align: center;
+  padding: 20px;
+  background-color: var(--third-color);
+  color: var(--first-color);
+  border-top: 1px solid #ccc;
+  border-radius: 10px;
 }
 
-/* Responsive styles */
-/* Medium screens */
-@media (max-width: 1023px) {
-    /* Adjust the container to center its content */
-    .nav_container {
-        display: flex;
-        justify-content: space-between; /* Center the logo img, text, and the  navigation menu */
-        align-items: center;
-        max-width: 1200px; /* Set the max-width to center the contianer */
-        margin: 0 auto; /* Center the container */
-        padding: 5px 20px; /* Add padding to prevent touch the edges */
-    }
-
-    #nav_logo {
-        display: flex;
-        align-items: center;
-        text-align: left;
-        font-size: 1.2rem;
-        margin-right: auto;
-        margin-left: 150px; /* Push / Move the logo toward the center */
-    }
-
-    .littlerobot {
-        max-width: 150px;
-        margin-right: 0px; /* Create space between the robot and the text */
-        margin-left: -200px; /* Negative moves it left */
-        margin-top: 50px;
-    }
-
-    .color-change {
-        display: inline-block;
-        margin: 0px 2.5px; /* Space between the characters */
-        font-size: 1.2rem;
-        margin-top: 70px;
-    }
-
-    /* Navigation Menu */
-    .nav.menu {
-        display: flex;
-        flex-direction: row;
-        justify-content: flex-end; /* Align the menu to the right */
-        gap: 15px; /* Space between the menu items */
-        list-style: none;
-        margin-right: 50px; /* Push the menu toward the center */
-    }
-
-    .nav_item a {
-        font-size: 1rem;
-        text-decoration: none;
-        color: var(--fourth-color);
-        margin-right: 30px;
-    }
-
-    .nav_item a:hover {
-        background-color: var(--second-color);
-    }
-    /* End of Navigation Menu */
-
-    /* Responsive Medium Orb */
-    main {
-        width: 95vw; /* Slightly wider for medium screens */
-        height: 65vh; /* Reduce height to fit content */
-    }
-
-    .bouncing-orb {
-        width: 60px; /* Reduce size */
-        height: 60px;
-        font-size: 1.2rem; /* Adjust text size */
-    }
-
-    .orb-text {
-        font-size: 18px; /* Reduce text size */
-    }
-
-    .orb-popup {
-        width: 220px; /* Slightly smaller popups */
-        padding: 12px;
-    }
-    /* End of Responsive Medium Orb */
-    /* End of Medium screens */
-}
-
-    /* Small screens */
-@media (max-width: 768px) {
-    .welcome_section h1 {
-        margin-left: 25px;
-    }
-
-    .welcome_section h2 {
-        margin-left: 45px;
-    }
-
-    .about-site {
-        padding: 40px 15px;
-    }
-
-    /* Adjust the container to center its content */
-    .nav_container {
-        display: flex;
-        justify-content: space-between; /* Center the logo img, text, and the  navigation menu */
-        align-items: center;
-        max-width: 1200px; /* Set the max-width to center the contianer */
-        margin: 0 auto; /* Center the container */
-        padding: 5px 10px; /* Add padding to prevent touch the edges */
-    }
-
-    #nav_logo {
-        display: flex;
-        align-items: center;
-        text-align: left;
-        font-size: 1.2rem;
-        margin-right: auto;
-        margin-left: -80px; /* Push or Move the logo toward the center */
-    }
-
-    .littlerobot {
-        max-width: 135px;
-        margin-right: 0px; /* Create space between the robot and the text */
-        margin-left: 50px;
-        margin-top: 30px;
-
-    }
-
-    .color-change {
-        display: inline-block;
-        margin: 1.5px; /* Space between the characters */
-        font-size: 1.2rem;
-        margin-top: 65px;
-    }
-
-    /* Navigation Menu */
-    .nav.menu {
-        display: flex;
-        flex-direction: row;
-        justify-content: flex-end; /* Align the menu to the right */
-        gap: 15px; /* Space between the menu items */
-        list-style: none;
-        margin-right: 50px; /* Push the menu toward the center */
-    }
-
-    .nav_item a {
-        font-size: 1rem;
-        text-decoration: none;
-        color: var(--fourth-color);
-        margin-right: 30px;
-    }
-
-    .nav_item a:hover {
-        background-color: var(--second-color);
-    }
-    /* End of Navigation Menu */
-
-    footer {
-        padding: 15px;
-        font-size: 0.9rem; /* Slightly smaller font for footer */
-    }
-
-    /* Responsive Small Orb */
-    main {
-        width: 95vw; /* Use full width */
-        height: 65vh; /* Smaller height for mobile */
-    }
-
-    .bouncing-orb {
-        width: 50px; /* Even smaller */
-        height: 50px;
-        font-size: 1rem; /* Adjust text size */
-    }
-
-    .orb-text {
-        font-size: 16px; /* Smaller font */
-    }
-
-    .orb-popup {
-        width: 90%; /* Make popups more compact */
-        padding: 10px;
-        max-width: 250px;
-    }
-
-    .orb-popup button {
-        font-size: 0.9rem; /* Smaller button text */
-        padding: 4px 8px;
-    }
-    /* End of Responsive Small Orb */
-}    
-/* End of Small screens */
-/* End of Responsive styles */
-
-/* Marquee styles */
-:root {
-    --marquee-width: 98vw; /* Adjust width */
-    --marquee-height: 10vh; /* Adjust height */
-    --marquee-elements: 14; /* Number of elements */
-    --marquee-elements-displayed: 7; /* Number of elements displayed */
-    --marquee-element-width: calc(var(--marquee-width) / var(--marquee-elements-displayed));
-    --marquee-animation-duration: calc(var(--marquee-elements) * 2s); /* Adjust speed */
-  }
-
+/* =======================
+   Marquee
+   ======================= */
 .marquee {
-    width: var(--marquee-width);
-    height: var(--marquee-height);
-    background-color: #282626;
-    color: #eee;
-    overflow: hidden;
-    position: relative;
-    white-space: nowrap;
-    margin: 10px auto; /* Center and add spacing */
-    border-radius: 10px; /* Add rounded corners */
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Add shadow */
+  width: var(--marquee-width);
+  height: var(--marquee-height);
+  background-color: #282626;
+  overflow: hidden;
+  position: relative;
+  margin: 10px auto;
+  border-radius: 10px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-.marquee:before, .marquee:after {
-    position: absolute;
-    top: 0; 
-    width: 10rem;
-    height: 100%;
-    content: "";
-    z-index: 1;
+.marquee:before,
+.marquee:after {
+  position: absolute;
+  top: 0;
+  width: 10rem;
+  height: 100%;
+  content: "";
+  z-index: 1;
 }
 
 .marquee:before {
-    left: 0;
-    background: linear-gradient(to right, #111 0%, transparent 100%);
+  left: 0;
+  background: linear-gradient(to right, #111 0%, transparent 100%);
 }
 
 .marquee:after {
-    right: 0;
-    background: linear-gradient(to left, #111 0%, transparent 100%);
+  right: 0;
+  background: linear-gradient(to left, #111 0%, transparent 100%);
 }
 
 .marquee-content {
-    list-style: none;
-    height: 100%;
-    display: flex;
-    animation: scrolling var(--marquee-animation-duration) 10s linear infinite;
-    padding: 0;
-    margin: 0;
+  list-style: none;
+  height: 100%;
+  display: flex;
+  animation: marqueeScroll var(--marquee-animation-duration) linear infinite;
 }
 
-@keyframes scrolling {
-    100% { transform: translateX(0); }
-    100% { transform: translateX(calc(-1 * var(--marquee-element-width) * var(--marquee-elements))); }
+@keyframes marqueeScroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(calc(-1 * var(--marquee-element-width) * var(--marquee-elements))); }
 }
 
 .marquee-content li {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-shrink: 0;
-    width: var(--marquee-element-width);
-    max-height: 100%;
-    font-size: calc(var(--marquee-height)*3/4); /* Adjust size */
-    white-space: nowrap;
-    padding: 0;
-    margin: 0;
-    background: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+  width: var(--marquee-element-width);
+  max-height: 100%;
 }
 
 .marquee-content li img {
-    max-width: 80%;
-    max-height: 80%;
-    object-fit: contain;
-    border-radius: 5px;
-    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
-    padding: 0;
-    margin: 0;
+  max-width: 80%;
+  max-height: 80%;
+  object-fit: contain;
+  border-radius: 5px;
 }
 
-/* Adjustments for smaller screens */
+/* =======================
+   Responsive Tweaks
+   ======================= */
+@media (max-width: 1023px) {
+  .littlerobot { max-width: 150px; margin-left: -200px; margin-top: 50px; }
+  #nav_logo { font-size: 1.2rem; margin-left: 150px; }
+  .bouncing-orb { width: 60px; height: 60px; font-size: 1.2rem; }
+}
+
+@media (max-width: 768px) {
+  .littlerobot { max-width: 135px; margin-left: 50px; margin-top: 30px; }
+  #nav_logo { font-size: 1.2rem; margin-left: -80px; }
+  .bouncing-orb { width: 50px; height: 50px; font-size: 1rem; }
+  .orb-popup { width: 90%; max-width: 250px; }
+  footer { font-size: 0.9rem; }
+}
+
 @media (max-width: 600px) {
-    :root {
-        --marquee-width: 100vw;
-        --marquee-height: 16vh;
-        --marquee-elements-displayed: 3;
-    }
-    .marquee:before, .marquee:after {
-        width: 5rem;
-    }
-
-    /* For smaller images on smaller screens */
-    .marquee-content img {
-        max-width: 60%;
-        max-height: 60%;
-    }
+  :root {
+    --marquee-width: 100vw;
+    --marquee-height: 16vh;
+    --marquee-elements-displayed: 3;
+  }
+  .marquee:before, .marquee:after { width: 5rem; }
+  .marquee-content img { max-width: 60%; max-height: 60%; }
 }
-/* End of Marquee styles */
