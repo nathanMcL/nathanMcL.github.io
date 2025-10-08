@@ -1,6 +1,5 @@
 /* =======================
    aboutStyles.css — Patched header + polished shimmer/fade
-   Mirrors header/navigation behavior in styles.css (keeps about palette)
    ======================= */
 
 /*  Color Palette (Shecodes) */
@@ -33,10 +32,9 @@ body {
 }
 
 /* =======================
-   Header & Navigation (Mirrored behavior)
+   Header & Navigation
    ======================= */
-
-.header-about {
+.header-index {
   background-color: var(--third-color);
   color: white;
   padding: 10px 0;
