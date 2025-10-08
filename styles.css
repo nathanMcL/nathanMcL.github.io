@@ -5,7 +5,6 @@
 
 /*  Color Palette (Shecodes) */
 :root {
-  /* Keep your palette but allow parity with styles.css structure */
   --first-color: #222221;
   --second-color: #c4eada;
   --third-color: #ef7b7b;
@@ -20,7 +19,12 @@
 }
 
 /* Reset */
-* { margin: 0; padding: 0; box-sizing: border-box; }
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 body {
   font-family: Arial, sans-serif;
   background-color: var(--second-color);
@@ -31,6 +35,7 @@ body {
 /* =======================
    Header & Navigation (Mirrored behavior)
    ======================= */
+
 .header-about {
   background-color: var(--third-color);
   color: white;
@@ -89,8 +94,17 @@ body {
 }
 
 /* Active / hover states */
-.nav_item a.nav_active { color: var(--first-color); }
-.nav_item a:hover,
+.nav_item a.nav_active {
+  color: var(--first-color);
+}
+
+.nav_item a:hover {
+  background-color: var(--second-color);
+  color: var(--first-color);
+  text-decoration: underline;
+  outline: none;
+}
+
 .nav_item a:focus {
   background-color: var(--second-color);
   color: var(--first-color);
@@ -99,38 +113,69 @@ body {
 }
 
 /* Logo color-change animation preserved */
-.color-change { display:inline-block; animation: colorAnimation 10s infinite; }
-@keyframes colorAnimation {
-  0%,100% { color: var(--flag-white); }
-  25% { color: var(--flag-red); }
-  50% { color: var(--flag-white); }
-  75% { color: var(--flag-blue); }
+.color-change {
+  display: inline-block;
+  animation: colorAnimation 10s infinite;
 }
 
-.color-change:nth-child(1) { /* @ */
-    animation-delay: 0s;
+@keyframes colorAnimation {
+  0% {
+    color: var(--flag-white);
+  }
+  25% {
+    color: var(--flag-red);
+  }
+  50% {
+    color: var(--flag-white);
+  }
+  75% {
+    color: var(--flag-blue);
+  }
+  100% {
+    color: var(--flag-white);
+  }
 }
-.color-change:nth-child(2) { /* M */
-    animation-delay: 2s;
+
+.color-change:nth-child(1) {
+  /* @ */
+  animation-delay: 0s;
 }
-.color-change:nth-child(3) { /* a */
-    animation-delay: 4s;
+
+.color-change:nth-child(2) {
+  /* M */
+  animation-delay: 2s;
 }
-.color-change:nth-child(4) { /* c */
-    animation-delay: 6s;
+
+.color-change:nth-child(3) {
+  /* a */
+  animation-delay: 4s;
 }
-.color-change:nth-child(5) { /* N */
-    animation-delay: 8s;
+
+.color-change:nth-child(4) {
+  /* c */
+  animation-delay: 6s;
 }
-.color-change:nth-child(6) { /* _ */
-    animation-delay: 10s;
+
+.color-change:nth-child(5) {
+  /* N */
+  animation-delay: 8s;
 }
-.color-change:nth-child(7) { /* i */
-    animation-delay: 12s;
+
+.color-change:nth-child(6) {
+  /* _ */
+  animation-delay: 10s;
 }
-.color-change:nth-child(8) { /* T */
-    animation-delay: 14s;
+
+.color-change:nth-child(7) {
+  /* i */
+  animation-delay: 12s;
 }
+
+.color-change:nth-child(8) {
+  /* T */
+  animation-delay: 14s;
+}
+
 /* End of Animation styles for color change */
 
 /* Skip link (aria visible on focus) */
@@ -147,377 +192,417 @@ body {
   font-weight: 700;
   transition: top .25s ease-in-out;
 }
-.skip-link:focus,
-.skip-link:focus-visible { top: 0; outline: 3px solid #fff; outline-offset: 2px; }
+
+.skip-link:focus {
+  top: 0;
+  outline: 3px solid #fff;
+  outline-offset: 2px;
+}
+
+.skip-link:focus-visible {
+  top: 0;
+  outline: 3px solid #fff;
+  outline-offset: 2px;
+}
 
 /* sr-only helpers */
-.sr-only { border:0 !important; clip: rect(1px,1px,1px,1px)!important; -webkit-clip-path: inset(50%) !important; clip-path: inset(50%) !important; height:1px!important; margin:-1px!important; overflow:hidden!important; padding:0!important; position:absolute!important; width:1px!important; white-space:nowrap!important; }
-.sr-only-focusable:active, .sr-only-focusable:focus { position: static !important; height:auto !important; width:auto !important; overflow: visible !important; clip: auto !important; clip-path: none !important; }
+.sr-only {
+  border: 0 !important;
+  clip: rect(1px, 1px, 1px, 1px) !important;
+  -webkit-clip-path: inset(50%) !important;
+  clip-path: inset(50%) !important;
+  height: 1px !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  padding: 0 !important;
+  position: absolute !important;
+  width: 1px !important;
+  white-space: nowrap !important;
+}
+
+.sr-only-focusable:active,
+.sr-only-focusable:focus {
+  position: static !important;
+  height: auto !important;
+  width: auto !important;
+  overflow: visible !important;
+  clip: auto !important;
+  clip-path: none !important;
+}
+
 /* End of Skip link (aria visible on focus) */
 /* End of Header styles */
 
 /* Main section styles */
 .main_home {
-    padding: 40px 20px;
-    background-color: var(--third-color);
+  padding: 40px 20px;
+  background-color: var(--third-color);
 }
 
 .home_container {
-    max-width: fit-content;
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  max-width: fit-content;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .welcome_section h1 {
-    color: var(--first-color);
+  color: var(--first-color);
 }
 
 .welcome_section h2 {
-    color: var(--second-color);
+  color: var(--second-color);
 }
 
 /* Position the h3 tag at the top left of the home_section */
 .home_section {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    margin-top: 30px;
-    justify-content: flex-start; /* Align the content to the start */
-    align-items: flex-start; /* Align the content to the top */
-    max-width: 100%; /* Prevent overflow */
-    position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-top: 30px;
+  justify-content: flex-start; /* Align the content to the start */
+  align-items: flex-start; /* Align the content to the top */
+  max-width: 100%; /* Prevent overflow */
+  position: relative;
 }
 
 .home_title {
-    position: absolute;
-    top: 105px; /* Adjust as needed */
-    left: 300px;
-    color: var(--first-color);
-    font-size: 1.5rem;
-    margin: 0;
+  position: absolute;
+  top: 105px; /* Adjust as needed */
+  left: 300px;
+  color: var(--first-color);
+  font-size: 1.5rem;
+  margin: 0;
 }
 
 /* Raised & Hovering Effects */
-.home_paragraphs, .about-site {
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    gap: 10px;
-    padding: 20px;
-    background-color: whitesmoke;
-    border-radius: 10px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
-    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+.home_paragraphs,
+.about-site {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 20px;
+  background-color: whitesmoke;
+  border-radius: 10px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
 }
 
-.home_paragraphs:hover, .about-site:hover {
-    transform: translateY(-5px);
-    box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.3);
+.home_paragraphs:hover,
+.about-site:hover {
+  transform: translateY(-5px);
+  box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.3);
 }
 
-.home_paragraphs p, .about-site p {
-    flex: 1;
-    margin-bottom: 5px;
-    background-color: white;
-    color: #333;
-    line-height: 1.6;
-    border-radius: 10px;
-    padding: 10px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+.home_paragraphs p,
+.about-site p {
+  flex: 1;
+  margin-bottom: 5px;
+  background-color: white;
+  color: #333;
+  line-height: 1.6;
+  border-radius: 10px;
+  padding: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
 
 /* Raised paragraph effect on hover */
 .home_paragraphs p:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
 }
 
 /* About section */
 .about-site {
-    text-align: center;
-    padding: 50px 20px;
-    background-color: var(--third-color);
-    color: white;
-    border-radius: 10px;
-    margin: 30px auto;
-    max-width: 800px;
+  text-align: center;
+  padding: 50px 20px;
+  background-color: var(--third-color);
+  color: white;
+  border-radius: 10px;
+  margin: 30px auto;
+  max-width: 800px;
 }
 
 .about-site h1 {
-    font-size: 2rem;
-    margin-bottom: 15px;
+  font-size: 2rem;
+  margin-bottom: 15px;
 }
 
 .about-site p a {
-    font-size: 1.1rem;
-    line-height: 1.5;
-    margin-bottom: 15px;
-    color: var(--flag-blue);
-    font-weight: bold;
-    text-decoration: underline;
-    transition: color 0.2s ease-in-out, box-shadow 0.2s ease-in-out, color 0.2s ease-in-out;
+  font-size: 1.1rem;
+  line-height: 1.5;
+  margin-bottom: 15px;
+  color: var(--flag-blue);
+  font-weight: bold;
+  text-decoration: underline;
+  transition: color 0.2s ease-in-out, box-shadow 0.2s ease-in-out, color 0.2s ease-in-out;
 }
 
 .about-site p a:hover {
-    color: var(--flag-red); /* Color change on hover */
-    transform: translateY(-3px); /* Raise the link on hover */
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* Adds shadow for depth */
-    text-decoration: none; /* Remove underline on hover */;
+  color: var(--flag-red); /* Color change on hover */
+  transform: translateY(-3px); /* Raise the link on hover */
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* Adds shadow for depth */
+  text-decoration: none;
 }
 
 /* Home column adjustments */
 .home_column {
-    flex: 1;
-    min-width: 300px;
-    max-width: 100%;
-    border-radius: 5px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
+  flex: 1;
+  min-width: 300px;
+  max-width: 100%;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
 }
 
 .home_column h3 {
-    color: var(--first-color);
-    margin-bottom: 10px;
+  color: var(--first-color);
+  margin-bottom: 10px;
 }
 
 .home_column p {
-    color: #333;
-    margin-bottom: 15px;
-    line-height: 1.6;
+  color: #333;
+  margin-bottom: 15px;
+  line-height: 1.6;
 }
 
 .emoji {
-    margin: 0 3px;
-    font-size: 1em;
-    display: inline-block;
+  margin: 0 3px;
+  font-size: 1em;
+  display: inline-block;
 }
 
 /* Assistive Technology Support */
 .sr-only {
-    position: absolute;
-    width: 1px; height: 1px;
-    padding: 0; margin: -1px;
-    overflow: hidden; clip: rect(0,0,0,0);
-    white-space: nowrap; border: 0;
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }
-
-
 
 /* Footer styling */
 footer {
-    text-align: center;
-    padding: 20px;
-    background-color: var(--third-color);
-    color: var(--first-color);
-    border-top: 1px solid #ccc;
-    border-radius: 10px;
+  text-align: center;
+  padding: 20px;
+  background-color: var(--third-color);
+  color: var(--first-color);
+  border-top: 1px solid #ccc;
+  border-radius: 10px;
 }
 
 /* Responsive styles */
 /* Medium screens */
 @media (max-width: 1023px) {
-    /* Adjust the container to center its content */
-    .nav_container {
-        display: flex;
-        justify-content: space-between; /* Center the logo img, text, and the  navigation menu */
-        align-items: center;
-        max-width: 1200px; /* Set the max-width to center the contianer */
-        margin: 0 auto; /* Center the container */
-        padding: 5px 20px; /* Add padding to prevent touch the edges */
-    }
+  /* Adjust the container to center its content */
+  .nav_container {
+    display: flex;
+    justify-content: space-between; /* Center the logo img, text, and the  navigation menu */
+    align-items: center;
+    max-width: 1200px; /* Set the max-width to center the contianer */
+    margin: 0 auto; /* Center the container */
+    padding: 5px 20px; /* Add padding to prevent touch the edges */
+  }
 
-    #nav_logo {
-        display: flex;
-        align-items: center;
-        text-align: left;
-        font-size: 1.2rem;
-        margin-right: auto;
-        margin-left: 150px; /* Push / Move the logo toward the center */
-    }
+  #nav_logo {
+    display: flex;
+    align-items: center;
+    text-align: left;
+    font-size: 1.2rem;
+    margin-right: auto;
+    margin-left: 150px; /* Push / Move the logo toward the center */
+  }
 
-    .littlerobot {
-        max-width: 150px;
-        margin-right: 0px; /* Create space between the robot and the text */
-        margin-left: -200px; /* Negative moves it left */
-        margin-top: 50px;
-    }
+  .littlerobot {
+    max-width: 150px;
+    margin-right: 0px; /* Create space between the robot and the text */
+    margin-left: -200px; /* Negative moves it left */
+    margin-top: 50px;
+  }
 
-    .color-change {
-        display: inline-block;
-        margin: 0px 2.5px; /* Space between the characters */
-        font-size: 1.2rem;
-        margin-top: 70px;
-    }
+  .color-change {
+  display: inline-block;
+  margin: 0px 2.5px; /* Space between the characters */
+  font-size: 1.2rem;
+  margin-top: 70px;
+  }
 
-    /* Navigation Menu */
-    .nav.menu {
-        display: flex;
-        flex-direction: row;
-        justify-content: flex-end; /* Align the menu to the right */
-        gap: 15px; /* Space between the menu items */
-        list-style: none;
-        margin-right: 50px; /* Push the menu toward the center */
-    }
+  /* Navigation Menu */
+  .nav.menu {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end; /* Align the menu to the right */
+    gap: 15px; /* Space between the menu items */
+    list-style: none;
+    margin-right: 50px; /* Push the menu toward the center */
+  }
 
-    .nav_item a {
-        font-size: 1rem;
-        text-decoration: none;
-        color: var(--fourth-color);
-        margin-right: 30px;
-    }
+  .nav_item a {
+    font-size: 1rem;
+    text-decoration: none;
+    color: var(--fourth-color);
+    margin-right: 30px;
+  }
 
-    .nav_item a:hover {
-        background-color: var(--second-color);
-    }
-    /* Enf of Navigation Menu */
+  .nav_item a:hover {
+    background-color: var(--second-color);
+  }
 
-    .home_title {
-        position: absolute;
-        top: -2px; /* Adjust as needed */
-        left: 100px;
-        color: var(--first-color);
-        font-size: 1.5rem;
-        margin: 0;
-    }
+  /* End of Navigation Menu */
 
-    .home_section {
-        flex-direction: column;
-        align-items: center;
-    }
+  .home_title {
+    position: absolute;
+    top: -2px; /* Adjust as needed */
+    left: 100px;
+    color: var(--first-color);
+    font-size: 1.5rem;
+    margin: 0;
+  }
 
-    .home_paragraphs {
-        width: 90%;
-    }
+  .home_section {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .home_paragraphs {
+    width: 90%;
+  }
 }
+
 /* End of Medium screens */
 
 /* Small screens */
 @media (max-width: 768px) {
-    .welcome_section h1 {
-        margin-left: 25px;
-    }
+  .welcome_section h1 {
+    margin-left: 25px;
+  }
 
-    .welcome_section h2 {
-        margin-left: 45px;
-    }
-    
-    .home_section {
-        flex-direction: column;
-        align-items: center;
-        padding: 20px;
-    }
+  .welcome_section h2 {
+    margin-left: 45px;
+  }
 
-    .home_column {
-        width: 100%; /* Have the column take up the full available width */
-        margin-bottom: 20px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        padding: 0 10px; /* Add a little padding if needed */
-        box-sizing: border-box; /* Make sure the padding doesn’t cause overflow */
-    }
+  .home_section {
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+  }
 
-    .home_paragraphs {
-        width: 100%; /* Ensure the paragraphs container takes up full width */
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start; /* Align text to the start (left) */
-        padding: 15px; /* Add padding to ensure text doesn't touch the edges */
-        box-sizing: border-box; /* Ensure padding doesn’t cause overflow */
-    }
+  .home_column {
+    width: 100%; /* Have the column take up the full available width */
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0 10px; /* Add a little padding if needed */
+    box-sizing: border-box; /* Make sure the padding doesn’t cause overflow */
+  }
 
-    .home_paragraphs p {
-        width: 100%;
-        text-align: left;
-        margin-bottom: 15px;
-    }
+  .home_paragraphs {
+    width: 100%; /* Ensure the paragraphs container takes up full width */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Align text to the start (left) */
+    padding: 15px; /* Add padding to ensure text doesn't touch the edges */
+    box-sizing: border-box; /* Ensure padding doesn’t cause overflow */
+  }
 
-    #home_image {
-        max-width: 100%;
-        height: auto;
-        object-fit: contain;
-        overflow: visible;
-        margin-bottom: 10px; /* Add space between the image and the paragraphs */
-        border-radius: 10px;
-    }
+  .home_paragraphs p {
+    width: 100%;
+    text-align: left;
+    margin-bottom: 15px;
+  }
 
-    .home_title {
-        position: absolute;
-        top: 20px; /* Adjust as needed */
-        left: 100px;
-        color: var(--first-color);
-        font-size: 1.2rem;
-        margin: 0;
-    }
+  #home_image {
+    max-width: 100%;
+    height: auto;
+    object-fit: contain;
+    overflow: visible;
+    margin-bottom: 10px; /* Add space between the image and the paragraphs */
+    border-radius: 10px;
+  }
 
-    .about-site {
-        padding: 40px 15px;
-    }
+  .home_title {
+    position: absolute;
+    top: 20px; /* Adjust as needed */
+    left: 100px;
+    color: var(--first-color);
+    font-size: 1.2rem;
+    margin: 0;
+  }
 
-    /* Adjust the container to center its content */
-    .nav_container {
-        display: flex;
-        justify-content: space-between; /* Center the logo img, text, and the  navigation menu */
-        align-items: center;
-        max-width: 1200px; /* Set the max-width to center the contianer */
-        margin: 0 auto; /* Center the container */
-        padding: 5px 10px; /* Add padding to prevent touch the edges */
-    }
+  .about-site {
+    padding: 40px 15px;
+  }
 
-    #nav_logo {
-        display: flex;
-        align-items: center;
-        text-align: left;
-        font-size: 1.2rem;
-        margin-right: auto;
-        margin-left: -80px; /* Push or Move the logo toward the center */
-    }
+  /* Adjust the container to center its content */
+  .nav_container {
+    display: flex;
+    justify-content: space-between; /* Center the logo img, text, and the  navigation menu */
+    align-items: center;
+    max-width: 1200px; /* Set the max-width to center the contianer */
+    margin: 0 auto; /* Center the container */
+    padding: 5px 10px; /* Add padding to prevent touch the edges */
+  }
 
-    .littlerobot {
-        max-width: 135px;
-        margin-right: 0px; /* Create space between the robot and the text */
-        margin-left: 50px;
-        margin-top: 30px;
+  #nav_logo {
+    display: flex;
+    align-items: center;
+    text-align: left;
+    font-size: 1.2rem;
+    margin-right: auto;
+    margin-left: -80px; /* Push or Move the logo toward the center */
+  }
 
-    }
+  .littlerobot {
+    max-width: 135px;
+    margin-right: 0px; /* Create space between the robot and the text */
+    margin-left: 50px;
+    margin-top: 30px;
+  }
 
-    .color-change {
-        display: inline-block;
-        margin: 1.5px; /* Space between the characters */
-        font-size: 1.2rem;
-        margin-top: 65px;
-    }
+  .color-change {
+    display: inline-block;
+    margin: 1.5px; /* Space between the characters */
+    font-size: 1.2rem;
+    margin-top: 65px;
+  }
 
-    /* Navigation Menu */
-    .nav.menu {
-        display: flex;
-        flex-direction: row;
-        justify-content: flex-end; /* Align the menu to the right */
-        gap: 15px; /* Space between the menu items */
-        list-style: none;
-        margin-right: 50px; /* Push the menu toward the center */
-    }
+  /* Navigation Menu */
+  .nav.menu {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end; /* Align the menu to the right */
+    gap: 15px; /* Space between the menu items */
+    list-style: none;
+    margin-right: 50px; /* Push the menu toward the center */
+  }
 
-    .nav_item a {
-        font-size: 1rem;
-        text-decoration: none;
-        color: var(--fourth-color);
-        margin-right: 30px;
-    }
+  .nav_item a {
+    font-size: 1rem;
+    text-decoration: none;
+    color: var(--fourth-color);
+    margin-right: 30px;
+  }
 
-    .nav_item a:hover {
-        background-color: var(--second-color);
-    }
-    /* End of Navigation Menu */
+  .nav_item a:hover {
+    background-color: var(--second-color);
+  }
 
-    footer {
-        padding: 15px;
-        font-size: 0.9rem; /* Slightly smaller font for footer */
-    }
+  /* End of Navigation Menu */
+
+  footer {
+    padding: 15px;
+    font-size: 0.9rem; /* Slightly smaller font for footer */
+  }
 }
+
 /* End of Small screens */
 /* End of Responsive styles */
