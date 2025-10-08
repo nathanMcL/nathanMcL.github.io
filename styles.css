@@ -1,94 +1,110 @@
-/* Body styles */
-body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background-color: var(--second-color); /* Background using third color */
-    color: #333; /* General text color */
-    border-radius: 2.5px;
-}
+/* =======================
+   aboutStyles.css — Patched header + polished shimmer/fade
+   Mirrors header/navigation behavior in styles.css (keeps about palette)
+   ======================= */
 
-/* Color palette from: https://palettes.shecodes.io/palettes/507#palette */
+/*  Color Palette (Shecodes) */
 :root {
-    --first-color: #222221;
-    --second-color: #c4eada;
-    --third-color: #ef7b7b;
-    --fourth-color: #fcf3ca;
-    /* @MacN_iT text color change */
-    --flag-white: #ffffff;
-    --flag-red: #ff0000;
-    --flag-blue: #0000ff;
-    /* Live Stream colors: stream_on / stream_off */
-    --stream-on: #4ef037; /* Green for stream on */
-    --stream-off: #e15757; /* Red for stream off */
-}
-/* End of Body styles */
-/* Header styles */
-.header-index {
-    background-color: var(--third-color);
-    color: white;
-    padding: 10px 0;
-    border-radius: 10px;
+  /* Keep your palette but allow parity with styles.css structure */
+  --first-color: #222221;
+  --second-color: #c4eada;
+  --third-color: #ef7b7b;
+  --fourth-color: #fcf3ca;
+
+  --flag-red: #ff0000;
+  --flag-white: #ffffff;
+  --flag-blue: #0000ff;
+
+  --marquee-width: 98vw;
+  --marquee-height: 10vh;
 }
 
+/* Reset */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: Arial, sans-serif;
+  background-color: var(--second-color);
+  color: #333;
+  line-height: 1.6;
+}
+
+/* =======================
+   Header & Navigation (Mirrored behavior)
+   ======================= */
+.header-about {
+  background-color: var(--third-color);
+  color: white;
+  padding: 10px 0;
+  border-radius: 10px;
+}
+
+/* Container similar to styles.css: row layout, wrap on small screens */
 .nav_container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
 }
 
+/* Logo block */
 #nav_logo {
-    display: flex;
-    align-items: center;
-    text-decoration: none;
-    color: white;
-    font-weight: bold;
-    font-size: 1.5rem; /* To adjust the text size */
-    margin-left: 0px;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+  font-size: 1.5rem;
 }
 
+/* Logo image */
 .littlerobot {
-    max-width: 170px; /* Adjust the max-width for log scaling */
-    height: auto; /* Maintain the aspect ratio */
-    margin-right: 5px; /* The space between the logo and text */
-    margin-left: -100px;
+  max-width: 170px;
+  height: auto;
+  margin-right: 5px;
 }
 
+/* Menu: same selector as styles.css (.nav.menu with two classes on the element) */
 .nav.menu {
-    display: flex !important; /* Ensure the menu is displayed */
-    list-style-type: none;
-    display: flex;
-    gap: 15px;
-    padding: 0;
-    margin-left: auto;
+  display: flex;               /* horizontal on desktop */
+  list-style: none;
+  gap: 15px;
+  padding: 0;
+  margin-left: auto;
+  align-items: center;
 }
 
+/* Individual link */
 .nav_item a {
-    display: inline-block;
-    text-decoration: none;
-    color: var(--fourth-color);
-    font-weight: bold;
-    padding: 2px 10px;
-    border-radius: 20px;
-    transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+  display: inline-block;
+  text-decoration: none;
+  color: var(--fourth-color);
+  font-weight: bold;
+  padding: 6px 12px;
+  border-radius: 12px;
+  transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
 }
 
-.nav_item a.nav_active {
-    color: var(--first-color); /* Highlight the active link */
+/* Active / hover states */
+.nav_item a.nav_active { color: var(--first-color); }
+.nav_item a:hover,
+.nav_item a:focus {
+  background-color: var(--second-color);
+  color: var(--first-color);
+  text-decoration: underline;
+  outline: none;
 }
 
-.nav_item a:hover {
-    background-color: var(--second-color); /* Remove background block */
-    color: var(--first-color); /* Change text color instead */
-    text-decoration: underline; /* Optional: Underline effect */
-}
-
-/* Animation styles for color change */
-.color-change {
-    display: inline-block;
-    animation: colorAnimation 10s infinite;
+/* Logo color-change animation preserved */
+.color-change { display:inline-block; animation: colorAnimation 10s infinite; }
+@keyframes colorAnimation {
+  0%,100% { color: var(--flag-white); }
+  25% { color: var(--flag-red); }
+  50% { color: var(--flag-white); }
+  75% { color: var(--flag-blue); }
 }
 
 .color-change:nth-child(1) { /* @ */
@@ -115,22 +131,29 @@ body {
 .color-change:nth-child(8) { /* T */
     animation-delay: 14s;
 }
-
-@keyframes colorAnimation {
-    0%, 100% {
-        color: var(--flag-white);
-    }
-    25% {
-        color: var(--flag-red);
-    }
-    50% {
-        color: var(--flag-white);
-    }
-    75% {
-        color: var(--flag-blue);
-    }
-}
 /* End of Animation styles for color change */
+
+/* Skip link (aria visible on focus) */
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 0;
+  background: #000;
+  color: #fff;
+  padding: 8px 16px;
+  z-index: 1000;
+  border-radius: 0 0 6px 0;
+  text-decoration: none;
+  font-weight: 700;
+  transition: top .25s ease-in-out;
+}
+.skip-link:focus,
+.skip-link:focus-visible { top: 0; outline: 3px solid #fff; outline-offset: 2px; }
+
+/* sr-only helpers */
+.sr-only { border:0 !important; clip: rect(1px,1px,1px,1px)!important; -webkit-clip-path: inset(50%) !important; clip-path: inset(50%) !important; height:1px!important; margin:-1px!important; overflow:hidden!important; padding:0!important; position:absolute!important; width:1px!important; white-space:nowrap!important; }
+.sr-only-focusable:active, .sr-only-focusable:focus { position: static !important; height:auto !important; width:auto !important; overflow: visible !important; clip: auto !important; clip-path: none !important; }
+/* End of Skip link (aria visible on focus) */
 /* End of Header styles */
 
 /* Main section styles */
@@ -272,6 +295,17 @@ body {
     font-size: 1em;
     display: inline-block;
 }
+
+/* Assistive Technology Support */
+.sr-only {
+    position: absolute;
+    width: 1px; height: 1px;
+    padding: 0; margin: -1px;
+    overflow: hidden; clip: rect(0,0,0,0);
+    white-space: nowrap; border: 0;
+}
+
+
 
 /* Footer styling */
 footer {
