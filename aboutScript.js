@@ -1,76 +1,120 @@
 // =============================== 
-// MacN About Page Script (Patched 10/2025)
+// MacN About Page Script — patched to prefer PROD on GitHub Pages
 // ===============================
 
 (() => {
   "use strict";
 
   // ---------- Config ----------
-  const LOCAL_API = "http://127.0.0.1:5000";
-  const PROD_API = "https://macn-about-api.azurewebsites.net";
-  const CACHE_TTL_MS = 5 * 60 * 1000; // 5 minutes TTL
+const LOCAL_API = "http://127.0.0.1:5000";
+const PROD_API  = "https://macn-about-api.azurewebsites.net";
+const CACHE_TTL_MS = 5 * 60 * 1000; // 5 minutes TTL
 
-  // ---------- Utilities ----------
-  function createShimmer() {
-    const shimmer = document.createElement("div");
-    shimmer.classList.add("img-shimmer");
-    return shimmer;
-  }
+// Decide if we are running locally (only then do we try the local API)
+const pageOrigin = window.location.origin || "";
+const isLocalPage =
+  pageOrigin.startsWith("http://127.0.0.1") ||
+  pageOrigin.startsWith("http://localhost");
 
-  function fadeIn(el) {
-    if (!el) return;
-    el.classList.add("fade-in");
-    setTimeout(() => el.classList.remove("fade-in"), 1000);
-  }
+// If not local, force PROD only to avoid 127.0.0.1 noise
+let API_BASES = isLocalPage ? [LOCAL_API, PROD_API] : [PROD_API];
 
-  // Debounce helper (kept for possible future UI events)
-  function debounce(fn, delay = 400) {
-    let timer;
-    return (...args) => {
-      clearTimeout(timer);
-      timer = setTimeout(() => fn(...args), delay);
-    };
-  }
-
-  // ---------- API Helpers ----------
-  async function tryFetch(apiBase, endpoint, options = {}) {
-    const controller = new AbortController();
-    const timeout = setTimeout(() => controller.abort(), 10000); // 10s safeguard
+// Optional: dynamic health probe to re-order bases at runtime
+async function pickHealthyBase(bases = API_BASES, timeoutMs = 6000) {
+  for (const base of bases) {
     try {
-      const res = await fetch(`${apiBase}${endpoint}`, {
-        ...options,
-        signal: controller.signal
-      });
-      if (!res.ok) throw new Error(`HTTP ${res.status} @ ${apiBase}${endpoint}`);
-      return await res.json();
-    } finally {
-      clearTimeout(timeout);
-    }
-  }
-
-  /**
-   * smartFetch: Try local first, fall back to PROD if anything goes wrong.
-   * This is intentionally broad because I prefer serving content from PROD
-   * rather than letting the client show errors when local is flaky.
-   */
-  async function smartFetch(endpoint, options = {}) {
-    try {
-      const local = await tryFetch(LOCAL_API, endpoint, options);
-      console.info(`✅ Loaded from LOCAL API: ${endpoint}`);
-      return local;
-    } catch (errLocal) {
-      console.warn(`⚠️ Local API failed (${String(errLocal)}). Attempting PROD...`);
-      try {
-        const prod = await tryFetch(PROD_API, endpoint, options);
-        console.info(`✅ Loaded from AZURE API: ${endpoint}`);
-        return prod;
-      } catch (errProd) {
-        console.error(`❌ Both Local and Azure failed for ${endpoint}`, errProd);
-        // Throw the prod error (more relevant to surface to caller)
-        throw errProd;
+      const controller = new AbortController();
+      const t = setTimeout(() => controller.abort(), timeoutMs);
+      const res = await fetch(`${base}/health`, { mode: "cors", signal: controller.signal });
+      clearTimeout(t);
+      if (res.ok) {
+        console.info(`🩺 Health OK at ${base}`);
+        return base;
       }
+    } catch (e) {
+      // ignore; try next base
     }
   }
+  // give back the first as default; callers still have fallback logic
+  return bases[0];
+}
+
+// ---------- Utilities ----------
+function createShimmer() {
+  const shimmer = document.createElement("div");
+  shimmer.classList.add("img-shimmer");
+  return shimmer;
+}
+
+function fadeIn(el) {
+  if (!el) return;
+  el.classList.add("fade-in");
+  setTimeout(() => el.classList.remove("fade-in"), 1000);
+}
+
+// ---------- API Helpers ----------
+async function tryFetch(apiBase, endpoint, options = {}, timeoutMs = 15000) {
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), timeoutMs);
+  try {
+    const res = await fetch(`${apiBase}${endpoint}`, {
+      ...options,
+      signal: controller.signal,
+      mode: "cors",
+      // credentials: "omit"  // keep default; add if you need cookies
+    });
+    if (!res.ok) {
+      let body = "";
+      try { body = await res.text(); } catch (_) {}
+      throw new Error(`HTTP ${res.status} @ ${apiBase}${endpoint}${body ? ` | body: ${body.slice(0,200)}` : ""}`);
+    }
+    // handle empty body safely
+    const ct = res.headers.get("content-type") || "";
+    if (!ct.includes("application/json")) {
+      // try to parse anyway, but provide context
+      try { return await res.json(); }
+      catch { throw new Error(`Non-JSON response from ${apiBase}${endpoint}`); }
+    }
+    return await res.json();
+  } finally {
+    clearTimeout(timeout);
+  }
+}
+
+/**
+ * smartFetch: Try sources with a preference order.
+ * - If hosted remotely, only PROD is attempted.
+ * - If local page, try LOCAL then PROD.
+ */
+async function smartFetch(endpoint, options = {}) {
+  const bases = API_BASES.slice(); // copy
+  // Probe once per page load to pick the best base
+  if (!smartFetch._pickedBase) {
+    smartFetch._pickedBase = await pickHealthyBase(bases).catch(() => bases[0]);
+  }
+  const ordered = [smartFetch._pickedBase, ...bases.filter(b => b !== smartFetch._pickedBase)];
+
+  let lastErr = null;
+  for (const base of ordered) {
+    const name = (base === PROD_API) ? "PROD" : "LOCAL";
+    try {
+      const data = await tryFetch(base, endpoint, options, 15000);
+      console.info(`✅ Loaded ${endpoint} from ${name} (${base})`);
+      return data;
+    } catch (err) {
+      lastErr = err;
+      const isAbort = (err && (err.name === "AbortError" || String(err).includes("AbortError")));
+      const isRefused = String(err).includes("ERR_CONNECTION_REFUSED");
+      console.warn(`⚠️ ${name} ${endpoint} failed: ${isAbort ? "request timed out/aborted" : err}`);
+      // If it’s localhost refusal and we’re not on localhost, don’t bother retrying localhost again
+      if (!isLocalPage && base === LOCAL_API && isRefused) break;
+      // otherwise continue
+    }
+  }
+
+  console.error(`❌ All endpoints failed for ${endpoint}`, lastErr);
+  throw lastErr || new Error("All endpoints failed");
+}
 
   // ---------- About Me Generator ----------
   async function loadAboutMe() {
@@ -82,7 +126,6 @@
     const cached = localStorage.getItem(CACHE_KEY);
     const cachedTime = localStorage.getItem(CACHE_TIME_KEY);
 
-    // Use cached version if still valid
     if (cached && cachedTime && Date.now() - Number(cachedTime) < CACHE_TTL_MS) {
       output.textContent = cached;
       loader && loader.setAttribute("aria-hidden", "true");
@@ -107,7 +150,6 @@
       output.textContent = aboutText;
       fadeIn(output);
 
-      // Cache success
       localStorage.setItem(CACHE_KEY, aboutText);
       localStorage.setItem(CACHE_TIME_KEY, Date.now().toString());
     } catch (err) {
@@ -118,7 +160,7 @@
     }
   }
 
-  // ---------- Carousel Loader (CSP + Accessibility Safe) ----------
+  // ---------- Carousel Loader ----------
   async function fetchCarouselImages() {
     const carousel = document.getElementById("carousel-track");
     const loader = document.getElementById("loader_carousel");
@@ -130,7 +172,6 @@
       return [];
     }
 
-    // Check cached images first
     const cached = localStorage.getItem(CACHE_KEY);
     const cachedTime = localStorage.getItem(CACHE_TIME_KEY);
     if (cached && cachedTime && Date.now() - Number(cachedTime) < CACHE_TTL_MS) {
@@ -140,7 +181,6 @@
       return images;
     }
 
-    // Show shimmer placeholders
     while (carousel.firstChild) carousel.removeChild(carousel.firstChild);
     loader && loader.removeAttribute("aria-hidden");
     for (let i = 0; i < 4; i++) carousel.appendChild(createShimmer());
@@ -183,10 +223,8 @@
       img.addEventListener("error", () => img.classList.add("error-img"));
       return img;
     });
-    // Make sure the container is a single row scroll area (CSS controls layout)
     carousel.replaceChildren(...imgs);
     fadeIn(carousel);
-
     console.info(`✅ Carousel loaded ${imgs.length} image(s)`);
   }
 
@@ -356,25 +394,11 @@
 
   // ---------- DOM Ready ----------
   document.addEventListener("DOMContentLoaded", async () => {
-    // Fire-and-forget the about me loader (not critical for carousel init)
-    try {
-      loadAboutMe();
-    } catch (e) {
-      console.warn("⚠️ loadAboutMe problem:", e);
-    }
+  // Warm up healthy base (non-fatal if it fails)
+  try { smartFetch._pickedBase = await pickHealthyBase(API_BASES); } catch {}
 
-    // Ensure carousel images are fetched before initializing controls
-    try {
-      await fetchCarouselImages();
-    } catch (e) {
-      console.warn("⚠️ fetchCarouselImages failed:", e);
-    }
-
-    // Initialize controls after images loaded (or after error)
-    try {
-      initCarouselControls();
-    } catch (e) {
-      console.error("❌ initCarouselControls failed:", e);
-    }
-  });
+  try { await loadAboutMe(); } catch (e) { console.warn("loadAboutMe problem:", e); }
+  try { await fetchCarouselImages(); } catch (e) { console.warn("fetchCarouselImages failed:", e); }
+  try { if (typeof initCarouselControls === "function") initCarouselControls(); } catch (e) { console.error("initCarouselControls failed:", e); }
+});
 })();
