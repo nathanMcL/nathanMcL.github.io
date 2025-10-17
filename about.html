@@ -89,40 +89,47 @@
     </div>
   </div>
 
-  <!-- ===========================
-     Main Section (Patched)
-     =========================== -->
-  <main id="main" class="about-main">
-    <section class="about-left">
-      <!-- AI Generated About Me -->
-      <div class="about-card" id="about-ai-card">
-        <h2>About Me</h2>
-        <div class="loader" id="loader_me" aria-hidden="true"></div>
-        <p id="about-ai-output" aria-live="polite" aria-atomic="true">
-          Loading About Me...
-        </p>
-      </div>
+<!-- ===========================
+  Main Section
+  =========================== -->
+<main id="main" class="about-main">
+  <section class="about-left">
+    <!-- API Status + Reload Button -->
+    <div id="api-status" aria-live="polite" class="status-banner"></div>
+    <button id="reload-about" class="reload-btn" aria-label="Reload About Section">
+      🔄 Reload
+    </button>
 
-      <!-- Photo Carousel (Accessible + CSP Safe) -->
-      <div class="about-carousel-wrapper">
-        <div class="about-carousel" id="carousel-track" aria-label="Photo Carousel">
-          <div class="loader" id="loader_carousel" aria-hidden="true"></div>
-        </div>
-        <div class="carousel-controls">
-          <button class="carousel-btn prev" aria-label="Previous image">&#10094;</button>
-          <button class="carousel-btn next" aria-label="Next image">&#10095;</button>
-        </div>
-        <div id="carousel-status" aria-live="polite" class="sr-only"></div>
+    <!-- AI Generated About Me -->
+    <div class="about-card" id="about-ai-card">
+      <h2>About Me</h2>
+      <div class="loader" id="loader_me" aria-hidden="true"></div>
+      <p id="about-orb-text" aria-live="polite" aria-atomic="true">
+        Loading About Me...
+      </p>
+    </div>
+
+    <!-- Photo Carousel (Accessible + CSP Safe) -->
+    <div class="about-carousel-wrapper">
+      <div class="about-carousel" id="about-photo-carousel" aria-label="Photo Carousel">
+        <div class="loader" id="loader_carousel" aria-hidden="true"></div>
       </div>
-    </section>
-  </main>
-  <!-- End of Main Section -->
+      <div class="carousel-controls">
+        <button class="carousel-btn prev" aria-label="Previous image">&#10094;</button>
+        <button class="carousel-btn next" aria-label="Next image">&#10095;</button>
+      </div>
+      <div id="carousel-status" aria-live="polite" class="sr-only"></div>
+    </div>
+  </section>
+</main>
+<!-- End of Main Section -->
 
   <!-- Value Popups -->
   <div id="popup-container">
     <div id="popup-template" class="popup" role="dialog" aria-hidden="true"></div>
   </div>
 
+  <!-- Footer Section -->
   <footer role="contentinfo">
     <p>&copy; 2025 MacN @MacN_iT All Rights Reserved</p>
     <nav aria-label="Footer Navigation">
