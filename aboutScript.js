@@ -152,7 +152,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   try {
     console.log("🚀 Warming up macn-about-api...");
     await safeFetch(`${API_BASE}/warmup`, {}, 1, 30000);  // 30s
-    await safeFetch(`${API_BASE}/warmup_drive`, {}, 1, 20000);  // 20s
+    await safeFetch(`${API_BASE}/warmup_drive`, {}, 1, 45000);  // 45s
 
     console.log("✅ API & Drive warmed up and ready!");
   } catch (err) {
