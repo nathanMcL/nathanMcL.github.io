@@ -7,9 +7,13 @@
   --second-color: #c4eada;
   --third-color: #ef7b7b;
   --fourth-color: #fcf3ca;
+
+  /* Flag Colors */
   --flag-white: #ffffff;
   --flag-red: #ff0000;
   --flag-blue: #0000ff;
+
+  /* Marquee elements */
   --marquee-width: 98vw;
   --marquee-height: 10vh;
   --marquee-elements: 14;
@@ -275,8 +279,8 @@ body {
 }
 
 .loader {
-  border: 4px solid #f3f3f3;
-  border-top: 4px solid var(--third-color);
+  border: 4px solid rgba(255, 255, 255, 0.3);
+  border-top: 4px solid #00ffff;
   border-radius: 50%;
   width: 30px;
   height: 30px;

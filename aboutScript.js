@@ -60,6 +60,8 @@ async function loadAboutOrb() {
   statusMsg.textContent = "Connecting to API...";
 
   try {
+    const spinner = document.querySelector(".loading-spinner");
+    if (spinner) spinner.style.display = "inline-block";
     const res = await safeFetch(`${API_BASE}/generate-aboutOrb`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -71,6 +73,9 @@ async function loadAboutOrb() {
     if (res.ok && res.about) {
       aboutOrbContainer.textContent = res.about;
       statusMsg.textContent = "✅ Synced successfully!";
+      // 🔄 Stop spinner or rotating wheel once complete
+      const spinner = document.querySelector(".loading-spinner");
+      if (spinner) spinner.style.display = "none";
     } else if (res.error) {
       aboutOrbContainer.textContent =
         "⚠️ The AI service is currently unavailable. Please try again later.";
@@ -147,7 +152,8 @@ document.addEventListener("DOMContentLoaded", async () => {
   try {
     console.log("🚀 Warming up macn-about-api...");
     await safeFetch(`${API_BASE}/warmup`, {}, 1, 10000);
-    console.log("✅ API warmed up and ready!");
+    await safeFetch(`${API_BASE}/warmup_drive`, {}, 1, 15000);
+    console.log("✅ API & Drive warmed up and ready!");
   } catch (err) {
     console.warn("⚠️ Warm-up skipped or delayed:", err);
   }
@@ -155,7 +161,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   // 🔹 After warm-up completes (or times out), load main content
   loadAboutOrb();
   loadAboutPhotos();
-
+  
   // Accessibility: focus trap for modal/popup (if used)
   const popups = document.querySelectorAll(".popup");
   popups.forEach((popup) => {
