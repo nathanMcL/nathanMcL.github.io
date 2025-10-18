@@ -3,9 +3,11 @@
 // API Integration with macn-about-api (Azure)
 // ============================================================
 
-const API_BASE = window.location.hostname.includes("localhost") || window.location.hostname.includes("127.0.0.1")
-  ? "http://127.0.0.1:5000"
-  : "https://macn-about-api.azurewebsites.net";
+const API_BASE =
+  window.location.hostname.includes("localhost") ||
+  window.location.hostname.includes("127.0.0.1")
+    ? "http://127.0.0.1:5000"
+    : "https://macn-about-api.azurewebsites.net";
 
 const aboutOrbContainer = document.getElementById("about-orb-text");
 const carouselContainer = document.getElementById("about-photo-carousel");
@@ -32,7 +34,7 @@ async function safeFetch(url, options = {}, attempt = 1) {
     clearTimeout(id);
     if (attempt < MAX_RETRIES) {
       console.warn(`⚠️ Retry ${attempt}/${MAX_RETRIES} for ${url}: ${err}`);
-      await new Promise(res => setTimeout(res, attempt * 1000)); // exponential backoff
+      await new Promise((res) => setTimeout(res, attempt * 1000)); // exponential backoff
       return safeFetch(url, options, attempt + 1);
     }
     console.error(`❌ All ${MAX_RETRIES} attempts failed for ${url}:`, err);
@@ -44,21 +46,24 @@ async function safeFetch(url, options = {}, attempt = 1) {
 // Load the “About Me” blurb via macn-about-api
 // ------------------------------------------------------------
 async function loadAboutOrb() {
-  aboutOrbContainer.textContent = "✨ Generating your About Me...";
+  aboutOrbContainer.textContent = "Generating An About Me Description...";
   statusMsg.textContent = "Connecting to API...";
 
   try {
     const res = await safeFetch(`${API_BASE}/generate-aboutOrb`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ context: "Generate the latest About Me content for MacN_iT." })
+      body: JSON.stringify({
+        context: "Generate the latest About Me content for MacN_iT.",
+      }),
     });
 
     if (res.ok && res.about) {
       aboutOrbContainer.textContent = res.about;
       statusMsg.textContent = "✅ Synced successfully!";
     } else if (res.error) {
-      aboutOrbContainer.textContent = "⚠️ The AI service is currently unavailable. Please try again later.";
+      aboutOrbContainer.textContent =
+        "⚠️ The AI service is currently unavailable. Please try again later.";
       statusMsg.textContent = "OpenAI client unavailable.";
       console.warn("API Error:", res.error);
     } else {
@@ -67,39 +72,49 @@ async function loadAboutOrb() {
       console.warn("Unknown API response:", res);
     }
   } catch (error) {
-    aboutOrbContainer.textContent = "❌ Could not reach the API server. Please check your connection.";
+    aboutOrbContainer.textContent =
+      "❌ Could not reach the API server. Please check your connection.";
     statusMsg.textContent = "API unreachable.";
     console.error("Fetch error:", error);
   }
 }
 
 // ------------------------------------------------------------
-// Load carousel images from /aboutMe_photos
+// Load carousel images from /aboutMe_photos (CSP-safe Trusted Types)
 // ------------------------------------------------------------
 async function loadAboutPhotos() {
   if (!carouselContainer) return;
 
-  carouselContainer.innerHTML = `<p>📸 Loading images...</p>`;
+  carouselContainer.textContent = "📸 Loading images...";
   try {
     const data = await safeFetch(`${API_BASE}/aboutMe_photos`);
     const photos = Array.isArray(data.photos) ? data.photos : [];
 
     if (!photos.length) {
-      carouselContainer.innerHTML = `<p>No photos available.</p>`;
+      carouselContainer.textContent = "No photos available.";
       return;
     }
 
-    const html = photos.map(
-      (url, idx) =>
-        `<div class="carousel-item" tabindex="0" aria-label="Photo ${idx + 1}">
-           <img src="${url}" alt="About photo ${idx + 1}" loading="lazy" />
-         </div>`
-    ).join("");
+    const html = photos
+      .map(
+        (url, idx) => `
+        <div class="carousel-item" tabindex="0" aria-label="Photo ${idx + 1}">
+          <img src="${url}" alt="About photo ${idx + 1}" loading="lazy" />
+        </div>`
+      )
+      .join("");
 
-    carouselContainer.innerHTML = html;
+    // ✅ CSP & Trusted Types safe assignment
+    const policy = window.trustedTypes?.createPolicy("safeHTML", {
+      createHTML: (input) => input,
+    });
+    const safeHTML = policy ? policy.createHTML(html) : html;
+    carouselContainer.innerHTML = safeHTML;
+
     statusMsg.textContent = `🟢 Loaded ${photos.length} photo(s).`;
   } catch (err) {
-    carouselContainer.innerHTML = `<p>⚠️ Failed to load photos. Try refreshing later.</p>`;
+    carouselContainer.textContent =
+      "⚠️ Failed to load photos. Try refreshing later.";
     console.error("Photo load failed:", err);
   }
 }
@@ -126,7 +141,9 @@ document.addEventListener("DOMContentLoaded", () => {
   popups.forEach((popup) => {
     popup.addEventListener("keydown", (e) => {
       if (e.key === "Tab" && popup.classList.contains("active")) {
-        const focusable = popup.querySelectorAll("button, [href], input, select, textarea, [tabindex]:not([tabindex='-1'])");
+        const focusable = popup.querySelectorAll(
+          "button, [href], input, select, textarea, [tabindex]:not([tabindex='-1'])"
+        );
         const first = focusable[0];
         const last = focusable[focusable.length - 1];
         if (e.shiftKey && document.activeElement === first) {

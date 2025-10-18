@@ -1,159 +1,146 @@
-// ============================================================
-// MacN_iT — About Page Script
-// API Integration with macn-about-api (Azure)
-// ============================================================
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="@MacN_iT website" />
+  <title>MacN the Full Stack... About</title>
 
-const API_BASE =
-  window.location.hostname.includes("localhost") ||
-  window.location.hostname.includes("127.0.0.1")
-    ? "http://127.0.0.1:5000"
-    : "https://macn-about-api.azurewebsites.net";
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="aboutStyles.css" />
 
-const aboutOrbContainer = document.getElementById("about-orb-text");
-const carouselContainer = document.getElementById("about-photo-carousel");
-const reloadBtn = document.getElementById("reload-about");
-const statusMsg = document.getElementById("api-status");
+  <!-- Favicon (cleaned) -->
+  <link rel="icon" href="images/LittleRobotBackgroundErase.png" type="image/png" />
 
-const FETCH_TIMEOUT_MS = 12000; // 12s timeout
-const MAX_RETRIES = 3;
+  <!-- Security Headers -->
+  <meta http-equiv="Content-Security-Policy"
+    content="
+      default-src 'self';
+      script-src 'self';
+      style-src 'self';
+      img-src
+        'self'
+        data:
+        http://127.0.0.1:5000
+        http://localhost:5000
+        https://macn-about-api.azurewebsites.net
+        https://drive.google.com
+        https://lh3.googleusercontent.com
+        https://usercontent.googleusercontent.com
+        https://drive.usercontent.google.com;
+      font-src 'self';
+      frame-ancestors 'none';
+      connect-src
+        'self'
+        http://127.0.0.1:5000
+        http://localhost:5000
+        http://127.0.0.1:5500
+        http://localhost:5500
+        https://nathanmcl.github.io
+        https://macn-about-api.azurewebsites.net;
+      require-trusted-types-for 'script';
+    ">
 
-// ------------------------------------------------------------
-// Helper: timeout-safe fetch
-// ------------------------------------------------------------
-async function safeFetch(url, options = {}, attempt = 1) {
-  const controller = new AbortController();
-  const id = setTimeout(() => controller.abort(), FETCH_TIMEOUT_MS);
-  try {
-    const response = await fetch(url, { ...options, signal: controller.signal });
-    clearTimeout(id);
-    if (!response.ok) {
-      throw new Error(`HTTP ${response.status}`);
-    }
-    return await response.json();
-  } catch (err) {
-    clearTimeout(id);
-    if (attempt < MAX_RETRIES) {
-      console.warn(`⚠️ Retry ${attempt}/${MAX_RETRIES} for ${url}: ${err}`);
-      await new Promise((res) => setTimeout(res, attempt * 1000)); // exponential backoff
-      return safeFetch(url, options, attempt + 1);
-    }
-    console.error(`❌ All ${MAX_RETRIES} attempts failed for ${url}:`, err);
-    throw err;
-  }
-}
+  <meta http-equiv="X-Content-Type-Options" content="nosniff">
+  <meta http-equiv="Referrer-Policy" content="no-referrer">
+  <meta http-equiv="Strict-Transport-Security" content="max-age=31536000; includeSubDomains; preload">
+  <meta name="Permissions-Policy" content="geolocation=(), microphone=(), camera=()">
+</head>
+<body>
+  <!-- Skip link (keyboard / screen reader) -->
+  <a class="sr-only sr-only-focusable" href="#main">Skip to main content</a>
 
-// ------------------------------------------------------------
-// Load the “About Me” blurb via macn-about-api
-// ------------------------------------------------------------
-async function loadAboutOrb() {
-  aboutOrbContainer.textContent = "Generating An About Me Description...";
-  statusMsg.textContent = "Connecting to API...";
+  <!-- Header Section -->
+  <header class="header-about">
+    <nav class="navigation" role="navigation">
+      <div class="nav_container">
+        <!-- Logo and @MacN_iT -->
+        <a href="index.html" id="nav_logo">
+          <img src="images/LittleRobotBackgroundErase.png" alt="MacN_iT Logo" class="littlerobot">
+          <span class="color-change">@</span><span class="color-change">M</span>
+          <span class="color-change">a</span><span class="color-change">c</span>
+          <span class="color-change">N</span><span class="color-change">_</span>
+          <span class="color-change">i</span><span class="color-change">T</span>
+        </a>
+        <ul class="nav menu">
+          <li class="nav_item"><a href="index.html">Home</a></li>
+          <li class="nav_item"><a class="nav_active" href="about.html" aria-current="page">About</a></li>
+          <!-- Inspirations removed (merged into About) -->
+          <li class="nav_item"><a href="blog.html">Thoughts</a></li>
+          <li class="nav_item"><a href="tools.html">Tools</a></li>
+          <li class="nav_item"><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+    </nav>
+  </header>
 
-  try {
-    const res = await safeFetch(`${API_BASE}/generate-aboutOrb`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        context: "Generate the latest About Me content for MacN_iT.",
-      }),
-    });
+  <!-- Marquee/tools/skills etc. kept as in original -->
+  <div class="marquee-wrap" aria-hidden="false">
+    <div class="marquee">
+      <ul class="marquee-content">
+        <li><img src="images/bash_logo.png" alt="Bash"></li>
+        <li><img src="images/Visual_Studio_Code_1.35_icon.svg.png" alt="VS Code"></li>
+        <li><img src="images/Android.png" alt="Android"></li>
+        <li><img src="images/Java_logo.png" alt="Java"></li>
+        <li><img src="images/HTML5_logo.png" alt="HTML5"></li>
+        <li><img src="images/YouTube-Music-Logo-3.png" alt="YTMusic"></li>
+      </ul>
+    </div>
+  </div>
 
-    if (res.ok && res.about) {
-      aboutOrbContainer.textContent = res.about;
-      statusMsg.textContent = "✅ Synced successfully!";
-    } else if (res.error) {
-      aboutOrbContainer.textContent =
-        "⚠️ The AI service is currently unavailable. Please try again later.";
-      statusMsg.textContent = "OpenAI client unavailable.";
-      console.warn("API Error:", res.error);
-    } else {
-      aboutOrbContainer.textContent = "⚠️ Unexpected response from API.";
-      statusMsg.textContent = "Response error.";
-      console.warn("Unknown API response:", res);
-    }
-  } catch (error) {
-    aboutOrbContainer.textContent =
-      "❌ Could not reach the API server. Please check your connection.";
-    statusMsg.textContent = "API unreachable.";
-    console.error("Fetch error:", error);
-  }
-}
+<!-- ===========================
+  Main Section
+  =========================== -->
+<main id="main" class="about-main">
+  <section class="about-left">
+    <!-- API Status + Reload Button -->
+    <div id="api-status" aria-live="polite" class="status-banner"></div>
+    <button id="reload-about" class="reload-btn" aria-label="Reload About Section">
+      🔄 Reload
+    </button>
 
-// ------------------------------------------------------------
-// Load carousel images from /aboutMe_photos (CSP-safe Trusted Types)
-// ------------------------------------------------------------
-async function loadAboutPhotos() {
-  if (!carouselContainer) return;
+    <!-- AI Generated About Me -->
+    <div class="about-card" id="about-ai-card">
+      <h2>About Me</h2>
+      <div class="loader" id="loader_me" aria-hidden="true"></div>
+      <p id="about-orb-text" aria-live="polite" aria-atomic="true">
+        Loading About Me...
+      </p>
+    </div>
 
-  carouselContainer.textContent = "📸 Loading images...";
-  try {
-    const data = await safeFetch(`${API_BASE}/aboutMe_photos`);
-    const photos = Array.isArray(data.photos) ? data.photos : [];
+    <!-- Photo Carousel (Accessible + CSP Safe) -->
+    <div class="about-carousel-wrapper">
+      <div class="about-carousel" id="about-photo-carousel" aria-label="Photo Carousel">
+        <div class="loader" id="loader_carousel" aria-hidden="true"></div>
+      </div>
+      <div class="carousel-controls">
+        <button class="carousel-btn prev" aria-label="Previous image">&#10094;</button>
+        <button class="carousel-btn next" aria-label="Next image">&#10095;</button>
+      </div>
+      <div id="carousel-status" aria-live="polite" class="sr-only"></div>
+    </div>
+  </section>
+</main>
+<!-- End of Main Section -->
 
-    if (!photos.length) {
-      carouselContainer.textContent = "No photos available.";
-      return;
-    }
+  <!-- Value Popups -->
+  <div id="popup-container">
+    <div id="popup-template" class="popup" role="dialog" aria-hidden="true"></div>
+  </div>
 
-    const html = photos
-      .map(
-        (url, idx) => `
-        <div class="carousel-item" tabindex="0" aria-label="Photo ${idx + 1}">
-          <img src="${url}" alt="About photo ${idx + 1}" loading="lazy" />
-        </div>`
-      )
-      .join("");
+  <!-- Footer Section -->
+  <footer role="contentinfo">
+    <p>&copy; 2025 MacN @MacN_iT All Rights Reserved</p>
+    <nav aria-label="Footer Navigation">
+      <a href="index.html">Home</a>
+    </nav>
+  </footer>
 
-    // ✅ CSP & Trusted Types safe assignment
-    const policy = window.trustedTypes?.createPolicy("safeHTML", {
-      createHTML: (input) => input,
-    });
-    const safeHTML = policy ? policy.createHTML(html) : html;
-    carouselContainer.innerHTML = safeHTML;
+  <!-- Cyber container effect -->
+  <div class="cyber-container"></div>
 
-    statusMsg.textContent = `🟢 Loaded ${photos.length} photo(s).`;
-  } catch (err) {
-    carouselContainer.textContent =
-      "⚠️ Failed to load photos. Try refreshing later.";
-    console.error("Photo load failed:", err);
-  }
-}
-
-// ------------------------------------------------------------
-// UI Helpers
-// ------------------------------------------------------------
-if (reloadBtn) {
-  reloadBtn.addEventListener("click", () => {
-    loadAboutOrb();
-    loadAboutPhotos();
-  });
-}
-
-// ------------------------------------------------------------
-// DOMContentLoaded init
-// ------------------------------------------------------------
-document.addEventListener("DOMContentLoaded", () => {
-  loadAboutOrb();
-  loadAboutPhotos();
-
-  // Accessibility: focus trap for modal/popup (if used)
-  const popups = document.querySelectorAll(".popup");
-  popups.forEach((popup) => {
-    popup.addEventListener("keydown", (e) => {
-      if (e.key === "Tab" && popup.classList.contains("active")) {
-        const focusable = popup.querySelectorAll(
-          "button, [href], input, select, textarea, [tabindex]:not([tabindex='-1'])"
-        );
-        const first = focusable[0];
-        const last = focusable[focusable.length - 1];
-        if (e.shiftKey && document.activeElement === first) {
-          e.preventDefault();
-          last.focus();
-        } else if (!e.shiftKey && document.activeElement === last) {
-          e.preventDefault();
-          first.focus();
-        }
-      }
-    });
-  });
-});
+  <!-- External JS only -->
+  <script src="aboutScript.js" defer></script>
+</body>
+</html>
