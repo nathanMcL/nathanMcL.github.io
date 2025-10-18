@@ -151,8 +151,9 @@ document.addEventListener("DOMContentLoaded", async () => {
   // 🧩 Step 3 — Warm-up the Azure API before real calls
   try {
     console.log("🚀 Warming up macn-about-api...");
-    await safeFetch(`${API_BASE}/warmup`, {}, 1, 10000);
-    await safeFetch(`${API_BASE}/warmup_drive`, {}, 1, 15000);
+    await safeFetch(`${API_BASE}/warmup`, {}, 1, 30000);  // 30s
+    await safeFetch(`${API_BASE}/warmup_drive`, {}, 1, 20000);  // 20s
+
     console.log("✅ API & Drive warmed up and ready!");
   } catch (err) {
     console.warn("⚠️ Warm-up skipped or delayed:", err);
@@ -161,7 +162,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   // 🔹 After warm-up completes (or times out), load main content
   loadAboutOrb();
   loadAboutPhotos();
-  
+
   // Accessibility: focus trap for modal/popup (if used)
   const popups = document.querySelectorAll(".popup");
   popups.forEach((popup) => {
