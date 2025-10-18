@@ -12,6 +12,34 @@ What is the website's purpose? <br>
 5. Accessibility. <br>
 
 ---
+### (10182025.1600) No quit
+
+I am still troublshooting the server. I am trying to figure out the sweetspot of cold-start warmup for the Azure API call and for the Google drive photos to load.  
+
+I was able to re-connect the Server to the frontend API fetch.  
+
+`About Me Blurb Output`:  
+
+`About Me`  
+
+```
+Hey there, I'm Nathaniel, but you can call me MacN—like a computer but with more personality (and fewer updates).
+I’m a U.S. Army veteran who’s traded the battlefield for the coding battlefield, armed with a Bachelor’s in Computer Science and an AAS in Mechatronics.
+I specialize in everything from logistics and troubleshooting to whipping up some truly bizarre coding experiments. When I'm not busy debugging my latest project (or my dinner), you can find me writing quirky character stories or tinkering with my backyard farm. 
+MacN_iT is my playground where tech meets tomfoolery, and we explore the absurdities of code, life, and everything in between. Join me as we dive into the world of AI,
+```
+<br>
+
+```
+About Me
+Hey there! I’m Nathaniel, also known as MacN, a U.S. Army veteran who traded in the chaos of logistics for the delightful chaos of coding.
+With a Bachelor’s in Computer Science and a knack for turning caffeine into code, I dabble in everything from Python to Rust, and I’ve been known to whip up a mean backyard farm alongside my coding experiments.
+When I’m not troubleshooting tech or conjuring up AI models, you can find me indulging in creative writing or cooking up culinary concoctions that (mostly) don’t end in smoke alarms. 
+My mission with MacN_iT is to blend tech, humor, and a sprinkle of curiosity into an experimental space where we can explore the quirks of software and life.
+```
+
+---
+
 
 ### (09/21/2025) Pivoting with intent.
 
@@ -528,6 +556,7 @@ Screenshot: <br>
 
 ![Me Orb Output](https://nathanmcl.github.io/images/MeOrbOutput.png)
 <br>
+
 
 
 
