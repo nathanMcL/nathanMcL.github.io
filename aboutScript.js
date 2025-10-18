@@ -17,29 +17,39 @@ const statusMsg = document.getElementById("api-status");
 const FETCH_TIMEOUT_MS = 12000; // 12s timeout
 const MAX_RETRIES = 3;
 
-// ------------------------------------------------------------
-// Helper: timeout-safe fetch
-// ------------------------------------------------------------
-async function safeFetch(url, options = {}, attempt = 1) {
-  const controller = new AbortController();
-  const id = setTimeout(() => controller.abort(), FETCH_TIMEOUT_MS);
-  try {
-    const response = await fetch(url, { ...options, signal: controller.signal });
-    clearTimeout(id);
-    if (!response.ok) {
-      throw new Error(`HTTP ${response.status}`);
+// ====================
+// 🧩 safeFetch — tolerant with clearer diagnostics
+// ====================
+async function safeFetch(url, options = {}, retries = 3, timeoutMs = 25000) {
+  for (let attempt = 1; attempt <= retries; attempt++) {
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), timeoutMs);
+
+    try {
+      const response = await fetch(url, { ...options, signal: controller.signal });
+      clearTimeout(timeout);
+
+      if (!response.ok) {
+        console.warn(`⚠️ Attempt ${attempt}/${retries} failed ${url}: ${response.status}`);
+        continue;
+      }
+      return await response.json();
+
+    } catch (err) {
+      clearTimeout(timeout);
+      if (err.name === "AbortError") {
+        console.warn(`⏱️ Timeout ${timeoutMs / 1000}s on ${url} (attempt ${attempt}/${retries})`);
+      } else {
+        console.warn(`⚠️ Retry ${attempt}/${retries} for ${url}:`, err);
+      }
+      if (attempt === retries) throw err;
     }
-    return await response.json();
-  } catch (err) {
-    clearTimeout(id);
-    if (attempt < MAX_RETRIES) {
-      console.warn(`⚠️ Retry ${attempt}/${MAX_RETRIES} for ${url}: ${err}`);
-      await new Promise((res) => setTimeout(res, attempt * 1000)); // exponential backoff
-      return safeFetch(url, options, attempt + 1);
-    }
-    console.error(`❌ All ${MAX_RETRIES} attempts failed for ${url}:`, err);
-    throw err;
+
+    // Backoff before retrying
+    await new Promise(res => setTimeout(res, 1200 * attempt));
   }
+
+  throw new Error(`❌ All ${retries} attempts failed for ${url}`);
 }
 
 // ------------------------------------------------------------
@@ -132,7 +142,17 @@ if (reloadBtn) {
 // ------------------------------------------------------------
 // DOMContentLoaded init
 // ------------------------------------------------------------
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", async () => {
+  // 🧩 Step 3 — Warm-up the Azure API before real calls
+  try {
+    console.log("🚀 Warming up macn-about-api...");
+    await safeFetch(`${API_BASE}/warmup`, {}, 1, 10000);
+    console.log("✅ API warmed up and ready!");
+  } catch (err) {
+    console.warn("⚠️ Warm-up skipped or delayed:", err);
+  }
+
+  // 🔹 After warm-up completes (or times out), load main content
   loadAboutOrb();
   loadAboutPhotos();
 
