@@ -111,17 +111,19 @@ async function loadAboutPhotos() {
 
     // ✅ Build pure <img> tags — browser loads Drive links directly
     const html = photos
-      .map(
-        (url, idx) => `
+      .map((url, idx) => {
+        const id = url.match(/d\/([^=]+)/)?.[1] || url.split("id=")[1];
+        return `
           <div class="carousel-item" tabindex="0" aria-label="Photo ${idx + 1}">
-            <img src="${url}"
-                 alt="About photo ${idx + 1}"
-                 referrerpolicy="no-referrer"
-                 loading="lazy"
-                 crossorigin="anonymous" />
-          </div>`
-      )
+            <img src="${API_BASE}/proxy_drive/${id}"
+                alt="About photo ${idx + 1}"
+                loading="lazy"
+                crossorigin="anonymous"
+                referrerpolicy="no-referrer" />
+          </div>`;
+      })
       .join("");
+
 
     // ✅ CSP-compliant safe assignment (Trusted Types)
     const policy = window.trustedTypes?.createPolicy("safeHTML", {
