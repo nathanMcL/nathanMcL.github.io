@@ -147,19 +147,13 @@ if (reloadBtn) {
 // ------------------------------------------------------------
 // DOMContentLoaded init
 // ------------------------------------------------------------
-document.addEventListener("DOMContentLoaded", async () => {
-  // 🧩 Step 3 — Warm-up the Azure API before real calls
-  try {
-    console.log("🚀 Warming up macn-about-api...");
-    await safeFetch(`${API_BASE}/warmup`, {}, 1, 30000);  // 30s
-    await safeFetch(`${API_BASE}/warmup_drive`, {}, 1, 45000);  // 45s
+document.addEventListener("DOMContentLoaded", () => {
+  console.log("🚀 Warming up macn-about-api (non-blocking)...");
+  // 🔹 Fire-and-forget Drive warm-up, so it doesn’t block other calls
+  safeFetch(`${API_BASE}/warmup`, {}, 1, 30000).catch(console.warn);
+  safeFetch(`${API_BASE}/warmup_drive`, {}, 1, 60000).catch(console.warn);
 
-    console.log("✅ API & Drive warmed up and ready!");
-  } catch (err) {
-    console.warn("⚠️ Warm-up skipped or delayed:", err);
-  }
-
-  // 🔹 After warm-up completes (or times out), load main content
+  // 🔹 Continue loading immediately
   loadAboutOrb();
   loadAboutPhotos();
 
