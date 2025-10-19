@@ -37,9 +37,8 @@ body {
 }
 
 /* =======================
-   Header & Navigation (Mirrored behavior)
+   Header & Navigation 
    ======================= */
-
 .header-about {
   background-color: var(--third-color);
   color: white;
@@ -47,19 +46,15 @@ body {
   border-radius: 10px;
 }
 
-/* Container similar to styles.css: row layout, wrap on small screens */
 .nav_container {
-  position: relative;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  flex-wrap: wrap;
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 20px;
 }
 
-/* Logo block */
 #nav_logo {
   display: flex;
   align-items: center;
@@ -67,37 +62,35 @@ body {
   color: white;
   font-weight: bold;
   font-size: 1.5rem;
+  margin-left: 0;
 }
 
-/* Logo image */
 .littlerobot {
   max-width: 170px;
   height: auto;
   margin-right: 5px;
+  margin-left: -100px; /* match blogStyles.css logo offset */
 }
 
-/* Menu: same selector as styles.css (.nav.menu with two classes on the element) */
+/* Navigation Menu */
 .nav.menu {
-  display: flex;
-  list-style: none;
+  display: flex !important;
+  list-style-type: none;
   gap: 15px;
   padding: 0;
   margin-left: auto;
-  align-items: center;
 }
 
-/* Individual link */
 .nav_item a {
   display: inline-block;
   text-decoration: none;
   color: var(--fourth-color);
   font-weight: bold;
-  padding: 6px 12px;
-  border-radius: 12px;
+  padding: 2px 10px;
+  border-radius: 20px;
   transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
 }
 
-/* Active / hover states */
 .nav_item a.nav_active {
   color: var(--first-color);
 }
@@ -106,7 +99,6 @@ body {
   background-color: var(--second-color);
   color: var(--first-color);
   text-decoration: underline;
-  outline: none;
 }
 
 .nav_item a:focus {
@@ -116,7 +108,7 @@ body {
   outline: none;
 }
 
-/* Logo color-change animation preserved */
+/* Logo animation */
 .color-change {
   display: inline-block;
   animation: colorAnimation 10s infinite;
@@ -585,8 +577,9 @@ footer {
 /* =======================
    Responsive
    ======================= */
-
+/* ----- Tablets and Small Laptops (≤1024px) ----- */
 @media (max-width: 1024px) {
+  /* Maintain About page layout */
   .about-main {
     flex-direction: column;
   }
@@ -600,29 +593,66 @@ footer {
     height: 120px;
   }
 
+  /* ----- Header / Navigation ----- */
   .nav_container {
+    display: flex;
+    justify-content: space-between; /* space between logo and nav menu */
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
     padding: 5px 20px;
   }
 
   #nav_logo {
+    display: flex;
+    align-items: center;
+    text-align: left;
     font-size: 1.2rem;
+    margin-right: auto;
+    margin-left: 150px; /* Move logo toward the center like blogStyles.css */
   }
 
   .littlerobot {
     max-width: 150px;
+    height: auto;
+    margin-right: 0px;
+    margin-left: -200px; /* Slight left offset for alignment */
+    margin-top: 50px;
+  }
+
+  .color-change {
+    display: inline-block;
+    margin: 0px 2.5px;
+    font-size: 1.2rem;
+    margin-top: 70px;
   }
 
   .nav.menu {
+    display: flex;
+    flex-direction: row;
     justify-content: flex-end;
-    gap: 12px;
+    gap: 15px;
+    list-style: none;
+    margin-right: 50px;
   }
 
   .nav_item a {
     font-size: 1rem;
+    text-decoration: none;
+    color: var(--fourth-color);
+    margin-right: 30px;
+    transition: background-color 0.3s ease;
+  }
+
+  .nav_item a:hover {
+    background-color: var(--second-color);
+    color: var(--first-color);
   }
 }
 
+/* ----- Tablets / Large Phones (≤768px) ----- */
 @media (max-width: 768px) {
+  /* Adjust About page grid and carousel */
   .values-list {
     grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
   }
@@ -631,33 +661,68 @@ footer {
     height: 100px;
   }
 
+  /* ----- Header / Navigation ----- */
   .nav_container {
-    flex-direction: column;
-    align-items: flex-start;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 5px 10px;
   }
 
   #nav_logo {
-    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    text-align: left;
     font-size: 1.2rem;
+    margin-right: auto;
+    margin-left: -80px; /* Center logo like blogStyles.css */
   }
 
   .littlerobot {
     max-width: 135px;
+    margin-right: 0px;
+    margin-left: 50px;
+    margin-top: 30px;
+  }
+
+  .color-change {
+    display: inline-block;
+    margin: 1.5px;
+    font-size: 1.2rem;
+    margin-top: 65px;
   }
 
   .nav.menu {
-    width: 100%;
-    flex-direction: column;
-    gap: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    gap: 15px;
+    list-style: none;
+    margin-right: 50px;
   }
 
   .nav_item a {
     font-size: 1rem;
-    width: 100%;
+    text-decoration: none;
+    color: var(--fourth-color);
+    margin-right: 30px;
+  }
+
+  .nav_item a:hover {
+    background-color: var(--second-color);
+  }
+
+  footer {
+    padding: 15px;
+    font-size: 0.9rem;
   }
 }
 
+/* ----- Mobile Phones (≤480px) ----- */
 @media (max-width: 480px) {
+  /* Maintain About page grid */
   .values-list {
     grid-template-columns: repeat(2, 1fr);
     gap: 8px;
@@ -672,33 +737,56 @@ footer {
     height: 90px;
   }
 
+  /* ----- Header / Navigation ----- */
   #nav_logo {
     font-size: 1rem;
+    margin-left: -40px;
   }
 
   .littlerobot {
     max-width: 110px;
+    margin-left: 20px;
   }
 
   .nav.menu {
+    flex-direction: row;
+    justify-content: center;
     gap: 8px;
   }
 
   .nav_item a {
     font-size: 0.9rem;
+    padding: 4px 8px;
   }
 }
 
-/* Make nav stack vertically on tablet and smaller (1024px and below) */
-@media (max-width: 1024px) {
+/* ----- Very Small Devices / Vertical Stack (≤420px) ----- */
+@media (max-width: 420px) {
+  .nav_container {
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+  }
+
+  #nav_logo {
+    margin: 0 auto 10px auto;
+    font-size: 1rem;
+  }
+
+  .littlerobot {
+    max-width: 100px;
+    margin: 0 auto 5px auto;
+  }
+
   .nav.menu {
     flex-direction: column;
-    align-items: flex-end;
-    gap: 2px;
+    align-items: center;
+    gap: 6px;
   }
 
   .nav_item a {
-    min-width: 140px;
-    padding: 10px 12px;
+    font-size: 0.9rem;
+    width: auto;
+    padding: 6px 12px;
   }
 }
