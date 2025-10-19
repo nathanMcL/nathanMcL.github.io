@@ -14,13 +14,24 @@ const carouselContainer = document.getElementById("about-photo-carousel");
 const reloadBtn = document.getElementById("reload-about");
 const statusMsg = document.getElementById("api-status");
 
-const FETCH_TIMEOUT_MS = 12000; // 12s timeout
+const FETCH_TIMEOUT_MS = 45000; // 45s timeout
 const MAX_RETRIES = 3;
+
+// ====================
+// 🛡️ Trusted Types policy (CSP compliance)
+// ====================
+if (window.trustedTypes && !window.trustedTypes.defaultPolicy) {
+  window.trustedTypes.createPolicy('default', {
+    createHTML: (input) => input,
+    createScript: (input) => input,
+    createScriptURL: (input) => input,
+  });
+}
 
 // ====================
 // 🧩 safeFetch — tolerant with clearer diagnostics
 // ====================
-async function safeFetch(url, options = {}, retries = 3, timeoutMs = 25000) {
+async function safeFetch(url, options = {}, retries = 3, timeoutMs = 45000) {
   for (let attempt = 1; attempt <= retries; attempt++) {
     const controller = new AbortController();
     const timeout = setTimeout(() => controller.abort(), timeoutMs);
