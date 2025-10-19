@@ -69,20 +69,20 @@ async function loadAboutOrb() {
     });
 
     if (res.ok && res.about) {
-      aboutOrbContainer.textContent = res.about;
+      aboutOrbContainer.innerHTML = `<p>${res.about.replace(/\n+/g, '</p><p>')}</p>`;
       statusMsg.textContent = "✅ Synced successfully!";
     } else if (res.error) {
-      aboutOrbContainer.textContent =
+      aboutOrbContainer.innerHTML =
         "⚠️ The AI service is currently unavailable. Please try again later.";
       statusMsg.textContent = "OpenAI client unavailable.";
       console.warn("API Error:", res.error);
     } else {
-      aboutOrbContainer.textContent = "⚠️ Unexpected response from API.";
+      aboutOrbContainer.innerHTML = "⚠️ Unexpected response from API.";
       statusMsg.textContent = "Response error.";
       console.warn("Unknown API response:", res);
     }
   } catch (error) {
-    aboutOrbContainer.textContent =
+    aboutOrbContainer.innerHTML =
       "❌ Could not reach the API server. Please check your connection.";
     statusMsg.textContent = "API unreachable.";
     console.error("Fetch error:", error);

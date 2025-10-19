@@ -328,6 +328,54 @@ body {
   opacity: 1;
 }
 
+/* --- Carousel image sizing --- */
+#about-photo-carousel {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+}
+
+.carousel-item img {
+  width: 125px;          /* base size */
+  height: auto;          /* keep aspect ratio */
+  object-fit: cover;     /* crop edges cleanly */
+  border-radius: 10px;   /* slight round corners */
+  box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.carousel-item img:hover {
+  transform: scale(1.08);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+}
+
+/* Responsive scaling */
+@media (max-width: 768px) {
+  .carousel-item img {
+    width: 100px;
+  }
+}
+
+@media (max-width: 480px) {
+  .carousel-item img {
+    width: 80px;
+  }
+}
+
+/* Format About Me Blurb as paragraph */
+#about-orb-text {
+  white-space: pre-line;       /* preserves line breaks */
+  text-align: left;
+  line-height: 1.6;
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 15px;
+  font-size: 1.05rem;
+}
+
 /* Controls */
 .carousel-controls {
   display: flex;
