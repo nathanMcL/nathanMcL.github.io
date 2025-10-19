@@ -152,6 +152,72 @@ async function loadAboutPhotos() {
 }
 
 // ------------------------------------------------------------
+// Carousel state and controls: rotating/looping logic after the images are loaded
+// ------------------------------------------------------------
+let currentIndex = 0;
+let autoRotateInterval;
+const visibleCount = 3;
+const displayTime = 5000; // 5 seconds
+
+function renderCarousel(images) {
+  const track = document.getElementById('carousel-track');
+  track.innerHTML = images
+    .map(
+      (src, i) =>
+        `<div class="carousel-item"><img src="${src}" alt="Carousel ${i + 1}"></div>`
+    )
+    .join('');
+
+  updateCarousel(track, images.length);
+  startAutoRotate(track, images.length);
+}
+
+function updateCarousel(track, total) {
+  const offset = -currentIndex * 135; // slide 125px width + 10px gap
+  track.style.transform = `translateX(${offset}px)`;
+
+  // Mark focused (middle image)
+  const items = track.querySelectorAll('.carousel-item');
+  items.forEach((el, i) => el.classList.toggle('focused', i === currentIndex + 1));
+}
+
+function startAutoRotate(track, total) {
+  stopAutoRotate();
+  autoRotateInterval = setInterval(() => {
+    nextSlide(track, total);
+  }, displayTime);
+}
+
+function stopAutoRotate() {
+  if (autoRotateInterval) clearInterval(autoRotateInterval);
+}
+
+function nextSlide(track, total) {
+  currentIndex = (currentIndex + 1) % total;
+  updateCarousel(track, total);
+}
+
+function prevSlide(track, total) {
+  currentIndex = (currentIndex - 1 + total) % total;
+  updateCarousel(track, total);
+}
+
+// Hook buttons
+document.getElementById('nextBtn').addEventListener('click', () => {
+  const track = document.getElementById('carousel-track');
+  nextSlide(track, track.children.length);
+  stopAutoRotate();
+  startAutoRotate(track, track.children.length);
+});
+
+document.getElementById('prevBtn').addEventListener('click', () => {
+  const track = document.getElementById('carousel-track');
+  prevSlide(track, track.children.length);
+  stopAutoRotate();
+  startAutoRotate(track, track.children.length);
+});
+
+// ------------------------------------------------------------
 // UI Helpers
 // ------------------------------------------------------------
 if (reloadBtn) {
