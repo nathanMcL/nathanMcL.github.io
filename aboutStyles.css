@@ -696,7 +696,7 @@ footer {
 
   .nav.menu {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: flex-end;
     gap: 15px;
     list-style: none;
