@@ -33,8 +33,8 @@ async function safeFetch(url, options = {}, retries = 3, timeoutMs = 25000) {
         console.warn(`⚠️ Attempt ${attempt}/${retries} failed ${url}: ${response.status}`);
         continue;
       }
+      // 👇 Only parse as JSON for API endpoints, never for images
       return await response.json();
-
     } catch (err) {
       clearTimeout(timeout);
       if (err.name === "AbortError") {
@@ -44,11 +44,8 @@ async function safeFetch(url, options = {}, retries = 3, timeoutMs = 25000) {
       }
       if (attempt === retries) throw err;
     }
-
-    // Backoff before retrying
     await new Promise(res => setTimeout(res, 1200 * attempt));
   }
-
   throw new Error(`❌ All ${retries} attempts failed for ${url}`);
 }
 
@@ -62,6 +59,7 @@ async function loadAboutOrb() {
   try {
     const spinner = document.querySelector(".loading-spinner");
     if (spinner) spinner.style.display = "inline-block";
+
     const res = await safeFetch(`${API_BASE}/generate-aboutOrb`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -73,9 +71,6 @@ async function loadAboutOrb() {
     if (res.ok && res.about) {
       aboutOrbContainer.textContent = res.about;
       statusMsg.textContent = "✅ Synced successfully!";
-      // 🔄 Stop spinner or rotating wheel once complete
-      const spinner = document.querySelector(".loading-spinner");
-      if (spinner) spinner.style.display = "none";
     } else if (res.error) {
       aboutOrbContainer.textContent =
         "⚠️ The AI service is currently unavailable. Please try again later.";
@@ -91,16 +86,20 @@ async function loadAboutOrb() {
       "❌ Could not reach the API server. Please check your connection.";
     statusMsg.textContent = "API unreachable.";
     console.error("Fetch error:", error);
+  } finally {
+    const spinner = document.querySelector(".loading-spinner");
+    if (spinner) spinner.style.display = "none";
   }
 }
 
 // ------------------------------------------------------------
-// Load carousel images from /aboutMe_photos (CSP-safe Trusted Types)
+// Load carousel images (CORB-safe: direct <img> usage)
 // ------------------------------------------------------------
 async function loadAboutPhotos() {
   if (!carouselContainer) return;
 
   carouselContainer.textContent = "📸 Loading images...";
+
   try {
     const data = await safeFetch(`${API_BASE}/aboutMe_photos`);
     const photos = Array.isArray(data.photos) ? data.photos : [];
@@ -110,16 +109,21 @@ async function loadAboutPhotos() {
       return;
     }
 
+    // ✅ Build pure <img> tags — browser loads Drive links directly
     const html = photos
       .map(
         (url, idx) => `
-        <div class="carousel-item" tabindex="0" aria-label="Photo ${idx + 1}">
-          <img src="${url}" alt="About photo ${idx + 1}" loading="lazy" />
-        </div>`
+          <div class="carousel-item" tabindex="0" aria-label="Photo ${idx + 1}">
+            <img src="${url}"
+                 alt="About photo ${idx + 1}"
+                 referrerpolicy="no-referrer"
+                 loading="lazy"
+                 crossorigin="anonymous" />
+          </div>`
       )
       .join("");
 
-    // ✅ CSP & Trusted Types safe assignment
+    // ✅ CSP-compliant safe assignment (Trusted Types)
     const policy = window.trustedTypes?.createPolicy("safeHTML", {
       createHTML: (input) => input,
     });
