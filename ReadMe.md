@@ -12,9 +12,47 @@ What is the website's purpose? <br>
 5. Accessibility. <br>
 
 ---
+
+### (10192025.1640) Unfinished Sentences...
+
+I noticed there was an issue with the generated content not finishing a sentence or starting a new sentence when the `About Me Blurb` could have ended.  
+
+--- ***After Resolving unfinished sentences*** ---  
+There are still some visual issues and things not functioning atm.  
+The Server warms up correctly.  
+The About me Blub gets generated.  
+The photos load three at a time.  
+
+Todo:  
+Controls are not functioning.  
+There should be a pause button.  
+There should be at least a five-second timer per photo.  
+  
+Today was productive.    
+<img width="2401" height="1351" alt="Screenshot (89)" src="https://github.com/user-attachments/assets/152290c9-383c-4656-b1e5-e76f469842df" />
+
+
+About Me  
+
+Hey there! I’m Nathaniel, but you can call me MacN.
+I’m a proud Army vet who traded in the battlefield for the battlefield of code, armed with a Bachelor’s in Computer Science and an AAS in Mechatronics. 
+My brain’s a bit of a Swiss Army knife, juggling logistics and troubleshooting like a pro, while also dabbling in some tomfoolery and secret FUBAR operations—I promise, it’s all above board!
+When I’m not lost in lines of Python or crafting AI models, you’ll find me experimenting in the kitchen or getting my hands dirty with DIY projects and backyard farming. 
+MacN_iT is my little corner of the internet where tech meets humor and curiosity reigns supreme.  
+
+---  
+
+About Me  
+Hey there! I’m Nathaniel, but you can call me MacN. 
+I’m a U.S. Army vet turned code wrangler, with a knack for logistics and a talent for turning FUBAR situations into “Ah-ha!” moments. 
+My passion for tech runs deep, fueled by a Bachelor’s in Computer Science focused on cybersecurity analysis, and an AAS in mechatronics that makes me the go-to guy for all things gadget-related. 
+When I’m not knee-deep in Python or rustling through Java, you can find me whipping up culinary experiments, diving into DIY projects, or nurturing my backyard farm like it’s a small-scale tech startup.  
+
+---
+
 ### (10182025.1600) No quit
 
-I am still troublshooting the server. I am trying to figure out the sweetspot of cold-start warmup for the Azure API call and for the Google drive photos to load.  
+I am still troublshooting the server. I am trying to figure out the sweetspot of cold-start warmup for the Azure API call and for the Google drive photos to load.   
 
 I was able to re-connect the Server to the frontend API fetch.  
 
@@ -556,6 +594,7 @@ Screenshot: <br>
 
 ![Me Orb Output](https://nathanmcl.github.io/images/MeOrbOutput.png)
 <br>
+
 
 
 
