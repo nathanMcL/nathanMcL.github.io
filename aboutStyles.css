@@ -305,7 +305,7 @@ body {
   display: flex;
   gap: 10px;
   flex-wrap: nowrap;
-  overflow-x: auto;
+  overflow-x: hidden;
   scroll-behavior: smooth;
   justify-content: center;
   align-items: center;
@@ -338,17 +338,55 @@ body {
   width: 420px;              /* ~3 * 125px + gap */
   margin: 0 auto;
   position: relative;
+  border-radius: 10px;
 }
 
-/* === Carousel items (all images stacked in a long row) === */
+/* === Edge Fade Gradient Overlays === */
+#about-photo-carousel::before,
+#about-photo-carousel::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  width: 60px;              /* fade width */
+  height: 100%;
+  pointer-events: none;     /* allow clicks to pass through */
+  z-index: 3;
+  transition: opacity 0.4s ease;
+}
+
+#about-photo-carousel::before {
+  left: 0;
+  background: linear-gradient(to right, rgba(255,255,255,0.95), rgba(255,255,255,0));
+}
+
+#about-photo-carousel::after {
+  right: 0;
+  background: linear-gradient(to left, rgba(255,255,255,0.95), rgba(255,255,255,0));
+}
+
+/* --- Optional: Dark-mode edge fade (auto-adjust if you toggle themes) --- */
+@media (prefers-color-scheme: dark) {
+  #about-photo-carousel::before {
+    background: linear-gradient(to right, rgba(0,0,0,0.8), rgba(0,0,0,0));
+  }
+  #about-photo-carousel::after {
+    background: linear-gradient(to left, rgba(0,0,0,0.8), rgba(0,0,0,0));
+  }
+}
+
+/* === Carousel items (all images stacked in a row) === */
 .carousel-track {
   display: flex;
-  transition: transform 0.6s ease-in-out;
+  gap: 12px;
+  transition: transform 400ms ease;
+  will-change: transform;
 }
 
 .carousel-item {
   flex: 0 0 125px;
   scroll-snap-align: center;
+  border-radius: 10px;
+  transition: opacity 0.4s ease, transform 0.4s ease, filter 0.4s ease;
 }
 
 .carousel-item img {
@@ -356,18 +394,31 @@ body {
   height: 100px;
   object-fit: cover;
   border-radius: 10px;
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  transition: transform 0.4s ease, box-shadow 0.4s ease, filter 0.4s ease;
 }
 
+/* --- Hover enhancement --- */
 .carousel-item img:hover {
   transform: scale(1.08);
   box-shadow: 0 4px 10px rgba(0,0,0,0.4);
 }
 
-/* Focused (center) image slightly larger */
+/* --- Focus transition states --- */
+
+/* Focused (center) image slightly larger and brighter */
 .carousel-item.focused img {
-  transform: scale(1.1);
-  box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+  transform: scale(1.15);
+  filter: brightness(1.15) saturate(1.1);
+  box-shadow: 0 6px 14px rgba(0, 255, 204, 0.45);
+  z-index: 2;
+  opacity: 1;
+}
+
+/* Non-focused side images dimmed slightly for contrast */
+.carousel-item:not(.focused) img {
+  opacity: 0.8;
+  filter: brightness(0.9) saturate(0.9);
+  transform: scale(0.95);
 }
 
 /* === Controls === */
@@ -389,19 +440,6 @@ body {
 
 .carousel-btn:hover {
   transform: scale(1.2);
-}
-
-/* Responsive scaling */
-@media (max-width: 768px) {
-  .carousel-item img {
-    width: 100px;
-  }
-}
-
-@media (max-width: 480px) {
-  .carousel-item img {
-    width: 80px;
-  }
 }
 
 /* Format About Me Blurb as paragraph */
@@ -451,12 +489,8 @@ body {
 }
 
 @keyframes shimmer {
-  0% {
-    background-position: -200% 0;
-  }
-  100% {
-    background-position: 200% 0;
-  }
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
 }
 
 /* fade utilities (used by JS) */
@@ -469,25 +503,13 @@ body {
 }
 
 @keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: scale(0.98);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
+  from { opacity: 0; transform: scale(0.98); }
+  to { opacity: 1; transform: scale(1); }
 }
 
 @keyframes fadeOut {
-  from {
-    opacity: 1;
-    transform: scale(1);
-  }
-  to {
-    opacity: 0;
-    transform: scale(0.98);
-  }
+  from { opacity: 1; transform: scale(1); }
+  to { opacity: 0; transform: scale(0.98); }
 }
 
 /* error placeholder */
@@ -666,20 +688,6 @@ footer {
    ======================= */
 /* ----- Tablets and Small Laptops (≤1024px) ----- */
 @media (max-width: 1024px) {
-  /* Maintain About page layout */
-  .about-main {
-    flex-direction: column;
-  }
-
-  .about-left,
-  .about-right {
-    flex: 1;
-  }
-
-  .carousel-img {
-    height: 120px;
-  }
-
   /* ----- Header / Navigation ----- */
   .nav_container {
     display: flex;
@@ -735,19 +743,43 @@ footer {
     background-color: var(--second-color);
     color: var(--first-color);
   }
+
+  /* Maintain About page layout */
+  .about-main {
+    flex-direction: column;
+  }
+
+  .about-left,
+  .about-right {
+    flex: 1;
+  }
+
+  /* Carousel image styles */
+  .carousel-img {
+    height: 120px;
+  }
+
+  #about-photo-carousel {
+    width: 380px;
+  }
+  .carousel-item {
+    flex: 0 0 110px;
+  }
+  .carousel-item img {
+    height: 95px;
+  }
+  .carousel-item.focused img {
+    transform: scale(1.12);
+  }
+  #about-photo-carousel::before,
+  #about-photo-carousel::after {
+    width: 50px;
+  }
 }
+/* ----- End of Tablets and Small Laptops (≤1024px) ----- */
 
 /* ----- Tablets / Large Phones (≤768px) ----- */
 @media (max-width: 768px) {
-  /* Adjust About page grid and carousel */
-  .values-list {
-    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-  }
-
-  .carousel-img {
-    height: 100px;
-  }
-
   /* ----- Header / Navigation ----- */
   .nav_container {
     display: flex;
@@ -801,6 +833,34 @@ footer {
     background-color: var(--second-color);
   }
 
+  /* Adjust About page grid and carousel */
+  .values-list {
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  }
+
+  /* Carousel image styles */
+  .carousel-img {
+    height: 100px;
+  }
+
+  #about-photo-carousel {
+    width: 340px;
+  }
+  .carousel-item {
+    flex: 0 0 100px;
+  }
+  .carousel-item img {
+    height: 90px;
+  }
+  .carousel-item.focused img {
+    transform: scale(1.1);
+  }
+  #about-photo-carousel::before,
+  #about-photo-carousel::after {
+    width: 45px;
+  }
+  /* End of Carousel image styles */
+
   footer {
     padding: 15px;
     font-size: 0.9rem;
@@ -809,21 +869,6 @@ footer {
 
 /* ----- Mobile Phones (≤480px) ----- */
 @media (max-width: 480px) {
-  /* Maintain About page grid */
-  .values-list {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 8px;
-  }
-
-  .value-card {
-    font-size: 0.85rem;
-    padding: 10px;
-  }
-
-  .carousel-img {
-    height: 90px;
-  }
-
   /* ----- Header / Navigation ----- */
   #nav_logo {
     font-size: 1rem;
@@ -844,6 +889,40 @@ footer {
   .nav_item a {
     font-size: 0.9rem;
     padding: 4px 8px;
+  }
+
+  /* Maintain About page grid */
+  .values-list {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+  }
+
+  .value-card {
+    font-size: 0.85rem;
+    padding: 10px;
+  }
+
+  #about-photo-carousel {
+    width: 280px;
+  }
+  .carousel-item {
+    flex: 0 0 80px;
+  }
+  .carousel-item img {
+    height: 80px;
+  }
+  .carousel-item.focused img {
+    transform: scale(1.08);
+  }
+  .carousel-controls {
+    gap: 15px;
+  }
+  .carousel-btn {
+    font-size: 1.4rem;
+  }
+  #about-photo-carousel::before,
+  #about-photo-carousel::after {
+    width: 35px;
   }
 }
 
@@ -875,5 +954,25 @@ footer {
     font-size: 0.9rem;
     width: auto;
     padding: 6px 12px;
+  }
+
+  #about-photo-carousel {
+    width: 250px;
+  }
+  .carousel-item {
+    flex: 0 0 70px;
+  }
+  .carousel-item img {
+    height: 70px;
+  }
+  .carousel-item.focused img {
+    transform: scale(1.06);
+  }
+  .carousel-btn {
+    font-size: 1.2rem;
+  }
+  #about-photo-carousel::before,
+  #about-photo-carousel::after {
+    width: 30px;
   }
 }
