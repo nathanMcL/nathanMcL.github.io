@@ -74,6 +74,38 @@ async function safeFetch(url, options = {}, retries = MAX_RETRIES, timeoutMs = F
   throw new Error(`❌ All ${retries} attempts failed for ${url}`);
 }
 
+// ====================
+// Helpers: ID parsing + proxy URL
+// ====================
+function extractId(entry) {
+  // Accept either a raw ID or a full Google Drive/Googleusercontent URL
+  if (!entry) return null;
+  const s = String(entry).trim();
+
+  // 1️⃣ Plain Drive ID (no URL)
+  if (!/^https?:\/\//i.test(s) && /^[A-Za-z0-9_\-]{20,}$/.test(s)) {
+    return s;
+  }
+
+  // 2️⃣ Common URL formats
+  let m = s.match(/\/d\/([A-Za-z0-9_\-]{20,})/);
+  if (m && m[1]) return m[1];
+
+  m = s.match(/[?&]id=([A-Za-z0-9_\-]{20,})/);
+  if (m && m[1]) return m[1];
+
+  m = s.match(/drive\.google\.com\/file\/d\/([A-Za-z0-9_\-]{20,})/);
+  if (m && m[1]) return m[1];
+
+  console.warn("⚠️ Could not extract Drive ID from entry:", s);
+  return null;
+}
+
+function buildProxyUrl(id) {
+  return `${API_BASE}/proxy_drive/${id}`;
+}
+
+
 // ----------------------------
 // About Me blurb — complete sentence guarantee
 // ----------------------------
@@ -201,31 +233,42 @@ function togglePause() {
   if (pauseBtn) pauseBtn.textContent = paused ? "▶︎" : "⏸";
 }
 
-// ----------------------------
-// Preload & caching strategy
-// ----------------------------
+// ------------------------------------------------------------
+// Preload the first PRELOAD_WINDOW images as proxy URLs
+// ------------------------------------------------------------
 function primeQueue(allIds) {
-  ids = allIds.slice();
+  ids = allIds.slice(); // copy
   const first = ids.slice(0, PRELOAD_WINDOW);
-  queue = first.map(buildProxyUrl);
+  queue = first.map(id => buildProxyUrl(id)); // explicit build
   render();
   startAuto();
+
+  // TODO: expansion: 
+  // background-load the remainder of ids for larger queues.
 }
+
 
 // ----------------------------
 // Button controls
 // ----------------------------
-if (prevBtn) {
-  prevBtn.addEventListener("click", () => {
-    prev();
+// ------------------------------------------------------------
+// Controls (with null safety + auto reset)
+// ------------------------------------------------------------
+if (nextBtn) {
+  nextBtn.addEventListener("click", () => {
+    const track = document.querySelector("#about-photo-carousel .carousel-track");
+    if (!track) return; // prevent null errors
+    next();
     stopAuto();
     startAuto();
   });
 }
 
-if (nextBtn) {
-  nextBtn.addEventListener("click", () => {
-    next();
+if (prevBtn) {
+  prevBtn.addEventListener("click", () => {
+    const track = document.querySelector("#about-photo-carousel .carousel-track");
+    if (!track) return; // prevent null errors
+    prev();
     stopAuto();
     startAuto();
   });
@@ -235,30 +278,40 @@ if (pauseBtn) {
   pauseBtn.addEventListener("click", () => togglePause());
 }
 
-// ----------------------------
-// Fetch & load carousel images
-// ----------------------------
+// ------------------------------------------------------------
+// Fetch IDs → normalize → build proxy URLs → render only 3 photos at a time
+// ------------------------------------------------------------
 async function loadAboutPhotos() {
   if (!carousel) return;
   const status = document.getElementById("carousel-status");
-  if (status) status.textContent = "📸 Loading images...";
+  if (status) status.textContent = "Loading photos…";
 
   try {
-    const data = await safeFetch(`${API_BASE}/aboutMe_photos`, {}, 1, 20000);
-    const photoIds = Array.isArray(data.photos) ? data.photos : [];
-    if (!photoIds.length) {
+    const data = await safeFetch(`${API_BASE}/aboutMe_photos`, {}, 1, 15000);
+    const raw = Array.isArray(data.photos) ? data.photos : [];
+
+    // Normalize everything to Drive IDs
+    const idsOnly = raw
+      .map(extractId)
+      .filter(Boolean);
+
+    if (!idsOnly.length) {
       if (status) status.textContent = "No photos available.";
+      console.warn("📭 /aboutMe_photos returned no usable IDs:", raw);
       return;
     }
 
-    primeQueue(photoIds);
-    if (status)
-      status.textContent = `🟢 Loaded ${Math.min(photoIds.length, PRELOAD_WINDOW)} photos.`;
+    // Preload and render using normalized IDs
+    primeQueue(idsOnly);
+    if (status) {
+      status.textContent = `Loaded ${Math.min(idsOnly.length, PRELOAD_WINDOW)} photo${idsOnly.length === 1 ? "" : "s"}.`;
+    }
   } catch (e) {
-    if (status) status.textContent = "⚠️ Failed to load photos.";
+    if (status) status.textContent = "Failed to load photos.";
     console.warn("Photo load error:", e);
   }
 }
+
 
 // ----------------------------
 // UI Helpers
