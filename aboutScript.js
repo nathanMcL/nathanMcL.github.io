@@ -16,8 +16,9 @@ const VISIBLE = 3;
 const PRELOAD_WINDOW = 9;
 const AUTO_MS = 5000;
 const IMG_HEIGHT = 125;
-const FETCH_TIMEOUT_MS = 45000;
+const FETCH_TIMEOUT_MS = 90000;
 const MAX_RETRIES = 3;
+
 
 // ----------------------------
 // Elements
@@ -287,7 +288,7 @@ async function loadAboutPhotos() {
   if (status) status.textContent = "Loading photos…";
 
   try {
-    const data = await safeFetch(`${API_BASE}/aboutMe_photos`, {}, 1, 15000);
+    const data = await safeFetch(`${API_BASE}/aboutMe_photos`, {}, 1, 90000);
     const raw = Array.isArray(data.photos) ? data.photos : [];
 
     // Normalize everything to Drive IDs
