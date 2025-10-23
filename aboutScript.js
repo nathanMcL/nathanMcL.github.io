@@ -136,7 +136,7 @@ async function loadAboutOrb() {
 }
 
 // ----------------------------
-//  (3 visible, pause/resume, preload 9, skip 404s)
+// Carousel (3 visible, pause/resume, preload 9, skip 404s)
 // ----------------------------
 let ids = [];
 let queue = [];
@@ -148,6 +148,7 @@ let paused = false;
 
 const DISPLAY_TIME = 8000;      // 🕓 hold each image 8 seconds (was 5000)
 const LOAD_GRACE_TIME = 1500;   // ⏳ extra 1.5s for slow decode
+const DECODE_GUARD_COUNT = 5;   // Wait for 5 images to finish decoding before rotation
 
 function buildProxyUrl(id) {
   return `${API_BASE}/proxy_drive/${id}`;
@@ -230,9 +231,7 @@ function showCarouselImages() {
   // ✅ preload next image to avoid flicker
   const nextIdx = (currentIndex + 3) % items.length;
   const nextImg = items[nextIdx]?.querySelector("img");
-  if (nextImg && !nextImg.complete) {
-    nextImg.loading = "eager";
-  }
+  if (nextImg && !nextImg.complete) nextImg.loading = "eager";
 
   currentIndex = (currentIndex + 1) % items.length;
 
@@ -274,12 +273,25 @@ function togglePause() {
 
 // ------------------------------------------------------------
 // Preload the first PRELOAD_WINDOW images as proxy URLs
+// Wait until at least 5 are decoded before starting rotation
 // ------------------------------------------------------------
-function primeQueue(allIds) {
-  ids = allIds.slice(); // copy
+async function primeQueue(allIds) {
+  ids = allIds.slice();
   const first = ids.slice(0, PRELOAD_WINDOW);
   queue = first.map((id) => buildProxyUrl(id));
   render();
+
+  try {
+    // 🧠 Decode Guard — wait until first N images are decoded
+    const imgs = Array.from(document.querySelectorAll(".carousel-item img")).slice(0, DECODE_GUARD_COUNT);
+    await Promise.all(
+      imgs.map((img) => img.decode().catch(() => console.warn("⚠️ decode failed for", img.src)))
+    );
+    console.log(`✅ First ${imgs.length} images decoded, starting carousel.`);
+  } catch (err) {
+    console.warn("⚠️ decode guard skipped:", err);
+  }
+
   startAuto();
 }
 
