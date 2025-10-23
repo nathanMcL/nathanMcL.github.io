@@ -141,8 +141,13 @@ async function loadAboutOrb() {
 let ids = [];
 let queue = [];
 let index = 0;
+let currentIndex = 0;
 let autoTimer = null;
+let carouselTimer = null;
 let paused = false;
+
+const DISPLAY_TIME = 8000;      // 🕓 hold each image 8 seconds (was 5000)
+const LOAD_GRACE_TIME = 1500;   // ⏳ extra 1.5s for slow decode
 
 function buildProxyUrl(id) {
   return `${API_BASE}/proxy_drive/${id}`;
@@ -164,7 +169,6 @@ function createItem(url) {
   img.height = IMG_HEIGHT;
   img.src = url;
 
-  // Recover gracefully from 404s
   img.onerror = () => {
     console.warn(`⚠️ Image failed to load: ${url}`);
     const i = queue.indexOf(url);
@@ -203,35 +207,69 @@ function render() {
   track.style.transform = "translateX(0)";
 }
 
+// ===============================
+// 🌀 Smarter Carousel Rotation Controller
+// ===============================
+function showCarouselImages() {
+  const items = document.querySelectorAll(".carousel-item");
+  if (items.length === 0 || paused) return;
+
+  // Remove previous focus
+  items.forEach((item) => item.classList.remove("focused"));
+
+  // Compute visible slice (3 at a time)
+  for (let i = 0; i < items.length; i++) {
+    items[i].style.display = "none";
+  }
+  for (let i = 0; i < 3; i++) {
+    const idx = (currentIndex + i) % items.length;
+    items[idx].style.display = "block";
+    if (i === 1) items[idx].classList.add("focused"); // middle one highlighted
+  }
+
+  // ✅ preload next image to avoid flicker
+  const nextIdx = (currentIndex + 3) % items.length;
+  const nextImg = items[nextIdx]?.querySelector("img");
+  if (nextImg && !nextImg.complete) {
+    nextImg.loading = "eager";
+  }
+
+  currentIndex = (currentIndex + 1) % items.length;
+
+  // Reset timer with load buffer
+  clearTimeout(carouselTimer);
+  carouselTimer = setTimeout(showCarouselImages, DISPLAY_TIME + LOAD_GRACE_TIME);
+}
+
+// ----------------------------
+// Controls & Auto-Advance Logic
+// ----------------------------
 function next() {
   if (queue.length <= VISIBLE) return;
   index = (index + 1) % queue.length;
-  if (index > queue.length - VISIBLE) index = 0;
   render();
 }
 
 function prev() {
   if (queue.length <= VISIBLE) return;
   index = (index - 1 + queue.length) % queue.length;
-  if (index > queue.length - VISIBLE) index = Math.max(0, queue.length - VISIBLE);
   render();
 }
 
 function startAuto() {
   stopAuto();
-  autoTimer = setInterval(() => {
-    if (!paused) next();
-  }, AUTO_MS);
+  carouselTimer = setTimeout(showCarouselImages, 2000); // small warm-up delay
 }
 
 function stopAuto() {
-  if (autoTimer) clearInterval(autoTimer);
-  autoTimer = null;
+  clearTimeout(carouselTimer);
+  carouselTimer = null;
 }
 
 function togglePause() {
   paused = !paused;
   if (pauseBtn) pauseBtn.textContent = paused ? "▶︎" : "⏸";
+  if (!paused) showCarouselImages(); // resume immediately if unpaused
 }
 
 // ------------------------------------------------------------
@@ -240,79 +278,10 @@ function togglePause() {
 function primeQueue(allIds) {
   ids = allIds.slice(); // copy
   const first = ids.slice(0, PRELOAD_WINDOW);
-  queue = first.map(id => buildProxyUrl(id)); // explicit build
+  queue = first.map((id) => buildProxyUrl(id));
   render();
   startAuto();
-
-  // TODO: expansion: 
-  // background-load the remainder of ids for larger queues.
 }
-
-
-// ----------------------------
-// Button controls
-// ----------------------------
-// ------------------------------------------------------------
-// Controls (with null safety + auto reset)
-// ------------------------------------------------------------
-if (nextBtn) {
-  nextBtn.addEventListener("click", () => {
-    const track = document.querySelector("#about-photo-carousel .carousel-track");
-    if (!track) return; // prevent null errors
-    next();
-    stopAuto();
-    startAuto();
-  });
-}
-
-if (prevBtn) {
-  prevBtn.addEventListener("click", () => {
-    const track = document.querySelector("#about-photo-carousel .carousel-track");
-    if (!track) return; // prevent null errors
-    prev();
-    stopAuto();
-    startAuto();
-  });
-}
-
-if (pauseBtn) {
-  pauseBtn.addEventListener("click", () => togglePause());
-}
-
-// ------------------------------------------------------------
-// Fetch IDs → normalize → build proxy URLs → render only 3 photos at a time
-// ------------------------------------------------------------
-async function loadAboutPhotos() {
-  if (!carousel) return;
-  const status = document.getElementById("carousel-status");
-  if (status) status.textContent = "Loading photos…";
-
-  try {
-    const data = await safeFetch(`${API_BASE}/aboutMe_photos`, {}, 1, 90000);
-    const raw = Array.isArray(data.photos) ? data.photos : [];
-
-    // Normalize everything to Drive IDs
-    const idsOnly = raw
-      .map(extractId)
-      .filter(Boolean);
-
-    if (!idsOnly.length) {
-      if (status) status.textContent = "No photos available.";
-      console.warn("📭 /aboutMe_photos returned no usable IDs:", raw);
-      return;
-    }
-
-    // Preload and render using normalized IDs
-    primeQueue(idsOnly);
-    if (status) {
-      status.textContent = `Loaded ${Math.min(idsOnly.length, PRELOAD_WINDOW)} photo${idsOnly.length === 1 ? "" : "s"}.`;
-    }
-  } catch (e) {
-    if (status) status.textContent = "Failed to load photos.";
-    console.warn("Photo load error:", e);
-  }
-}
-
 
 // ----------------------------
 // UI Helpers
