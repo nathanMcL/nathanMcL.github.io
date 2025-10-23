@@ -136,7 +136,7 @@ async function loadAboutOrb() {
 }
 
 // ----------------------------
-// Carousel (3 visible, pause/resume, preload 9, skip 404s)
+//  (3 visible, pause/resume, preload 9, skip 404s)
 // ----------------------------
 let ids = [];
 let queue = [];
@@ -283,6 +283,70 @@ function primeQueue(allIds) {
   startAuto();
 }
 
+// ------------------------------------------------------------
+// Fetch IDs → normalize → build proxy URLs → render only 3 photos at a time
+// ------------------------------------------------------------
+async function loadAboutPhotos() {
+  if (!carousel) return;
+  const status = document.getElementById("carousel-status");
+  if (status) status.textContent = "Loading photos…";
+
+  try {
+    const data = await safeFetch(`${API_BASE}/aboutMe_photos`, {}, 1, 90000);
+    const raw = Array.isArray(data.photos) ? data.photos : [];
+
+    // Normalize everything to Drive IDs
+    const idsOnly = raw.map(extractId).filter(Boolean);
+
+    if (!idsOnly.length) {
+      if (status) status.textContent = "No photos available.";
+      console.warn("📭 /aboutMe_photos returned no usable IDs:", raw);
+      return;
+    }
+
+    // Preload and render using normalized IDs
+    primeQueue(idsOnly);
+    if (status) {
+      status.textContent = `Loaded ${Math.min(idsOnly.length, PRELOAD_WINDOW)} photo${idsOnly.length === 1 ? "" : "s"}.`;
+    }
+  } catch (e) {
+    if (status) status.textContent = "Failed to load photos.";
+    console.warn("Photo load error:", e);
+  }
+}
+
+// ------------------------------------------------------------
+// Fetch IDs → normalize → build proxy URLs → render only 3 photos at a time
+// ------------------------------------------------------------
+async function loadAboutPhotos() {
+  if (!carousel) return;
+  const status = document.getElementById("carousel-status");
+  if (status) status.textContent = "Loading photos…";
+
+  try {
+    const data = await safeFetch(`${API_BASE}/aboutMe_photos`, {}, 1, 90000);
+    const raw = Array.isArray(data.photos) ? data.photos : [];
+
+    // Normalize everything to Drive IDs
+    const idsOnly = raw.map(extractId).filter(Boolean);
+
+    if (!idsOnly.length) {
+      if (status) status.textContent = "No photos available.";
+      console.warn("📭 /aboutMe_photos returned no usable IDs:", raw);
+      return;
+    }
+
+    // Preload and render using normalized IDs
+    primeQueue(idsOnly);
+    if (status) {
+      status.textContent = `Loaded ${Math.min(idsOnly.length, PRELOAD_WINDOW)} photo${idsOnly.length === 1 ? "" : "s"}.`;
+    }
+  } catch (e) {
+    if (status) status.textContent = "Failed to load photos.";
+    console.warn("Photo load error:", e);
+  }
+}
+
 // ----------------------------
 // UI Helpers
 // ----------------------------
@@ -326,3 +390,8 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 });
+
+// Why is it taking so log to recognize my changes so I can commit? Notice me!
+
+
+// Hey! yada yada yada
