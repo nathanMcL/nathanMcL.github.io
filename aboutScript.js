@@ -268,13 +268,12 @@ function togglePause() {
 }
 
 // ------------------------------------------------------------
-// 🧠 Enhanced primeQueue — render all, wait for first 5 to decode
+// 🧠 Enhanced primeQueue — render first 5 immediately, decode, then stream-load rest
 // ------------------------------------------------------------
 async function primeQueue(allIds) {
   ids = allIds.slice();
   queue = ids.map((id) => buildProxyUrl(id));
 
-  // build all items at once
   let track = carousel.querySelector(".carousel-track");
   if (!track) {
     track = document.createElement("div");
@@ -283,30 +282,40 @@ async function primeQueue(allIds) {
     carousel.appendChild(track);
   }
   track.innerHTML = "";
-  queue.forEach((url, i) => {
+
+  // 🪄 Create first 5 items immediately (not just 3)
+  const firstBatchCount = Math.min(queue.length, 5);
+  queue.slice(0, firstBatchCount).forEach((url, i) => {
     const item = createItem(url);
-    item.style.display = i < 3 ? "block" : "none"; // show first 3
+    item.style.display = i < 3 ? "block" : "none"; // show first 3, keep 2 hidden for pre-decode
     track.appendChild(item);
   });
 
-  // decode guard (first 5)
+  // 🧠 Decode first 5 before rotation
   try {
-    const imgs = Array.from(track.querySelectorAll("img")).slice(0, 5);
+    const imgs = Array.from(track.querySelectorAll("img"));
     await Promise.all(
-      imgs.map((img) => img.decode().catch(() => console.warn("⚠️ decode failed for", img.src)))
+      imgs.map((img) =>
+        img.decode().catch(() => console.warn("⚠️ decode failed for", img.src))
+      )
     );
     console.log(`✅ First ${imgs.length} images decoded, starting carousel.`);
   } catch (err) {
     console.warn("⚠️ decode guard skipped:", err);
   }
 
-  // lazy-decode next 3 every 5 s
-  (async function progressiveDecode(start = 5) {
+  // 🪄 Now progressively add and decode the rest in 3-image batches
+  (async function progressiveAppend(start = firstBatchCount) {
     for (let i = start; i < queue.length; i += 3) {
       await new Promise((r) => setTimeout(r, 5000));
-      const slice = Array.from(track.querySelectorAll("img")).slice(i, i + 3);
-      for (const img of slice) {
-        if (!img.complete) {
+      const batch = queue.slice(i, i + 3);
+      for (const url of batch) {
+        const item = createItem(url);
+        item.style.display = "none";
+        track.appendChild(item);
+        // decode in background
+        const img = item.querySelector("img");
+        if (img && !img.complete) {
           img.loading = "eager";
           img.decode().catch(() => {});
         }
@@ -396,4 +405,4 @@ document.addEventListener("DOMContentLoaded", () => {
 // Why is it taking so log to recognize my changes so I can commit? Notice me!
 
 
-// Hey! yada yada yada
+// Hey! yada yada yada...
