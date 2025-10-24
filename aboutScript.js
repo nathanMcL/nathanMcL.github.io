@@ -209,33 +209,29 @@ function render() {
 }
 
 // ===============================
-// 🌀 Smarter Carousel Rotation Controller
+// 🌀 Smarter Carousel Controller — full preload + staged decoding
 // ===============================
 function showCarouselImages() {
-  const items = document.querySelectorAll(".carousel-item");
+  const items = Array.from(document.querySelectorAll(".carousel-item"));
   if (items.length === 0 || paused) return;
 
-  // Remove previous focus
-  items.forEach((item) => item.classList.remove("focused"));
-
-  // Compute visible slice (3 at a time)
-  for (let i = 0; i < items.length; i++) {
-    items[i].style.display = "none";
-  }
+  // hide all, then show 3
+  items.forEach((it) => (it.style.display = "none"));
   for (let i = 0; i < 3; i++) {
     const idx = (currentIndex + i) % items.length;
     items[idx].style.display = "block";
-    if (i === 1) items[idx].classList.add("focused"); // middle one highlighted
+    items[idx].classList.toggle("focused", i === 1);
   }
 
-  // ✅ preload next image to avoid flicker
-  const nextIdx = (currentIndex + 3) % items.length;
-  const nextImg = items[nextIdx]?.querySelector("img");
-  if (nextImg && !nextImg.complete) nextImg.loading = "eager";
+  // preload next 3
+  for (let j = 0; j < 3; j++) {
+    const nextIdx = (currentIndex + 3 + j) % items.length;
+    const img = items[nextIdx]?.querySelector("img");
+    if (img && !img.complete) img.loading = "eager";
+  }
 
+  // advance index 
   currentIndex = (currentIndex + 1) % items.length;
-
-  // Reset timer with load buffer
   clearTimeout(carouselTimer);
   carouselTimer = setTimeout(showCarouselImages, DISPLAY_TIME + LOAD_GRACE_TIME);
 }
@@ -272,18 +268,30 @@ function togglePause() {
 }
 
 // ------------------------------------------------------------
-// Preload the first PRELOAD_WINDOW images as proxy URLs
-// Wait until at least 5 are decoded before starting rotation
+// 🧠 Enhanced primeQueue — render all, wait for first 5 to decode
 // ------------------------------------------------------------
 async function primeQueue(allIds) {
   ids = allIds.slice();
-  const first = ids.slice(0, PRELOAD_WINDOW);
-  queue = first.map((id) => buildProxyUrl(id));
-  render();
+  queue = ids.map((id) => buildProxyUrl(id));
 
+  // build all items at once
+  let track = carousel.querySelector(".carousel-track");
+  if (!track) {
+    track = document.createElement("div");
+    track.className = "carousel-track";
+    carousel.innerHTML = "";
+    carousel.appendChild(track);
+  }
+  track.innerHTML = "";
+  queue.forEach((url, i) => {
+    const item = createItem(url);
+    item.style.display = i < 3 ? "block" : "none"; // show first 3
+    track.appendChild(item);
+  });
+
+  // decode guard (first 5)
   try {
-    // 🧠 Decode Guard — wait until first N images are decoded
-    const imgs = Array.from(document.querySelectorAll(".carousel-item img")).slice(0, DECODE_GUARD_COUNT);
+    const imgs = Array.from(track.querySelectorAll("img")).slice(0, 5);
     await Promise.all(
       imgs.map((img) => img.decode().catch(() => console.warn("⚠️ decode failed for", img.src)))
     );
@@ -291,6 +299,20 @@ async function primeQueue(allIds) {
   } catch (err) {
     console.warn("⚠️ decode guard skipped:", err);
   }
+
+  // lazy-decode next 3 every 5 s
+  (async function progressiveDecode(start = 5) {
+    for (let i = start; i < queue.length; i += 3) {
+      await new Promise((r) => setTimeout(r, 5000));
+      const slice = Array.from(track.querySelectorAll("img")).slice(i, i + 3);
+      for (const img of slice) {
+        if (!img.complete) {
+          img.loading = "eager";
+          img.decode().catch(() => {});
+        }
+      }
+    }
+  })();
 
   startAuto();
 }
