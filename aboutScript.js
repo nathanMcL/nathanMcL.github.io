@@ -295,16 +295,16 @@ async function primeQueue(allIds) {
   // 🧠 Decode first 5 before rotation
   try {
     const imgs = Array.from(track.querySelectorAll("img"));
-    await Promise.all(
-      imgs.map(async (img, idx) => {
-        try {
-          await img.decode();
-          console.log(`✅ Decoded initial image ${idx + 1}/${imgs.length}: ${img.src}`);
-        } catch {
-          console.warn(`⚠️ Initial decode failed for: ${img.src}`);
-        }
-      })
-    );
+    console.log("🧩 Preparing first 5 images for decode...");
+    
+    for (const [i, img] of imgs.entries()) {
+      // Force eager load
+      img.loading = "eager";
+      await img.decode().then(() => {
+        console.log(`✅ Decoded initial image ${i + 1}/${imgs.length}: ${img.src}`);
+      }).catch((err) => console.warn("⚠️ decode failed for", img.src, err));
+    }
+
     console.log(`✅ All first ${imgs.length} images decoded, starting carousel.`);
   } catch (err) {
     console.warn("⚠️ decode guard skipped:", err);
