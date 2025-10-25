@@ -76,7 +76,7 @@ body {
 .nav.menu {
   display: flex !important;
   list-style-type: none;
-  gap: 15px;
+  gap: 8px;
   padding: 0;
   margin-left: auto;
 }
@@ -684,7 +684,7 @@ footer {
 }
 
 /* =======================
-   Responsive
+   Responsive Design Sections
    ======================= */
 /* ----- Tablets and Small Laptops (≤1024px) ----- */
 @media (max-width: 1024px) {
@@ -724,9 +724,9 @@ footer {
 
   .nav.menu {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: flex-end;
-    gap: 15px;
+    gap: 4px;
     list-style: none;
     margin-right: 50px;
   }
@@ -881,9 +881,9 @@ footer {
   }
 
   .nav.menu {
-    flex-direction: row;
+    flex-direction: column;
     justify-content: center;
-    gap: 8px;
+    gap: 4px;
   }
 
   .nav_item a {
@@ -894,7 +894,7 @@ footer {
   /* Maintain About page grid */
   .values-list {
     grid-template-columns: repeat(2, 1fr);
-    gap: 8px;
+    gap: 4px;
   }
 
   .value-card {
@@ -947,7 +947,7 @@ footer {
   .nav.menu {
     flex-direction: column;
     align-items: center;
-    gap: 6px;
+    gap: 4px;
   }
 
   .nav_item a {
