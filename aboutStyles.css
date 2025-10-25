@@ -47,58 +47,58 @@ body {
 }
 
 .nav_container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
 }
 
 #nav_logo {
-  display: flex;
-  align-items: center;
-  text-decoration: none;
-  color: white;
-  font-weight: bold;
-  font-size: 1.5rem;
-  margin-left: 0;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    font-size: 1.5rem; /* To adjust the text size */
+    margin-left: 0px;
 }
 
 .littlerobot {
-  max-width: 170px;
-  height: auto;
-  margin-right: 5px;
-  margin-left: -100px; /* match blogStyles.css logo offset */
+    max-width: 170px; /* Adjust the max-width for log scaling */
+    height: auto; /* Maintain the aspect ratio */
+    margin-right: 5px; /* The space between the logo and text */
+    margin-left: -100px;
 }
 
-/* Navigation Menu */
 .nav.menu {
-  display: flex !important;
-  list-style-type: none;
-  gap: 8px;
-  padding: 0;
-  margin-left: auto;
+    display: flex !important; /* Ensure the menu is displayed */
+    list-style-type: none;
+    display: flex;
+    gap: 15px;
+    padding: 0;
+    margin-left: auto;
 }
 
 .nav_item a {
-  display: inline-block;
-  text-decoration: none;
-  color: var(--fourth-color);
-  font-weight: bold;
-  padding: 2px 10px;
-  border-radius: 20px;
-  transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+    display: inline-block;
+    text-decoration: none;
+    color: var(--fourth-color);
+    font-weight: bold;
+    padding: 2px 10px;
+    border-radius: 20px;
+    transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
 }
 
 .nav_item a.nav_active {
-  color: var(--first-color);
+    color: var(--first-color); /* Highlight the active link */
 }
 
 .nav_item a:hover {
-  background-color: var(--second-color);
-  color: var(--first-color);
-  text-decoration: underline;
+    background-color: var(--second-color); /* Remove background block */
+    color: var(--first-color); /* Change text color instead */
+    text-decoration: underline; /* Optional: Underline effect */
 }
 
 .nav_item a:focus {
@@ -741,7 +741,8 @@ footer {
     .nav_item a:hover {
         background-color: var(--second-color);
     }
-    /* Enf of Navigation Menu */
+    /* End of Navigation Menu */
+    /* End of Medium screens */
 
   /* Maintain About page layout */
   .about-main {
@@ -780,59 +781,59 @@ footer {
 /* ----- Tablets / Large Phones (≤768px) ----- */
 @media (max-width: 768px) {
   /* ----- Header / Navigation ----- */
-   .nav_container {
-        display: flex;
-        justify-content: space-between; /* Center the logo img, text, and the  navigation menu */
-        align-items: center;
-        max-width: 1200px; /* Set the max-width to center the contianer */
-        margin: 0 auto; /* Center the container */
-        padding: 5px 10px; /* Add padding to prevent touch the edges */
-    }
+  .nav_container {
+      display: flex;
+      justify-content: space-between; /* Center the logo img, text, and the  navigation menu */
+      align-items: center;
+      max-width: 1200px; /* Set the max-width to center the contianer */
+      margin: 0 auto; /* Center the container */
+      padding: 5px 10px; /* Add padding to prevent touch the edges */
+  }
 
-    #nav_logo {
-        display: flex;
-        align-items: center;
-        text-align: left;
-        font-size: 1.2rem;
-        margin-right: auto;
-        margin-left: -80px; /* Push or Move the logo toward the center */
-    }
+  #nav_logo {
+      display: flex;
+      align-items: center;
+      text-align: left;
+      font-size: 1.2rem;
+      margin-right: auto;
+      margin-left: -80px; /* Push or Move the logo toward the center */
+  }
 
-    .littlerobot {
-        max-width: 135px;
-        margin-right: 0px; /* Create space between the robot and the text */
-        margin-left: 50px;
-        margin-top: 30px;
+  .littlerobot {
+      max-width: 135px;
+      margin-right: 0px; /* Create space between the robot and the text */
+      margin-left: 50px;
+      margin-top: 30px;
 
-    }
+  }
 
-    .color-change {
-        display: inline-block;
-        margin: 1.5px; /* Space between the characters */
-        font-size: 1.2rem;
-        margin-top: 65px;
-    }
+  .color-change {
+      display: inline-block;
+      margin: 1.5px; /* Space between the characters */
+      font-size: 1.2rem;
+      margin-top: 65px;
+  }
 
-    /* Navigation Menu */
-    .nav.menu {
-        display: flex;
-        flex-direction: row;
-        justify-content: flex-end; /* Align the menu to the right */
-        gap: 15px; /* Space between the menu items */
-        list-style: none;
-        margin-right: 50px; /* Push the menu toward the center */
-    }
+  /* Navigation Menu */
+  .nav.menu {
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-end; /* Align the menu to the right */
+      gap: 15px; /* Space between the menu items */
+      list-style: none;
+      margin-right: 50px; /* Push the menu toward the center */
+  }
 
-    .nav_item a {
-        font-size: 1rem;
-        text-decoration: none;
-        color: var(--fourth-color);
-        margin-right: 30px;
-    }
+  .nav_item a {
+      font-size: 1rem;
+      text-decoration: none;
+      color: var(--fourth-color);
+      margin-right: 30px;
+  }
 
-    .nav_item a:hover {
-        background-color: var(--second-color);
-    }
+  .nav_item a:hover {
+      background-color: var(--second-color);
+  }
     /* End of Navigation Menu */
 
   /* Adjust About page grid and carousel */

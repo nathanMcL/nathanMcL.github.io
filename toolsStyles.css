@@ -92,6 +92,13 @@ body {
     text-decoration: underline; /* Optional: Underline effect */
 }
 
+.nav_item a:focus {
+  background-color: var(--second-color);
+  color: var(--first-color);
+  text-decoration: underline;
+  outline: none;
+}
+
 /* Animation styles for color change */
 .color-change {
     display: inline-block;
@@ -393,7 +400,7 @@ footer {
     .nav_item a:hover {
         background-color: var(--second-color);
     }
-    /* Enf of Navigation Menu */
+    /* End of Navigation Menu */
     /* End of Medium screens */
     /* Small screens */
 @media (max-width: 768px) {
