@@ -944,6 +944,7 @@ footer {
   .littlerobot {
     max-width: 100px;
     margin: 0 auto 5px auto;
+    margin-left: -100px;
   }
 
   .nav.menu {

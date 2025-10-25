@@ -74,7 +74,7 @@ body {
 .nav.menu {
   display: flex;               /* horizontal on desktop */
   list-style: none;
-  gap: 15px;
+  gap: 8px;
   padding: 0;
   margin-left: auto;
   align-items: center;
