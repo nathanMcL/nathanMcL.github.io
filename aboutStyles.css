@@ -687,62 +687,61 @@ footer {
    Responsive Design Sections
    ======================= */
 /* ----- Tablets and Small Laptops (≤1024px) ----- */
-@media (max-width: 1024px) {
-  /* ----- Header / Navigation ----- */
-  .nav_container {
-    display: flex;
-    justify-content: space-between; /* space between logo and nav menu */
-    align-items: center;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 5px 20px;
-  }
+@media (max-width: 1023px) {
+    /* Adjust the container to center its content */
+    .nav_container {
+        display: flex;
+        justify-content: space-between; /* Center the logo img, text, and the  navigation menu */
+        align-items: center;
+        max-width: 1200px; /* Set the max-width to center the contianer */
+        margin: 0 auto; /* Center the container */
+        padding: 5px 20px; /* Add padding to prevent touch the edges */
+    }
 
-  #nav_logo {
-    display: flex;
-    align-items: center;
-    text-align: left;
-    font-size: 1.2rem;
-    margin-right: auto;
-    margin-left: 150px; /* Move logo toward the center like blogStyles.css */
-  }
+    #nav_logo {
+        display: flex;
+        align-items: center;
+        text-align: left;
+        font-size: 1.2rem;
+        margin-right: auto;
+        margin-left: 150px; /* Push / Move the logo toward the center */
+    }
 
-  .littlerobot {
-    max-width: 150px;
-    height: auto;
-    margin-right: 0px;
-    margin-left: -200px; /* Slight left offset for alignment */
-    margin-top: 50px;
-  }
+    .littlerobot {
+        max-width: 150px;
+        margin-right: 0px; /* Create space between the robot and the text */
+        margin-left: -200px; /* Negative moves it left */
+        margin-top: 50px;
+    }
 
-  .color-change {
-    display: inline-block;
-    margin: 0px 2.5px;
-    font-size: 1.2rem;
-    margin-top: 70px;
-  }
+    .color-change {
+        display: inline-block;
+        margin: 0px 2.5px; /* Space between the characters */
+        font-size: 1.2rem;
+        margin-top: 70px;
+    }
 
-  .nav.menu {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    gap: 4px;
-    list-style: none;
-    margin-right: 50px;
-  }
+    /* Navigation Menu */
+    .nav.menu {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end; /* Align the menu to the right */
+        gap: 15px; /* Space between the menu items */
+        list-style: none;
+        margin-right: 50px; /* Push the menu toward the center */
+    }
 
-  .nav_item a {
-    font-size: 1rem;
-    text-decoration: none;
-    color: var(--fourth-color);
-    margin-right: 30px;
-    transition: background-color 0.3s ease;
-  }
+    .nav_item a {
+        font-size: 1rem;
+        text-decoration: none;
+        color: var(--fourth-color);
+        margin-right: 30px;
+    }
 
-  .nav_item a:hover {
-    background-color: var(--second-color);
-    color: var(--first-color);
-  }
+    .nav_item a:hover {
+        background-color: var(--second-color);
+    }
+    /* Enf of Navigation Menu */
 
   /* Maintain About page layout */
   .about-main {
@@ -781,57 +780,60 @@ footer {
 /* ----- Tablets / Large Phones (≤768px) ----- */
 @media (max-width: 768px) {
   /* ----- Header / Navigation ----- */
-  .nav_container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 5px 10px;
-  }
+   .nav_container {
+        display: flex;
+        justify-content: space-between; /* Center the logo img, text, and the  navigation menu */
+        align-items: center;
+        max-width: 1200px; /* Set the max-width to center the contianer */
+        margin: 0 auto; /* Center the container */
+        padding: 5px 10px; /* Add padding to prevent touch the edges */
+    }
 
-  #nav_logo {
-    display: flex;
-    align-items: center;
-    text-align: left;
-    font-size: 1.2rem;
-    margin-right: auto;
-    margin-left: -80px; /* Center logo like blogStyles.css */
-  }
+    #nav_logo {
+        display: flex;
+        align-items: center;
+        text-align: left;
+        font-size: 1.2rem;
+        margin-right: auto;
+        margin-left: -80px; /* Push or Move the logo toward the center */
+    }
 
-  .littlerobot {
-    max-width: 135px;
-    margin-right: 0px;
-    margin-left: 50px;
-    margin-top: 30px;
-  }
+    .littlerobot {
+        max-width: 135px;
+        margin-right: 0px; /* Create space between the robot and the text */
+        margin-left: 50px;
+        margin-top: 30px;
 
-  .color-change {
-    display: inline-block;
-    margin: 1.5px;
-    font-size: 1.2rem;
-    margin-top: 65px;
-  }
+    }
 
-  .nav.menu {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    gap: 15px;
-    list-style: none;
-    margin-right: 50px;
-  }
+    .color-change {
+        display: inline-block;
+        margin: 1.5px; /* Space between the characters */
+        font-size: 1.2rem;
+        margin-top: 65px;
+    }
 
-  .nav_item a {
-    font-size: 1rem;
-    text-decoration: none;
-    color: var(--fourth-color);
-    margin-right: 30px;
-  }
+    /* Navigation Menu */
+    .nav.menu {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end; /* Align the menu to the right */
+        gap: 15px; /* Space between the menu items */
+        list-style: none;
+        margin-right: 50px; /* Push the menu toward the center */
+    }
 
-  .nav_item a:hover {
-    background-color: var(--second-color);
-  }
+    .nav_item a {
+        font-size: 1rem;
+        text-decoration: none;
+        color: var(--fourth-color);
+        margin-right: 30px;
+    }
+
+    .nav_item a:hover {
+        background-color: var(--second-color);
+    }
+    /* End of Navigation Menu */
 
   /* Adjust About page grid and carousel */
   .values-list {
