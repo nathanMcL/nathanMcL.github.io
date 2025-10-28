@@ -688,63 +688,65 @@ footer {
    Responsive Design Sections
    ======================= */
 /* ----- Tablets and Small Laptops (≤1024px) ----- */
-@media (max-width: 1023px) {
-    /* Adjust the container to center its content */
-    .nav_container {
-        display: flex;
-        justify-content: space-between; /* Center the logo img, text, and the  navigation menu */
-        align-items: center;
-        max-width: 1200px; /* Set the max-width to center the contianer */
-        margin: 0 auto; /* Center the container */
-        padding: 5px 20px; /* Add padding to prevent touch the edges */
-    }
+@media (max-width: 1024px) {
+  /* Header layout: align three zones across */
+  .nav_container {
+    display: grid;
+    grid-template-columns: auto 1fr auto; /* robot | animated text | nav */
+    align-items: center;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 10px 20px;
+    gap: 10px;
+  }
 
-    #nav_logo {
-        display: flex;
-        align-items: center;
-        text-align: left;
-        font-size: 1.2rem;
-        margin-right: auto;
-        margin-left: 150px; /* Push / Move the logo toward the center */
-    }
+  #nav_logo {
+    display: flex;
+    align-items: center;
+    justify-self: start;
+    font-size: 1.2rem;
+    margin: 0;
+  }
 
-    .littlerobot {
-        max-width: 150px;
-        margin-right: 0px; /* Create space between the robot and the text */
-        margin-left: -300px; /* Negative moves it left */
-        margin-top: 50px;
-    }
+  .littlerobot {
+    max-width: 140px;
+    height: auto;
+    margin: 0 0 0 20px; /* subtle right shift to keep robot visible */
+  }
 
-    .color-change {
-        display: inline-block;
-        margin: 0px 2.5px; /* Space between the characters */
-        font-size: 1.2rem;
-        margin-top: 70px;
-    }
+  .color-change {
+    justify-self: center;
+    display: inline-block;
+    font-size: 1.25rem;
+    margin: 0 auto;
+  }
 
-    /* Navigation Menu */
-    .nav.menu {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-end;
-      gap: 6px;
-      list-style: none;
-      margin-right: 30px;
-    }
+  /* Navigation Menu */
+  .nav.menu {
+    justify-self: end;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 6px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
 
-    .nav_item a {
-      font-size: 1rem;
-      text-decoration: none;
-      color: var(--fourth-color);
-      padding: 2px 6px;
-    }
+  .nav_item a {
+    font-size: 1rem;
+    text-decoration: none;
+    color: var(--fourth-color);
+    padding: 2px 8px;
+  }
 
-    .nav_item a:hover {
-      background-color: var(--second-color);
-      color: var(--first-color);
-      text-decoration: underline;
-    }
-    /* End of Navigation Menu */
+  .nav_item a:hover {
+    background-color: var(--second-color);
+    color: var(--first-color);
+    text-decoration: underline;
+  }
+  /* End of Navigation Menu */
 
   /* Maintain About page layout */
   .about-main {
@@ -782,61 +784,61 @@ footer {
 
 /* ----- Tablets / Large Phones (≤768px) ----- */
 @media (max-width: 768px) {
-  /* ----- Header / Navigation ----- */
-   .nav_container {
-        display: flex;
-        justify-content: space-between; /* Center the logo img, text, and the  navigation menu */
-        align-items: center;
-        max-width: 1200px; /* Set the max-width to center the contianer */
-        margin: 0 auto; /* Center the container */
-        padding: 5px 10px; /* Add padding to prevent touch the edges */
-    }
+/* ----- Header / Navigation ----- */
+  .nav_container {
+      display: flex;
+      justify-content: space-between; /* Center the logo img, text, and the  navigation menu */
+      align-items: center;
+      max-width: 1200px; /* Set the max-width to center the contianer */
+      margin: 0 auto; /* Center the container */
+      padding: 5px 10px; /* Add padding to prevent touch the edges */
+  }
 
-    #nav_logo {
-        display: flex;
-        align-items: center;
-        text-align: left;
-        font-size: 1.2rem;
-        margin-right: auto;
-        margin-left: -80px; /* Push or Move the logo toward the center */
-    }
+  #nav_logo {
+      display: flex;
+      align-items: center;
+      text-align: left;
+      font-size: 1.2rem;
+      margin-right: auto;
+      margin-left: -80px; /* Push or Move the logo toward the center */
+  }
 
-    .littlerobot {
-        max-width: 135px;
-        margin-right: 0px; /* Create space between the robot and the text */
-        margin-left: 50px;
-        margin-top: 30px;
+  .littlerobot {
+      max-width: 135px;
+      margin-right: 0px; /* Create space between the robot and the text */
+      margin-left: 50px;
+      margin-top: 30px;
 
-    }
+  }
 
-    .color-change {
-        display: inline-block;
-        margin: 1.5px; /* Space between the characters */
-        font-size: 1.2rem;
-        margin-top: 65px;
-    }
+  .color-change {
+      display: inline-block;
+      margin: 1.5px; /* Space between the characters */
+      font-size: 1.2rem;
+      margin-top: 65px;
+  }
 
-    /* Navigation Menu */
-    .nav.menu {
-        display: flex;
-        flex-direction: column;
-        align-items: center; /* Align the menu to the center */
-        gap: 4px; /* Space between the menu items */
-        list-style: none;
-        margin-right: 10px; /* Push the menu toward the center */
-    }
+  /* Navigation Menu */
+  .nav.menu {
+      display: flex;
+      flex-direction: column;
+      align-items: center; /* Align the menu to the center */
+      gap: 4px; /* Space between the menu items */
+      list-style: none;
+      margin-right: 10px; /* Push the menu toward the center */
+  }
 
-    .nav_item a {
-        font-size: 1rem;
-        text-decoration: none;
-        color: var(--fourth-color);
-        margin-right: 30px;
-    }
+  .nav_item a {
+      font-size: 1rem;
+      text-decoration: none;
+      color: var(--fourth-color);
+      margin-right: 30px;
+  }
 
-    .nav_item a:hover {
-        background-color: var(--second-color);
-    }
-    /* End of Navigation Menu */
+  .nav_item a:hover {
+      background-color: var(--second-color);
+  }
+  /* End of Navigation Menu */
 
   /* Adjust About page grid and carousel */
   .values-list {
@@ -874,26 +876,57 @@ footer {
 
 /* ----- Mobile Phones (≤480px) ----- */
 @media (max-width: 480px) {
-  /* ----- Header / Navigation ----- */
+  /* Header Layout */
+  .nav_container {
+    display: grid;
+    grid-template-columns: auto 1fr auto; /* robot | animated text | nav */
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 12px;
+    gap: 10px;
+  }
+
   #nav_logo {
+    display: flex;
+    align-items: center;
+    justify-self: start;
     font-size: 1rem;
-    margin-left: -40px;
+    margin: 0;
   }
 
   .littlerobot {
-    max-width: 110px;
-    margin-left: -20px;
+    max-width: 95px;
+    height: auto;
+    margin: 0;
+  }
+
+  .color-change {
+    justify-self: center;
+    font-size: 1.1rem;
+    margin: 0 auto;
   }
 
   .nav.menu {
+    justify-self: end;
+    display: flex;
     flex-direction: column;
-    justify-content: center;
+    align-items: flex-end;
     gap: 4px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
   }
 
   .nav_item a {
     font-size: 0.9rem;
     padding: 4px 8px;
+    text-decoration: none;
+    color: var(--fourth-color);
+  }
+
+  .nav_item a:hover {
+    background-color: var(--second-color);
+    color: var(--first-color);
   }
 
   /* Maintain About page grid */
@@ -934,31 +967,51 @@ footer {
 /* ----- Very Small Devices / Vertical Stack (≤420px) ----- */
 @media (max-width: 420px) {
   .nav_container {
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
     align-items: center;
+    justify-content: space-between;
+    gap: 6px;
     padding: 10px;
   }
 
   #nav_logo {
-    margin: 0 auto 10px auto;
+    justify-self: start;
     font-size: 1rem;
+    margin: 0;
   }
 
   .littlerobot {
-    max-width: 100px;
-    margin: 0 auto 5px auto;
+    max-width: 85px;
+    height: auto;
+    margin: 0;
+  }
+
+  .color-change {
+    justify-self: center;
+    font-size: 1rem;
+    margin: 0 auto;
   }
 
   .nav.menu {
+    justify-self: end;
+    display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-end;
     gap: 4px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
   }
 
   .nav_item a {
-    font-size: 0.9rem;
-    width: auto;
-    padding: 6px 12px;
+    font-size: 0.85rem;
+    padding: 4px 8px;
+  }
+
+  .nav_item a:hover {
+    background-color: var(--second-color);
+    color: var(--first-color);
   }
 
   #about-photo-carousel {
