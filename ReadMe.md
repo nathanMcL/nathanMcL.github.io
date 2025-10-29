@@ -13,6 +13,18 @@ What is the website's purpose? <br>
 
 ---
 
+### (10292025.1150) Carousel <= Google Service Drive <= Google Drive Photo Dump
+
+- Looking at the about page, below the header is the `Marque Carousel`. Rotating the logos to the left (todo: close the delay/restart loop)  
+- I will remove the visual loading notifications: `Synced successfully!` and the `Reload`.
+
+- The `About Me` generated bio comes from its `API` server. 
+The `Server` is a software file that contains multiple networking, routing paths, and other backend coded instructions. The server helps to facilitate the security process, logging events, and a host of other functions. 
+
+(todo: breakdown my server to describe its functions. I can use draw.io)  
+
+- The `Photo Carousel` is connected to a *`Shared Google Drive Service Account`*. With the `Shared Drive`, I can dump a large amount of images into the shared drive's respective folder, and the photos will render on the `Front-End` Photo Carousel. (Will have to explain how the server has a proxy server built within it to help load the images from the shared drive)
+
 ### (10192025.1640) Unfinished Sentences...
 
 I noticed there was an issue with the generated content not finishing a sentence or starting a new sentence when the `About Me Blurb` could have ended.  
@@ -594,6 +606,7 @@ Screenshot: <br>
 
 ![Me Orb Output](https://nathanmcl.github.io/images/MeOrbOutput.png)
 <br>
+
 
 
 
