@@ -13,7 +13,7 @@ What is the website's purpose? <br>
 
 ---
 
-### (10292025.1150) Carousel <= Google Service Drive <= Google Drive Photo Dump
+### (10292025.1150) Carousel == Google Service Drive == Google Drive Photo Dump
 
 - Looking at the about page, below the header is the `Marque Carousel`. Rotating the logos to the left (todo: close the delay/restart loop)  
 - I will remove the visual loading notifications: `Synced successfully!` and the `Reload`.
@@ -606,6 +606,7 @@ Screenshot: <br>
 
 ![Me Orb Output](https://nathanmcl.github.io/images/MeOrbOutput.png)
 <br>
+
 
 
 
