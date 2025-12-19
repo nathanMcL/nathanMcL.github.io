@@ -13,6 +13,24 @@ What is the website's purpose? <br>
 
 ---
 
+### (12/19/2025.1030) How to move forward?
+
+I like my project I have using Azure. I am able to understand alot better being able to see how the data, or an `API` *click* can function within a production environment. The issue I am having with is funds. To move *forward* I have to find other ways to support and fund my `Azure` `API` server.  
+In the meantime I have been doing additional training via:  
+- `TryHackMe`: `https://tryhackme.com`  
+- `HackTheBox`: `https://app.hackthebox.com/`
+
+I am working on adding another section to my `Cyber Thoughts... ` section. In this other section I will share how I build a `Docker Sandbox`. A `Sandbox` can be used as a partitioned section
+of your ram, and disk space. With this "partitioned" section of your computer the `sandbox` can provide a secure network capable ***environment***. This `sandbox` **does not** use or share any 
+of my personal network. All the data that would be shared in this lab would be from the persepctive of a network that has multiple "wifi" connected devices.  
+If you want to see which `lab` I am working on, here is the `TryHackMe` learning mod: `Nmap Live Host Discovery`: `https://tryhackme.com/room/nmap01`.
+The lab was free I believe, and I like free. 
+What I plan to do is compile a list of network mapping tools uses and with the `sandbox` I can share how these tools function within a visablly-sharable network.  
+So, more to follow.  
+
+
+
+
 ### (10292025.1150) Carousel == Google Service Drive == Google Drive Photo Dump
 
 - Looking at the about page, below the header is the `Marque Carousel`. Rotating the logos to the left (todo: close the delay/restart loop)  
@@ -606,6 +624,7 @@ Screenshot: <br>
 
 ![Me Orb Output](https://nathanmcl.github.io/images/MeOrbOutput.png)
 <br>
+
 
 
 
