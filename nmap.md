@@ -68,13 +68,6 @@ This is *why* I want to build this type of `Docker sandbox`, By building this `s
     captures/           # PCAP files will appear here
 ```
 
-**Only Use On Authorized Networks**  
-
-```nmap <TARGET_IP>
-ss -tuln
-ip a
-```
-
 ## Step 1: `docker-compose.yml`
 
 ***Let's Create***
