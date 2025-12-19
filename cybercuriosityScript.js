@@ -50,7 +50,7 @@ document.addEventListener("DOMContentLoaded", function () {
         if (!section2.hidden && !section2.hasChildNodes()) {
             loadMarkdown("https://raw.githubusercontent.com/nathanMcL/nathanMcL.github.io/main/nmap.md", section2);
         }
-        if (!section1.hidden) {
+        if (!section2.hidden) {
             addcybercuriosityStylesheet();
         } else {
             removecybercuriosityStylesheet();
