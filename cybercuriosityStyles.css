@@ -17,10 +17,16 @@ body {
     --neon-purple: #9a00ff; /* Neon Purple */
     --neon-green: #39ff14; /* Neon Green */
     --neon-pink: #ff0057; /* Neon Pink */
+
+    --lightning-purple: #f200ff; /* Sandbox Lightning Purple */
+    --dark-void: #120036; /* Sandbox Dark Void Purple*/
+    --electric-lime: #73eb0a; /* Sandbox Electric Lime */
+    --lightspeed-yellow: #f7fa1cf3; /* Sandbox Lightspeed Yellow */
+    --bamboo-cream: #efece3; /* Sandbox Bamboo Cream */
    
     /* @MacN_iT text color change */
-    --flag-white: #ffffff;
     --flag-red: #ff2975;
+    --flag-white: #ffffff;
     --flag-blue: #00ffff;
 }
 /* End of Body styles */
@@ -369,6 +375,40 @@ p, h5 {
     background-color: whitesmoke;
 }
 /* End of Wire Diagram iframe styling */
+
+/* Back-End additional readme sectional styles for: Cyber/Sandbox*/
+.readme-toggle-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+   margin: 20px 0;
+}
+
+.toggle-btn {
+    background-color: var(--dark-void);
+    color: var(--lightspeed-yellow);
+    font-weight: bold;
+    padding: 10px 25px;
+    border-radius: 30px;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 0 10px var(--lightning-purple);
+    transition: all 0.3s ease;
+}
+
+.toggle-btn:hover {
+    background-color: var(--electric-lime);
+    color: var(--dark-void);
+    border: 2px solid var(--lightspeed-yellow);
+    text-shadow: 0 0 5px white;
+}
+
+body.backend-mode .markdown-section {
+    background-color: var(--bamboo-cream);
+    color: var(--dark-void);
+    font-family: 'Roboto', 'Arial', sans-serif;
+}
+/* End of Back-End additional readme sectional styles */
 
 /* Footer styling */
 footer {
