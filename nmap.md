@@ -86,3 +86,59 @@ The `.yml` file "YAML" (YAML Ain't Markup Language)/(Yet Another Markup Language
     - `ssh1` **false shell**: This is to represent a **Lab-only SSH target**.  
     - `sniffer` **Tools Container**: This section contains the `Packet Capturing` network.  
 
+### Services (12/21/2025.1230)
+
+`services:`  
+
+- The `services` section is where we define every container that exists in the lab — scanners, targets, and tools — and how they behave on the network.  
+
+    - `scanner:` The `scanner` *container* contains the:  
+        - `image:` Specify the `image` you want the container to start from. This can be from multiple different sources: `repository`/`tag`, a `digest`, or a *local* `image ID`.  
+        `instrumentisto/nmap:latest` This means we want a minimal container built specifically to run `Nmap` and the required dependencies, without unnecessary services and background processes.
+        - `container_name`: ("Simply") name *what* the container is for. Consider this lab: Example: `nmap_scanner`.  
+        - `command: ["sleep", "infinity"]` In the `command: ["brackets"]` are: `"sleep"`, `"infinity"`. This keeps the container running without executing a scan automatically. The scanner waits in an idle state until commands are run manually.  
+        - `networks:` `networks` to join, entries under the top-level networks key. This can be a list of network names or a mapping of network names to network configuration. In this section we can define the parameters such as:  
+            - The `labnet:`  
+                - `ipv4_address:` This `ipv4` `address` is a static IPv4 address for the `scanner` service to be used on this network.  
+        - `security_opt:`  This is the labeling scheme. Each container will have its 
+            - `- no-new-privileges:true`  own security scheme. Depending on the type of
+        - `cap_drop: ["ALL"]` need, can determine if *raw sockets* are needed.  
+        - `read_only: true` The `read_only` is set to `true` because we do not want anything modifying its own filesystem. Also, the tool does not need to write to a file.
+        - `tmpfs:` This creates a temporary, in-memory filesystem.  
+            - `- /tmp` This allows the container to use `/tmp` for short-lived runtimes.
+            Any data written here exists only while the container is running and is erased when the container stops. This supports tools that expect a writable *temporary* directory without allowing permanent disk writes.  
+        - `pids_limit: 256` The `pids_limit` limits the number of processes the container is allowed to create. It prevents runaway processes from spawning and keeps one container from exhausting system process resources.  
+        - `mem_limit: 512m` In this section, the `memory` `limit` caps the maximum memory each container can use (per each own container scheme).  
+
+
+***Example***  
+
+```
+scanner:
+    image: instrumentisto/nmap:latest
+    container_name: nmap_scanner
+    command: ["sleep", "infinity"]
+    networks:
+      labnet:
+        ipv4_address: 172.30.40.10
+    security_opt:
+      - no-new-privileges:true
+    cap_drop: ["ALL"]
+    environment.
+    read_only: true
+    tmpfs:
+      - /tmp
+    pids_limit: 256
+    mem_limit: 512m
+```
+
+**Acceptable IP Addresses**  
+
+```
+172.30.30.10	Private RFC1918
+10.10.10.10	 	Private RFC1918
+```
+
+**Note**  
+Each `Tool` and simulated network device: `cellphone`, `website-http`, `website-https`, each has a similar structure of instructions as the `Scanner tool`.  
+  
