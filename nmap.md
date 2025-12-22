@@ -142,3 +142,24 @@ scanner:
 **Note**  
 Each `Tool` and simulated network device: `cellphone`, `website-http`, `website-https`, each has a similar structure of instructions as the `Scanner tool`.  
   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+**Noted Sources**
+
+- `The Ultimate Docker Container Book` - By: Dr. Gabriel Shenker.  
+- `The Ultimate Linux Shell Scripting Guide` - By: Donald Tevault.  
+
