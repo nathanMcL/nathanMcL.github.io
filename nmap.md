@@ -72,11 +72,11 @@ This is *why* I want to build this type of `Docker sandbox`, By building this `s
 
 ***Let's Create***
 
-In the `Nmap-Sandbox` folder create this file named:
+In the `Nmap-Sandbox` folder create a file named:
 
 `docker-compose.yml`  
 
-The `.yml` file "YAML" (YAML Ain't Markup Language)/(Yet Another Markup Language) is a human-readable text format for storing data, commonly used for configuration files and data exchange, featuring simple syntax with indentation for structure, making it easy for people and programs to read and write structured information like key-value pairs and lists. *that's what it stands for*.  
+The `.yml` file "YAML" (YAML Ain't Markup Language)/(Yet Another Markup Language) is a human-readable text format for storing data, commonly used for configuration files and data exchange, featuring simple syntax with indentation for structure, making it easy for people and programs to read and write structured information like key-value pairs and lists. *That's what it stands for*🤷🏻‍♂️.  
 
 - In this `.yml` file we are defining the `services` networks. The `services` networks section defines the overall network address and sub-nets (See if that statement is true. I think my terminology is correct, but could be wrong).  
 
@@ -162,4 +162,5 @@ Each `Tool` and simulated network device: `cellphone`, `website-http`, `website-
 
 - `The Ultimate Docker Container Book` - By: Dr. Gabriel Shenker.  
 - `The Ultimate Linux Shell Scripting Guide` - By: Donald Tevault.  
+
 
