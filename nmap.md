@@ -78,7 +78,7 @@ In the `Nmap-Sandbox` folder create a file named:
 
 The `.yml` file "YAML" (YAML Ain't Markup Language)/(Yet Another Markup Language) is a human-readable text format for storing data, commonly used for configuration files and data exchange, featuring simple syntax with indentation for structure, making it easy for people and programs to read and write structured information like key-value pairs and lists. *That's what it stands for*🤷🏻‍♂️.  
 
-- In this `.yml` file we are defining the `services` networks. The `services` networks section defines the overall network address and sub-nets (See if that statement is true. I think my terminology is correct, but could be wrong).  
+- In this `.yml` file we are defining the `service networks`. The `service networks` section defines the overall network addresses and sub-nets (See if that statement is true. I think my terminology is correct, but could be wrong).  
 
 - In the `Targets Section`: we want to create possible devices or simulate a systems network:
     - `mac-a-tron` **false**: cellphone network. (Docker Container)  
@@ -86,7 +86,7 @@ The `.yml` file "YAML" (YAML Ain't Markup Language)/(Yet Another Markup Language
     - `ssh1` **false shell**: This is to represent a **Lab-only SSH target**.  
     - `sniffer` **Tools Container**: This section contains the `Packet Capturing` network.  
 
-### Services (12/21/2025.1230)
+### Service Networks (12/21/2025.1230)
 
 `services:`  
 
@@ -162,5 +162,6 @@ Each `Tool` and simulated network device: `cellphone`, `website-http`, `website-
 
 - `The Ultimate Docker Container Book` - By: Dr. Gabriel Shenker.  
 - `The Ultimate Linux Shell Scripting Guide` - By: Donald Tevault.  
+
 
 
