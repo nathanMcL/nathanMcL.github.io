@@ -144,6 +144,110 @@ Each `Tool` and simulated network device: `cellphone`, `website-http`, `website-
   
 
 
+### Simulated Devices
+
+These are simulated devices that can be scanned, and are connected to the same network.  
+
+  - A cellphone named: `mac-a-tron`  
+  - A web site named: `lab_web1`  
+  - A lab only ssh target named: `lab_ssh1`  
+
+### Cellphone target: Mac-A-Tron (mimics a mobile device - sortof)
+
+In the simulated devices section each device has it's own build type but shares network parmeters. `Cellphone`, `HTTP`, `HTTPS`...  
+
+- Each device can be harden further as needed.  
+
+#### `Mac-a-tron`: Simulated Cellular Device
+
+  - `build`: desginates the directory path.  
+  - `container_name`: For each device there is a name for the container.  
+  - `hostname`: Similar to whatever name you might call your device.
+  - `networks`, `security_opt`, and `cap_drop` are the same as the `toolbox`.  
+
+```
+mac-a-tron:
+    build: ./targets/mac-a-tron
+    container_name: mac-a-tron
+    hostname: Mac-A-tron
+    networks:
+      labnet:
+        ipv4_address: 10.10.10.10
+    security_opt:
+      - no-new-privileges:true
+    cap_drop: ["ALL"]
+    pids_limit: 128
+    mem_limit: 256m
+```
+
+### Website/server: lab_web1: http + https
+
+The `Website/server` sections we add the `image:` parameter to http only. 
+the `HTTPS` uses `build:` 
+
+#### HTTP
+
+`HTTP` uses the `nginx` image because, the `Nginx Image` comes ready to run as-is for basic `HTTP` on port 80.  
+For the `HTTP` lab we do not need any custom files to simulate hosting.  
+
+```
+  web-http:
+    image: nginx:alpine
+    container_name: lab_web_http
+    ...
+    ...
+    ...
+    read_only: true
+    tmpfs:
+      - /var/cache/nginx
+      - /var/run
+      - /tmp
+    pids_limit: 128
+    mem_limit: 256m
+```
+
+#### HTTPS
+
+`HTTPS` requires custom files.
+
+  - `build`: The container in the `./targets` directory with this name: `web-https`.  
+  - `container_name`: The names can always be changed depending on the simulated device target.  
+
+`HTTPS` *needs*:  
+
+  - `TLS` certificate and a private key (It is self-signing for the lab).  
+  - A `Nginx` configuration that enables `listen 443 ssl;`.  
+  - The `build:` option lets us create custom images that contain:
+    - the `self-signed` cert.  
+    - the `HTTPS` `Nginx` Configuration.  
+    - A basic test webpage.  
+
+  - `networks`, `security_opt`, and `cap_drop` are the same as the `toolbox`.  
+  - `read_only: true` is set to true.  
+  - `tmpfs`: Creates a termporary writable space in memory (RAM).  
+    - The container filesystem is locked down, but `Nginx` may still have to write data...  
+      - `/var/cache/nginx`: This path is for `cache` and temporary files.  
+      - `/var/run`: This is where the runtime files go. This allows for clean start ups each time...  
+      - `/tmp`: This section is for temporary processessing, and stability stuff.  
+  - `pids_limit: 128`: This is set to `128` to prevent too many processes.  
+  - `mem_limit: 256m`: The `mem_limit` (memory_limit) is set to `256m` so the target can't consume too much of the hosts RAM.  
+
+
+```
+web-https:  
+  build: ./targets/web-https  
+  container_name: lab_web_https  
+  ...  
+  ...  
+  ...  
+  read_only: true  
+  tmpfs:  
+    - /var/cache/nginx  
+    - /var/run  
+    - /tmp  
+  pids_limit: 128  
+  mem_limit: 256m  
+```
 
 
 
@@ -154,14 +258,13 @@ Each `Tool` and simulated network device: `cellphone`, `website-http`, `website-
 
 
 
-
-
-
-
-**Noted Sources**
+**Noted Sources**  
 
 - `The Ultimate Docker Container Book` - By: Dr. Gabriel Shenker.  
 - `The Ultimate Linux Shell Scripting Guide` - By: Donald Tevault.  
+
+
+
 
 
 
