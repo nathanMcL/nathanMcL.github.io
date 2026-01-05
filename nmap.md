@@ -355,15 +355,62 @@ ssh1:
 ```
 
 
+### The Container's Network
 
+Recall the `Service Networks` section at the top of this `docker-compose.yml` file... 
+The `Container's Network` is in reference to all the actual networked devices, all running inside isolated from the host's own network...
+
+`networks:`: This `networks` section defines the virtual network that the containers can attach to. Each of these `networks` *act* like an isolated ***switches*** inside Docker. Containers only communicate with other containers that share the same network.  
+  - `labnet:` `labnet` is defined to provide a consistent configuration across services. 
+  - `driver: bridge`: `bridge` is a Docker default local networking driver. It creates a private `Layer-2` style network where the containers can:
+    - Discover each other
+    - Communicate directly
+    - Remain is located from external networks
+  In a way, it will behave like a `LAN`.  
+  - `internal: true`: ***Important setting***  
+    Keeping `internal` set to `true` prevents the containers on `labnet` (or whatevernet) from accessing:  
+      - The internet
+      - The host's network interface.
+    - Traffic is limited **only to** containers on this network.
+    - This setting is the main safeguard that prevents accidental interaction with my network. This should block all the things... `internal: true`  
+  - `ipam:`: `ipam` stands for `IP Address Management`. It controls how the IP addresses are assigned within the Docker network. This allows you to define a predictable set of address ranges instead of random assignments.  
+  - `config:`: The `config` contains the actual IP configuration for the network. It can allow multiple address pools; this lab only uses one.  
+  - `subnet: 172.30.30/24`
+
+
+***Recall***
+`"Acceptable IP Addresses"`  
+
+```
+172.30.30.10	Private RFC1918
+10.10.10.10	 	Private RFC1918
+```
+  `subnet` defines the private IPv4 subnet reserved for this lab.  
+    - `/24` provides up to `254` usable addresses, which is more than enough for:  
+      - Scanners
+      - Devices
+      - Sniffers
+    - The `subnet`is inside a `RFC1918` address space, ensuring isolation. There is no external `routing`.
+
+
+
+```
+networks:
+  labnet:
+    driver: bridge
+    internal: true
+    ipam:
+      config:
+        - subnet: 172.30.30.0/24
+```
 
 **Noted Sources**  
 
 - `The Ultimate Docker Container Book` - By: Dr. Gabriel Shenker.  
 - `The Ultimate Linux Shell Scripting Guide` - By: Donald Tevault.  
-- `Secure Shell` - `https://en.wikipedia.org/wiki/Secure_Shell` 
+- Secure Shell - `https://en.wikipedia.org/wiki/Secure_Shell` 
 - `https://www.linuxserver.io/`  
-
+- Private RCF1918 `https://en.wikipedia.org/wiki/Private_network`  
 
 
 
