@@ -120,7 +120,7 @@ scanner:
     command: ["sleep", "infinity"]
     networks:
       labnet:
-        ipv4_address: 172.30.40.10
+        ipv4_address: 172.30.30.10
     security_opt:
       - no-new-privileges:true
     cap_drop: ["ALL"]
@@ -249,6 +249,122 @@ web-https:
   mem_limit: 256m  
 ```
 
+### Lab ssh and .env (01052026.1200)
+
+Ok, the idea for this section is to demonstrate *how* tools detect `open ports` and identify services. This `ssh` simulation *is not* connected to the host's network; this `ssh` connection exists only within the `sandbox`'s `subnet`.  
+
+#### `.env` ***important***
+
+create a `dot env` file. This is to store any login information for the SSH lab.  
+
+***Example***  
+
+```
+# Environment variables for Docker Compose setup
+
+# Lab ONLY SSH target: lab_ssh1 
+SSH_USER=NameFor_Lab_ssh1
+SSH_PASS=PasswordFor_Lab_ssh1 
+```
+
+
+#### `ssh` Secure Shell Protocol
+
+The `Secure Shell Protocol` (SSH Protocol):  
+It is a cryptographic network protocol for operating network services securely over an unsecured network. Its most notable applications are remote login and command-line execution.
+
+`ssh1:`  
+  - `image: lscr.io/linuxserver/openssh-server:latest`: `lscr.io` provides prebuilt 
+  `Docker` images that can run the `SSH` server.  
+  - `environment:` This will provide runtime configuration values to the container without editing the image.
+    - `PUID=`: `PUID` and `PGID` set to `1000`. These settings run the container's main user as the host's user/group ID `1000`.
+    - `PGID=` This keeps the file permissions predictable.  
+    - `PASSWORD_ACCESS=true`: this setting *enables* `password-based` SSH login for this lab target.  
+    - `USER_NAME` and `USER_PASSWORD`: See `.env`. In these sections, you do not want to 
+    hardcode any sensitive information.  
+      - `${SSH_USER}` == USER_NAME  
+      - `${SSH_PASS}` == USER_PASSWORD  
+    ...
+    ...
+    ...
+    ...
+    - `restart: unless-stopped`: Automatically restarts the SSH target if it crashes, making the lab more reliable.  
+
+```
+ssh1:
+    image: lscr.io/linuxserver/openssh-server:latest
+    container_name: lab_ssh1
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - PASSWORD_ACCESS=true
+      - USER_NAME=${SSH_USER}
+      - USER_PASSWORD=${SSH_PASS}
+    ...
+    ...
+    ...
+    security_opt:
+      - no-new-privileges:true
+    pids_limit: 256
+    mem_limit: 512m
+    restart: unless-stopped
+```
+
+
+### Lab "Sniffer" / Packet Capturing Device
+
+- Only the sniffer gets elevated capabilities to capture packets.  
+
+- The `sniffer` service represents a dedicated packet-capturing device inside the sandbox. The `sniffer` *does not* generate scans or traffic by itself. The `sniffer`s' role is to **observe** and **record** `network traffic` that can be produced by the other device containers.
+  - `image: nicolaka/netshoot`: `netshoot` includes packet capture and networking tools (tcpdump).  This allows packet inspection without installing tools on the host system.  
+  - `command: ["sleep", "infinity"]`: Again, this means to keep the `sniffer` running/idle - waiting for command input, and keeping things isolated from scanning activity.  
+  - `cap_add: ["NET_ADMIN", "NET_RAW"]`: 
+    - `"NET_ADMIN"`: Allows basic network interface control. `NET_ADMIN` is needed for setting interfaces into capture mode and managing packet capture behaviors.  
+    - `"NET_RAW"`: `NET_RAW` Allows the container to access the network packets.  
+    - Tools like `tcpdump` need access to capture traffic at a *low level*.
+  - `security_opt:`
+    - `no-new-privileges: true`: Prevents the container from gaining additional privileges at runtime.  
+  - `read_only: true`: Prevents permanent filesystem changes inside the container.  
+  - `tmpfs: /tmp`: Provides temporary in-memory storage for runtime needs.
+  - `volumes:`  
+    - `./captures:/packetcaptures`: This allows the captured packets to be written to the host device. 
+      - Can be opend later in WireShark.  
+      - Can be reviewed without re-running scans.  
+      - Can be *safely shared* for further analysis.  
+  - `pids_limit: 256`: This `limits` how many processes the sniffer can create.  
+  - `mem_limit: 768m`: This `mem_limit` has a higher allowed memory than the `lab devices` because we have to support `packet buffering`. 
+
+```
+  sniffer:
+    image: nicolaka/netshoot:latest
+    container_name: lab_sniffer
+    command: ["sleep", "infinity"]
+    ...
+    ...
+    ...
+    cap_add: ["NET_ADMIN", "NET_RAW"]
+    security_opt:
+      - no-new-privileges:true
+    volumes:
+      - ./captures:/packetcaptures
+    read_only: true
+    tmpfs:
+      - /tmp
+    pids_limit: 256
+    mem_limit: 768m
+```
+
+
+
+
+**Noted Sources**  
+
+- `The Ultimate Docker Container Book` - By: Dr. Gabriel Shenker.  
+- `The Ultimate Linux Shell Scripting Guide` - By: Donald Tevault.  
+- `Secure Shell` - `https://en.wikipedia.org/wiki/Secure_Shell` 
+- `https://www.linuxserver.io/`  
+
+
 
 
 
@@ -262,6 +378,7 @@ web-https:
 
 - `The Ultimate Docker Container Book` - By: Dr. Gabriel Shenker.  
 - `The Ultimate Linux Shell Scripting Guide` - By: Donald Tevault.  
+
 
 
 
