@@ -374,12 +374,6 @@ ssh1:
 
 
 
-**Noted Sources**  
-
-- `The Ultimate Docker Container Book` - By: Dr. Gabriel Shenker.  
-- `The Ultimate Linux Shell Scripting Guide` - By: Donald Tevault.  
-
-
 
 
 
