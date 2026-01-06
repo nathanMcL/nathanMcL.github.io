@@ -360,7 +360,7 @@ ssh1:
 Recall the `Service Networks` section at the top of this `docker-compose.yml` file... 
 The `Container's Network` is in reference to all the actual networked devices, all running inside isolated from the host's own network...
 
-`networks:`: This `networks` section defines the virtual network that the containers can attach to. Each of these `networks` *act* like an isolated ***switches*** inside Docker. Containers only communicate with other containers that share the same network.  
+`networks:`: This `networks` section defines the virtual network that the containers can attach to. Each of these `networks` *act* like an isolated ***switch*** inside Docker. Containers only communicate with other containers that share the same network.  
   - `labnet:` `labnet` is defined to provide a consistent configuration across services. 
   - `driver: bridge`: `bridge` is a Docker default local networking driver. It creates a private `Layer-2` style network where the containers can:
     - Discover each other
@@ -411,6 +411,7 @@ networks:
 - Secure Shell - `https://en.wikipedia.org/wiki/Secure_Shell` 
 - `https://www.linuxserver.io/`  
 - Private RCF1918 `https://en.wikipedia.org/wiki/Private_network`  
+
 
 
 
