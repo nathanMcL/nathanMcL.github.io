@@ -365,7 +365,7 @@ The `Container's Network` is in reference to all the actual networked devices, a
   - `driver: bridge`: `bridge` is a Docker default local networking driver. It creates a private `Layer-2` style network where the containers can:
     - Discover each other
     - Communicate directly
-    - Remain is located from external networks
+    - Remain isolated from external networks
   In a way, it will behave like a `LAN`.  
   - `internal: true`: ***Important setting***  
     Keeping `internal` set to `true` prevents the containers on `labnet` (or whatevernet) from accessing:  
@@ -411,6 +411,7 @@ networks:
 - Secure Shell - `https://en.wikipedia.org/wiki/Secure_Shell` 
 - `https://www.linuxserver.io/`  
 - Private RCF1918 `https://en.wikipedia.org/wiki/Private_network`  
+
 
 
 
