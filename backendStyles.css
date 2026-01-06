@@ -51,7 +51,7 @@
 }
 
 .nav.menu {
-  display: flex;
+  display: flex !important;
   list-style-type: none;
   gap: 15px;
   padding: 0;
@@ -59,7 +59,7 @@
 }
 
 .nav_item a {
-  display: inline-block;
+  display: flex;
   text-decoration: none;
   color: var(--caramel-highlight);
   font-weight: bold;
