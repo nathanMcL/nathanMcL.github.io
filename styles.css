@@ -72,7 +72,7 @@ body {
 
 /* Menu: same selector as styles.css (.nav.menu with two classes on the element) */
 .nav.menu {
-  display: flex;               /* horizontal on desktop */
+  display: flex !important;               /* horizontal on desktop */
   list-style: none;
   gap: 8px;
   padding: 0;

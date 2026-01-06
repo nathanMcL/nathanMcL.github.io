@@ -75,7 +75,7 @@ body {
 }
 
 .nav_item a {
-    display: inline-block;
+    display: flex; 
     text-decoration: none;
     color: var(--fourth-color);
     font-weight: bold;
