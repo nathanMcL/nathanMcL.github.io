@@ -75,7 +75,7 @@ body {
 }
 
 .nav_item a {
-    display: flex; 
+    display: inline-block;
     text-decoration: none;
     color: var(--fourth-color);
     font-weight: bold;
@@ -403,12 +403,108 @@ p, h5 {
     text-shadow: 0 0 5px white;
 }
 
-body.backend-mode .markdown-section {
+/* 508/WCAG: visible keyboard focus */
+.toggle-btn:focus-visible {
+    outline: 3px solid var(--electric-lime);
+    outline-offset: 3px;
+}
+
+/* Active button glow (works regardless of mode) */
+.toggle-btn.is-active,
+.toggle-btn[aria-pressed="true"] {
+    border: 2px solid rgba(247, 250, 28, 0.70);
+    box-shadow:
+        0 0 0 2px rgba(247, 250, 28, 0.18),
+        0 0 16px rgba(247, 250, 28, 0.30);
+}
+
+/* When sandbox-mode is ON, active should feel "Sandbox" */
+body.sandbox-mode .toggle-btn.is-active,
+body.sandbox-mode .toggle-btn[aria-pressed="true"] {
+    border: 2px solid var(--lightning-purple);
+    box-shadow:
+        0 0 0 2px rgba(242, 0, 255, 0.24),
+        0 0 18px rgba(242, 0, 255, 0.38),
+        0 0 28px rgba(115, 235, 10, 0.14);
+}
+
+/* When sandbox-mode is ON, inactive should have a subtle glow */
+body.sandbox-mode .toggle-btn:not(.is-active):not([aria-pressed="true"]) {
+    box-shadow: 0 0 6px rgba(242, 0, 255, 0.18);
+    opacity: 0.92;
+}
+
+body.sandbox-mode #markdown-be2.markdown-section {
     background-color: var(--bamboo-cream);
     color: var(--dark-void);
+    border-left: 5px solid var(--lightning-purple);
+    box-shadow: 0 0 18px rgba(242, 0, 255, 0.18);
     font-family: 'Roboto', 'Arial', sans-serif;
 }
+
+/* Adjust the color of the links */
+body.sandbox-mode #markdown-be2.markdown-section a:focus,
+body.sandbox-mode #markdown-be2.markdown-section a:hover {
+    outline: 2px solid var(--electric-lime);
+    outline-offset: 2px;
+}
 /* End of Back-End additional readme sectional styles */
+
+/* Sandbox Diagram Pop-out */
+.sandbox-diagram-section {
+    max-width: 1200px;
+    margin: 35px auto 25px auto;
+    padding: 0 20px;
+}
+
+.sandbox-diagram-card {
+    margin: 0;
+    padding: 18px;
+    border-radius: 14px;
+
+    background: linear-gradient(
+        180deg,
+        var(--dark-void) 0%,
+        rgba(18, 0, 54, 0.75) 100%
+    );
+
+    border: 2px solid var(--lightning-purple);
+    box-shadow: 
+    0 0 0 2px rgba(242, 0, 255, 0.24),
+    0 0 18px rgba(242, 0, 255, 0.36),
+    0 0 28px rgba(115, 235, 10, 0.14);
+}
+
+.sandbox-diagram-card img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 12px;
+
+    border: 2px solid rgba(247, 250, 28, 0.36);
+    box-shadow: 0 0 16px rgba(247, 250, 28, 0.18);
+}
+
+.sandbox-diagram-caption {
+    margin-top: 12px;
+    padding: 10px 12px;
+    border-radius: 10px;
+
+    background: rgba(239, 236, 227, 0.08);
+    color: var(--bamboo-cream);
+    border: 1px solid rgba(239, 236, 227, 0.18);
+
+    font-weight: 700;
+    letter-spacing: 0.3px;
+}
+
+/* Keyboard focus visibility (508) */
+.sandbox-diagram-card:focus-within {
+    outline: 3px solid var(--electric-lime);
+    outline-offset: 4px;
+}
+
+/* End of Sandbox Diagram Pop-out */
 
 /* Footer styling */
 footer {

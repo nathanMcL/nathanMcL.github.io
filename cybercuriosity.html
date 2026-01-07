@@ -46,10 +46,9 @@
                         <span class="color-change">N</span><span class="color-change">_</span>
                         <span class="color-change">i</span><span class="color-change">T</span>
                     </a>
-                    <ul class="nav menu">
+                    <ul class="nav.menu">
                         <li class="nav_item"><a href="index.html">Home</a></li>
                         <li class="nav_item"><a href="about.html">About</a></li>
-                        <li class="nav_item"><a href="inspiredme.html">Inspirations</a>
                         <li class="nav_item"><a href="blog.html">Thoughts</a></li>
                         <li class="nav_item"><a href="tools.html">Tools</a></li>
                         <li class="nav_item"><a href="contact.html">Contact</a></li>
@@ -86,8 +85,8 @@
                     </div>
                     <!-- Markdown Cyber Thoughts Sectional Buttons Cyber/Sandbox-->
                     <div class="readme-toggle-buttons">
-                        <button class="toggle-btn" id="toggle-be1">Cyber Thoughts</button>
-                        <button class="toggle-btn" id="toggle-be2">Sandbox Notes</button>
+                        <button class="toggle-btn" id="toggle-be1" type="button" aria-pressed="true">Cyber Thoughts</button>
+                        <button class="toggle-btn" id="toggle-be2" type="button" aria-pressed="false">Sandbox Notes</button>
                     </div>
 
                     <!-- Markdown Containers -->
@@ -97,6 +96,23 @@
             </div>
         </main>
         <!-- End of Main Section -->
+
+        <!-- Docker Sandbox Relationship Diagram -->
+        <section class="sandbox-diagram-section" aria-labelledby="sandbox-diagram-title">
+            <h2 id="sandbox-diagram-title" class="sr-only">Docker Sandbox Relationship Diagram</h2>
+
+            <figure class="sandbox-diagram-card">
+                <img 
+                    src="images/DockerSandbox.drawio.png"
+                    alt="(This) Docker Sandbox relationship diagram showing container and network relationships."
+                    loading="lazy"
+                    decoding="async"
+                />
+                <figcaption class="sandbox-diagram-caption">
+                    Docker Sandbox - Relationship Diagram
+                </figcaption>
+            </figure> 
+        </section>
 
         <!-- Footer Section -->
         <footer role="contentinfo">
