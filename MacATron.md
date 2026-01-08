@@ -3,30 +3,14 @@
 The purpose of this container is represent an optional cellphone that connects to the network, **not an acutal phone**. I can create a signal to communicate with another container to represent the device communicating with the HTTP or HTTPS test website. This is the basic idea before improvements.  
 
 
-***Let's Create!***
+***Let's Create!***  
 
 ## Mac-A-Tron
 
-...
+...  
 
 ### The Docker File
 
 ...  
 
-
-## Web-http
-
-...
-
-### The Docker File
-
-...  
-
-## Web-https
-
-...
-
-### The Docker File
-
-...  
 
