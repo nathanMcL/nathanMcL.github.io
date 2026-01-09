@@ -623,6 +623,101 @@ body.sandbox-mode #markdown-be2.markdown-section a:hover {
     }
 }
 
+/* Safety: ensure hidden always hides */
+[hidden] {
+  display: none !important;
+}
+
+/* Screen-reader only utility */
+.sr-only {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+/* Container that sits below Cyber Thoughts + Sandbox Notes */
+.sandbox-subnav,
+.sandbox-children {
+  display: flex;
+  justify-content: center;
+  gap: 0.75rem;
+  margin-top: 0.75rem;
+}
+
+/* Keep children centered under N */
+.sandbox-children {
+  margin-top: 0.5rem;
+}
+
+/* Orb base */
+.orb-btn {
+  width: 42px;
+  height: 42px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  background: var(--void, #07080c);
+  color: #fff;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+
+  /* accessible focus */
+  outline: none;
+}
+
+.orb-btn:focus-visible {
+  outline: 2px solid rgba(153, 255, 0, 0.85);
+  outline-offset: 3px;
+}
+
+/* Electric-lime pulse “radiating” */
+.orb-btn {
+  box-shadow:
+    0 0 0 0 rgba(153, 255, 0, 0.35),
+    0 0 18px rgba(153, 255, 0, 0.25);
+  animation: orbPulse 1.8s infinite;
+}
+
+@keyframes orbPulse {
+  0% {
+    box-shadow:
+      0 0 0 0 rgba(153, 255, 0, 0.35),
+      0 0 18px rgba(153, 255, 0, 0.25);
+  }
+  70% {
+    box-shadow:
+      0 0 0 12px rgba(153, 255, 0, 0),
+      0 0 26px rgba(153, 255, 0, 0.22);
+  }
+  100% {
+    box-shadow:
+      0 0 0 0 rgba(153, 255, 0, 0),
+      0 0 18px rgba(153, 255, 0, 0.20);
+  }
+}
+
+/* Color coding */
+.orb-services { color: var(--lightspeed-yellow, #ffe85a); }
+.orb-network  { color: var(--lightspeed-orange, #ff9b2f); }
+.orb-pcap     { color: var(--sandbox-accent, #96fbe4); } 
+
+/* Child buttons inherit Sandbox vibe */
+.orb-child {
+  width: 44px;
+  height: 44px;
+  color: var(--sandbox-accent, #96fbe4);
+  font-size: 0.85rem;
+}
+
 
 /* Footer styling */
 footer {

@@ -65,86 +65,6 @@
             <a href="backend.html" class="oval-btn btn-backend" aria-label="Go to Back-End Notes">Back-End</a>
         </div>
 
-        <!-- Sandbox Notes: Sub-section buttons -->
-        <section class="sandbox-subnav" id="sandbox-subnav" aria-label="Sandbox Notes Sections" hidden>
-            <div class="sandbox-subnav-row" role="group" aria-label="Sandbox section chooser">
-                <button
-                    class="mini-btn mini-services"
-                    id="sb-services"
-                    type="button"
-                    aria-pressed="false"
-                    aria-controls="markdown-be2"
-                    title="Services"
-                >
-                    <span aria-hidden="true">S</span>
-                    <span class="sr-only">Services</span>
-                </button>
-
-                <!-- Network Stack -->
-                <div class="network-stack">
-                    <button
-                        class="mini-btn mini-network"
-                        id="sb-network"
-                        type="button"
-                        aria-pressed="false"
-                        aria-controls="sandbox-network-sebnav"
-                        title="Network"
-                    >
-                        <span aria-hidden="true">N</span>
-                    </button>
-
-                    <!-- In this next section, named after the Network Devices: "N" -->
-                    <div
-                        class="sandbox-subnav-row sandbox-subnav-row--nested"
-                        id="sandbox-network-sebnav"
-                        role="group"
-                        aria-label="Network Sub-sections"
-                        hidden
-                    >
-                        <button 
-                            class="mini-btn mini-network-sub"
-                            id="sb-network-cd"
-                            type="button"
-                            aria-pressed="false"
-                            aria-controls="markdown-be2"
-                            title="Celluar Device"
-                        >
-                            <span aria-hidden="true">CD</span>
-                            <span class="sr-only">Celluar Device</span>
-                        </button>
-
-                        <button
-                            class="mini-btn mini-network-sub"
-                            id="sb-network-web"
-                            type="button"
-                            aria-pressed="false"
-                            aria-controls="markdown-be2"
-                            title="Web (HTTP / HTTPS)"
-                        >
-                            <span aria-hidden="true">Web</span>
-                            <span class="sr-only">Web HTTP HTTPS</span>
-                        </button>
-                    </div>
-                </div>
-            
-                <!-- Packet Capture Readme button -->
-                <button
-                    class="mini-btn mini-pcap"
-                    id="sb-pcap"
-                    type="button"
-                    aria-pressed="false"
-                    aria-controls="markdown-be2"
-                    title="Packet Capture"
-                >
-                    <span aria-hidden="true">PC</span>
-                    <span class="sr-only">Packet Capture</span>
-                </button>
-            </div>
-
-            <p class="sr-only" id="sandbox-subnav-status" aria-live="polite" aria-atomic="true"></p>
-        </section>
-        <!-- End of Sandbox Notes: Sub-section buttons -->
-
         <!-- Main Section: Blog Page -->
         <main>
             <div class="main_blog">
@@ -164,15 +84,83 @@
                         <h5>Loading Cyber Notes and Thoughts...</h5>
                         <div id="markdown-content" class="markdown-section"></div>
                     </div>
-                    <!-- Markdown Cyber Thoughts Sectional Buttons Cyber/Sandbox-->
+                    <!-- Markdown Cyber Thoughts Sectional Buttons Cyber/Sandbox -->
                     <div class="readme-toggle-buttons">
                         <button class="toggle-btn" id="toggle-be1" type="button" aria-pressed="true">Cyber Thoughts</button>
                         <button class="toggle-btn" id="toggle-be2" type="button" aria-pressed="false">Sandbox Notes</button>
                     </div>
 
+                    <!-- Sandbox Sub-Nav (hidden until Sandbox Notes is clicked) -->
+                    <div id="sandbox-subnav" class="sandbox-subnav" hidden aria-label="Sandbox Notes sections">
+                        <button
+                            id="sandbox-services-btn"
+                            class="orb-btn orb-services"
+                            type="button"
+                            aria-pressed="false"
+                            aria-controls="markdown-sandbox"
+                            title="Services"
+                        >
+                            <span aria-hidden="true">S</span>
+                            <span class="sr-only">Services</span>
+                        </button>
+
+                        <button
+                            id="sandbox-network-btn"
+                            class="orb-btn orb-network"
+                            type="button"
+                            aria-pressed="false"
+                            aria-controls="sandbox-network-children"
+                            title="Network"
+                        >
+                            <span aria-hidden="true">N</span>
+                            <span class="sr-only">Network</span>
+                        </button>
+
+                        <button
+                            id="sandbox-pcap-btn"
+                            class="orb-btn orb-pcap"
+                            type="button"
+                            aria-pressed="false"
+                            aria-controls="markdown-sandbox"
+                            title="Packet Capture"
+                        >
+                            <span aria-hidden="true">PC</span>
+                            <span class="sr-only">Packet Capture</span>
+                        </button>
+                    </div>
+
+                    <!-- Network Child Buttons (hidden until N is clicked) -->
+                    <div id="sandbox-network-children" class="sandbox-children" hidden aria-label="Network subsections">
+                        <button
+                            id="sandbox-network-cd-btn"
+                            class="orb-btn orb-child"
+                            type="button"
+                            aria-pressed="false"
+                            aria-controls="markdown-sandbox"
+                            title="Cellular Device"
+                        >
+                            <span aria-hidden="true">CD</span>
+                            <span class="sr-only">Cellular Device</span>
+                        </button>
+
+                        <button
+                            id="sandbox-network-web-btn"
+                            class="orb-btn orb-child"
+                            type="button"
+                            aria-pressed="false"
+                            aria-controls="markdown-sandbox"
+                            title="Web HTTP / HTTPS"
+                        >
+                            <span aria-hidden="true">Web</span>
+                            <span class="sr-only">Web HTTP / HTTPS</span>
+                        </button>
+                    </div>
+
                     <!-- Markdown Containers -->
                     <div id="markdown-be1" class="markdown-section"></div> <!-- Cyber Thoughts -->
-                    <div id="markdown-be2" class="markdown-section" hidden></div> <!-- Sandbox Notes -->
+
+                    <!-- Single Sandbox render target -->
+                    <section id="markdown-sandbox" class="markdown-section" aria-live="polite" hidden></section>
                 </div>
             </div>
         </main>
