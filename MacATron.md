@@ -36,13 +36,13 @@ Starting with the `base image` `FROM` I am using `alpine`. There are other types
 ### The Start File
 
 As the container starts and the `start.sh` file are copied into a runtime state. The `start.sh` file uses:  
-    - 1. Strict shell `set eu`:  
+    - 1. Strict shell `set eu`:
         - `-e`: Stop on errors  
-        - `-u`: Error if an unset variable is used  
-    - 2. Creating the Signal to the `http/https` labs.  
+        - `-u`: Error if an unset variable is used   
+    - Creating the Signal to the `http/https` labs.  
         - `HTTP_TARGET` default to `http://lab_web_http`  
         - `HTTPS_TARGET` default to `https://lab_web_https`  
-    - 3. Windows of Communication section determines how `*Chatty*` the device is  
+    - Windows of Communication section determines how `*Chatty*` the device is  
         - `REQUEST_INTERVAL_SEC` controls how ofter a request to communicate is sent.  
             - (As of: 01/12/2026) The `Window`'s loop while active:  
                 - Talk to HTTP for a set time  
