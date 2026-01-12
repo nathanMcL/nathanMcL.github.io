@@ -14,7 +14,7 @@ Multiple devices could be created to simulate other optional devices connecting 
 
 ### The Docker File
 
-Starting with the `base image` `**FROM**` I am using `alpine`. There are other types of images available, from online articles it is said that `alpine` has *less of* a `visable surface`. I have used `alpine` in other projects, so there is slight familularity.   
+Starting with the `base image` `FROM` I am using `alpine`. There are other types of images available, from online articles it is said that `alpine` has *less of* a `visable surface`. I have used `alpine` in other projects, so there is slight familularity.   
 - `FROM alpine:` followed by the version you are want (choose the one that has been maintained (01/12/2026 version:3.20)).  
 - Next we `RUN` the install and initial system setup.  
     - We want to install minimal tools for the `CD` container:
@@ -61,3 +61,4 @@ As the container starts and the `start.sh` file are copied into a runtime state.
 
 - Alpine Images: `https://hub.docker.com/_/alpine`  
 -  
+
