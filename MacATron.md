@@ -36,7 +36,7 @@ Starting with the `base image` `FROM` I am using `alpine`. There are other types
 ### The Start File
 
 As the container starts and the `start.sh` file are copied into a runtime state. The `start.sh` file uses:  
-    - 1. Strict shell `set eu`:
+    - 1. Strict shell `set eu`:  
         - `-e`: Stop on errors  
         - `-u`: Error if an unset variable is used  
     - 2. Creating the Signal to the `http/https` labs.  
@@ -47,10 +47,10 @@ As the container starts and the `start.sh` file are copied into a runtime state.
             - (As of: 01/12/2026) The `Window`'s loop while active:  
                 - Talk to HTTP for a set time  
                 - Be Quiet for a set time  
-                - Talk to HTTPS for a set time
-                - Be Quier for set time
+                - Talk to HTTPS for a set time  
+                - Be Quier for set time  
                 - ...Then repeat...  
-    - Phone Portal Server Simulation" (PPSS): To create an `Optional` `Cellular Device` (CD) connecting to the network then to communicate with the `HTTP`/`HTTPS`.
+    - Phone Portal Server Simulation" (PPSS): To create an `Optional` `Cellular Device` (CD) connecting to the network then to communicate with the `HTTP`/`HTTPS`.  
     The (PPSS) section creates `outbound` `TCP` connections from the cellular device...  
         - To port `80` for the `HTTP` session  
         - To port `443` for the `HTTPS` session  
@@ -61,4 +61,5 @@ As the container starts and the `start.sh` file are copied into a runtime state.
 
 - Alpine Images: `https://hub.docker.com/_/alpine`  
 -  
+
 
