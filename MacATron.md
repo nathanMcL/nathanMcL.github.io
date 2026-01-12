@@ -36,9 +36,9 @@ Starting with the `base image` `FROM` I am using `alpine`. There are other types
 ### The Start File
 
 As the container starts and the `start.sh` file are copied into a runtime state. The `start.sh` file uses:  
-    - Strict shell `set eu`:
+    - Strict shell `set eu`:  
         - `-e`: Stop on errors  
-        - `-u`: Error if an unset variable is used   
+        - `-u`: Error if an unset variable is used  
     - Creating the Signal to the `http/https` labs.  
         - `HTTP_TARGET` default to `http://lab_web_http`  
         - `HTTPS_TARGET` default to `https://lab_web_https`  
@@ -54,6 +54,7 @@ As the container starts and the `start.sh` file are copied into a runtime state.
     The (PPSS) section creates `outbound` `TCP` connections from the cellular device...  
         - To port `80` for the `HTTP` session  
         - To port `443` for the `HTTPS` session  
+
   
 
 
@@ -61,6 +62,7 @@ As the container starts and the `start.sh` file are copied into a runtime state.
 
 - Alpine Images: `https://hub.docker.com/_/alpine`  
 -  
+
 
 
 
