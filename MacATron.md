@@ -31,29 +31,29 @@ Starting with the `base image` `FROM` I am using `alpine`. There are other types
             - Disables `port forwarding`/`tunneling` features (`AllowTcpForwading no`, `PermitTunnel no`)
     - `COPY start.sh /start.sh` plus `chmod +x`
         - *Copies* - during runtime, the `start.sh` file. This starts the services and runs the traffic simulation loop.  
-
-
+  
+  
 ### The Start File
 
 As the container starts and the `start.sh` file are copied into a runtime state. The `start.sh` file uses:  
-                                                - Strict shell `set eu`:  
-                                                    - `-e`: Stop on errors  
-                                                    - `-u`: Error if an unset variable is used  
-                                                - Creating the Signal to the `http/https` labs.  
-                                                    - `HTTP_TARGET` default to `http://lab_web_http`  
-                                                    - `HTTPS_TARGET` default to `https://lab_web_https`  
-                                                - Windows of Communication section determines how *chatty* the device is  
-                                                    - `REQUEST_INTERVAL_SEC` controls how ofter a request to communicate is sent.  
-                                                        - (As of: 01/12/2026) The `Window of Communication` loops while active:  
-                                                            - Talk to HTTP for a set time  
-                                                            - Be Quiet for a set time  
-                                                            - Talk to HTTPS for a set time  
-                                                            - Be Quier for set time  
-                                                            - ...Then repeat...  
-                                                - Phone Portal Server Simulation (PPSS): To create an `Optional` `Cellular Device` (CD) connecting to the network then to communicate with the `HTTP`/`HTTPS`.  
-                                                The (PPSS) section creates `outbound` `TCP` connections from the cellular device...  
-                                                    - To port `80` for the `HTTP` session  
-                                                    - To port `443` for the `HTTPS` session  
+- Strict shell `set eu`:  
+    - `-e`: Stop on errors  
+    - `-u`: Error if an unset variable is used  
+- Creating the Signal to the `http/https` labs.  
+    - `HTTP_TARGET` default to `http://lab_web_http`  
+    - `HTTPS_TARGET` default to `https://lab_web_https`  
+- Windows of Communication section determines how *chatty* the device is  
+    - `REQUEST_INTERVAL_SEC` controls how ofter a request to communicate is sent.  
+        - (As of: 01/12/2026) The `Window of Communication` loops while active:  
+            - Talk to HTTP for a set time  
+            - Be Quiet for a set time  
+            - Talk to HTTPS for a set time  
+            - Be Quier for set time  
+            - ...Then repeat...  
+- Phone Portal Server Simulation (PPSS): To create an `Optional` `Cellular Device` (CD) connecting to the network then to communicate with the `HTTP`/`HTTPS`.  
+The (PPSS) section creates `outbound` `TCP` connections from the cellular device...  
+    - To port `80` for the `HTTP` session  
+    - To port `443` for the `HTTPS` session  
 
   
 
@@ -62,6 +62,7 @@ As the container starts and the `start.sh` file are copied into a runtime state.
 
 - Alpine Images: `https://hub.docker.com/_/alpine`  
 -  
+
 
 
 
