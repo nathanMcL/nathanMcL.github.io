@@ -36,7 +36,7 @@ Starting with the `base image` `FROM` I am using `alpine`. There are other types
 ### The Start File
 
 As the container starts and the `start.sh` file are copied into a runtime state. The `start.sh` file uses:  
-    - 1. Strict shell `set eu`:
+    - Strict shell `set eu`:
         - `-e`: Stop on errors  
         - `-u`: Error if an unset variable is used   
     - Creating the Signal to the `http/https` labs.  
@@ -61,5 +61,6 @@ As the container starts and the `start.sh` file are copied into a runtime state.
 
 - Alpine Images: `https://hub.docker.com/_/alpine`  
 -  
+
 
 
