@@ -35,7 +35,7 @@ Starting with the `base image` `FROM` I am using `alpine`. There are other types
   
 ### The Start File
 
-As the container starts and the `start.sh` file are copied into a runtime state. The `start.sh` file uses:  
+As the container starts and the `start.sh` file is copied into a runtime state. The `start.sh` file uses:  
 - Strict shell `set eu`:  
     - `-e`: Stop on errors  
     - `-u`: Error if an unset variable is used  
@@ -61,7 +61,9 @@ The (PPSS) section creates `outbound` `TCP` connections from the cellular device
 ***Noted Surces***  
 
 - Alpine Images: `https://hub.docker.com/_/alpine`  
--  
+- Computer Networking || A Top-Down Approach 8th Edition  
+    - By: James Kurose and Keith Ross   
+
 
 
 
