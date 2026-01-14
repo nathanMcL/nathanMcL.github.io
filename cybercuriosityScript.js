@@ -4,6 +4,7 @@
 // - toggle-be2 (Sandbox Notes) shows sandbox subnav + renders into #markdown-sandbox
 // - sandbox sub-buttons hidden unless Sandbox is active
 // - Network button reveals child buttons (CD/Web) only when selected
+// - HTTPS Screenshot is pinned + ONLY visible when Network -> Web button is clicked
 // - Leaving Sandbox hides sandbox UI + collapses children + clears pressed states
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -13,7 +14,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Markdown sections
   const cyberContainer = document.getElementById("markdown-be1");
-  const sandboxContainer = document.getElementById("markdown-sandbox"); // NEW stable target
+  const sandboxContainer = document.getElementById("markdown-sandbox"); // stable target
 
   // Sandbox UI Containers
   const sandboxSubnav = document.getElementById("sandbox-subnav");
@@ -31,7 +32,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // Live Region
   const sandboxStatus = document.getElementById("sandbox-subnav-status");
 
-  // HTTPS Screenshot Section (Visible when WebHttpHttps is loaded)
+  // HTTPS Screenshot Section (Visible ONLY when WebHttpHttps is loaded)
   const httpsScreenshot = document.getElementById("sandbox-https-screenshot");
 
   // Guardrails
@@ -59,21 +60,24 @@ document.addEventListener("DOMContentLoaded", () => {
     if (sandboxStatus) sandboxStatus.textContent = msg;
   }
 
-  // When the WebHttpHttps is loaded un-hide the HTTPS sceenshot
-  // Otherwise hide it...
+  // Screenshot helpers
+  // - hidden = true means it is not visible and not focusable
+  // - .is-pinned enables sticky pin styling in CSS
   function hideHttpsScreenshot() {
-    if (httpsScreenshot) httpsScreenshot.hidden = true;
-  }
-  // Load and render markdown into container. When WebHttpHttps is loaded.
-  function showHttpsScreenshot() {
-    if (httpsScreenshot) httpsScreenshot.hidden = false;
+    if (!httpsScreenshot) return;
+    httpsScreenshot.classList.remove("is-pinned");
+    httpsScreenshot.hidden = true;
   }
 
+  function showHttpsScreenshot() {
+    if (!httpsScreenshot) return;
+    httpsScreenshot.hidden = false;
+    httpsScreenshot.classList.add("is-pinned");
+  }
 
   async function loadMarkdown(url, container) {
     if (!url || !container) return;
 
-    // Serve from cache if available
     if (cache.has(url)) {
       container.innerHTML = cache.get(url);
       return;
@@ -114,57 +118,48 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function collapseNetworkChildren() {
     if (networkChildren) networkChildren.hidden = true;
-    // Don't force networkBtn, inactive here; it may remain selected when children are open.
   }
 
   // Mode switching
   async function showCyberMode({ scroll = true } = {}) {
-    // Toggle ARIA
     btnCyber.setAttribute("aria-pressed", "true");
     btnSandbox.setAttribute("aria-pressed", "false");
     btnCyber.classList.add("is-active");
     btnSandbox.classList.remove("is-active");
 
-    // Show/hide containers
     cyberContainer.hidden = false;
     sandboxContainer.hidden = true;
-    hideHttpsScreenshot();
 
-    // Hide sandbox UI
+    // Hide everything sandbox-related
+    hideHttpsScreenshot();
     if (sandboxSubnav) sandboxSubnav.hidden = true;
     if (networkChildren) networkChildren.hidden = true;
 
-    // Clear sandbox states
     clearPressedStates();
     announce("");
 
-    // Load cyber content
     await loadMarkdown(URLS.cyber, cyberContainer);
 
     if (scroll) cyberContainer.scrollIntoView({ behavior: "smooth", block: "start" });
   }
 
   async function showSandboxMode({ scroll = true } = {}) {
-    // Toggle ARIA
     btnCyber.setAttribute("aria-pressed", "false");
     btnSandbox.setAttribute("aria-pressed", "true");
     btnCyber.classList.remove("is-active");
     btnSandbox.classList.add("is-active");
 
-    // show #sandbox-subnav
-    // hide #markdown-be1
-    // show #markdown-sandbox
     if (sandboxSubnav) sandboxSubnav.hidden = false;
     cyberContainer.hidden = true;
     sandboxContainer.hidden = false;
 
-    // Default: collapse network children + clear pressed
+    // Reset sandbox UI
     if (networkChildren) networkChildren.hidden = true;
     clearPressedStates();
 
+    // Screenshot must start hidden until Web is clicked
     hideHttpsScreenshot();
 
-    // Load sandbox home by default
     await loadMarkdown(URLS.sandboxHome, sandboxContainer);
     announce("Loaded: Sandbox Notes");
 
@@ -176,51 +171,44 @@ document.addEventListener("DOMContentLoaded", () => {
     e.preventDefault();
     if (sandboxContainer.hidden) return;
 
-    // selecting Services collapses Network children
-    collapseNetworkChildren();
+    // Any section other than Web should hide the screenshot
+    hideHttpsScreenshot();
 
+    collapseNetworkChildren();
     setActiveButton(servicesBtn, [servicesBtn, networkBtn, pcapBtn]);
     setActiveButton(null, [cdBtn, webBtn]);
 
     await loadMarkdown(URLS.services, sandboxContainer);
     announce("Loaded: Services");
     sandboxContainer.scrollIntoView({ behavior: "smooth", block: "start" });
-    // Always hide HTTPS screenshot when leaving WebHttpHttps
-    hideHttpsScreenshot();
   });
 
-  // Network button toggles children
+  // Network button toggles children (and always hides screenshot)
   networkBtn?.addEventListener("click", (e) => {
     e.preventDefault();
     if (sandboxContainer.hidden) return;
-    
-    // When toggling Network, always hide HTTPS screenshot
+
+    // The screenshot should ONLY appear on Web click, not on Network toggle
     hideHttpsScreenshot();
 
-    // Toggle children visibility
     if (!networkChildren) return;
     const willShow = networkChildren.hidden;
     networkChildren.hidden = !willShow;
 
-    // Network is the active parent selection
     setActiveButton(networkBtn, [servicesBtn, networkBtn, pcapBtn]);
 
-    // When opening, don't force a render to unhide children
-    // Clear child selection when toggling open
+    // Clear child selection when opening
     if (willShow) setActiveButton(null, [cdBtn, webBtn]);
 
     announce(willShow ? "Network sub-sections expanded." : "Network sub-sections collapsed.");
   });
 
-  // Network Cellular Device Buttons
   cdBtn?.addEventListener("click", async (e) => {
     e.preventDefault();
     if (sandboxContainer.hidden) return;
 
-    // Always hide HTTPS screenshot when leaving WebHttpHttps
     hideHttpsScreenshot();
 
-    // Parent stays active, child becomes active
     setActiveButton(networkBtn, [servicesBtn, networkBtn, pcapBtn]);
     setActiveButton(cdBtn, [cdBtn, webBtn]);
 
@@ -233,27 +221,28 @@ document.addEventListener("DOMContentLoaded", () => {
     e.preventDefault();
     if (sandboxContainer.hidden) return;
 
+    // Ensure the children container is visible when Web is selected
+    if (networkChildren) networkChildren.hidden = false;
+
     setActiveButton(networkBtn, [servicesBtn, networkBtn, pcapBtn]);
     setActiveButton(webBtn, [cdBtn, webBtn]);
 
     await loadMarkdown(URLS.networkWeb, sandboxContainer);
+
+    // ONLY show + pin the screenshot when WebHttpHttps is loaded
+    showHttpsScreenshot();
+
     announce("Loaded: Network — Web HTTP/HTTPS");
     sandboxContainer.scrollIntoView({ behavior: "smooth", block: "start" });
-    // Show HTTPS screenshot when this section is loaded
-    showHttpsScreenshot();
   });
 
-  // Packet Capture Button
   pcapBtn?.addEventListener("click", async (e) => {
     e.preventDefault();
     if (sandboxContainer.hidden) return;
 
-    // Always hide HTTPS screenshot when leaving WebHttpHttps
     hideHttpsScreenshot();
 
-    // selecting PC collapses Network children
     collapseNetworkChildren();
-
     setActiveButton(pcapBtn, [servicesBtn, networkBtn, pcapBtn]);
     setActiveButton(null, [cdBtn, webBtn]);
 
@@ -274,6 +263,5 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   // Boot
-  // Default to Cyber mode on load
   showCyberMode({ scroll: false });
 });

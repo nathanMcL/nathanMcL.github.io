@@ -718,6 +718,8 @@ body.sandbox-mode #markdown-be2.markdown-section a:hover {
   color: var(--electric-lime, #96fbe4);
   font-size: 0.85rem;
 }
+/* End of Sandbox sub-nav (mini-buttons) */
+
 /* Sandbox HTTPS Screenshot (01/14/2026) section.
    This section is copied from the Docker Sandbox Relationship Diagram
    CSS instructions, and modified for the HTTPS Screenshot image. 
@@ -725,13 +727,14 @@ body.sandbox-mode #markdown-be2.markdown-section a:hover {
 
 .sandbox-https-screenshot {
     max-width: 1200px;
-    margin: 35px auto 18px auto;
+    margin: 40px auto 28px auto; /* sits above diagram with breathing room */
     padding: 0 20px;
 }
 
+/* Card mirrors diagram card styling */
 .sandbox-https-card {
-    margin: 0;
-    padding: 18px;
+    margin: 0 auto;
+    padding: 20px;
     border-radius: 14px;
 
     background: linear-gradient(
@@ -742,24 +745,28 @@ body.sandbox-mode #markdown-be2.markdown-section a:hover {
 
     border: 2px solid var(--lightning-purple);
     box-shadow:
-        0 0 0 2px rgba(242, 0, 255, 0.24),
-        0 0 18px rgba(242, 0, 255, 0.38),
-        0 0 28px rgba(115, 235, 10, 0.14);
+        0 0 0 2px rgba(242, 0, 255, 0.22),
+        0 0 18px rgba(242, 0, 255, 0.34),
+        0 0 32px rgba(115, 235, 10, 0.14);
 }
 
+/* SHRINK + CENTER the screenshot image */
 .sandbox-https-card img {
-    width: 100%;
-    height: auto;
     display: block;
-    border-radius: 12px;
+    width: 100%;
+    max-width: 760px;          /* limits image size */
+    height: auto;
+    margin: 0 auto;            /* center horizontally */
 
-    border: 2px solid rgba(247, 250, 28, 0.36);
+    border-radius: 12px;
+    border: 2px solid rgba(247, 250, 28, 0.35); /* subtle HTTPS yellow */
     box-shadow: 0 0 16px rgba(247, 250, 28, 0.18);
 }
 
+/* Caption mirrors diagram caption */
 .sandbox-https-screenshot-caption {
-    margin-top: 12px;
-    padding: 10px 12px;
+    margin-top: 14px;
+    padding: 10px 14px;
     border-radius: 10px;
 
     background: rgba(239, 236, 227, 0.08);
@@ -768,17 +775,51 @@ body.sandbox-mode #markdown-be2.markdown-section a:hover {
 
     font-weight: 700;
     letter-spacing: 0.3px;
+    text-align: center;
 }
 
-/* Keyboard focus visibility (508) */
+/* (01/14/2026) Learned about "pinned" behavior.
+   Using this pinned behavior for the HTTPS screenshot 
+*/
+#sandbox-https-screenshot.is-pinned {
+    position: sticky;
+    top: 110px; /* Adjust based on header height */
+    z-index: 10;
+}
+
+#sandbox-https-screenshot.is-pinned .sandbox-https-card {
+    box-shadow: 
+    0 0 0 2px rgba(242, 0, 255, 0.18),
+    0 0 16px rgba(242, 0, 255, 0.30),
+    0 0 28px rgba(115, 235, 10, 0.12);
+}
+
+/* But! "Sticky" might function weird with smaller screens 
+- smushing? - disable pinning */
+@media (max-width: 768px) {
+    #sandbox-https-screenshot.is-pinned {
+        position: static;
+        top: auto;
+    }
+}
+
+/* Keyboard focus support (508 / WCAG) */
 .sandbox-https-card:focus-within {
-    outline: 3px solid var(--elctric-lime);
+    outline: 3px solid var(--electric-lime);
     outline-offset: 4px;
+}
+
+/* Responsive smaller screens */
+@media (max-width: 768px) {
+    .sandbox-https-card img {
+        max-width: 100%;
+    }
 }
 /* End of Sandbox HTTPS Screenshot (01/14/2026) section.
    This section is copied from the Docker Sandbox Relationship Diagram
    CSS instructions, and modified for the HTTPS Screenshot image. 
 */
+
 
 /* Footer styling */
 footer {
