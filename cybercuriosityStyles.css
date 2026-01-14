@@ -23,6 +23,7 @@ body {
     --electric-lime: #73eb0a; /* Sandbox Electric Lime */
     --lightspeed-yellow: #f7fa1cf3; /* Sandbox Lightspeed Yellow */
     --lightspeed-orange: #ff9f1a; /* Sandbox Lightspeed Orange */
+    --platnum-purple:  #b366ff; /* Sandbox Platnum Purple */
     --bamboo-cream: #efece3; /* Sandbox Bamboo Cream */
    
     /* @MacN_iT text color change */
@@ -565,8 +566,8 @@ body.sandbox-mode #markdown-be2.markdown-section a:hover {
 /* Each Button should have a different corresponding color */
 .mini-services { color: var(--lightspeed-yellow); } /* S = lightspeed yellow */
 .mini-network { color: var(--lightspeed-orange); } /* N = lightspeed orange */
-.mini-pcap { color: var(--lightspeed-yellow); } /* PC = uses parent palette */
-.mini-network-sub { color:  var(--lightspeed-orange); } /* Child buttons keep palette */
+.mini-pcap { color: var(--platnum-purple); } /* PC = Platnum Purple */
+.mini-network-sub { color:  var(--electric-lime); } /* Child buttons electric lime */
 
 /* Hover lift */
 .mini-btn:hover {
@@ -708,16 +709,76 @@ body.sandbox-mode #markdown-be2.markdown-section a:hover {
 /* Color coding */
 .orb-services { color: var(--lightspeed-yellow, #ffe85a); }
 .orb-network  { color: var(--lightspeed-orange, #ff9b2f); }
-.orb-pcap     { color: var(--sandbox-accent, #96fbe4); } 
+.orb-pcap     { color: var(--platnum-purple, #b366ff); } 
 
-/* Child buttons inherit Sandbox vibe */
+/* Child buttons inherit Sandbox */
 .orb-child {
   width: 44px;
   height: 44px;
-  color: var(--sandbox-accent, #96fbe4);
+  color: var(--electric-lime, #96fbe4);
   font-size: 0.85rem;
 }
+/* Sandbox HTTPS Screenshot (01/14/2026) section.
+   This section is copied from the Docker Sandbox Relationship Diagram
+   CSS instructions, and modified for the HTTPS Screenshot image. 
+*/
 
+.sandbox-https-screenshot {
+    max-width: 1200px;
+    margin: 35px auto 18px auto;
+    padding: 0 20px;
+}
+
+.sandbox-https-card {
+    margin: 0;
+    padding: 18px;
+    border-radius: 14px;
+
+    background: linear-gradient(
+        180deg,
+        var(--dark-void) 0%,
+        rgba(18, 0, 54, 0.75) 100%
+    );
+
+    border: 2px solid var(--lightning-purple);
+    box-shadow:
+        0 0 0 2px rgba(242, 0, 255, 0.24),
+        0 0 18px rgba(242, 0, 255, 0.38),
+        0 0 28px rgba(115, 235, 10, 0.14);
+}
+
+.sandbox-https-card img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 12px;
+
+    border: 2px solid rgba(247, 250, 28, 0.36);
+    box-shadow: 0 0 16px rgba(247, 250, 28, 0.18);
+}
+
+.sandbox-https-screenshot-caption {
+    margin-top: 12px;
+    padding: 10px 12px;
+    border-radius: 10px;
+
+    background: rgba(239, 236, 227, 0.08);
+    color: var(--bamboo-cream);
+    border: 1px solid rgba(239, 236, 227, 0.18);
+
+    font-weight: 700;
+    letter-spacing: 0.3px;
+}
+
+/* Keyboard focus visibility (508) */
+.sandbox-https-card:focus-within {
+    outline: 3px solid var(--elctric-lime);
+    outline-offset: 4px;
+}
+/* End of Sandbox HTTPS Screenshot (01/14/2026) section.
+   This section is copied from the Docker Sandbox Relationship Diagram
+   CSS instructions, and modified for the HTTPS Screenshot image. 
+*/
 
 /* Footer styling */
 footer {

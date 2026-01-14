@@ -31,6 +31,9 @@ document.addEventListener("DOMContentLoaded", () => {
   // Live Region
   const sandboxStatus = document.getElementById("sandbox-subnav-status");
 
+  // HTTPS Screenshot Section (Visible when WebHttpHttps is loaded)
+  const httpsScreenshot = document.getElementById("sandbox-https-screenshot");
+
   // Guardrails
   if (!btnCyber || !btnSandbox || !cyberContainer || !sandboxContainer) {
     console.warn("CyberCuriosity: Missing required main elements.");
@@ -55,6 +58,17 @@ document.addEventListener("DOMContentLoaded", () => {
   function announce(msg) {
     if (sandboxStatus) sandboxStatus.textContent = msg;
   }
+
+  // When the WebHttpHttps is loaded un-hide the HTTPS sceenshot
+  // Otherwise hide it...
+  function hideHttpsScreenshot() {
+    if (httpsScreenshot) httpsScreenshot.hidden = true;
+  }
+  // Load and render markdown into container. When WebHttpHttps is loaded.
+  function showHttpsScreenshot() {
+    if (httpsScreenshot) httpsScreenshot.hidden = false;
+  }
+
 
   async function loadMarkdown(url, container) {
     if (!url || !container) return;
@@ -82,7 +96,6 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // State helpers
-
   function clearPressedStates() {
     const allBtns = [servicesBtn, networkBtn, pcapBtn, cdBtn, webBtn].filter(Boolean);
     allBtns.forEach((b) => {
@@ -105,7 +118,6 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // Mode switching
-
   async function showCyberMode({ scroll = true } = {}) {
     // Toggle ARIA
     btnCyber.setAttribute("aria-pressed", "true");
@@ -116,6 +128,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // Show/hide containers
     cyberContainer.hidden = false;
     sandboxContainer.hidden = true;
+    hideHttpsScreenshot();
 
     // Hide sandbox UI
     if (sandboxSubnav) sandboxSubnav.hidden = true;
@@ -149,6 +162,8 @@ document.addEventListener("DOMContentLoaded", () => {
     if (networkChildren) networkChildren.hidden = true;
     clearPressedStates();
 
+    hideHttpsScreenshot();
+
     // Load sandbox home by default
     await loadMarkdown(URLS.sandboxHome, sandboxContainer);
     announce("Loaded: Sandbox Notes");
@@ -157,7 +172,6 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // Sandbox button actions
-
   servicesBtn?.addEventListener("click", async (e) => {
     e.preventDefault();
     if (sandboxContainer.hidden) return;
@@ -171,11 +185,17 @@ document.addEventListener("DOMContentLoaded", () => {
     await loadMarkdown(URLS.services, sandboxContainer);
     announce("Loaded: Services");
     sandboxContainer.scrollIntoView({ behavior: "smooth", block: "start" });
+    // Always hide HTTPS screenshot when leaving WebHttpHttps
+    hideHttpsScreenshot();
   });
 
+  // Network button toggles children
   networkBtn?.addEventListener("click", (e) => {
     e.preventDefault();
     if (sandboxContainer.hidden) return;
+    
+    // When toggling Network, always hide HTTPS screenshot
+    hideHttpsScreenshot();
 
     // Toggle children visibility
     if (!networkChildren) return;
@@ -192,9 +212,13 @@ document.addEventListener("DOMContentLoaded", () => {
     announce(willShow ? "Network sub-sections expanded." : "Network sub-sections collapsed.");
   });
 
+  // Network Cellular Device Buttons
   cdBtn?.addEventListener("click", async (e) => {
     e.preventDefault();
     if (sandboxContainer.hidden) return;
+
+    // Always hide HTTPS screenshot when leaving WebHttpHttps
+    hideHttpsScreenshot();
 
     // Parent stays active, child becomes active
     setActiveButton(networkBtn, [servicesBtn, networkBtn, pcapBtn]);
@@ -215,11 +239,17 @@ document.addEventListener("DOMContentLoaded", () => {
     await loadMarkdown(URLS.networkWeb, sandboxContainer);
     announce("Loaded: Network — Web HTTP/HTTPS");
     sandboxContainer.scrollIntoView({ behavior: "smooth", block: "start" });
+    // Show HTTPS screenshot when this section is loaded
+    showHttpsScreenshot();
   });
 
+  // Packet Capture Button
   pcapBtn?.addEventListener("click", async (e) => {
     e.preventDefault();
     if (sandboxContainer.hidden) return;
+
+    // Always hide HTTPS screenshot when leaving WebHttpHttps
+    hideHttpsScreenshot();
 
     // selecting PC collapses Network children
     collapseNetworkChildren();
@@ -233,7 +263,6 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   // Main toggle wiring
-
   btnCyber.addEventListener("click", (e) => {
     e.preventDefault();
     showCyberMode();
