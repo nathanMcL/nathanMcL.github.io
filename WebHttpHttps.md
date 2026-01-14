@@ -56,6 +56,7 @@ Similar with the basic `Web-http` container with it behaving *like* an `HTTP` se
 
 The differences between *these* `HTTP` and `HTTPS` are:  
     - Now we have to generate `TLS certs` in the image:
+    
         ```
         --- HTTPS ---     ||  --- HTTP ---
         
@@ -65,6 +66,7 @@ The differences between *these* `HTTP` and `HTTPS` are:
         - openssl req         - Does not 
         - listen 443 ssl;     - listen 80; 
         ```
+        
   - 1. Both use the `alpine` image (could use another...).  
   - 2. Next the `cert directory` gets created:  
       - `mkdir` `-p` `/etc/nginx/certs`...  
@@ -98,4 +100,5 @@ The Lab `HTTPS` `CSP` baseline goals:
 - Computer Networking || A Top-Down Approach 8th Edition  
     By: James Kurose and Keith Ross  
 - OSI model: `https://en.wikipedia.org/wiki/OSI_model`  
+
 
