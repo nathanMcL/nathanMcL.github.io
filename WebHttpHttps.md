@@ -83,7 +83,7 @@ These two `containers` do share:
 
 #### Front-End Web-https container 
 
-(01/14/2026) After the containers are all spun-up and the servers are live the `front-end` can be viewed. For this `Web-https` container I want to create a base-line for a *secured* front-facing web-app. I incorperated my other used `CSP` instructions. An actual static webpage can be viewed via terminal link. From this base line I can then create addtional variations if needed.
+(01/14/2026) After the containers are all spun-up and the servers are live, the `front-end` can be viewed. For this `Web-https` container I want to create a base-line for a *secured* front-facing web-app. I incorperated my other used `CSP` instructions. An actual static webpage can be viewed via terminal link. From this base line I can then create addtional variations if needed.
 
 The Lab `HTTPS` `CSP` baseline goals:  
     - Allow only same-origin resources  
@@ -100,6 +100,7 @@ The Lab `HTTPS` `CSP` baseline goals:
 - Computer Networking || A Top-Down Approach 8th Edition  
     By: James Kurose and Keith Ross  
 - OSI model: `https://en.wikipedia.org/wiki/OSI_model`  
+
 
 
 
